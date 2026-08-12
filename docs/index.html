@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Apartmender" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#14120f" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <title>Apartmender Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="rotate-hint" class="rotate-hint" hidden>
+      <p>Rotate your phone to landscape</p>
+    </div>
+
+    <main id="home" class="screen home">
+      <p class="brand">Apartmender</p>
+      <h1>Practice</h1>
+      <div id="piece-list" class="piece-list"></div>
+    </main>
+
+    <main id="practice" class="screen practice" hidden>
+      <header class="practice-top">
+        <button type="button" id="home-btn" class="text-btn" aria-label="Back home">
+          Home
+        </button>
+        <p id="piece-title" class="piece-title"></p>
+        <p id="card-meta" class="card-meta"></p>
+      </header>
+
+      <section class="stage">
+        <div id="counter" class="counter" aria-live="polite">0</div>
+        <figure class="card-frame">
+          <img id="card-image" alt="Practice card" draggable="false" />
+        </figure>
+      </section>
+
+      <nav class="controls">
+        <button type="button" id="mistake-btn" class="btn btn-mistake">Mistake</button>
+        <button type="button" id="good-btn" class="btn btn-good">Good</button>
+        <button type="button" id="advance-btn" class="btn btn-advance" disabled>
+          Advance
+        </button>
+      </nav>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
