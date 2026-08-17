@@ -133,7 +133,8 @@ button {
 }
 
 .piece-title,
-.card-meta {
+.card-meta,
+.practice-timer {
   margin: 0;
   font-size: 0.95rem;
 }
@@ -143,10 +144,30 @@ button {
   font-weight: 500;
 }
 
-.card-meta {
+.practice-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
   color: var(--ink-muted);
   text-align: right;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.practice-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.practice-timer-icon {
+  font-size: 0.9em;
+}
+
+.card-meta {
+  padding-left: 8px;
+  border-left: 1px solid var(--line);
 }
 
 .stage {

@@ -6,6 +6,8 @@ const practiceEl = document.getElementById("practice");
 const pieceListEl = document.getElementById("piece-list");
 const pieceTitleEl = document.getElementById("piece-title");
 const cardMetaEl = document.getElementById("card-meta");
+const practiceTimerEl = document.getElementById("practice-timer");
+const practiceTimerValueEl = document.getElementById("practice-timer-value");
 const cardImageEl = document.getElementById("card-image");
 const counterEl = document.getElementById("counter");
 const mistakeBtn = document.getElementById("mistake-btn");
@@ -21,8 +23,55 @@ let pieces = [];
 let activePiece = null;
 let cardIndex = 0;
 let streak = 0;
+let elapsedPracticeMs = 0;
+let timerStartedAt = null;
+let timerInterval = null;
 /** @type {WakeLockSentinel | null} */
 let wakeLock = null;
+
+function currentElapsedPracticeMs() {
+  if (timerStartedAt === null) return elapsedPracticeMs;
+  return elapsedPracticeMs + (performance.now() - timerStartedAt);
+}
+
+function renderPracticeTimer() {
+  const totalSeconds = Math.floor(currentElapsedPracticeMs() / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  practiceTimerValueEl.textContent = `${minutes}:${String(seconds).padStart(2, "0")}`;
+  practiceTimerEl.setAttribute(
+    "aria-label",
+    `Practice time: ${minutes} minutes, ${seconds} seconds`,
+  );
+}
+
+function startPracticeTimer() {
+  if (timerStartedAt !== null) return;
+  timerStartedAt = performance.now();
+  renderPracticeTimer();
+  timerInterval = window.setInterval(renderPracticeTimer, 1000);
+}
+
+function pausePracticeTimer() {
+  if (timerStartedAt === null) return;
+  elapsedPracticeMs += performance.now() - timerStartedAt;
+  timerStartedAt = null;
+  if (timerInterval !== null) {
+    window.clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  renderPracticeTimer();
+}
+
+function resetPracticeTimer() {
+  if (timerInterval !== null) {
+    window.clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  elapsedPracticeMs = 0;
+  timerStartedAt = null;
+  renderPracticeTimer();
+}
 
 function haptic(pattern) {
   if (typeof navigator.vibrate === "function") {
@@ -101,15 +150,18 @@ async function startPiece(piece) {
   activePiece = piece;
   cardIndex = 0;
   streak = 0;
+  resetPracticeTimer();
   pieceTitleEl.textContent = piece.label;
   homeEl.hidden = true;
   practiceEl.hidden = false;
   showCard();
+  startPracticeTimer();
   updateRotateHint();
   await requestWakeLock();
 }
 
 async function goHome() {
+  resetPracticeTimer();
   activePiece = null;
   cardIndex = 0;
   streak = 0;
@@ -160,7 +212,10 @@ homeBtn.addEventListener("click", () => {
 
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible" && !practiceEl.hidden) {
+    startPracticeTimer();
     void requestWakeLock();
+  } else if (document.visibilityState === "hidden") {
+    pausePracticeTimer();
   }
 });
 
