@@ -8,6 +8,9 @@ const pieceTitleEl = document.getElementById("piece-title");
 const cardMetaEl = document.getElementById("card-meta");
 const practiceTimerEl = document.getElementById("practice-timer");
 const practiceTimerValueEl = document.getElementById("practice-timer-value");
+const previousCardBtn = document.getElementById("previous-card-btn");
+const nextCardBtn = document.getElementById("next-card-btn");
+const cardFrameEl = document.querySelector(".card-frame");
 const cardImageEl = document.getElementById("card-image");
 const counterEl = document.getElementById("counter");
 const mistakeBtn = document.getElementById("mistake-btn");
@@ -22,7 +25,11 @@ let pieces = [];
 /** @type {{ id: string, label: string, cards: string[] } | null} */
 let activePiece = null;
 let cardIndex = 0;
-let streak = 0;
+let learningCardIndex = 0;
+let streaks = [];
+let swipeStart = null;
+let screenTouchStart = null;
+let lastScreenTapAt = 0;
 let elapsedPracticeMs = 0;
 let timerStartedAt = null;
 let timerInterval = null;
@@ -130,12 +137,51 @@ function renderHome() {
   );
 }
 
+function currentStreak() {
+  return streaks[cardIndex] ?? 0;
+}
+
+function measureLabelForCard(file) {
+  return file.match(/-m(\d+[a-z]?)(?:-|\.)/i)?.[1] ?? null;
+}
+
+function reachableCardIndices() {
+  if (!activePiece) return [];
+  return activePiece.cards
+    .map((_, index) => index)
+    .filter(
+      (index) =>
+        streaks[index] >= ADVANCE_AT ||
+        index === learningCardIndex ||
+        index === cardIndex,
+    );
+}
+
+function updateCardNavigation() {
+  const reachable = reachableCardIndices();
+  const position = reachable.indexOf(cardIndex);
+  previousCardBtn.disabled = position <= 0;
+  nextCardBtn.disabled = position < 0 || position >= reachable.length - 1;
+}
+
 function updateControls() {
+  const streak = currentStreak();
+  const reviewing = cardIndex !== learningCardIndex;
   counterEl.textContent = String(streak);
-  advanceBtn.disabled = streak < ADVANCE_AT;
+  mistakeBtn.disabled = reviewing;
+  goodBtn.disabled = reviewing;
+  advanceBtn.textContent = reviewing ? "Resume" : "Advance";
+  advanceBtn.disabled = !reviewing && streak < ADVANCE_AT;
   if (activePiece) {
-    cardMetaEl.textContent = `${cardIndex + 1} / ${activePiece.cards.length}`;
+    const measureLabel = measureLabelForCard(activePiece.cards[cardIndex]);
+    const position = `${cardIndex + 1} / ${activePiece.cards.length}`;
+    cardMetaEl.textContent = measureLabel ? `m. ${measureLabel} · ${position}` : position;
+    cardMetaEl.setAttribute(
+      "aria-label",
+      measureLabel ? `Measure ${measureLabel}, card ${position}` : `Card ${position}`,
+    );
   }
+  updateCardNavigation();
 }
 
 function showCard() {
@@ -146,10 +192,21 @@ function showCard() {
   updateControls();
 }
 
+function navigatePlayableCard(direction) {
+  const reachable = reachableCardIndices();
+  const position = reachable.indexOf(cardIndex);
+  const target = reachable[position + direction];
+  if (target === undefined) return;
+  cardIndex = target;
+  showCard();
+  haptic(8);
+}
+
 async function startPiece(piece) {
   activePiece = piece;
   cardIndex = 0;
-  streak = 0;
+  learningCardIndex = 0;
+  streaks = Array(piece.cards.length).fill(0);
   resetPracticeTimer();
   pieceTitleEl.textContent = piece.label;
   homeEl.hidden = true;
@@ -164,7 +221,11 @@ async function goHome() {
   resetPracticeTimer();
   activePiece = null;
   cardIndex = 0;
-  streak = 0;
+  learningCardIndex = 0;
+  streaks = [];
+  swipeStart = null;
+  screenTouchStart = null;
+  lastScreenTapAt = 0;
   practiceEl.hidden = true;
   homeEl.hidden = false;
   cardImageEl.removeAttribute("src");
@@ -173,39 +234,120 @@ async function goHome() {
 }
 
 function onMistake() {
-  streak = 0;
+  if (cardIndex !== learningCardIndex) return;
+  streaks[cardIndex] = 0;
   updateControls();
   haptic([40, 30, 40]);
   flash("flash-mistake");
 }
 
 function onGood() {
+  if (cardIndex !== learningCardIndex) return;
+  const streak = currentStreak();
   if (streak >= MAX_STREAK) {
     haptic(8);
     return;
   }
-  streak += 1;
+  streaks[cardIndex] = streak + 1;
   updateControls();
   haptic(12);
   flash("flash-good");
 }
 
 async function onAdvance() {
-  if (!activePiece || streak < ADVANCE_AT) return;
+  if (!activePiece) return;
+  if (cardIndex !== learningCardIndex) {
+    cardIndex = learningCardIndex;
+    showCard();
+    haptic(12);
+    return;
+  }
+  if (currentStreak() < ADVANCE_AT) return;
   haptic(24);
-  const next = cardIndex + 1;
+  const next = learningCardIndex + 1;
   if (next >= activePiece.cards.length) {
     await goHome();
     return;
   }
+  learningCardIndex = next;
   cardIndex = next;
-  streak = 0;
   showCard();
+}
+
+function onCardPointerDown(event) {
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+  swipeStart = {
+    pointerId: event.pointerId,
+    x: event.clientX,
+    y: event.clientY,
+  };
+  cardFrameEl.setPointerCapture?.(event.pointerId);
+}
+
+function onCardPointerUp(event) {
+  if (!swipeStart || swipeStart.pointerId !== event.pointerId) return;
+  const deltaX = event.clientX - swipeStart.x;
+  const deltaY = event.clientY - swipeStart.y;
+  swipeStart = null;
+  if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+  navigatePlayableCard(deltaX < 0 ? -1 : 1);
+}
+
+function isRapidTapControl(target) {
+  return (
+    target instanceof Element &&
+    target.closest("button, a, input, select, textarea, label") !== null
+  );
+}
+
+function onScreenTouchStart(event) {
+  if (event.touches.length !== 1 || isRapidTapControl(event.target)) {
+    screenTouchStart = null;
+    lastScreenTapAt = 0;
+    return;
+  }
+  const touch = event.touches[0];
+  screenTouchStart = { x: touch.clientX, y: touch.clientY };
+}
+
+function onScreenTouchEnd(event) {
+  if (!screenTouchStart || event.changedTouches.length !== 1) {
+    screenTouchStart = null;
+    return;
+  }
+  const touch = event.changedTouches[0];
+  const moved = Math.hypot(
+    touch.clientX - screenTouchStart.x,
+    touch.clientY - screenTouchStart.y,
+  );
+  screenTouchStart = null;
+  if (moved > 12) {
+    lastScreenTapAt = 0;
+    return;
+  }
+
+  const now = performance.now();
+  if (lastScreenTapAt !== 0 && now - lastScreenTapAt < 350) {
+    event.preventDefault();
+    lastScreenTapAt = 0;
+    return;
+  }
+  lastScreenTapAt = now;
 }
 
 mistakeBtn.addEventListener("click", onMistake);
 goodBtn.addEventListener("click", onGood);
 advanceBtn.addEventListener("click", onAdvance);
+previousCardBtn.addEventListener("click", () => navigatePlayableCard(-1));
+nextCardBtn.addEventListener("click", () => navigatePlayableCard(1));
+cardFrameEl.addEventListener("pointerdown", onCardPointerDown);
+cardFrameEl.addEventListener("pointerup", onCardPointerUp);
+cardFrameEl.addEventListener("pointercancel", () => {
+  swipeStart = null;
+});
+document.addEventListener("touchstart", onScreenTouchStart, { passive: true });
+document.addEventListener("touchend", onScreenTouchEnd, { passive: false });
+document.addEventListener("dblclick", (event) => event.preventDefault());
 homeBtn.addEventListener("click", () => {
   void goHome();
 });
