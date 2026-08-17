@@ -49,6 +49,7 @@ button {
 .screen {
   min-height: 100%;
   height: 100dvh;
+  touch-action: manipulation;
   padding:
     calc(16px + var(--safe-top))
     calc(20px + var(--safe-right))
@@ -120,12 +121,13 @@ button {
 
 .practice-top {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 12px;
 }
 
 .text-btn {
+  justify-self: start;
   background: transparent;
   color: var(--ink-muted);
   padding: 8px 4px;
@@ -148,6 +150,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  justify-self: end;
   gap: 8px;
   color: var(--ink-muted);
   text-align: right;
@@ -165,9 +168,38 @@ button {
   font-size: 0.9em;
 }
 
-.card-meta {
+.card-nav {
+  display: flex;
+  align-items: center;
   padding-left: 8px;
   border-left: 1px solid var(--line);
+}
+
+.card-meta {
+  min-width: 7.5rem;
+  text-align: center;
+}
+
+.card-nav-btn {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.card-nav-btn:active:not(:disabled) {
+  background: var(--line);
+}
+
+.card-nav-btn:disabled {
+  cursor: default;
+  opacity: 0.22;
 }
 
 .stage {
@@ -206,6 +238,7 @@ button {
   background: #f7f4ec;
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .card-frame img {

@@ -44,7 +44,27 @@
             <span class="practice-timer-icon" aria-hidden="true">◷</span>
             <span id="practice-timer-value">0:00</span>
           </p>
-          <p id="card-meta" class="card-meta"></p>
+          <div class="card-nav" aria-label="Practice measures">
+            <button
+              type="button"
+              id="next-card-btn"
+              class="card-nav-btn"
+              aria-label="Next playable measure"
+              disabled
+            >
+              ‹
+            </button>
+            <p id="card-meta" class="card-meta" aria-live="polite"></p>
+            <button
+              type="button"
+              id="previous-card-btn"
+              class="card-nav-btn"
+              aria-label="Previous playable measure"
+              disabled
+            >
+              ›
+            </button>
+          </div>
         </div>
       </header>
 
