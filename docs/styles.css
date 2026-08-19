@@ -251,6 +251,10 @@ button {
   display: block;
 }
 
+.card-frame img.portrait-card {
+  object-fit: cover;
+}
+
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
