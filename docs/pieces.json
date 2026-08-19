@@ -1,7 +1,7 @@
 [
   {
-    "id": "czerny-op-821-no-1",
-    "label": "Czerny Op. 821, 1",
+    "id": "czerny-op-821-no-2",
+    "label": "Czerny Op. 821, 2",
     "cards": [
       "01-m8.png",
       "02-m7-plus-m8-onsets.png",
@@ -11,6 +11,47 @@
       "06-m3-plus-m4-onsets.png",
       "07-m2-plus-m3-onsets.png",
       "08-m1-plus-m2-onsets.png"
+    ]
+  },
+  {
+    "id": "bach-bwv-846-prelude-1",
+    "label": "Bach Prelude No. 1, BWV 846",
+    "cards": [
+      "01-m35.png",
+      "02-m34-plus-m35-onsets.png",
+      "03-m33-plus-m34-onsets.png",
+      "04-m32-plus-m33-onsets.png",
+      "05-m31-plus-m32-onsets.png",
+      "06-m30-plus-m31-onsets.png",
+      "07-m29-plus-m30-onsets.png",
+      "08-m28-plus-m29-onsets.png",
+      "09-m27-plus-m28-onsets.png",
+      "10-m26-plus-m27-onsets.png",
+      "11-m25-plus-m26-onsets.png",
+      "12-m24-plus-m25-onsets.png",
+      "13-m23-plus-m24-onsets.png",
+      "14-m22-plus-m23-onsets.png",
+      "15-m21-plus-m22-onsets.png",
+      "16-m20-plus-m21-onsets.png",
+      "17-m19-plus-m20-onsets.png",
+      "18-m18-plus-m19-onsets.png",
+      "19-m17-plus-m18-onsets.png",
+      "20-m16-plus-m17-onsets.png",
+      "21-m15-plus-m16-onsets.png",
+      "22-m14-plus-m15-onsets.png",
+      "23-m13-plus-m14-onsets.png",
+      "24-m12-plus-m13-onsets.png",
+      "25-m11-plus-m12-onsets.png",
+      "26-m10-plus-m11-onsets.png",
+      "27-m9-plus-m10-onsets.png",
+      "28-m8-plus-m9-onsets.png",
+      "29-m7-plus-m8-onsets.png",
+      "30-m6-plus-m7-onsets.png",
+      "31-m5-plus-m6-onsets.png",
+      "32-m4-plus-m5-onsets.png",
+      "33-m3-plus-m4-onsets.png",
+      "34-m2-plus-m3-onsets.png",
+      "35-m1-plus-m2-onsets.png"
     ]
   },
   {
