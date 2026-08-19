@@ -187,7 +187,6 @@ function updateControls() {
 function showCard() {
   if (!activePiece) return;
   const file = activePiece.cards[cardIndex];
-  cardImageEl.classList.remove("portrait-card");
   cardImageEl.src = `./cards/${activePiece.id}/${file}`;
   cardImageEl.alt = `${activePiece.label} card ${cardIndex + 1}`;
   updateControls();
@@ -345,12 +344,6 @@ cardFrameEl.addEventListener("pointerdown", onCardPointerDown);
 cardFrameEl.addEventListener("pointerup", onCardPointerUp);
 cardFrameEl.addEventListener("pointercancel", () => {
   swipeStart = null;
-});
-cardImageEl.addEventListener("load", () => {
-  cardImageEl.classList.toggle(
-    "portrait-card",
-    cardImageEl.naturalHeight > cardImageEl.naturalWidth,
-  );
 });
 document.addEventListener("touchstart", onScreenTouchStart, { passive: true });
 document.addEventListener("touchend", onScreenTouchEnd, { passive: false });
