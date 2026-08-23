@@ -16,3 +16,6 @@ The verified built-in catalog currently contains:
 A phone landscape practice UI lives in `docs/` and is published with GitHub Pages:
 
 https://thdecn.github.io/apartmender/
+
+The accepted next-stage account, practice-cycle, and Hard-mode behavior is defined in
+[the v1 product specification](./PRODUCT_SPEC.md).
