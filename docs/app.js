@@ -1,5 +1,4 @@
-const MAX_STREAK = 8;
-const ADVANCE_AT = 3;
+import { createPracticeFlow } from "./practice-flow.js";
 
 const homeEl = document.getElementById("home");
 const practiceEl = document.getElementById("practice");
@@ -24,21 +23,17 @@ let pieces = [];
 
 /** @type {{ id: string, label: string, cards: string[] } | null} */
 let activePiece = null;
-let cardIndex = 0;
-let learningCardIndex = 0;
-let streaks = [];
+/** @type {ReturnType<typeof createPracticeFlow> | null} */
+let practiceFlow = null;
 let swipeStart = null;
 let screenTouchStart = null;
 let lastScreenTapAt = 0;
-let elapsedPracticeMs = 0;
-let timerStartedAt = null;
 let timerInterval = null;
 /** @type {WakeLockSentinel | null} */
 let wakeLock = null;
 
 function currentElapsedPracticeMs() {
-  if (timerStartedAt === null) return elapsedPracticeMs;
-  return elapsedPracticeMs + (performance.now() - timerStartedAt);
+  return practiceFlow?.snapshot().elapsedPracticeMs ?? 0;
 }
 
 function renderPracticeTimer() {
@@ -53,16 +48,15 @@ function renderPracticeTimer() {
 }
 
 function startPracticeTimer() {
-  if (timerStartedAt !== null) return;
-  timerStartedAt = performance.now();
+  if (!practiceFlow || timerInterval !== null) return;
+  practiceFlow.dispatch({ type: "timer-resumed" });
   renderPracticeTimer();
   timerInterval = window.setInterval(renderPracticeTimer, 1000);
 }
 
 function pausePracticeTimer() {
-  if (timerStartedAt === null) return;
-  elapsedPracticeMs += performance.now() - timerStartedAt;
-  timerStartedAt = null;
+  if (!practiceFlow) return;
+  practiceFlow.dispatch({ type: "timer-paused" });
   if (timerInterval !== null) {
     window.clearInterval(timerInterval);
     timerInterval = null;
@@ -75,8 +69,8 @@ function resetPracticeTimer() {
     window.clearInterval(timerInterval);
     timerInterval = null;
   }
-  elapsedPracticeMs = 0;
-  timerStartedAt = null;
+  practiceFlow?.dispatch({ type: "timer-paused" });
+  practiceFlow = null;
   renderPracticeTimer();
 }
 
@@ -137,44 +131,27 @@ function renderHome() {
   );
 }
 
-function currentStreak() {
-  return streaks[cardIndex] ?? 0;
-}
-
 function measureLabelForCard(file) {
   return file.match(/-m(\d+[a-z]?)(?:-|\.)/i)?.[1] ?? null;
 }
 
-function reachableCardIndices() {
-  if (!activePiece) return [];
-  return activePiece.cards
-    .map((_, index) => index)
-    .filter(
-      (index) =>
-        streaks[index] >= ADVANCE_AT ||
-        index === learningCardIndex ||
-        index === cardIndex,
-    );
-}
-
 function updateCardNavigation() {
-  const reachable = reachableCardIndices();
-  const position = reachable.indexOf(cardIndex);
-  previousCardBtn.disabled = position <= 0;
-  nextCardBtn.disabled = position < 0 || position >= reachable.length - 1;
+  const state = practiceFlow?.snapshot();
+  previousCardBtn.disabled = !state?.canBrowsePrevious;
+  nextCardBtn.disabled = !state?.canBrowseNext;
 }
 
 function updateControls() {
-  const streak = currentStreak();
-  const reviewing = cardIndex !== learningCardIndex;
-  counterEl.textContent = String(streak);
-  mistakeBtn.disabled = reviewing;
-  goodBtn.disabled = reviewing;
-  advanceBtn.textContent = reviewing ? "Resume" : "Advance";
-  advanceBtn.disabled = !reviewing && streak < ADVANCE_AT;
+  const state = practiceFlow?.snapshot();
+  if (!state) return;
+  counterEl.textContent = String(state.streak);
+  mistakeBtn.disabled = state.isBrowsing;
+  goodBtn.disabled = state.isBrowsing;
+  advanceBtn.textContent = state.isBrowsing ? "Resume" : "Advance";
+  advanceBtn.disabled = !state.canAdvance;
   if (activePiece) {
-    const measureLabel = measureLabelForCard(activePiece.cards[cardIndex]);
-    const position = `${cardIndex + 1} / ${activePiece.cards.length}`;
+    const measureLabel = measureLabelForCard(state.currentCard);
+    const position = `${state.currentCardIndex + 1} / ${activePiece.cards.length}`;
     cardMetaEl.textContent = measureLabel ? `m. ${measureLabel} · ${position}` : position;
     cardMetaEl.setAttribute(
       "aria-label",
@@ -185,29 +162,27 @@ function updateControls() {
 }
 
 function showCard() {
-  if (!activePiece) return;
-  const file = activePiece.cards[cardIndex];
+  if (!activePiece || !practiceFlow) return;
+  const state = practiceFlow.snapshot();
+  const file = state.currentCard;
   cardImageEl.src = `./cards/${activePiece.id}/${file}`;
-  cardImageEl.alt = `${activePiece.label} card ${cardIndex + 1}`;
+  cardImageEl.alt = `${activePiece.label} card ${state.currentCardIndex + 1}`;
   updateControls();
 }
 
 function navigatePlayableCard(direction) {
-  const reachable = reachableCardIndices();
-  const position = reachable.indexOf(cardIndex);
-  const target = reachable[position + direction];
-  if (target === undefined) return;
-  cardIndex = target;
+  if (!practiceFlow) return;
+  const previousIndex = practiceFlow.snapshot().currentCardIndex;
+  practiceFlow.dispatch({ type: "browse", direction });
+  if (practiceFlow.snapshot().currentCardIndex === previousIndex) return;
   showCard();
   haptic(8);
 }
 
 async function startPiece(piece) {
-  activePiece = piece;
-  cardIndex = 0;
-  learningCardIndex = 0;
-  streaks = Array(piece.cards.length).fill(0);
   resetPracticeTimer();
+  activePiece = piece;
+  practiceFlow = createPracticeFlow(piece.cards);
   pieceTitleEl.textContent = piece.label;
   homeEl.hidden = true;
   practiceEl.hidden = false;
@@ -220,9 +195,6 @@ async function startPiece(piece) {
 async function goHome() {
   resetPracticeTimer();
   activePiece = null;
-  cardIndex = 0;
-  learningCardIndex = 0;
-  streaks = [];
   swipeStart = null;
   screenTouchStart = null;
   lastScreenTapAt = 0;
@@ -234,43 +206,36 @@ async function goHome() {
 }
 
 function onMistake() {
-  if (cardIndex !== learningCardIndex) return;
-  streaks[cardIndex] = 0;
+  if (!practiceFlow || practiceFlow.snapshot().isBrowsing) return;
+  practiceFlow.dispatch({ type: "mistake" });
   updateControls();
   haptic([40, 30, 40]);
   flash("flash-mistake");
 }
 
 function onGood() {
-  if (cardIndex !== learningCardIndex) return;
-  const streak = currentStreak();
-  if (streak >= MAX_STREAK) {
+  if (!practiceFlow || practiceFlow.snapshot().isBrowsing) return;
+  const previousStreak = practiceFlow.snapshot().streak;
+  practiceFlow.dispatch({ type: "good" });
+  if (practiceFlow.snapshot().streak === previousStreak) {
     haptic(8);
     return;
   }
-  streaks[cardIndex] = streak + 1;
   updateControls();
   haptic(12);
   flash("flash-good");
 }
 
 async function onAdvance() {
-  if (!activePiece) return;
-  if (cardIndex !== learningCardIndex) {
-    cardIndex = learningCardIndex;
-    showCard();
-    haptic(12);
-    return;
-  }
-  if (currentStreak() < ADVANCE_AT) return;
-  haptic(24);
-  const next = learningCardIndex + 1;
-  if (next >= activePiece.cards.length) {
+  if (!activePiece || !practiceFlow) return;
+  const state = practiceFlow.snapshot();
+  if (!state.canAdvance) return;
+  haptic(state.isBrowsing ? 12 : 24);
+  practiceFlow.dispatch({ type: "advance" });
+  if (practiceFlow.snapshot().status === "complete") {
     await goHome();
     return;
   }
-  learningCardIndex = next;
-  cardIndex = next;
   showCard();
 }
 
