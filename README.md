@@ -16,3 +16,11 @@ The verified built-in catalog currently contains:
 A phone landscape practice UI lives in `docs/` and is published with GitHub Pages:
 
 https://thdecn.github.io/apartmender/
+
+## Tests
+
+Run the JavaScript practice-flow tests with Node.js:
+
+```sh
+npm test
+```
