@@ -62,9 +62,9 @@ button {
 }
 
 .home {
-  display: grid;
-  align-content: start;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 18px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -110,6 +110,56 @@ button {
 .piece-btn:active {
   transform: scale(0.985);
   border-color: var(--accent);
+}
+
+.practice-mode-picker {
+  width: min(320px, 100%);
+  margin: auto 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.practice-mode-picker legend {
+  width: 100%;
+  margin-bottom: 8px;
+  color: var(--ink-muted);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.practice-mode-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+}
+
+.practice-mode-options input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.practice-mode-options label {
+  padding: 9px 16px;
+  border-radius: 8px;
+  color: var(--ink-muted);
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.practice-mode-options input:checked + label {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.practice-mode-options input:focus-visible + label {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .practice {

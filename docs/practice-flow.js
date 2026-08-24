@@ -1,17 +1,33 @@
 const ADVANCE_AT = 3;
 const MAX_STREAK = 8;
 
+function progressionOrder(cardCount, mode, random) {
+  const order = Array.from({ length: cardCount }, (_, index) => index);
+  if (mode !== "hard") return order;
+
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [order[index], order[swapIndex]] = [order[swapIndex], order[index]];
+  }
+  return order;
+}
+
 /**
- * Create a Normal-mode session for cards ordered from the end of a piece to its beginning.
+ * Create a practice session for cards ordered from the end of a piece to its beginning.
  *
  * @param {string[]} cards
- * @param {{ now?: () => number }} [dependencies]
+ * @param {{ mode?: "normal" | "hard", now?: () => number, random?: () => number }} [dependencies]
  */
-export function createPracticeFlow(cards, { now = () => performance.now() } = {}) {
+export function createPracticeFlow(
+  cards,
+  { mode = "normal", now = () => performance.now(), random = Math.random } = {},
+) {
   let elapsedPracticeMs = 0;
   let timerStartedAt = now();
-  let currentIndex = 0;
-  let targetIndex = 0;
+  const targetOrder = progressionOrder(cards.length, mode, random);
+  let targetPosition = 0;
+  let targetIndex = targetOrder[targetPosition];
+  let currentIndex = targetIndex;
   const streaks = Array(cards.length).fill(0);
   let status = "active";
 
@@ -19,6 +35,10 @@ export function createPracticeFlow(cards, { now = () => performance.now() } = {}
     if (timerStartedAt === null) return;
     elapsedPracticeMs += now() - timerStartedAt;
     timerStartedAt = null;
+  }
+
+  function lastBrowsableIndex() {
+    return mode === "hard" ? cards.length - 1 : targetIndex;
   }
 
   return {
@@ -51,17 +71,18 @@ export function createPracticeFlow(cards, { now = () => performance.now() } = {}
         currentIndex === targetIndex &&
         streaks[currentIndex] >= ADVANCE_AT
       ) {
-        if (targetIndex === cards.length - 1) {
+        if (targetPosition === targetOrder.length - 1) {
           pauseTimer();
           status = "complete";
           return;
         }
-        targetIndex += 1;
+        targetPosition += 1;
+        targetIndex = targetOrder[targetPosition];
         currentIndex = targetIndex;
       }
       if (event.type === "browse") {
         const browseIndex = currentIndex + event.direction;
-        if (browseIndex >= 0 && browseIndex <= targetIndex) {
+        if (browseIndex >= 0 && browseIndex <= lastBrowsableIndex()) {
           currentIndex = browseIndex;
         }
       }
@@ -77,7 +98,7 @@ export function createPracticeFlow(cards, { now = () => performance.now() } = {}
         status,
         canAdvance: status === "active" && (isBrowsing || streak >= ADVANCE_AT),
         canBrowsePrevious: status === "active" && currentIndex > 0,
-        canBrowseNext: status === "active" && currentIndex < targetIndex,
+        canBrowseNext: status === "active" && currentIndex < lastBrowsableIndex(),
         elapsedPracticeMs:
           elapsedPracticeMs + (timerStartedAt === null ? 0 : now() - timerStartedAt),
       };

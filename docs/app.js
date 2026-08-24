@@ -1,5 +1,7 @@
 import { createPracticeFlow } from "./practice-flow.js";
 
+const PRACTICE_MODE_STORAGE_KEY = "apartmender.practice-mode";
+
 const homeEl = document.getElementById("home");
 const practiceEl = document.getElementById("practice");
 const pieceListEl = document.getElementById("piece-list");
@@ -17,9 +19,13 @@ const goodBtn = document.getElementById("good-btn");
 const advanceBtn = document.getElementById("advance-btn");
 const homeBtn = document.getElementById("home-btn");
 const rotateHintEl = document.getElementById("rotate-hint");
+const practiceModeInputs = document.querySelectorAll('input[name="practice-mode"]');
 
 /** @type {{ id: string, label: string, cards: string[] }[]} */
 let pieces = [];
+
+/** @type {"normal" | "hard"} */
+let practiceMode = readPracticeMode();
 
 /** @type {{ id: string, label: string, cards: string[] } | null} */
 let activePiece = null;
@@ -31,6 +37,28 @@ let lastScreenTapAt = 0;
 let timerInterval = null;
 /** @type {WakeLockSentinel | null} */
 let wakeLock = null;
+
+function readPracticeMode() {
+  try {
+    return localStorage.getItem(PRACTICE_MODE_STORAGE_KEY) === "hard" ? "hard" : "normal";
+  } catch {
+    return "normal";
+  }
+}
+
+function savePracticeMode() {
+  try {
+    localStorage.setItem(PRACTICE_MODE_STORAGE_KEY, practiceMode);
+  } catch {
+    // Storage can be unavailable; keep the choice for this page session.
+  }
+}
+
+function renderPracticeMode() {
+  practiceModeInputs.forEach((input) => {
+    input.checked = input.value === practiceMode;
+  });
+}
 
 function currentElapsedPracticeMs() {
   return practiceFlow?.snapshot().elapsedPracticeMs ?? 0;
@@ -182,7 +210,7 @@ function navigatePlayableCard(direction) {
 async function startPiece(piece) {
   resetPracticeTimer();
   activePiece = piece;
-  practiceFlow = createPracticeFlow(piece.cards);
+  practiceFlow = createPracticeFlow(piece.cards, { mode: practiceMode });
   pieceTitleEl.textContent = piece.label;
   homeEl.hidden = true;
   practiceEl.hidden = false;
@@ -316,6 +344,14 @@ document.addEventListener("dblclick", (event) => event.preventDefault());
 homeBtn.addEventListener("click", () => {
   void goHome();
 });
+practiceModeInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    if (!input.checked) return;
+    practiceMode = input.value === "hard" ? "hard" : "normal";
+    savePracticeMode();
+    renderPracticeMode();
+  });
+});
 
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible" && !practiceEl.hidden) {
@@ -335,4 +371,5 @@ const data = await fetch("./pieces.json").then((r) => {
 });
 pieces = data;
 renderHome();
+renderPracticeMode();
 updateRotateHint();

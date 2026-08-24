@@ -3,6 +3,13 @@ import assert from "node:assert/strict";
 
 import { createPracticeFlow } from "../docs/practice-flow.js";
 
+function completeCurrentCard(flow) {
+  flow.dispatch({ type: "good" });
+  flow.dispatch({ type: "good" });
+  flow.dispatch({ type: "good" });
+  flow.dispatch({ type: "advance" });
+}
+
 test("Normal mode starts with the ending card", () => {
   const flow = createPracticeFlow(["ending", "middle", "beginning"], {
     now: () => 0,
@@ -220,5 +227,81 @@ test("Browsing reports which completed cards are reachable", () => {
       [true, false],
       [false, true],
     ],
+  );
+});
+
+test("Hard mode uses one fixed random progression", () => {
+  const randomValues = [0.5, 0, 0.5];
+  let randomIndex = 0;
+  const flow = createPracticeFlow(
+    ["ending", "later-middle", "earlier-middle", "beginning"],
+    {
+      mode: "hard",
+      now: () => 0,
+      random: () => randomValues[randomIndex++],
+    },
+  );
+  const targets = [];
+
+  while (flow.snapshot().status === "active") {
+    targets.push(flow.snapshot().currentCard);
+    completeCurrentCard(flow);
+  }
+
+  assert.deepEqual(targets, ["beginning", "later-middle", "ending", "earlier-middle"]);
+});
+
+test("Hard mode includes every card once at the random boundaries", () => {
+  const cards = ["ending", "later-middle", "earlier-middle", "beginning"];
+
+  for (const randomValue of [0, 0.999999]) {
+    const flow = createPracticeFlow(cards, {
+      mode: "hard",
+      now: () => 0,
+      random: () => randomValue,
+    });
+    const targets = [];
+
+    while (flow.snapshot().status === "active") {
+      targets.push(flow.snapshot().currentCard);
+      completeCurrentCard(flow);
+    }
+
+    assert.equal(targets.length, cards.length);
+    assert.deepEqual([...targets].sort(), [...cards].sort());
+  }
+});
+
+test("Hard mode handles a one-card permutation without requesting randomness", () => {
+  const flow = createPracticeFlow(["only-card"], {
+    mode: "hard",
+    now: () => 0,
+    random: () => {
+      throw new Error("A one-card permutation does not need randomness");
+    },
+  });
+
+  completeCurrentCard(flow);
+
+  assert.equal(flow.snapshot().status, "complete");
+});
+
+test("Hard mode browsing follows card order instead of random progression", () => {
+  const flow = createPracticeFlow(["ending", "middle", "beginning"], {
+    mode: "hard",
+    now: () => 0,
+    random: () => 0,
+  });
+
+  flow.dispatch({ type: "browse", direction: 1 });
+
+  const state = flow.snapshot();
+  assert.deepEqual(
+    {
+      currentCard: state.currentCard,
+      isBrowsing: state.isBrowsing,
+      canAdvance: state.canAdvance,
+    },
+    { currentCard: "beginning", isBrowsing: true, canAdvance: true },
   );
 });
