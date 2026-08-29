@@ -1,0 +1,10 @@
+node_modules/
+
+# Local credentials. Only the blank contract belongs in source control.
+.env
+.env.*
+!.env.example
+
+# Operator-created database exports must remain outside the public repository.
+backups/
+*.dump

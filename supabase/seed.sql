@@ -1,0 +1,2 @@
+-- Issue #10 establishes the local boundary without application data.
+-- Later schema issues may add deterministic development-only seed data here.

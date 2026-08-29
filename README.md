@@ -24,3 +24,9 @@ Run the JavaScript practice-flow tests with Node.js:
 ```sh
 npm test
 ```
+
+## Supabase development
+
+The account and data boundary uses a project-pinned Supabase CLI and a local
+Docker-compatible stack. See [SUPABASE.md](SUPABASE.md) for setup, commands,
+credential handling, hosted Auth configuration, and Free-plan recovery expectations.
