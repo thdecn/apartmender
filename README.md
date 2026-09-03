@@ -7,6 +7,7 @@ Each written measure becomes one card. The last measure appears alone; every ear
 The verified built-in catalog currently contains:
 
 - Carl Czerny, Op. 821 No. 2: 8 measures/cards
+- J. F. F. Burgmüller, L'Arabesque, Op. 100 No. 2: 33 measures/cards
 - J. S. Bach, Prelude No. 1 in C major, BWV 846: 35 measures/cards
 - J. S. Bach, Invention No. 8, BWV 779: 34 measures/cards
 - J. S. Bach, Invention No. 1, BWV 772: 22 measures/cards
