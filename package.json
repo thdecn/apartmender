@@ -3,6 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
+    "supabase:reset": "supabase db reset --local",
+    "supabase:migration:new": "supabase migration new",
+    "supabase:test": "supabase test db --local"
+  },
+  "devDependencies": {
+    "supabase": "2.115.0"
   }
 }
