@@ -10,4 +10,6 @@ Use the repository's five canonical triage labels. See `docs/agents/triage-label
 
 ### Domain docs
 
-Apartmender is the single frontend context for V1; Ember owns the shared vocabulary, specification, and system-wide ADRs. See `docs/agents/domain.md`.
+Backend-facing work: Sludge is the V1 Supabase backend and owns its browser
+contract. Ember remains a product vocabulary and specification reference, not
+the backend implementation authority. See `docs/agents/domain.md`.

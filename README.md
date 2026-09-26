@@ -20,8 +20,33 @@ https://thdecn.github.io/apartmender/
 
 ## Tests
 
-Run the JavaScript practice-flow tests with Node.js:
+Run the JavaScript tests with Node.js:
 
 ```sh
 npm test
 ```
+
+## Sludge browser configuration
+
+Sludge is Apartmender's V1 Supabase backend and owns the browser-facing Auth
+and student-data contract consumed here.
+
+Authenticated pages use the browser data module in `docs/login/browser-data.js`.
+Page code receives normalized outcomes from that module and does not construct
+Supabase requests or handle session tokens.
+
+`docs/login/config.js` contains only the public project URL and publishable key
+for each supported environment. It selects the local Sludge stack for pages
+served from `http://127.0.0.1` or `http://localhost`, the hosted project for
+`https://thdecn.github.io`, and fails closed on any unconfigured hostname.
+Never add a secret key, legacy `service_role` key, database password, or
+connection string to this repository.
+
+For local integration, start Sludge and serve this repository's `docs/`
+directory at the exact Auth redirect origin:
+
+```sh
+python3 -m http.server 8080 --bind 127.0.0.1 --directory docs
+```
+
+Then open `http://127.0.0.1:8080/login/`.

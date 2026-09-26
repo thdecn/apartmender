@@ -1,4 +1,4 @@
-import { clearSession, loadOwnStudent, readSession } from "../supabase.js";
+import { browserData } from "../supabase.js";
 
 const display = document.querySelector("#name-display");
 const record = document.querySelector("#student-record");
@@ -6,49 +6,59 @@ const piece = document.querySelector("#piece");
 const note = document.querySelector("#teacher-note");
 const logout = document.querySelector("#logout");
 
-logout.addEventListener("click", (event) => {
-  event.preventDefault();
-  clearSession();
-  window.location.assign(new URL("../", practiceDirectory()).href);
-});
+initialize();
 
-if (window.location.hash.includes("access_token=") || window.location.hash.includes("error=")) {
-  const login = new URL("../", practiceDirectory());
-  login.hash = window.location.hash;
-  window.location.replace(login.href);
-} else {
-  const session = readSession();
-  if (!session || session.mustSetPassword) {
-    clearSession();
+async function initialize() {
+  const invitation = await browserData.acceptInvitation();
+  if (invitation.outcome !== "no_invitation") {
+    if (invitation.outcome === "invite_accepted") await browserData.signOut();
     window.location.replace(new URL("../", practiceDirectory()).href);
-  } else {
-    showStudent(session);
+    return;
   }
+
+  logout.addEventListener("click", async (event) => {
+    event.preventDefault();
+    logout.setAttribute("aria-disabled", "true");
+    await browserData.signOut();
+    window.location.assign(new URL("../", practiceDirectory()).href);
+  });
+
+  const current = await browserData.validateCurrentUser();
+  if (current.outcome === "unauthenticated") {
+    window.location.replace(new URL("../", practiceDirectory()).href);
+    return;
+  }
+  if (current.outcome !== "authenticated") {
+    display.textContent = messageForFailure(current.outcome);
+    return;
+  }
+
+  const result = await browserData.readStudent();
+  if (result.outcome === "unauthenticated") {
+    window.location.replace(new URL("../", practiceDirectory()).href);
+    return;
+  }
+  if (result.outcome === "student_missing") {
+    display.textContent = "No practice record for this account.";
+    return;
+  }
+  if (result.outcome !== "student_loaded") {
+    display.textContent = messageForFailure(result.outcome);
+    return;
+  }
+
+  display.textContent = result.student.name || "Hello";
+  piece.textContent = result.student.piece_1 || "—";
+  note.textContent = result.student.teacher_note_1 || "—";
+  record.hidden = false;
 }
 
-async function showStudent(session) {
-  try {
-    const result = await loadOwnStudent(session);
-    if (result.status === "signed_out") {
-      clearSession();
-      window.location.replace(new URL("../", practiceDirectory()).href);
-      return;
-    }
-    if (result.status !== "ok") {
-      display.textContent = "Could not load this account.";
-      return;
-    }
-    if (!result.student) {
-      display.textContent = "No practice record for this account.";
-      return;
-    }
-    display.textContent = result.student.name || "Hello";
-    piece.textContent = result.student.piece_1 || "—";
-    note.textContent = result.student.teacher_note_1 || "—";
-    record.hidden = false;
-  } catch {
-    display.textContent = "Could not load this account.";
+function messageForFailure(outcome) {
+  if (outcome === "configuration_error") return "This site is not configured for login.";
+  if (outcome === "student_cardinality_violation") {
+    return "This account has an unexpected data error.";
   }
+  return "Could not load this account.";
 }
 
 function practiceDirectory() {

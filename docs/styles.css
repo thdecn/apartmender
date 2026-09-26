@@ -142,13 +142,8 @@ button {
   user-select: text;
 }
 
-.invite-account[hidden],
-#invite-continue[hidden] {
+.invite-account[hidden] {
   display: none;
-}
-
-#invite-continue {
-  width: min(360px, 100%);
 }
 
 .student-record {
