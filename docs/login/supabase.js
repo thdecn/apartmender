@@ -21,23 +21,37 @@ export function clearSession() {
   localStorage.removeItem(sessionKey);
 }
 
-export function adoptInviteFromUrl() {
+export function readAuthHash() {
   const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
   const accessToken = hash.get("access_token");
-  if (!accessToken) {
-    const description = hash.get("error_description");
-    return description ? { error: description } : null;
-  }
-  const session = {
+  const error = hash.get("error_description") || hash.get("error");
+  if (!accessToken && !error) return null;
+  const clean = new URL(window.location.href);
+  clean.hash = "";
+  window.history.replaceState(null, "", clean.href);
+  if (!accessToken) return { error };
+  return {
     accessToken,
     refreshToken: hash.get("refresh_token"),
     mustSetPassword: hash.get("type") === "invite",
   };
-  saveSession(session);
-  const clean = new URL(window.location.href);
-  clean.hash = "";
-  window.history.replaceState(null, "", clean.href);
-  return { session };
+}
+
+export async function describeAccess(accessToken) {
+  const response = await fetch(`${supabaseUrl}/auth/v1/user`, {
+    headers: {
+      apikey: supabasePublishableKey,
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (!response.ok) return { status: "invalid" };
+  const body = await response.json().catch(() => ({}));
+  const email = body.email || body.user?.email || "";
+  if (!email) return { status: "invalid" };
+  const student = await loadOwnStudent({ accessToken }, { persist: false });
+  if (student.status !== "ok") return { status: "invalid" };
+  if (!student.student) return { status: "no_record", email };
+  return { status: "ok", email, name: student.student.name || "" };
 }
 
 export async function signIn(email, password) {
@@ -63,7 +77,7 @@ export async function signIn(email, password) {
   };
 }
 
-export async function updatePassword(session, password) {
+export async function updatePassword(session, password, options = {}) {
   const response = await authorized(session, (token) =>
     fetch(`${supabaseUrl}/auth/v1/user`, {
       method: "PUT",
@@ -74,17 +88,17 @@ export async function updatePassword(session, password) {
       },
       body: JSON.stringify({ password }),
     }),
+    options,
   );
   if (response.status === 401) return { ok: false, signedOut: true };
   if (!response.ok) {
     const body = await response.json().catch(() => ({}));
     return { ok: false, message: body.msg || body.message || "" };
   }
-  saveSession({ ...readSession(), mustSetPassword: false });
-  return { ok: true };
+  return { ok: true, session: { ...session, mustSetPassword: false } };
 }
 
-export async function loadOwnStudent(session) {
+export async function loadOwnStudent(session, options = {}) {
   const response = await authorized(session, (token) =>
     fetch(`${supabaseUrl}/rest/v1/students?select=name,piece_1,teacher_note_1&limit=1`, {
       headers: {
@@ -93,6 +107,7 @@ export async function loadOwnStudent(session) {
         Accept: "application/json",
       },
     }),
+    options,
   );
   if (response.status === 401) return { status: "signed_out" };
   if (!response.ok) return { status: "error" };
@@ -100,13 +115,13 @@ export async function loadOwnStudent(session) {
   return { status: "ok", student: rows[0] ?? null };
 }
 
-async function authorized(session, send) {
+async function authorized(session, send, options = {}) {
   let response = await send(session.accessToken);
   if (response.status !== 401 || !session.refreshToken) return response;
   const refreshed = await refreshSession(session.refreshToken);
   if (!refreshed) return response;
-  const next = { ...readSession(), ...refreshed };
-  saveSession(next);
+  const next = { ...session, ...refreshed };
+  if (options.persist !== false) saveSession(next);
   session.accessToken = next.accessToken;
   session.refreshToken = next.refreshToken;
   return send(next.accessToken);

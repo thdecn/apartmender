@@ -1,11 +1,9 @@
-import { adoptInviteFromUrl, clearSession, loadOwnStudent, readSession, updatePassword } from "../supabase.js";
+import { clearSession, loadOwnStudent, readSession } from "../supabase.js";
 
 const display = document.querySelector("#name-display");
 const record = document.querySelector("#student-record");
 const piece = document.querySelector("#piece");
 const note = document.querySelector("#teacher-note");
-const passwordForm = document.querySelector("#password-form");
-const passwordError = document.querySelector("#password-error");
 const logout = document.querySelector("#logout");
 
 logout.addEventListener("click", (event) => {
@@ -14,48 +12,18 @@ logout.addEventListener("click", (event) => {
   window.location.assign(new URL("../", practiceDirectory()).href);
 });
 
-adoptInviteFromUrl();
-const session = readSession();
-if (!session) {
-  window.location.replace(new URL("../", practiceDirectory()).href);
-} else if (session.mustSetPassword) {
-  showPasswordForm(session);
+if (window.location.hash.includes("access_token=") || window.location.hash.includes("error=")) {
+  const login = new URL("../", practiceDirectory());
+  login.hash = window.location.hash;
+  window.location.replace(login.href);
 } else {
-  showStudent(session);
-}
-
-function showPasswordForm(session) {
-  display.textContent = "Choose a password to continue.";
-  passwordForm.hidden = false;
-  passwordForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const password = passwordForm.elements.password.value;
-    passwordError.textContent = "";
-    if (password.length < 8) {
-      passwordError.textContent = "Use at least 8 characters.";
-      return;
-    }
-    const button = passwordForm.querySelector("button");
-    button.disabled = true;
-    try {
-      const result = await updatePassword(session, password);
-      if (result.signedOut) {
-        clearSession();
-        window.location.replace(new URL("../", practiceDirectory()).href);
-        return;
-      }
-      if (!result.ok) {
-        passwordError.textContent = result.message || "Could not save that password.";
-        return;
-      }
-      passwordForm.hidden = true;
-      await showStudent(readSession());
-    } catch {
-      passwordError.textContent = "Could not save that password.";
-    } finally {
-      button.disabled = false;
-    }
-  });
+  const session = readSession();
+  if (!session || session.mustSetPassword) {
+    clearSession();
+    window.location.replace(new URL("../", practiceDirectory()).href);
+  } else {
+    showStudent(session);
+  }
 }
 
 async function showStudent(session) {

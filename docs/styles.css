@@ -134,6 +134,23 @@ button {
   text-align: center;
 }
 
+.invite-account {
+  margin: 0;
+  max-width: min(360px, 100%);
+  overflow-wrap: anywhere;
+  text-align: center;
+  user-select: text;
+}
+
+.invite-account[hidden],
+#invite-continue[hidden] {
+  display: none;
+}
+
+#invite-continue {
+  width: min(360px, 100%);
+}
+
 .student-record {
   display: grid;
   gap: 16px;
