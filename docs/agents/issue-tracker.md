@@ -6,13 +6,19 @@ Issues for this repository live in `thdecn/apartmender`. Use the `gh` CLI and ex
 
 Apartmender owns browser UI, General Practice, the Piece Catalog and public assets, Practice Flow mechanics, authenticated timing, offline persistence, synchronization clients, and report rendering.
 
-Backend contracts, persistence, authorization, migrations, Edge Functions, and privileged operations belong in `thdecn/Ember`.
+Backend contracts, persistence, authorization, migrations, backend functions,
+and privileged operations belong in `thdecn/Sludge`.
 
-Cross-repository work must use separate, independently deliverable issues with complete issue URLs. Additive Ember support lands before Apartmender consumes it; neither repository assumes an atomic deployment.
+Cross-repository work must use separate, independently deliverable work items
+with complete GitHub URLs or Sludge bead IDs. Additive Sludge support lands
+before Apartmender consumes it; neither repository assumes an atomic
+deployment.
 
 ## Conventions
 
-- Keep each issue self-contained and link to Ember's canonical V1 specification and relevant ADRs.
+- Keep each issue self-contained. Link product requirements to Ember's V1
+  specification and backend-facing requirements to Sludge's contracts and
+  relevant ADRs.
 - Declare every blocking issue under `Blocked by`.
 - Apply the repository's canonical triage labels.
 - Scope code-bearing tickets to approximately 200–400 lines of hand-authored production code. Tests are excluded and may take a pull request above 400 total changed lines.
