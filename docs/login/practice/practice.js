@@ -1,6 +1,6 @@
 import { browserData } from "../supabase.js";
 import { mountPractice } from "../../practice-host.js";
-import { buildStudentHome } from "./student-home.js";
+import { buildStudentHome, studentComments } from "./student-home.js";
 
 const display = document.querySelector("#name-display");
 const commentsSection = document.querySelector("#comments-section");
@@ -56,10 +56,12 @@ async function initialize() {
   }
 
   display.textContent = result.student.name?.trim() || "Hello";
+  const comments = studentComments(result.student);
+  commentsList.replaceChildren(...comments.map(commentNode));
+  commentsSection.hidden = comments.length === 0;
+
   const catalog = await loadCatalog();
   const home = buildStudentHome(result.student, catalog ?? []);
-  commentsList.replaceChildren(...home.comments.map(commentNode));
-  commentsSection.hidden = home.comments.length === 0;
 
   if (catalog === null) {
     pieceStatus.textContent = "Pieces are unavailable right now.";
