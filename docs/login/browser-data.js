@@ -153,7 +153,7 @@ export function createBrowserData({
     try {
       const { data, error, status } = await client
         .from("students")
-        .select("name,piece_1,teacher_note_1");
+        .select("name,teacher_note_1,teacher_note_2,teacher_note_3,piece_1,piece_2,piece_3");
       if (status === 401) {
         validatedUserId = null;
         return { outcome: "unauthenticated" };
@@ -161,10 +161,10 @@ export function createBrowserData({
       if (error || !Array.isArray(data)) return { outcome: "student_read_failed" };
       if (data.length === 0) return { outcome: "student_missing" };
       if (data.length > 1) return { outcome: "student_cardinality_violation" };
-      const [{ name, piece_1, teacher_note_1 }] = data;
+      const [{ name, teacher_note_1, teacher_note_2, teacher_note_3, piece_1, piece_2, piece_3 }] = data;
       return {
         outcome: "student_loaded",
-        student: { name, piece_1, teacher_note_1 },
+        student: { name, teacher_note_1, teacher_note_2, teacher_note_3, piece_1, piece_2, piece_3 },
       };
     } catch {
       return { outcome: "student_read_failed" };

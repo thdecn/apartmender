@@ -1,9 +1,13 @@
 import { browserData } from "../supabase.js";
+import { mountPractice } from "../../practice-host.js";
+import { buildStudentHome } from "./student-home.js";
 
 const display = document.querySelector("#name-display");
-const record = document.querySelector("#student-record");
-const piece = document.querySelector("#piece");
-const note = document.querySelector("#teacher-note");
+const commentsSection = document.querySelector("#comments-section");
+const commentsList = document.querySelector("#comments-list");
+const piecesSection = document.querySelector("#pieces-section");
+const pieceStatus = document.querySelector("#piece-status");
+const modePicker = document.querySelector("#student-practice-mode");
 const logout = document.querySelector("#logout");
 
 initialize();
@@ -19,6 +23,10 @@ async function initialize() {
   logout.addEventListener("click", async (event) => {
     event.preventDefault();
     logout.setAttribute("aria-disabled", "true");
+    commentsSection.hidden = true;
+    piecesSection.hidden = true;
+    modePicker.hidden = true;
+    display.textContent = "";
     await browserData.signOut();
     window.location.assign(new URL("../", practiceDirectory()).href);
   });
@@ -39,7 +47,7 @@ async function initialize() {
     return;
   }
   if (result.outcome === "student_missing") {
-    display.textContent = "No practice record for this account.";
+    display.textContent = "No Student record for this account.";
     return;
   }
   if (result.outcome !== "student_loaded") {
@@ -47,10 +55,44 @@ async function initialize() {
     return;
   }
 
-  display.textContent = result.student.name || "Hello";
-  piece.textContent = result.student.piece_1 || "—";
-  note.textContent = result.student.teacher_note_1 || "—";
-  record.hidden = false;
+  display.textContent = result.student.name?.trim() || "Hello";
+  const catalog = await loadCatalog();
+  const home = buildStudentHome(result.student, catalog ?? []);
+  commentsList.replaceChildren(...home.comments.map(commentNode));
+  commentsSection.hidden = home.comments.length === 0;
+
+  if (catalog === null) {
+    pieceStatus.textContent = "Pieces are unavailable right now.";
+  } else if (home.pieces.length === 0 && !home.hasAssignedPiece) {
+    pieceStatus.textContent = "No Pieces assigned yet.";
+  } else if (home.pieces.length === 0) {
+    pieceStatus.textContent = "Assigned Pieces are unavailable right now.";
+  } else if (home.unavailable > 0) {
+    pieceStatus.textContent = "Some assigned Pieces are unavailable.";
+  } else {
+    pieceStatus.textContent = "";
+  }
+
+  mountPractice({ pieces: home.pieces });
+  piecesSection.hidden = false;
+  modePicker.hidden = false;
+}
+
+function commentNode(comment) {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = comment;
+  return paragraph;
+}
+
+async function loadCatalog() {
+  try {
+    const response = await fetch(new URL("../../pieces.json", import.meta.url));
+    if (!response.ok) return null;
+    const catalog = await response.json();
+    return Array.isArray(catalog) ? catalog : null;
+  } catch {
+    return null;
+  }
 }
 
 function messageForFailure(outcome) {
