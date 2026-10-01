@@ -6,6 +6,7 @@ const display = document.querySelector("#name-display");
 const commentsSection = document.querySelector("#comments-section");
 const commentsList = document.querySelector("#comments-list");
 const piecesSection = document.querySelector("#pieces-section");
+const pieceList = document.querySelector("#piece-list");
 const pieceStatus = document.querySelector("#piece-status");
 const modePicker = document.querySelector("#student-practice-mode");
 const logout = document.querySelector("#logout");
@@ -13,6 +14,7 @@ const logout = document.querySelector("#logout");
 initialize();
 
 async function initialize() {
+  let leaving = false;
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
     if (invitation.outcome === "invite_accepted") await browserData.signOut();
@@ -22,16 +24,22 @@ async function initialize() {
 
   logout.addEventListener("click", async (event) => {
     event.preventDefault();
+    if (leaving) return;
+    leaving = true;
     logout.setAttribute("aria-disabled", "true");
     commentsSection.hidden = true;
     piecesSection.hidden = true;
     modePicker.hidden = true;
     display.textContent = "";
+    commentsList.replaceChildren();
+    pieceList.replaceChildren();
+    pieceStatus.textContent = "";
     await browserData.signOut();
     window.location.assign(new URL("../", practiceDirectory()).href);
   });
 
   const current = await browserData.validateCurrentUser();
+  if (leaving) return;
   if (current.outcome === "unauthenticated") {
     window.location.replace(new URL("../", practiceDirectory()).href);
     return;
@@ -42,6 +50,7 @@ async function initialize() {
   }
 
   const result = await browserData.readStudent();
+  if (leaving) return;
   if (result.outcome === "unauthenticated") {
     window.location.replace(new URL("../", practiceDirectory()).href);
     return;
@@ -61,6 +70,7 @@ async function initialize() {
   commentsSection.hidden = comments.length === 0;
 
   const catalog = await loadCatalog();
+  if (leaving) return;
   const home = buildStudentHome(result.student, catalog ?? []);
 
   if (catalog === null) {
