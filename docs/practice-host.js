@@ -1,4 +1,5 @@
 import { createPracticeFlow } from "./practice-flow.js";
+import { mountPracticeScreen } from "./practice-screen.js";
 
 const PRACTICE_MODE_STORAGE_KEY = "apartmender.practice-mode";
 
@@ -6,6 +7,7 @@ const PRACTICE_MODE_STORAGE_KEY = "apartmender.practice-mode";
 // supplies its available Pieces; this module has no Auth or backend dependency.
 const homeEl = document.getElementById("home");
 const practiceEl = document.getElementById("practice");
+mountPracticeScreen(practiceEl);
 const pieceListEl = document.getElementById("piece-list");
 const pieceTitleEl = document.getElementById("piece-title");
 const cardMetaEl = document.getElementById("card-meta");
