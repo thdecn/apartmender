@@ -267,10 +267,28 @@ test("student reads preserve zero, one, and unexpected-many cardinality", async 
   const cases = [
     [[], { outcome: "student_missing" }],
     [
-      [{ name: "Ada", piece_1: "arabesque", teacher_note_1: null }],
+      [{
+        name: "Ada",
+        teacher_note_1: "First comment",
+        teacher_note_2: null,
+        teacher_note_3: "Third comment",
+        piece_1: "arabesque",
+        piece_2: null,
+        piece_3: "prelude",
+        id: "not-part-of-the-response",
+        email: "not-part-of-the-response@example.invalid",
+      }],
       {
         outcome: "student_loaded",
-        student: { name: "Ada", piece_1: "arabesque", teacher_note_1: null },
+        student: {
+          name: "Ada",
+          teacher_note_1: "First comment",
+          teacher_note_2: null,
+          teacher_note_3: "Third comment",
+          piece_1: "arabesque",
+          piece_2: null,
+          piece_3: "prelude",
+        },
       },
     ],
     [
@@ -288,7 +306,10 @@ test("student reads preserve zero, one, and unexpected-many cardinality", async 
       assert.equal(table, "students");
       return {
         select: async (columns) => {
-          assert.equal(columns, "name,piece_1,teacher_note_1");
+          assert.equal(
+            columns,
+            "name,teacher_note_1,teacher_note_2,teacher_note_3,piece_1,piece_2,piece_3",
+          );
           return { data: rows, error: null, status: 200 };
         },
       };
