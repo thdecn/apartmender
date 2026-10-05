@@ -3,6 +3,7 @@ import { mountPractice } from "../../practice-host.js";
 import { buildAssignmentHome, studentComments } from "./student-home.js";
 import { createSessionJournal, createMemorySessionJournal } from "./session-journal.js";
 import { createSessionRecorder } from "./session-recorder.js";
+import { createPracticeStart } from "./practice-start.js";
 
 const display = document.querySelector("#name-display");
 const commentsSection = document.querySelector("#comments-section");
@@ -171,28 +172,38 @@ async function initialize() {
   }
   window.addEventListener("online", () => { void recorder.sync().catch(() => {}); });
   retrySync.addEventListener("click", () => { void recorder.sync().catch(() => {}); });
+  const authorizeStart = createPracticeStart({
+    readAssignments: () => browserData.readAssignments(),
+    readGeneration: () => browserData.readPracticeGeneration(),
+    initialGeneration: generationRead.credentialGeneration,
+    durable: !memoryOnly,
+  });
   practiceHost = mountPractice({ pieces: home.pieces, lifecycle: {
     open: async (piece) => {
       if (accessBlocked) return false;
-      const latest = await browserData.readAssignments();
-      if (latest.outcome === "assignments_loaded"
-        && !latest.assignments.some((a) => a.assignmentId === piece.assignmentId)) {
+      const authority = await authorizeStart(piece.assignmentId);
+      if (authority.outcome === "archived") {
         pieceStatus.textContent = "This Piece is no longer assigned.";
         return false;
       }
-      if (latest.outcome === "account_denied" || latest.outcome === "unauthenticated") {
+      if (authority.outcome === "account_denied" || authority.outcome === "unauthenticated") {
+        accessBlocked = true;
+        piecesSection.hidden = true;
+        modePicker.hidden = true;
         pieceStatus.textContent = "Account access has changed. Please sign in again.";
         return false;
       }
-      if (memoryOnly && latest.outcome !== "assignments_loaded") {
-        pieceStatus.textContent = "Connect to start Practice on this device.";
+      if (authority.outcome !== "ready") {
+        pieceStatus.textContent = memoryOnly
+          ? "Connect to start Practice on this device."
+          : "Assigned Practice is unavailable. Please reconnect later.";
         return false;
       }
       if (accessBlocked) return false;
       const opened = await recorder.open({
         assignmentId: piece.assignmentId,
         pieceVersion: piece.version,
-        credentialGeneration: generationRead.credentialGeneration,
+        credentialGeneration: authority.credentialGeneration,
       });
       if (accessBlocked) {
         await recorder.cancelOpen();
