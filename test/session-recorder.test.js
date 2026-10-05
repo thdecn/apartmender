@@ -83,6 +83,25 @@ test("a short pause resumes one visit without counting the paused interval", asy
   assert.equal(event.clientEndedAt, new Date(1_065_000).toISOString());
 });
 
+test("final-card end instant is captured before an IndexedDB write crosses midnight", async () => {
+  const backing = createMemorySessionJournal();
+  let time = Date.parse("2026-10-04T23:59:40Z");
+  const journal = {
+    read: (id) => backing.read(id),
+    remove: (id) => backing.remove(id),
+    change: async (id, update) => {
+      time += 10_000;
+      return backing.change(id, update);
+    },
+  };
+  const recorder = createSessionRecorder({ userId: "student-a", journal,
+    now: () => time, uuid: () => eventId, submit: async () => { throw Error("offline"); } });
+  await recorder.open(details);
+  await recorder.finish(5_000);
+  const event = (await backing.read("student-a")).queue[eventId].event;
+  assert.equal(event.clientEndedAt, "2026-10-04T23:59:50.000Z");
+});
+
 test("short visits discard, paused time is excluded, and 24-hour pause finalizes at checkpoint", async () => {
   const store = createMemorySessionJournal();
   let time = 100_000;

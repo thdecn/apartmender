@@ -421,4 +421,8 @@ export function mountPractice({ pieces: availablePieces, lifecycle: visitLifecyc
   renderHome();
   renderPracticeMode();
   updateRotateHint();
+  return Object.freeze({
+    finish: () => goHome(),
+    stop: () => goHome({ finalized: true }),
+  });
 }

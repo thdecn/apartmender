@@ -20,6 +20,8 @@ initialize();
 async function initialize() {
   let leaving = false;
   let recorder;
+  let accessBlocked = false;
+  let practiceHost;
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
     if (invitation.outcome === "invite_accepted") await browserData.signOut();
@@ -115,24 +117,33 @@ async function initialize() {
       userId: current.userId,
       journal,
       submit: (event) => browserData.ingestPractice(event),
-      onStatus: async (status) => {
-        if (leaving) return;
+      onStatus: (status) => {
+        if (leaving || accessBlocked) return;
         if (status === "hard_revoked" || status === "missing_identity") {
-          await recorder.clear();
-          await browserData.signOut();
+          accessBlocked = true;
+          void practiceHost?.stop();
           commentsSection.hidden = true;
           piecesSection.hidden = true;
           modePicker.hidden = true;
-          window.location.replace(new URL("../", practiceDirectory()).href);
+          void (async () => {
+            await recorder.clear();
+            await browserData.signOut();
+            window.location.replace(new URL("../", practiceDirectory()).href);
+          })();
           return;
         }
         if (status === "disabled" || status === "password_change_required") {
+          accessBlocked = true;
+          void practiceHost?.finish();
           piecesSection.hidden = true;
           modePicker.hidden = true;
           syncStatus.textContent = "Account access has changed. Please contact your teacher.";
           return;
         }
         if (status === "unauthenticated" || status === "account_denied") {
+          accessBlocked = true;
+          piecesSection.hidden = true;
+          modePicker.hidden = true;
           syncStatus.textContent = "Sign in again to sync Practice.";
           retrySync.hidden = true;
           return;
@@ -153,14 +164,16 @@ async function initialize() {
       },
     });
     await recorder.recover();
+    if (accessBlocked || leaving) return;
   } catch {
     pieceStatus.textContent = "Practice storage is unavailable. Please reconnect later.";
     return;
   }
   window.addEventListener("online", () => { void recorder.sync().catch(() => {}); });
   retrySync.addEventListener("click", () => { void recorder.sync().catch(() => {}); });
-  mountPractice({ pieces: home.pieces, lifecycle: {
+  practiceHost = mountPractice({ pieces: home.pieces, lifecycle: {
     open: async (piece) => {
+      if (accessBlocked) return false;
       const latest = await browserData.readAssignments();
       if (latest.outcome === "assignments_loaded"
         && !latest.assignments.some((a) => a.assignmentId === piece.assignmentId)) {

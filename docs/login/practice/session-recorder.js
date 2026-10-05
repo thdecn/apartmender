@@ -126,10 +126,11 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
     async finish(elapsedMs) {
       if (!activeId) return;
       const id = activeId;
+      const finishedAt = now();
       await journal.change(userId, (partition) => {
         const marker = partition.open[id];
         if (!marker) return;
-        finalize(partition, id, marker.pausedAt ?? now(),
+        finalize(partition, id, marker.pausedAt ?? finishedAt,
           marker.pausedAt === null ? elapsedMs : marker.elapsedMs);
       });
       activeId = null;
