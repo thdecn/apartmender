@@ -54,6 +54,35 @@ test("recovery uses last checkpoint, isolates identities, and never resumes an i
   assert.equal(Object.keys((await store.read("student-a")).open).length, 0);
 });
 
+test("abrupt loss after an uncheckpointed visible stretch may lose that stretch", async () => {
+  const store = createMemorySessionJournal();
+  let time = 1_000_000;
+  const options = { userId: "student-a", journal: store, now: () => time,
+    uuid: () => eventId, submit: async () => { throw Error("offline"); } };
+  await createSessionRecorder(options).open(details);
+  time += 20_000; // No visibility, rotation, or ownership checkpoint occurred.
+  await createSessionRecorder(options).recover();
+  assert.equal(Object.keys((await store.read("student-a")).queue).length, 0);
+});
+
+test("a short pause resumes one visit without counting the paused interval", async () => {
+  const store = createMemorySessionJournal();
+  let time = 1_000_000;
+  const recorder = createSessionRecorder({ userId: "student-a", journal: store,
+    now: () => time, uuid: () => eventId, submit: async () => { throw Error("offline"); } });
+  await recorder.open(details);
+  time += 3_000;
+  await recorder.pause(3_000);
+  time += 60_000;
+  assert.equal(await recorder.resume(), true);
+  time += 2_000;
+  await recorder.finish(5_000);
+  const event = (await store.read("student-a")).queue[eventId].event;
+  assert.equal(event.durationSeconds, 5);
+  assert.equal(event.clientStartedAt, new Date(1_000_000).toISOString());
+  assert.equal(event.clientEndedAt, new Date(1_065_000).toISOString());
+});
+
 test("short visits discard, paused time is excluded, and 24-hour pause finalizes at checkpoint", async () => {
   const store = createMemorySessionJournal();
   let time = 100_000;
