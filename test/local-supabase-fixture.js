@@ -44,11 +44,11 @@ export async function createLocalPracticeStudent() {
     select public.backfill_piece_assignments_v1(array['czerny-op-821-no-2'],
       public.piece_assignment_source_fingerprint_v1());`);
 
-  // Keep local JWT issuance well behind the API clock while retaining a
-  // one-hour test session from the current host time.
+  // Local PostgREST containers can lag the host clock after a database reset.
+  // This disposable test token spans that skew without changing client timing.
   const currentSecond = Math.floor(Date.now() / 1000);
-  const issuedAt = currentSecond - 3600;
-  const expiresAt = currentSecond + 3600;
+  const issuedAt = currentSecond - 24 * 3600;
+  const expiresAt = currentSecond + 24 * 3600;
   const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
   const signed = `${encode({ alg: "HS256", typ: "JWT" })}.${encode({
     aud: "authenticated", exp: expiresAt, iat: issuedAt,

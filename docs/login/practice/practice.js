@@ -5,6 +5,7 @@ import { createSessionJournal, createMemorySessionJournal } from "./session-jour
 import { createSessionRecorder } from "./session-recorder.js";
 import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
+import { safeLocalStorage, summarySnapshot } from "./weekly-summary-model.js";
 
 // A 401 is this tab's session state; it must not stop another tab with valid Auth.
 const SHARED_ACCESS_BLOCKS = new Set([
@@ -20,6 +21,7 @@ const pieceStatus = document.querySelector("#piece-status");
 const syncStatus = document.querySelector("#sync-status");
 const retrySync = document.querySelector("#retry-sync");
 const modePicker = document.querySelector("#student-practice-mode");
+const summaryLink = document.querySelector("#weekly-summary-link");
 const logout = document.querySelector("#logout");
 
 initialize();
@@ -30,10 +32,13 @@ async function initialize() {
   const recorders = [];
   let accessBlocked = false;
   let practiceHost;
+  let currentUserId = null;
   function blockPracticeAccess() {
     accessBlocked = true;
+    summarySnapshot(safeLocalStorage(), currentUserId, null);
     piecesSection.hidden = true;
     modePicker.hidden = true;
+    summaryLink.hidden = true;
   }
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
@@ -50,23 +55,33 @@ async function initialize() {
     commentsSection.hidden = true;
     piecesSection.hidden = true;
     modePicker.hidden = true;
+    summaryLink.hidden = true;
     display.textContent = "";
     commentsList.replaceChildren();
     pieceList.replaceChildren();
     pieceStatus.textContent = "";
     syncStatus.textContent = "";
     retrySync.hidden = true;
+    summarySnapshot(safeLocalStorage(), currentUserId, null);
     await browserData.signOut();
     window.location.assign(new URL("../", practiceDirectory()).href);
   });
 
   const current = await browserData.validateCurrentUser();
+  currentUserId = current.outcome === "authenticated" ? current.userId : null;
   if (leaving) return;
   if (current.outcome === "unauthenticated") {
     window.location.replace(new URL("../", practiceDirectory()).href);
     return;
   }
   if (current.outcome !== "authenticated") {
+    if (current.outcome === "auth_unavailable") {
+      const identity = await browserData.sessionIdentity();
+      if (identity.outcome === "authenticated") {
+        currentUserId = identity.userId;
+        summaryLink.hidden = false;
+      }
+    }
     display.textContent = messageForFailure(current.outcome);
     if (current.outcome === "auth_unavailable") retryPageWhenOnline();
     return;
@@ -183,6 +198,7 @@ async function initialize() {
   }
   if (assignmentRead.outcome !== "assignments_loaded"
     || generationRead.outcome !== "generation_loaded") {
+    summaryLink.hidden = false;
     display.textContent = "Assigned Practice is unavailable. Please reconnect later.";
     retryPageWhenOnline();
     return;
@@ -195,6 +211,7 @@ async function initialize() {
     return;
   }
   if (result.outcome === "student_missing") {
+    blockPracticeAccess();
     display.textContent = "No Student record for this account.";
     return;
   }
@@ -275,6 +292,7 @@ async function initialize() {
   } });
   piecesSection.hidden = false;
   modePicker.hidden = false;
+  summaryLink.hidden = false;
 }
 
 function commentNode(comment) {

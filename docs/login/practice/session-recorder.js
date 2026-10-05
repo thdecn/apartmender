@@ -50,6 +50,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       let hasRejected = Object.values(queue).some((item) => item.state === "rejected");
       for (const [id, queued] of Object.entries(queue)) {
         if (queued.state !== "pending") continue;
+        onStatus("syncing");
         let outcome;
         try { outcome = await submit(queued.event); }
         catch { onStatus("retry"); break; }

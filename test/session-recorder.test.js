@@ -237,7 +237,8 @@ test("permanent rejection is quarantined while a later event is acknowledged", a
   const queue = (await store.read("student-a")).queue;
   assert.equal(Object.keys(queue).length, 1);
   assert.equal(Object.values(queue)[0].state, "rejected");
-  assert.equal(statuses[0], "rejected");
+  assert.equal(statuses[0], "syncing");
+  assert.ok(statuses.includes("rejected"));
   assert.ok(statuses.includes("synced"));
   assert.equal(statuses.at(-1), "rejected");
 });

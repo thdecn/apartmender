@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#14120f" />
+    <title>Weekly Summary · Apartmender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../styles.css" />
+  </head>
+  <body>
+    <main class="weekly-summary screen">
+      <a class="text-btn login-back" href="../">← Student Home</a>
+      <p class="brand">Apartmender</p>
+      <h1 id="summary-heading">Weekly Summary</h1>
+      <p id="summary-status" role="status">Loading summary…</p>
+      <p id="last-updated" class="summary-muted"></p>
+      <div id="summary-content" hidden>
+        <div id="current-table" class="summary-table-wrap"></div>
+        <section id="historical-section" hidden>
+          <h2>Other Pieces practiced this week</h2>
+          <div id="historical-table" class="summary-table-wrap"></div>
+        </section>
+        <p id="empty-week" class="summary-muted"></p>
+      </div>
+      <p id="upload-status" role="status"></p>
+      <button id="retry-upload" type="button" class="text-btn" hidden>Retry sync</button>
+      <button id="retry-summary" type="button" class="text-btn" hidden>Try summary again</button>
+    </main>
+    <script type="module" src="./weekly-summary.js"></script>
+  </body>
+</html>
