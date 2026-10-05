@@ -245,7 +245,7 @@ async function startPiece(piece) {
   opening = true;
   try {
     if (lifecycle && !(await lifecycle.open(piece))) return;
-    if (lifecycle?.canContinue?.() === false) {
+    if (lifecycle && (lifecycle.canContinue?.() === false || !mayTimePractice())) {
       await lifecycle.cancel?.();
       return;
     }

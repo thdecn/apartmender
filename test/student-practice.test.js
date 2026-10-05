@@ -164,6 +164,18 @@ test("shared Practice controls keep General Practice separate from recorded Stud
     await elements.get("piece-list").children[0].emit("click");
     assert.equal(cancelled, 1);
     assert.equal(elements.get("home").hidden, false);
+
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open() {
+        window.matchMedia = () => ({ matches: false });
+        return true;
+      },
+      async cancel() { cancelled += 1; },
+    } });
+    window.matchMedia = () => ({ matches: true });
+    await elements.get("piece-list").children[0].emit("click");
+    assert.equal(cancelled, 2);
+    assert.equal(elements.get("practice").hidden, true);
   } finally {
     for (const [name, descriptor] of original) {
       if (descriptor === undefined) delete globalThis[name];
