@@ -41,6 +41,8 @@ let lastScreenTapAt = 0;
 let timerInterval = null;
 /** @type {WakeLockSentinel | null} */
 let wakeLock = null;
+let lifecycle = null;
+let opening = false;
 
 function readPracticeMode() {
   try {
@@ -150,6 +152,29 @@ function updateRotateHint() {
   rotateHintEl.hidden = !(portraitPhone && !practiceEl.hidden);
 }
 
+function mayTimePractice() {
+  return document.visibilityState === "visible" &&
+    (!lifecycle || window.matchMedia("(orientation: landscape)").matches);
+}
+
+async function updateActiveTiming() {
+  if (practiceEl.hidden || !practiceFlow) return;
+  if (!mayTimePractice()) {
+    if (timerInterval !== null) {
+      pausePracticeTimer();
+      await lifecycle?.pause?.(currentElapsedPracticeMs());
+    }
+  } else if (timerInterval === null) {
+    if (lifecycle && !(await lifecycle.resume())) {
+      await goHome({ finalized: true });
+      return;
+    }
+    startPracticeTimer();
+    void requestWakeLock();
+  }
+  updateRotateHint();
+}
+
 function renderHome() {
   pieceListEl.replaceChildren(
     ...pieces.map((piece) => {
@@ -212,6 +237,20 @@ function navigatePlayableCard(direction) {
 }
 
 async function startPiece(piece) {
+  if (opening || !practiceEl.hidden) return;
+  if (lifecycle && !mayTimePractice()) {
+    lifecycle.onUnavailable?.("Rotate your device to landscape to open this Piece.");
+    return;
+  }
+  opening = true;
+  try {
+    if (lifecycle && !(await lifecycle.open(piece))) return;
+  } catch {
+    lifecycle?.onUnavailable?.("Practice could not be saved. Please try again.");
+    return;
+  } finally {
+    opening = false;
+  }
   resetPracticeTimer();
   activePiece = piece;
   practiceFlow = createPracticeFlow(piece.cards, { mode: practiceMode });
@@ -224,7 +263,16 @@ async function startPiece(piece) {
   await requestWakeLock();
 }
 
-async function goHome() {
+async function goHome({ finalized = false } = {}) {
+  if (!finalized && lifecycle && practiceFlow) {
+    pausePracticeTimer();
+    try {
+      await lifecycle.finish(currentElapsedPracticeMs());
+    } catch {
+      lifecycle.onUnavailable?.("Practice could not be saved. Please try again.");
+      return;
+    }
+  }
   resetPracticeTimer();
   activePiece = null;
   swipeStart = null;
@@ -345,9 +393,7 @@ cardFrameEl.addEventListener("pointercancel", () => {
 document.addEventListener("touchstart", onScreenTouchStart, { passive: true });
 document.addEventListener("touchend", onScreenTouchEnd, { passive: false });
 document.addEventListener("dblclick", (event) => event.preventDefault());
-homeBtn.addEventListener("click", () => {
-  void goHome();
-});
+homeBtn.addEventListener("click", () => goHome());
 practiceModeInputs.forEach((input) => {
   input.addEventListener("change", () => {
     if (!input.checked) return;
@@ -358,19 +404,20 @@ practiceModeInputs.forEach((input) => {
 });
 
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible" && !practiceEl.hidden) {
-    startPracticeTimer();
-    void requestWakeLock();
-  } else if (document.visibilityState === "hidden") {
-    pausePracticeTimer();
-  }
+  void updateActiveTiming();
 });
 
-window.addEventListener("orientationchange", updateRotateHint);
-window.addEventListener("resize", updateRotateHint);
+window.addEventListener("orientationchange", () => { void updateActiveTiming(); });
+window.addEventListener("resize", () => { void updateActiveTiming(); });
+window.addEventListener("pagehide", () => {
+  if (practiceEl.hidden || timerInterval === null) return;
+  pausePracticeTimer();
+  void lifecycle?.pause?.(currentElapsedPracticeMs());
+});
 
-export function mountPractice({ pieces: availablePieces }) {
+export function mountPractice({ pieces: availablePieces, lifecycle: visitLifecycle = null }) {
   pieces = availablePieces;
+  lifecycle = visitLifecycle;
   renderHome();
   renderPracticeMode();
   updateRotateHint();

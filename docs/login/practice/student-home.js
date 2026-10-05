@@ -31,3 +31,18 @@ export function buildStudentHome(student, catalog) {
 
   return { comments, pieces, hasAssignedPiece: seenSlugs.size > 0, unavailable };
 }
+
+export function buildAssignmentHome(assignments, catalog) {
+  const bySlug = new Map(catalog.map((piece) => [piece.id, piece]));
+  const pieces = [];
+  let unavailable = 0;
+  for (const assignment of assignments) {
+    const piece = bySlug.get(assignment.slug);
+    if (piece?.version && Array.isArray(piece.cards) && piece.cards.length > 0) {
+      pieces.push({ ...piece, assignmentId: assignment.assignmentId });
+    } else {
+      unavailable += 1;
+    }
+  }
+  return { pieces, hasAssignedPiece: assignments.length > 0, unavailable };
+}

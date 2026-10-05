@@ -40,6 +40,9 @@ export function createBrowserData({
     acceptInvitation,
     establishPassword,
     readStudent,
+    readAssignments,
+    readPracticeGeneration,
+    ingestPractice,
     refresh,
     signIn,
     signOut,
@@ -171,6 +174,63 @@ export function createBrowserData({
     }
   }
 
+  async function readAssignments() {
+    return readStudentRpc("student_active_assignments_v1", (data) => {
+      if (data?.contractVersion !== 1 || data.outcome !== "assignments"
+        || !Array.isArray(data.assignments)) return null;
+      const ids = new Set();
+      const assignments = [];
+      for (const assignment of data.assignments) {
+        if (typeof assignment.assignmentId !== "string" || ids.has(assignment.assignmentId)
+          || typeof assignment.slug !== "string"
+          || assignment.position !== assignments.length + 1) return null;
+        ids.add(assignment.assignmentId);
+        assignments.push(assignment);
+      }
+      return { outcome: "assignments_loaded", assignments };
+    });
+  }
+
+  async function readPracticeGeneration() {
+    // This protected read is an additive Sludge prerequisite. The current
+    // Assignment response does not expose the server-owned generation.
+    return readStudentRpc("student_practice_generation_v1", (data) =>
+      data?.contractVersion === 1 && data.outcome === "generation"
+        && Number.isSafeInteger(data.credentialGeneration)
+        && data.credentialGeneration > 0
+        ? { outcome: "generation_loaded", credentialGeneration: data.credentialGeneration }
+        : null);
+  }
+
+  async function readStudentRpc(name, decode) {
+    if (!validatedUserId) {
+      const auth = await getAuthenticatedUser();
+      if (auth.outcome !== "authenticated") return auth;
+    }
+    try {
+      const { data, error, status } = await client.rpc(name);
+      if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
+      if (error) return { outcome: error.code === "42501" ? "account_denied" : "practice_unavailable" };
+      return decode(data) ?? { outcome: "practice_unavailable" };
+    } catch {
+      return { outcome: "practice_unavailable" };
+    }
+  }
+
+  async function ingestPractice(event) {
+    if (!validatedUserId) return { outcome: "unauthenticated" };
+    try {
+      const { data, error, status } = await client.rpc(
+        "student_ingest_practice_session_v1", { payload: event });
+      if (error) {
+        return { outcome: status === 401 ? "unauthenticated" : "retry" };
+      }
+      return data?.contractVersion === 1 ? data : { outcome: "retry" };
+    } catch {
+      return { outcome: "retry" };
+    }
+  }
+
   async function signOut() {
     try {
       const { error } = await client.auth.signOut({ scope: "local" });
@@ -256,6 +316,9 @@ function failedAdapter(outcome, { history, location, redirect }) {
     acceptInvitation,
     establishPassword: failure,
     readStudent: failure,
+    readAssignments: failure,
+    readPracticeGeneration: failure,
+    ingestPractice: failure,
     refresh: failure,
     signIn: failure,
     signOut: failure,

@@ -1,6 +1,8 @@
 import { browserData } from "../supabase.js";
 import { mountPractice } from "../../practice-host.js";
-import { buildStudentHome, studentComments } from "./student-home.js";
+import { buildAssignmentHome, studentComments } from "./student-home.js";
+import { createSessionJournal, createMemorySessionJournal } from "./session-journal.js";
+import { createSessionRecorder } from "./session-recorder.js";
 
 const display = document.querySelector("#name-display");
 const commentsSection = document.querySelector("#comments-section");
@@ -8,6 +10,8 @@ const commentsList = document.querySelector("#comments-list");
 const piecesSection = document.querySelector("#pieces-section");
 const pieceList = document.querySelector("#piece-list");
 const pieceStatus = document.querySelector("#piece-status");
+const syncStatus = document.querySelector("#sync-status");
+const retrySync = document.querySelector("#retry-sync");
 const modePicker = document.querySelector("#student-practice-mode");
 const logout = document.querySelector("#logout");
 
@@ -15,6 +19,7 @@ initialize();
 
 async function initialize() {
   let leaving = false;
+  let recorder;
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
     if (invitation.outcome === "invite_accepted") await browserData.signOut();
@@ -34,6 +39,8 @@ async function initialize() {
     commentsList.replaceChildren();
     pieceList.replaceChildren();
     pieceStatus.textContent = "";
+    syncStatus.textContent = "";
+    retrySync.hidden = true;
     await browserData.signOut();
     window.location.assign(new URL("../", practiceDirectory()).href);
   });
@@ -46,6 +53,16 @@ async function initialize() {
   }
   if (current.outcome !== "authenticated") {
     display.textContent = messageForFailure(current.outcome);
+    return;
+  }
+
+  const [assignmentRead, generationRead] = await Promise.all([
+    browserData.readAssignments(), browserData.readPracticeGeneration(),
+  ]);
+  if (leaving) return;
+  if (assignmentRead.outcome !== "assignments_loaded"
+    || generationRead.outcome !== "generation_loaded") {
+    display.textContent = "Assigned Practice is unavailable. Please reconnect later.";
     return;
   }
 
@@ -71,7 +88,7 @@ async function initialize() {
 
   const catalog = await loadCatalog();
   if (leaving) return;
-  const home = buildStudentHome(result.student, catalog ?? []);
+  const home = buildAssignmentHome(assignmentRead.assignments, catalog ?? []);
 
   if (catalog === null) {
     pieceStatus.textContent = "Pieces are unavailable right now.";
@@ -85,7 +102,80 @@ async function initialize() {
     pieceStatus.textContent = "";
   }
 
-  mountPractice({ pieces: home.pieces });
+  let memoryOnly = false;
+  let journal = createSessionJournal(window.indexedDB);
+  try {
+    await journal.read(current.userId);
+  } catch {
+    journal = createMemorySessionJournal();
+    memoryOnly = true;
+  }
+  try {
+    recorder = createSessionRecorder({
+      userId: current.userId,
+      journal,
+      submit: (event) => browserData.ingestPractice(event),
+      onStatus: async (status) => {
+        if (leaving) return;
+        if (status === "hard_revoked" || status === "missing_identity") {
+          await recorder.clear();
+          await browserData.signOut();
+          commentsSection.hidden = true;
+          piecesSection.hidden = true;
+          modePicker.hidden = true;
+          window.location.replace(new URL("../", practiceDirectory()).href);
+          return;
+        }
+        if (status === "disabled" || status === "password_change_required") {
+          piecesSection.hidden = true;
+          modePicker.hidden = true;
+          syncStatus.textContent = "Account access has changed. Please contact your teacher.";
+          return;
+        }
+        syncStatus.textContent = {
+          retry: memoryOnly
+            ? "Practice is unsaved on this device. Retry before closing this page."
+            : "Practice is waiting to sync. Retry when connected.",
+          rejected: "A Practice Session could not be synced.",
+          synced: "",
+        }[status] ?? "";
+        retrySync.hidden = status !== "retry";
+      },
+    });
+    await recorder.recover();
+  } catch {
+    pieceStatus.textContent = "Practice storage is unavailable. Please reconnect later.";
+    return;
+  }
+  window.addEventListener("online", () => { void recorder.sync().catch(() => {}); });
+  retrySync.addEventListener("click", () => { void recorder.sync().catch(() => {}); });
+  mountPractice({ pieces: home.pieces, lifecycle: {
+    open: async (piece) => {
+      const latest = await browserData.readAssignments();
+      if (latest.outcome === "assignments_loaded"
+        && !latest.assignments.some((a) => a.assignmentId === piece.assignmentId)) {
+        pieceStatus.textContent = "This Piece is no longer assigned.";
+        return false;
+      }
+      if (latest.outcome === "account_denied" || latest.outcome === "unauthenticated") {
+        pieceStatus.textContent = "Account access has changed. Please sign in again.";
+        return false;
+      }
+      if (memoryOnly && latest.outcome !== "assignments_loaded") {
+        pieceStatus.textContent = "Connect to start Practice on this device.";
+        return false;
+      }
+      return recorder.open({
+        assignmentId: piece.assignmentId,
+        pieceVersion: piece.version,
+        credentialGeneration: generationRead.credentialGeneration,
+      });
+    },
+    pause: (elapsedMs) => recorder.pause(elapsedMs),
+    resume: () => recorder.resume(),
+    finish: (elapsedMs) => recorder.finish(elapsedMs),
+    onUnavailable: (message) => { pieceStatus.textContent = message; },
+  } });
   piecesSection.hidden = false;
   modePicker.hidden = false;
 }

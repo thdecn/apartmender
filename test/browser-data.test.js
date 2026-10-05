@@ -344,6 +344,53 @@ test("refresh keeps replacement tokens inside the adapter and returns only the u
   });
 });
 
+test("authenticated Assignment and generation reads use protected RPCs and reject incomplete authority", async () => {
+  const client = fakeClient({ user: { id: "student-a" } });
+  const calls = [];
+  client.rpc = async (name, args) => {
+    calls.push([name, args]);
+    if (name === "student_active_assignments_v1") return { data: {
+      contractVersion: 1, outcome: "assignments", assignments: [
+        { assignmentId: "assignment-a", slug: "piece-a", position: 1 },
+      ],
+    }, error: null, status: 200 };
+    return { data: { contractVersion: 1, outcome: "generation", credentialGeneration: 7 },
+      error: null, status: 200 };
+  };
+  const data = createData(client);
+  assert.deepEqual(await data.readAssignments(), { outcome: "assignments_loaded", assignments: [
+    { assignmentId: "assignment-a", slug: "piece-a", position: 1 },
+  ] });
+  assert.deepEqual(await data.readPracticeGeneration(), {
+    outcome: "generation_loaded", credentialGeneration: 7,
+  });
+  assert.deepEqual(calls, [
+    ["student_active_assignments_v1", undefined],
+    ["student_practice_generation_v1", undefined],
+  ]);
+  client.rpc = async () => ({ data: { contractVersion: 1, outcome: "generation" },
+    error: null, status: 200 });
+  assert.deepEqual(await data.readPracticeGeneration(), { outcome: "practice_unavailable" });
+});
+
+test("Practice ingestion sends only the immutable event under the Student session", async () => {
+  const client = fakeClient({ user: { id: "student-a" } });
+  const event = { eventVersion: 1, eventId: "event-a", assignmentId: "assignment-a",
+    clientStartedAt: "2026-10-03T22:00:00Z", clientEndedAt: "2026-10-03T22:01:00Z",
+    durationSeconds: 30, credentialGeneration: 7 };
+  client.rpc = async (name, args) => {
+    assert.equal(name, "student_ingest_practice_session_v1");
+    assert.deepEqual(args, { payload: event });
+    return { data: { contractVersion: 1, outcome: "accepted", eventId: "event-a" },
+      error: null, status: 200 };
+  };
+  const data = createData(client);
+  assert.deepEqual(await data.validateCurrentUser(), { outcome: "authenticated", userId: "student-a" });
+  assert.deepEqual(await data.ingestPractice(event), {
+    contractVersion: 1, outcome: "accepted", eventId: "event-a",
+  });
+});
+
 function createData(client) {
   return createBrowserData({
     config,

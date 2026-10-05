@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import { buildStudentHome } from "../docs/login/practice/student-home.js";
 
-test("assigned Student Pieces use the shared Practice controls and return Home", async () => {
+test("shared Practice controls keep General Practice separate from recorded Student visits", async () => {
   class ElementStub {
     constructor() {
       this.listeners = new Map();
@@ -130,6 +130,30 @@ test("assigned Student Pieces use the shared Practice controls and return Home",
     assert.equal(elements.get("practice").hidden, true);
     assert.equal(intervals.size, 0);
     assert.deepEqual([...stored.keys()], ["apartmender.practice-mode"]);
+
+    const visits = [];
+    document.visibilityState = "visible";
+    window.matchMedia = () => ({ matches: true });
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open(piece) { visits.push(["open", piece.id]); return true; },
+      async resume() { visits.push(["resume"]); return true; },
+      async pause(ms) { visits.push(["pause", ms]); },
+      async finish(ms) { visits.push(["finish", ms]); },
+    } });
+    const studentButton = elements.get("piece-list").children[0];
+    await studentButton.emit("click");
+    assert.deepEqual(visits, [["open", "second"]]);
+    now = 7_000;
+    await elements.get("home-btn").emit("click");
+    assert.deepEqual(visits.at(-1), ["finish", 2_000]);
+    assert.equal(elements.get("home").hidden, false);
+
+    await studentButton.emit("click");
+    now = 9_000;
+    for (let attempt = 0; attempt < 3; attempt += 1) await elements.get("good-btn").emit("click");
+    await elements.get("advance-btn").emit("click");
+    assert.deepEqual(visits.at(-1), ["finish", 2_000]);
+    assert.equal(visits.filter(([kind]) => kind === "finish").length, 2);
   } finally {
     for (const [name, descriptor] of original) {
       if (descriptor === undefined) delete globalThis[name];
