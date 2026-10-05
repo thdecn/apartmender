@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:browser": "playwright test e2e/practice-local.spec.js --workers=1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
   }
 }

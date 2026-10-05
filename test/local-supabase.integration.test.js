@@ -1,63 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createHmac, randomUUID } from "node:crypto";
-import { execFileSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
 
 import { createBrowserData } from "../docs/login/browser-data.js";
-import { readPublicSupabaseConfig } from "../docs/login/config.js";
 import { createPracticeStart } from "../docs/login/practice/practice-start.js";
 import { createMemorySessionJournal } from "../docs/login/practice/session-journal.js";
 import { createSessionRecorder } from "../docs/login/practice/session-recorder.js";
+import { createLocalPracticeStudent } from "./local-supabase-fixture.js";
 
 // Run after resetting a disposable Sludge local Supabase database:
 // SLUDGE_REPO=/path/to/Sludge SUPABASE_CLI=/path/to/supabase \
 //   APARTMENDER_LOCAL_SUPABASE=1 node --test test/local-supabase.integration.test.js
 test("authenticated Student records one assigned Session through local Sludge RPCs",
   { skip: process.env.APARTMENDER_LOCAL_SUPABASE !== "1" }, async () => {
-    const sludgeRepo = process.env.SLUDGE_REPO;
-    assert.ok(sludgeRepo, "Set SLUDGE_REPO to the Sludge checkout with the generation migration");
-    const cli = process.env.SUPABASE_CLI ?? "supabase";
-    const env = Object.fromEntries(execFileSync(cli, ["status", "--output", "env"], {
-      cwd: sludgeRepo, encoding: "utf8",
-    }).split("\n").filter((line) => /^[A-Z_]+=/.test(line)).map((line) => {
-      const equal = line.indexOf("=");
-      return [line.slice(0, equal), line.slice(equal + 1).replace(/^"|"$/g, "")];
-    }));
-    const config = readPublicSupabaseConfig({ protocol: "http:", hostname: "127.0.0.1" });
-    assert.equal(config.projectUrl, env.API_URL);
-    assert.equal(config.publishableKey, env.PUBLISHABLE_KEY);
-
-    const query = (sql) => execFileSync("psql", [env.DB_URL, "-X", "-At", "-v",
-      "ON_ERROR_STOP=1", "-c", sql], { encoding: "utf8" }).trim();
-    assert.equal(query("select complete from public.piece_assignment_cutover where singleton"),
-      "f", "Reset the disposable local database before this test");
-
-    const email = `practice-${randomUUID()}@example.invalid`;
-    const created = await fetch(`${env.API_URL}/auth/v1/admin/users`, {
-      method: "POST",
-      headers: { apikey: env.SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${env.SERVICE_ROLE_KEY}`,
-        "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password: `Local-${randomUUID()}!`, email_confirm: true }),
-    });
-    assert.equal(created.status, 200);
-    const { id: userId } = await created.json();
-    assert.match(userId, /^[0-9a-f-]{36}$/);
-    query(`insert into public.students (id,email,name,piece_1) values
-      ('${userId}','${email}','Integration Student','czerny-op-821-no-2');
-      update app_private.account_access set account_state='Active'
-      where auth_user_id='${userId}';
-      select public.backfill_piece_assignments_v1(array['czerny-op-821-no-2'],
-        public.piece_assignment_source_fingerprint_v1());`);
-
-    const issuedAt = Math.floor(Date.now() / 1000);
-    const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
-    const signed = `${encode({ alg: "HS256", typ: "JWT" })}.${encode({
-      aud: "authenticated", exp: issuedAt + 3600, iat: issuedAt,
-      iss: "supabase", role: "authenticated", sub: userId,
-    })}`;
-    const token = `${signed}.${createHmac("sha256", env.JWT_SECRET)
-      .update(signed).digest("base64url")}`;
+    const { config, userId, token, query } = await createLocalPracticeStudent();
     const headers = { apikey: config.publishableKey, Authorization: `Bearer ${token}` };
     const request = async (path, options = {}) => {
       const response = await fetch(`${config.projectUrl}${path}`, {
