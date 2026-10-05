@@ -166,3 +166,20 @@ test("a memory-only visit retries while the page lives and an account gate prese
   await recorder.sync();
   assert.equal(Object.keys((await store.read("student-a")).queue).length, 0);
 });
+
+test("cancelling a start after access changes removes only its Open marker", async () => {
+  const store = createMemorySessionJournal();
+  let time = 1_000_000;
+  let id = 0;
+  const recorder = createSessionRecorder({ userId: "student-a", journal: store,
+    now: () => time, uuid: () => `85000000-0000-4000-8000-${String(++id).padStart(12, "0")}`,
+    submit: async () => { throw Error("offline"); } });
+  await recorder.open(details);
+  time += 2_000;
+  await recorder.finish(2_000);
+  await recorder.open(details);
+  await recorder.cancelOpen();
+  const partition = await store.read("student-a");
+  assert.equal(Object.keys(partition.open).length, 0);
+  assert.equal(Object.keys(partition.queue).length, 1);
+});

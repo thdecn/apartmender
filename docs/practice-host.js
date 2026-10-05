@@ -245,6 +245,10 @@ async function startPiece(piece) {
   opening = true;
   try {
     if (lifecycle && !(await lifecycle.open(piece))) return;
+    if (lifecycle?.canContinue?.() === false) {
+      await lifecycle.cancel?.();
+      return;
+    }
   } catch {
     lifecycle?.onUnavailable?.("Practice could not be saved. Please try again.");
     return;

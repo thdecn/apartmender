@@ -136,6 +136,12 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       activeId = null;
       void sync().catch(() => onStatus("retry"));
     },
+    async cancelOpen() {
+      if (!activeId) return;
+      const id = activeId;
+      await journal.change(userId, (partition) => { delete partition.open[id]; });
+      activeId = null;
+    },
     sync,
     async clear() { activeId = null; await journal.remove(userId); },
   });

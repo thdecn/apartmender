@@ -188,12 +188,20 @@ async function initialize() {
         pieceStatus.textContent = "Connect to start Practice on this device.";
         return false;
       }
-      return recorder.open({
+      if (accessBlocked) return false;
+      const opened = await recorder.open({
         assignmentId: piece.assignmentId,
         pieceVersion: piece.version,
         credentialGeneration: generationRead.credentialGeneration,
       });
+      if (accessBlocked) {
+        await recorder.cancelOpen();
+        return false;
+      }
+      return opened;
     },
+    canContinue: () => !accessBlocked,
+    cancel: () => recorder.cancelOpen(),
     pause: (elapsedMs) => recorder.pause(elapsedMs),
     resume: () => recorder.resume(),
     finish: (elapsedMs) => recorder.finish(elapsedMs),
