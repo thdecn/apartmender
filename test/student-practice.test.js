@@ -46,6 +46,8 @@ test("shared Practice controls keep General Practice separate from recorded Stud
   const hard = Object.assign(new ElementStub(), { value: "hard", checked: false });
   const intervals = new Map();
   const stored = new Map();
+  const documentListeners = new Map();
+  const windowListeners = new Map();
   let now = 0;
   let nextInterval = 1;
 
@@ -63,7 +65,7 @@ test("shared Practice controls keep General Practice separate from recorded Stud
       querySelector: () => cardFrame,
       querySelectorAll: () => [normal, hard],
       createElement: () => new ElementStub(),
-      addEventListener() {},
+      addEventListener(type, listener) { documentListeners.set(type, listener); },
     });
     install("window", {
       setInterval(callback) {
@@ -74,7 +76,7 @@ test("shared Practice controls keep General Practice separate from recorded Stud
       clearInterval: (id) => intervals.delete(id),
       setTimeout() {},
       matchMedia: () => ({ matches: false }),
-      addEventListener() {},
+      addEventListener(type, listener) { windowListeners.set(type, listener); },
     });
     install("navigator", {});
     install("localStorage", {
@@ -176,6 +178,48 @@ test("shared Practice controls keep General Practice separate from recorded Stud
     await elements.get("piece-list").children[0].emit("click");
     assert.equal(cancelled, 2);
     assert.equal(elements.get("practice").hidden, true);
+
+    let completeResume;
+    let resumeStarted;
+    let signalResume;
+    const pendingResume = () => {
+      resumeStarted = new Promise((resolve) => { signalResume = resolve; });
+      return new Promise((resolve) => { completeResume = resolve; });
+    };
+    let paused = 0;
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open() { return true; },
+      async pause() { paused += 1; },
+      async resume() { signalResume(); await pending; return true; },
+    } });
+    let pending = pendingResume();
+    window.matchMedia = () => ({ matches: true });
+    document.visibilityState = "visible";
+    await elements.get("piece-list").children[0].emit("click");
+    document.visibilityState = "hidden";
+    documentListeners.get("visibilitychange")();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0);
+
+    document.visibilityState = "visible";
+    documentListeners.get("visibilitychange")();
+    await resumeStarted;
+    document.visibilityState = "hidden";
+    documentListeners.get("visibilitychange")();
+    completeResume();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0, "hidden page cannot restart timing after a delayed resume");
+    assert.equal(paused, 2, "the resumed marker is paused again after visibility changes");
+
+    pending = pendingResume();
+    document.visibilityState = "visible";
+    windowListeners.get("orientationchange")();
+    await resumeStarted;
+    window.matchMedia = () => ({ matches: false });
+    windowListeners.get("orientationchange")();
+    completeResume();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0, "portrait page cannot restart timing after a delayed resume");
   } finally {
     for (const [name, descriptor] of original) {
       if (descriptor === undefined) delete globalThis[name];

@@ -169,6 +169,12 @@ async function updateActiveTiming() {
       await goHome({ finalized: true });
       return;
     }
+    if (practiceEl.hidden || !practiceFlow) return;
+    if (!mayTimePractice() || lifecycle?.canContinue?.() === false) {
+      if (!mayTimePractice()) await lifecycle?.pause?.(currentElapsedPracticeMs());
+      updateRotateHint();
+      return;
+    }
     startPracticeTimer();
     void requestWakeLock();
   }
