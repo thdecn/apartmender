@@ -132,11 +132,21 @@ async function initialize() {
           syncStatus.textContent = "Account access has changed. Please contact your teacher.";
           return;
         }
+        if (status === "unauthenticated" || status === "account_denied") {
+          syncStatus.textContent = "Sign in again to sync Practice.";
+          retrySync.hidden = true;
+          return;
+        }
+        if (status === "practice_not_ready") {
+          syncStatus.textContent = "Practice upload is not ready yet. Your session remains saved.";
+          retrySync.hidden = true;
+          return;
+        }
         syncStatus.textContent = {
           retry: memoryOnly
             ? "Practice is unsaved on this device. Retry before closing this page."
             : "Practice is waiting to sync. Retry when connected.",
-          rejected: "A Practice Session could not be synced.",
+          rejected: "A Practice Session was rejected and will not retry. Contact your teacher.",
           synced: "",
         }[status] ?? "";
         retrySync.hidden = status !== "retry";

@@ -6,6 +6,7 @@ const PERMANENT = new Set([
 ]);
 const ACCESS_BLOCKED = new Set([
   "password_change_required", "disabled", "hard_revoked", "missing_identity",
+  "unauthenticated", "account_denied", "practice_not_ready",
 ]);
 
 export function createSessionRecorder({ userId, journal, submit, now = Date.now,
@@ -40,6 +41,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
     }
     syncing = (async () => {
       const { queue } = await journal.read(userId);
+      let hasRejected = Object.values(queue).some((item) => item.state === "rejected");
       for (const [id, queued] of Object.entries(queue)) {
         if (queued.state !== "pending") continue;
         let outcome;
@@ -54,9 +56,12 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
           onStatus("synced");
         } else if (PERMANENT.has(outcome?.outcome) && outcome.contractVersion === 1) {
           await journal.change(userId, (partition) => {
-            if (partition.queue[id]) partition.queue[id].state = "rejected";
+            if (partition.queue[id]) {
+              partition.queue[id].state = "rejected";
+              partition.queue[id].reason = outcome.outcome;
+            }
           });
-          onStatus("rejected");
+          hasRejected = true;
         } else if (ACCESS_BLOCKED.has(outcome?.outcome) && outcome.contractVersion === 1) {
           onStatus(outcome.outcome);
           break;
@@ -65,6 +70,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
           break;
         }
       }
+      if (hasRejected) onStatus("rejected");
     })().finally(() => { syncing = null; });
     return syncing;
   }

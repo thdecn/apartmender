@@ -210,7 +210,11 @@ export function createBrowserData({
     try {
       const { data, error, status } = await client.rpc(name);
       if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
-      if (error) return { outcome: error.code === "42501" ? "account_denied" : "practice_unavailable" };
+      if (error) {
+        if (error.code === "42501") return { outcome: "account_denied" };
+        if (error.code === "55000") return { outcome: "practice_not_ready" };
+        return { outcome: "practice_unavailable" };
+      }
       return decode(data) ?? { outcome: "practice_unavailable" };
     } catch {
       return { outcome: "practice_unavailable" };
@@ -223,7 +227,10 @@ export function createBrowserData({
       const { data, error, status } = await client.rpc(
         "student_ingest_practice_session_v1", { payload: event });
       if (error) {
-        return { outcome: status === 401 ? "unauthenticated" : "retry" };
+        if (status === 401) return { outcome: "unauthenticated" };
+        if (error.code === "42501") return { outcome: "account_denied" };
+        if (error.code === "55000") return { outcome: "practice_not_ready" };
+        return { outcome: "retry" };
       }
       return data?.contractVersion === 1 ? data : { outcome: "retry" };
     } catch {

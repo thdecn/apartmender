@@ -391,6 +391,21 @@ test("Practice ingestion sends only the immutable event under the Student sessio
   });
 });
 
+test("Practice RPC errors preserve authorization and rollout distinctions", async () => {
+  const client = fakeClient({ user: { id: "student-a" } });
+  const data = createData(client);
+  await data.validateCurrentUser();
+  for (const [code, expected] of [
+    ["42501", "account_denied"], ["55000", "practice_not_ready"],
+    ["XX000", "retry"],
+  ]) {
+    client.rpc = async () => ({ data: null, error: { code }, status: 400 });
+    assert.deepEqual(await data.ingestPractice({ eventId: "event-a" }), { outcome: expected });
+  }
+  client.rpc = async () => ({ data: null, error: { code: "42501" }, status: 403 });
+  assert.deepEqual(await data.readAssignments(), { outcome: "account_denied" });
+});
+
 function createData(client) {
   return createBrowserData({
     config,
