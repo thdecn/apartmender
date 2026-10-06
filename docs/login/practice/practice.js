@@ -27,7 +27,7 @@ initialize();
 async function initialize() {
   let leaving = false;
   let recorder;
-  let backlogRecorder;
+  const recorders = [];
   let accessBlocked = false;
   let practiceHost;
   function blockPracticeAccess() {
@@ -106,7 +106,7 @@ async function initialize() {
       void practiceHost?.stop();
       commentsSection.hidden = true;
       void (async () => {
-        await Promise.all([recorder.clear(), backlogRecorder?.clear()]);
+        await Promise.all(recorders.map((entry) => entry.clear()));
         await browserData.signOut();
         window.location.replace(new URL("../", practiceDirectory()).href);
       })();
@@ -145,25 +145,27 @@ async function initialize() {
     }
   });
   try {
-    recorder = createSessionRecorder({
+    const recorderOptions = {
       userId: current.userId,
+      submit: (event) => browserData.ingestPractice(event),
+      onStatus: onRecorderStatus,
+    };
+    recorder = createSessionRecorder({
+      ...recorderOptions,
       journal,
       ownership: memoryOnly ? undefined
         : createSessionOwnership(locks, current.userId),
       syncWhenAnotherTabActive: Boolean(accessChannel),
-      submit: (event) => browserData.ingestPractice(event),
-      onStatus: onRecorderStatus,
     });
+    recorders.push(recorder);
     if (backlogJournal) {
-      backlogRecorder = createSessionRecorder({
-        userId: current.userId,
+      recorders.push(createSessionRecorder({
+        ...recorderOptions,
         journal: backlogJournal,
         ownership: createSessionOwnership(null, current.userId),
-        submit: (event) => browserData.ingestPractice(event),
-        onStatus: onRecorderStatus,
-      });
+      }));
     }
-    await Promise.all([recorder.recover(), backlogRecorder?.recover()]);
+    await Promise.all(recorders.map((entry) => entry.recover()));
     if (accessBlocked || leaving) return;
   } catch {
     pieceStatus.textContent = "Practice storage is unavailable. Please reconnect later.";
@@ -223,7 +225,7 @@ async function initialize() {
     pieceStatus.textContent = "";
   }
 
-  const syncAll = () => Promise.all([recorder.sync(), backlogRecorder?.sync()]);
+  const syncAll = () => Promise.all(recorders.map((entry) => entry.sync()));
   window.addEventListener("online", () => { void syncAll().catch(() => {}); });
   retrySync.addEventListener("click", () => { void syncAll().catch(() => {}); });
   const authorizeStart = createPracticeStart({
