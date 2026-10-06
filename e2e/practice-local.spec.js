@@ -81,7 +81,7 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
           await route.abort("failed");
           return;
         }
-      if (accountDenied) {
+        if (accountDenied) {
           await route.fulfill({ status: 403, contentType: "application/json",
             headers: { "access-control-allow-origin": "*" },
             body: JSON.stringify({ code: "42501", message: "Access denied" }) });

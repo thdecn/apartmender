@@ -4,12 +4,12 @@ const PERMANENT = new Set([
   "invalid_event", "unsupported_version", "assignment_not_found",
   "stale_credential_generation", "event_id_conflict",
 ]);
-const ACCESS_BLOCKED = new Set([
-  "password_change_required", "disabled", "hard_revoked", "missing_identity",
-  "unauthenticated", "account_denied", "practice_not_ready",
-]);
 const TRANSPORT_ACCESS_BLOCKED = new Set([
   "unauthenticated", "account_denied", "practice_not_ready",
+]);
+const ACCESS_BLOCKED = new Set([
+  "password_change_required", "disabled", "hard_revoked", "missing_identity",
+  ...TRANSPORT_ACCESS_BLOCKED,
 ]);
 
 export function createSessionRecorder({ userId, journal, submit, now = Date.now,
