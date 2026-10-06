@@ -21,6 +21,20 @@ void initialize();
 
 async function initialize() {
   const identity = await browserData.sessionIdentity();
+  if (identity.outcome === "auth_unavailable") {
+    status.textContent = "Could not check your session. Please reconnect or try again.";
+    retrySummary.hidden = false;
+    const retryListeners = new AbortController();
+    const retry = () => {
+      retryListeners.abort();
+      retrySummary.hidden = true;
+      status.textContent = "Checking your session…";
+      void initialize();
+    };
+    window.addEventListener("online", retry, { signal: retryListeners.signal });
+    retrySummary.addEventListener("click", retry, { signal: retryListeners.signal });
+    return;
+  }
   if (identity.outcome !== "authenticated") {
     status.textContent = "Sign in as a Student to view your Weekly Summary.";
     return;

@@ -219,7 +219,7 @@ export function createBrowserData({
   async function sessionIdentity() {
     try {
       const { data, error } = await client.auth.getSession();
-      if (error && !isUnavailable(error)) return { outcome: "unauthenticated" };
+      if (error) return { outcome: isUnavailable(error) ? "auth_unavailable" : "unauthenticated" };
       const userId = data?.session?.user?.id;
       return typeof userId === "string" && userId
         ? { outcome: "authenticated", userId }

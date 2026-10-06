@@ -25,6 +25,32 @@ async function serveSite() {
     close: () => new Promise((done) => server.close(done)) };
 }
 
+test("Weekly Summary retries an uncertain initial session after reconnection", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await page.route("**/login/supabase.js", (route) => route.fulfill({
+      status: 200, contentType: "text/javascript", body: `
+        let identityChecks = 0;
+        export const browserData = Object.freeze({
+          sessionIdentity: async () => ++identityChecks === 1
+            ? { outcome: "auth_unavailable" }
+            : { outcome: "authenticated", userId: "student-a" },
+          validateCurrentUser: async () => ({ outcome: "authenticated", userId: "student-a" }),
+          readWeeklySummary: async () => ({ outcome: "practice_unavailable" }),
+          ingestPractice: async () => ({ outcome: "retry" }),
+        });`,
+    }));
+    await page.goto(`${site.origin}/login/practice/weekly-summary/`);
+    await expect(page.locator("#summary-status")).toHaveText(
+      "Could not check your session. Please reconnect or try again.");
+    await expect(page.getByRole("button", { name: "Try summary again" })).toBeVisible();
+    await page.context().setOffline(true);
+    await page.context().setOffline(false);
+    await expect(page.locator("#summary-status")).toHaveText(
+      "Could not load your summary. Please reconnect.");
+  } finally { await site.close(); }
+});
+
 test("Student summary reads local Sludge, retains a failed-refresh snapshot, and updates after an accepted upload",
   async ({ page }) => {
     test.setTimeout(60_000);

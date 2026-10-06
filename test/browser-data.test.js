@@ -437,6 +437,21 @@ test("offline snapshot identity follows the active Auth session across account c
   assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
 });
 
+test("transient session errors preserve an uncertain summary identity", async () => {
+  const client = fakeClient();
+  const data = createData(client);
+  for (const status of [0, 429, 503]) {
+    client.auth.getSession = async () => ({ data: { session: null }, error: { status } });
+    assert.deepEqual(await data.sessionIdentity(), { outcome: "auth_unavailable" });
+  }
+  client.auth.getSession = async () => ({
+    data: { session: { user: { id: "student-a" } } }, error: { status: 503 },
+  });
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "auth_unavailable" });
+  client.auth.getSession = async () => ({ data: { session: null }, error: { status: 401 } });
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
+});
+
 function createData(client) {
   return createBrowserData({
     config,
