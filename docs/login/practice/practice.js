@@ -151,7 +151,13 @@ async function initialize() {
   const [assignmentRead, generationRead] = await Promise.all([
     browserData.readAssignments(), browserData.readPracticeGeneration(),
   ]);
-  if (leaving) return;
+  if (leaving || accessBlocked) return;
+  const deniedRead = [assignmentRead, generationRead].find((read) =>
+    read.outcome === "account_denied" || read.outcome === "unauthenticated");
+  if (deniedRead) {
+    onRecorderStatus(deniedRead.outcome);
+    return;
+  }
   if (assignmentRead.outcome !== "assignments_loaded"
     || generationRead.outcome !== "generation_loaded") {
     display.textContent = "Assigned Practice is unavailable. Please reconnect later.";
@@ -160,7 +166,7 @@ async function initialize() {
   }
 
   const result = await browserData.readStudent();
-  if (leaving) return;
+  if (leaving || accessBlocked) return;
   if (result.outcome === "unauthenticated") {
     window.location.replace(new URL("../", practiceDirectory()).href);
     return;
@@ -181,7 +187,7 @@ async function initialize() {
   commentsSection.hidden = comments.length === 0;
 
   const catalog = await loadCatalog();
-  if (leaving) return;
+  if (leaving || accessBlocked) return;
   const home = buildAssignmentHome(assignmentRead.assignments, catalog ?? []);
 
   if (catalog === null) {

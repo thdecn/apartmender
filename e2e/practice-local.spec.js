@@ -276,6 +276,43 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
         .toBe("8");
 
+      // Either protected authority read can deny in a new tab while another
+      // tab is timing. The denial must reach the timer owner as well.
+      for (const deniedRpc of ["student_active_assignments_v1", "student_practice_generation_v1"]) {
+        await piece.click();
+        await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+        accountDenied = true;
+        const authoritySession = await page.evaluate(() => Object.entries(sessionStorage));
+        const authorityPeer = await page.context().newPage();
+        await authorityPeer.addInitScript((entries) => {
+          for (const [key, value] of entries) sessionStorage.setItem(key, value);
+        }, authoritySession);
+        await authorityPeer.route(`**/rest/v1/rpc/${deniedRpc}`, async (route) => {
+          await route.fulfill({ status: 403, contentType: "application/json",
+            headers: { "access-control-allow-origin": "*" },
+            body: JSON.stringify({ code: "42501", message: "Access denied" }) });
+        });
+        await authorityPeer.route("**/rest/v1/rpc/student_ingest_practice_session_v1", async (route) => {
+          await route.fulfill({ status: 403, contentType: "application/json",
+            headers: { "access-control-allow-origin": "*" },
+            body: JSON.stringify({ code: "42501", message: "Access denied" }) });
+        });
+        await authorityPeer.goto(`${site.origin}/login/practice/`);
+        await expect(page.locator("#practice")).toBeHidden();
+        await expect.poll(async () => {
+          const partition = await practicePartition(page, userId);
+          return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
+        }).toEqual([0, 1]);
+        await authorityPeer.close();
+        accountDenied = false;
+        await page.bringToFront();
+        await page.reload();
+        await expect(piece).toBeVisible();
+        await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
+      }
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("10");
+
       // If the owning tab closes while Practice is open, the waiting tab
       // recovers its last checkpoint after the browser releases the lock.
       await piece.click();
@@ -294,7 +331,7 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         .toEqual([true]);
       await page.close();
       await expect.poll(() => query(`select count(*) from public.practice_sessions
-        where student_id='${userId}'`)).toBe("9");
+        where student_id='${userId}'`)).toBe("11");
       expect(Object.keys((await practicePartition(survivor, userId)).open)).toHaveLength(0);
       await survivor.close();
 
