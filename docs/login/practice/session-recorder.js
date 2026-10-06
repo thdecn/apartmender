@@ -8,6 +8,9 @@ const ACCESS_BLOCKED = new Set([
   "password_change_required", "disabled", "hard_revoked", "missing_identity",
   "unauthenticated", "account_denied", "practice_not_ready",
 ]);
+const TRANSPORT_ACCESS_BLOCKED = new Set([
+  "unauthenticated", "account_denied", "practice_not_ready",
+]);
 
 export function createSessionRecorder({ userId, journal, submit, now = Date.now,
   uuid = () => crypto.randomUUID(), onStatus = () => {} }) {
@@ -62,7 +65,10 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
             }
           });
           hasRejected = true;
-        } else if (ACCESS_BLOCKED.has(outcome?.outcome) && outcome.contractVersion === 1) {
+        } else if (ACCESS_BLOCKED.has(outcome?.outcome)
+          && (outcome.contractVersion === 1
+            || (outcome.contractVersion === undefined
+              && TRANSPORT_ACCESS_BLOCKED.has(outcome.outcome)))) {
           onStatus(outcome.outcome);
           break;
         } else {

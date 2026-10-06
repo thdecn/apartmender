@@ -143,6 +143,7 @@ async function initialize() {
         }
         if (status === "unauthenticated" || status === "account_denied") {
           accessBlocked = true;
+          void practiceHost?.finish();
           piecesSection.hidden = true;
           modePicker.hidden = true;
           syncStatus.textContent = "Sign in again to sync Practice.";

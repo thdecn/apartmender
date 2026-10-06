@@ -31,19 +31,23 @@ async function serveSite() {
     close: () => new Promise((resolveClose) => server.close(resolveClose)) };
 }
 
-async function queuedEvents(page, userId) {
+async function practicePartition(page, userId) {
   return page.evaluate((id) => new Promise((resolveQueue, reject) => {
     const opened = indexedDB.open("apartmender-practice-v1");
     opened.onerror = () => reject(opened.error);
     opened.onsuccess = () => {
       const request = opened.result.transaction("students").objectStore("students").get(id);
       request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolveQueue(Object.values(request.result?.queue ?? {}));
+      request.onsuccess = () => resolveQueue(request.result ?? { open: {}, queue: {} });
     };
   }), userId);
 }
 
-test("Login to assigned Practice durably retries a lost acknowledgement and completes final card",
+async function queuedEvents(page, userId) {
+  return Object.values((await practicePartition(page, userId)).queue);
+}
+
+test("Login records assigned Practice, retries, and stops an active visit on account denial",
   async ({ page }) => {
     const { userId, email, session, query } = await createLocalPracticeStudent();
     const site = await serveSite();
@@ -69,7 +73,20 @@ test("Login to assigned Practice durably retries a lost acknowledgement and comp
       });
       const outcomes = [];
       let lostAcknowledgement = false;
+      let dropNextUpload = false;
+      let accountDenied = false;
       await page.route("**/rest/v1/rpc/student_ingest_practice_session_v1", async (route) => {
+        if (dropNextUpload) {
+          dropNextUpload = false;
+          await route.abort("failed");
+          return;
+        }
+      if (accountDenied) {
+          await route.fulfill({ status: 403, contentType: "application/json",
+            headers: { "access-control-allow-origin": "*" },
+            body: JSON.stringify({ code: "42501", message: "Access denied" }) });
+          return;
+        }
         const upstream = await route.fetch();
         outcomes.push((await upstream.json()).outcome);
         if (outcomes.length === 1) {
@@ -130,6 +147,26 @@ test("Login to assigned Practice durably retries a lost acknowledgement and comp
         from public.practice_sessions where student_id='${userId}'`)).toBe("2:2");
       expect(Number(query(`select app_private.calculate_current_practice_week(
         '${userId}', now())->>'totalSeconds'`))).toBeGreaterThan(0);
+
+      // An older queued event may be denied after a new Piece has started.
+      // The denial must end that running visit at once and retain its event.
+      dropNextUpload = true;
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      await page.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(1);
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      accountDenied = true;
+      await page.evaluate(() => window.dispatchEvent(new Event("online")));
+      await expect(page.locator("#practice")).toBeHidden();
+      await expect(page.locator("#practice-timer-value")).toHaveText("0:00");
+      await expect.poll(async () => {
+        const partition = await practicePartition(page, userId);
+        return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
+      }).toEqual([0, 2]);
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("2");
     } finally {
       await site.close();
     }

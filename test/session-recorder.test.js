@@ -167,6 +167,21 @@ test("a memory-only visit retries while the page lives and an account gate prese
   assert.equal(Object.keys((await store.read("student-a")).queue).length, 0);
 });
 
+test("transport authorization denial blocks sync while preserving the pending event", async () => {
+  const store = createMemorySessionJournal();
+  let time = 2_000_000;
+  const statuses = [];
+  const recorder = createSessionRecorder({ userId: "student-a", journal: store,
+    now: () => time, uuid: () => eventId, onStatus: (status) => statuses.push(status),
+    submit: async () => ({ outcome: "account_denied" }) });
+  await recorder.open(details);
+  time += 3_000;
+  await recorder.finish(3_000);
+  await recorder.sync();
+  assert.ok(statuses.includes("account_denied"));
+  assert.equal((await store.read("student-a")).queue[eventId].state, "pending");
+});
+
 test("cancelling a start after access changes removes only its Open marker", async () => {
   const store = createMemorySessionJournal();
   let time = 1_000_000;
