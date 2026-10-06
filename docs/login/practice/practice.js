@@ -6,6 +6,10 @@ import { createSessionRecorder } from "./session-recorder.js";
 import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
 
+const SHARED_ACCESS_BLOCKS = new Set([
+  "account_denied", "disabled", "password_change_required", "hard_revoked", "missing_identity",
+]);
+
 const display = document.querySelector("#name-display");
 const commentsSection = document.querySelector("#comments-section");
 const commentsList = document.querySelector("#comments-list");
@@ -74,53 +78,69 @@ async function initialize() {
     journal = createMemorySessionJournal();
     memoryOnly = true;
   }
+  let accessChannel = null;
+  try {
+    if (window.BroadcastChannel) {
+      accessChannel = new window.BroadcastChannel(`apartmender-practice-access:${current.userId}`);
+    }
+  } catch { /* Cross-tab notices are unavailable in this browser. */ }
+  function onRecorderStatus(status, fromPeer = false) {
+    if (leaving || accessBlocked) return;
+    if (!fromPeer && SHARED_ACCESS_BLOCKS.has(status)) {
+      try { accessChannel?.postMessage({ status }); } catch { /* Retry remains local. */ }
+    }
+    if (status === "hard_revoked" || status === "missing_identity") {
+      blockPracticeAccess();
+      void practiceHost?.stop();
+      commentsSection.hidden = true;
+      void (async () => {
+        await recorder.clear();
+        await browserData.signOut();
+        window.location.replace(new URL("../", practiceDirectory()).href);
+      })();
+      return;
+    }
+    if (status === "disabled" || status === "password_change_required") {
+      blockPracticeAccess();
+      void practiceHost?.finish();
+      syncStatus.textContent = "Account access has changed. Please contact your teacher.";
+      return;
+    }
+    if (status === "unauthenticated" || status === "account_denied") {
+      blockPracticeAccess();
+      void practiceHost?.finish();
+      syncStatus.textContent = "Sign in again to sync Practice.";
+      retrySync.hidden = true;
+      return;
+    }
+    if (status === "practice_not_ready") {
+      syncStatus.textContent = "Practice upload is not ready yet. Your session remains saved.";
+      retrySync.hidden = true;
+      return;
+    }
+    syncStatus.textContent = {
+      retry: memoryOnly
+        ? "Practice is unsaved on this device. Retry before closing this page."
+        : "Practice is waiting to sync. Retry when connected.",
+      rejected: "A Practice Session was rejected and will not retry. Contact your teacher.",
+      synced: "",
+    }[status] ?? "";
+    retrySync.hidden = status !== "retry";
+  }
+  accessChannel?.addEventListener("message", (event) => {
+    if (SHARED_ACCESS_BLOCKS.has(event.data?.status)) {
+      onRecorderStatus(event.data.status, true);
+    }
+  });
   try {
     recorder = createSessionRecorder({
       userId: current.userId,
       journal,
       ownership: memoryOnly ? undefined
         : createSessionOwnership(window.navigator.locks, current.userId),
+      syncWhenAnotherTabActive: Boolean(accessChannel),
       submit: (event) => browserData.ingestPractice(event),
-      onStatus: (status) => {
-        if (leaving || accessBlocked) return;
-        if (status === "hard_revoked" || status === "missing_identity") {
-          blockPracticeAccess();
-          void practiceHost?.stop();
-          commentsSection.hidden = true;
-          void (async () => {
-            await recorder.clear();
-            await browserData.signOut();
-            window.location.replace(new URL("../", practiceDirectory()).href);
-          })();
-          return;
-        }
-        if (status === "disabled" || status === "password_change_required") {
-          blockPracticeAccess();
-          void practiceHost?.finish();
-          syncStatus.textContent = "Account access has changed. Please contact your teacher.";
-          return;
-        }
-        if (status === "unauthenticated" || status === "account_denied") {
-          blockPracticeAccess();
-          void practiceHost?.finish();
-          syncStatus.textContent = "Sign in again to sync Practice.";
-          retrySync.hidden = true;
-          return;
-        }
-        if (status === "practice_not_ready") {
-          syncStatus.textContent = "Practice upload is not ready yet. Your session remains saved.";
-          retrySync.hidden = true;
-          return;
-        }
-        syncStatus.textContent = {
-          retry: memoryOnly
-            ? "Practice is unsaved on this device. Retry before closing this page."
-            : "Practice is waiting to sync. Retry when connected.",
-          rejected: "A Practice Session was rejected and will not retry. Contact your teacher.",
-          synced: "",
-        }[status] ?? "";
-        retrySync.hidden = status !== "retry";
-      },
+      onStatus: onRecorderStatus,
     });
     await recorder.recover();
     if (accessBlocked || leaving) return;

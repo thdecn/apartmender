@@ -194,6 +194,8 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         Object.defineProperty(navigator, "locks", { value: undefined });
       }, sessionEntries);
       await restricted.goto(`${site.origin}/login/practice/`);
+      expect(await restricted.evaluate(() => [Boolean(window.indexedDB), Boolean(navigator.locks)]))
+        .toEqual([false, false]);
       const restrictedPiece = restricted.getByRole("button", { name: "Czerny Op. 821, 2" });
       await expect(restrictedPiece).toBeVisible();
       await restrictedPiece.click();
@@ -239,6 +241,41 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
         .toBe("6");
 
+      // A peer tab may retry an old event while this tab owns a new visit.
+      // Its account denial must reach the timer owner immediately.
+      dropNextUpload = true;
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      await page.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(1);
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      accountDenied = true;
+      const peerSession = await page.evaluate(() => Object.entries(sessionStorage));
+      const denialPeer = await page.context().newPage();
+      await denialPeer.addInitScript((entries) => {
+        for (const [key, value] of entries) sessionStorage.setItem(key, value);
+      }, peerSession);
+      await denialPeer.route("**/rest/v1/rpc/student_ingest_practice_session_v1", async (route) => {
+        await route.fulfill({ status: 403, contentType: "application/json",
+          headers: { "access-control-allow-origin": "*" },
+          body: JSON.stringify({ code: "42501", message: "Access denied" }) });
+      });
+      await denialPeer.goto(`${site.origin}/login/practice/`);
+      await expect(page.locator("#practice")).toBeHidden();
+      await expect.poll(async () => {
+        const partition = await practicePartition(page, userId);
+        return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
+      }).toEqual([0, 2]);
+      await denialPeer.close();
+      accountDenied = false;
+      await page.bringToFront();
+      await page.reload();
+      await expect(piece).toBeVisible();
+      await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("8");
+
       // If the owning tab closes while Practice is open, the waiting tab
       // recovers its last checkpoint after the browser releases the lock.
       await piece.click();
@@ -257,7 +294,7 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         .toEqual([true]);
       await page.close();
       await expect.poll(() => query(`select count(*) from public.practice_sessions
-        where student_id='${userId}'`)).toBe("7");
+        where student_id='${userId}'`)).toBe("9");
       expect(Object.keys((await practicePartition(survivor, userId)).open)).toHaveLength(0);
       await survivor.close();
 

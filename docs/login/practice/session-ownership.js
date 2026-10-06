@@ -11,12 +11,14 @@ export function createSessionOwnership(locks, userId) {
       const claimed = new Promise((resolve) => { resolveClaim = resolve; });
       let releaseLock;
       const lockHeld = new Promise((resolve) => { releaseLock = resolve; });
+      let finishRequest;
+      const requestFinished = new Promise((resolve) => { finishRequest = resolve; });
       const options = wait ? { mode: "exclusive" } : { mode: "exclusive", ifAvailable: true };
       void locks.request(name, options, async (lock) => {
         if (!lock) { resolveClaim(null); return; }
-        resolveClaim(releaseLock);
+        resolveClaim(async () => { releaseLock(); await requestFinished; });
         await lockHeld;
-      }).catch(() => resolveClaim(null));
+      }).catch(() => resolveClaim(null)).finally(finishRequest);
       return claimed;
     },
   });

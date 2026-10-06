@@ -14,7 +14,7 @@ const ACCESS_BLOCKED = new Set([
 
 export function createSessionRecorder({ userId, journal, submit, now = Date.now,
   uuid = () => crypto.randomUUID(), onStatus = () => {},
-  ownership = { claim: async () => () => {} } }) {
+  ownership = { claim: async () => () => {} }, syncWhenAnotherTabActive = false }) {
   let activeId = null;
   let releaseActive = null;
   let syncing = null;
@@ -92,7 +92,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
         }
       });
       await sync();
-    } finally { release(); }
+    } finally { await release(); }
   }
 
   function awaitOwnerExit() {
@@ -108,7 +108,10 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       const release = await ownership.claim();
       if (!release) {
         if (ownership.supported === false) await sync();
-        else awaitOwnerExit();
+        else {
+          awaitOwnerExit();
+          if (syncWhenAnotherTabActive) await sync();
+        }
         return;
       }
       await recoverWithLock(release);
@@ -135,7 +138,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
         if (recovered) void sync().catch(() => onStatus("retry"));
         return true;
       } catch (error) {
-        release();
+        await release();
         throw error;
       }
     },
@@ -165,7 +168,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       });
       if (!resumed) {
         activeId = null;
-        releaseActive?.();
+        await releaseActive?.();
         releaseActive = null;
         void sync().catch(() => onStatus("retry"));
       }
@@ -182,7 +185,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
           marker.pausedAt === null ? elapsedMs : marker.elapsedMs);
       });
       activeId = null;
-      releaseActive?.();
+      await releaseActive?.();
       releaseActive = null;
       void sync().catch(() => onStatus("retry"));
     },
@@ -191,14 +194,14 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       const id = activeId;
       await journal.change(userId, (partition) => { delete partition.open[id]; });
       activeId = null;
-      releaseActive?.();
+      await releaseActive?.();
       releaseActive = null;
     },
     sync,
     async clear() {
       activeId = null;
       try { await journal.remove(userId); }
-      finally { releaseActive?.(); releaseActive = null; }
+      finally { await releaseActive?.(); releaseActive = null; }
     },
   });
 }
