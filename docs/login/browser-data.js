@@ -42,6 +42,8 @@ export function createBrowserData({
     readStudent,
     readAssignments,
     readPracticeGeneration,
+    readWeeklySummary,
+    sessionIdentity,
     ingestPractice,
     refresh,
     signIn,
@@ -202,6 +204,31 @@ export function createBrowserData({
         : null);
   }
 
+  async function readWeeklySummary() {
+    return readStudentRpc("student_weekly_summary_v1", (data) =>
+      data?.contractVersion === 1 && data.outcome === "summary"
+        && typeof data.asOf === "string" && typeof data.week?.studentTimeZone === "string"
+        && Number.isSafeInteger(data.week?.isoWeekNumber)
+        && Number.isSafeInteger(data.week?.isoWeekYear)
+        && Array.isArray(data.days) && Array.isArray(data.pieces)
+        && Number.isSafeInteger(data.totalSeconds)
+        ? { outcome: "summary_loaded", summary: data }
+        : null);
+  }
+
+  async function sessionIdentity() {
+    try {
+      const { data, error } = await client.auth.getSession();
+      if (error) return { outcome: isUnavailable(error) ? "auth_unavailable" : "unauthenticated" };
+      const userId = data?.session?.user?.id;
+      return typeof userId === "string" && userId
+        ? { outcome: "authenticated", userId }
+        : { outcome: "unauthenticated" };
+    } catch {
+      return { outcome: "auth_unavailable" };
+    }
+  }
+
   async function readStudentRpc(name, decode) {
     if (!validatedUserId) {
       const auth = await getAuthenticatedUser();
@@ -325,6 +352,8 @@ function failedAdapter(outcome, { history, location, redirect }) {
     readStudent: failure,
     readAssignments: failure,
     readPracticeGeneration: failure,
+    readWeeklySummary: failure,
+    sessionIdentity: failure,
     ingestPractice: failure,
     refresh: failure,
     signIn: failure,

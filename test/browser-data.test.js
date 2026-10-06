@@ -406,6 +406,52 @@ test("Practice RPC errors preserve authorization and rollout distinctions", asyn
   assert.deepEqual(await data.readAssignments(), { outcome: "account_denied" });
 });
 
+test("Student summary RPC uses no selector and denies unauthorized access", async () => {
+  const client = fakeClient({ user: { id: "student-a" } });
+  let call;
+  client.rpc = async (name, args) => {
+    call = [name, args];
+    return { data: { contractVersion: 1, outcome: "summary", asOf: "2026-10-08T00:00:00Z",
+      week: { studentTimeZone: "UTC", isoWeekNumber: 41, isoWeekYear: 2026 },
+      days: [], pieces: [], totalSeconds: 0 }, error: null, status: 200 };
+  };
+  const data = createData(client);
+  assert.equal((await data.readWeeklySummary()).outcome, "summary_loaded");
+  assert.deepEqual(call, ["student_weekly_summary_v1", undefined]);
+  client.rpc = async () => ({ data: null, error: { code: "42501" }, status: 403 });
+  assert.deepEqual(await data.readWeeklySummary(), { outcome: "account_denied" });
+  const anonymous = createData(fakeClient());
+  assert.deepEqual(await anonymous.readWeeklySummary(), { outcome: "unauthenticated" });
+});
+
+test("offline snapshot identity follows the active Auth session across account changes", async () => {
+  const client = fakeClient();
+  let userId = "student-a";
+  client.auth.getSession = async () => ({ data: { session: userId ? { user: { id: userId } } : null },
+    error: null });
+  const data = createData(client);
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "authenticated", userId: "student-a" });
+  userId = "student-b";
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "authenticated", userId: "student-b" });
+  userId = null;
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
+});
+
+test("transient session errors preserve an uncertain summary identity", async () => {
+  const client = fakeClient();
+  const data = createData(client);
+  for (const status of [0, 429, 503]) {
+    client.auth.getSession = async () => ({ data: { session: null }, error: { status } });
+    assert.deepEqual(await data.sessionIdentity(), { outcome: "auth_unavailable" });
+  }
+  client.auth.getSession = async () => ({
+    data: { session: { user: { id: "student-a" } } }, error: { status: 503 },
+  });
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "auth_unavailable" });
+  client.auth.getSession = async () => ({ data: { session: null }, error: { status: 401 } });
+  assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
+});
+
 function createData(client) {
   return createBrowserData({
     config,

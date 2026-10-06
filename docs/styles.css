@@ -238,6 +238,43 @@ button {
   border: 0;
 }
 
+.weekly-summary-link {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  text-underline-offset: 3px;
+}
+
+.weekly-summary-link[hidden] { display: none; }
+
+.weekly-summary {
+  height: 100dvh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  padding-top: calc(28px + var(--safe-top));
+}
+
+.weekly-summary h1, .weekly-summary h2, .weekly-summary p { margin: 0; }
+.weekly-summary h2 { font-size: 1.1rem; margin: 24px 0 12px; }
+.summary-muted, .summary-future { color: var(--ink-muted); }
+.weekly-summary #summary-content { width: 100%; }
+.summary-table-wrap { width: 100%; overflow-x: auto; }
+.summary-table { width: 100%; border-collapse: collapse; min-width: 400px; }
+.summary-table th, .summary-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.summary-table th:first-child { text-align: left; }
+.summary-table thead th { font-weight: 500; }
+.summary-table small { display: block; color: var(--ink-muted); font-weight: 400; }
+.summary-table tfoot { font-weight: 600; }
+.weekly-summary #empty-week { margin-top: 16px; }
+
 .practice-mode-picker legend {
   width: 100%;
   margin-bottom: 8px;
