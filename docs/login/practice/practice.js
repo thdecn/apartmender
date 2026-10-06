@@ -5,7 +5,7 @@ import { createSessionJournal, createMemorySessionJournal } from "./session-jour
 import { createSessionRecorder } from "./session-recorder.js";
 import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
-import { safeLocalStorage, summarySnapshot } from "./weekly-summary-model.js";
+import { safeLocalStorage, summarySnapshot } from "./weekly-summary-cache.js";
 
 // A 401 is this tab's session state; it must not stop another tab with valid Auth.
 const SHARED_ACCESS_BLOCKS = new Set([

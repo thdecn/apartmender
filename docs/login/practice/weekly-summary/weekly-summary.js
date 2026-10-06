@@ -2,7 +2,8 @@ import { browserData } from "../../supabase.js";
 import { createSessionJournal } from "../session-journal.js";
 import { createSessionRecorder } from "../session-recorder.js";
 import { createSessionOwnership } from "../session-ownership.js";
-import { buildWeeklySummary, safeLocalStorage, summarySnapshot } from "../weekly-summary-model.js";
+import { buildWeeklySummary } from "../weekly-summary-model.js";
+import { safeLocalStorage, summarySnapshot } from "../weekly-summary-cache.js";
 
 const heading = document.querySelector("#summary-heading");
 const status = document.querySelector("#summary-status");

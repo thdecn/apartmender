@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildWeeklySummary, formatMinutes, formatWeekly, summarySnapshot } from
+import { buildWeeklySummary, formatMinutes, formatWeekly } from
   "../docs/login/practice/weekly-summary-model.js";
+import { summarySnapshot } from "../docs/login/practice/weekly-summary-cache.js";
 
 const catalog = [{ id: "z", label: "Zither" }, { id: "a", label: "Arabesque" },
   { id: "h2", label: "Bach" }, { id: "h1", label: "Bach" }];
