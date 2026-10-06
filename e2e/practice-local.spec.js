@@ -75,7 +75,20 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       let lostAcknowledgement = false;
       let dropNextUpload = false;
       let accountDenied = false;
+      let uploadsOffline = false;
+      let assignmentsOffline = false;
+      await page.route("**/rest/v1/rpc/student_active_assignments_v1", async (route) => {
+        if (assignmentsOffline && route.request().method() === "POST") {
+          await route.abort("failed");
+        } else {
+          await route.continue();
+        }
+      });
       await page.route("**/rest/v1/rpc/student_ingest_practice_session_v1", async (route) => {
+        if (uploadsOffline) {
+          await route.abort("failed");
+          return;
+        }
         if (dropNextUpload) {
           dropNextUpload = false;
           await route.abort("failed");
@@ -148,6 +161,29 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       expect(Number(query(`select app_private.calculate_current_practice_week(
         '${userId}', now())->>'totalSeconds'`))).toBeGreaterThan(0);
 
+      // A second tab shares IndexedDB but must leave the first tab's live
+      // marker alone. Its own Practice start waits until the first ends.
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      const sessionEntries = await page.evaluate(() => Object.entries(sessionStorage));
+      const peer = await page.context().newPage();
+      await peer.addInitScript((entries) => {
+        for (const [key, value] of entries) sessionStorage.setItem(key, value);
+      }, sessionEntries);
+      await peer.goto(`${site.origin}/login/practice/`);
+      await expect(peer.getByRole("heading", { name: "Student Home" })).toBeVisible();
+      await expect(peer.getByRole("button", { name: "Czerny Op. 821, 2" })).toBeVisible();
+      expect(Object.keys((await practicePartition(peer, userId)).open)).toHaveLength(1);
+      await peer.getByRole("button", { name: "Czerny Op. 821, 2" }).click();
+      await expect(peer.locator("#practice")).toBeHidden();
+      await expect(peer.locator("#piece-status")).toContainText("another tab");
+      await peer.close();
+      await page.bringToFront();
+      await page.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("3");
+
       // An older queued event may be denied after a new Piece has started.
       // The denial must end that running visit at once and retain its event.
       dropNextUpload = true;
@@ -166,7 +202,23 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
       }).toEqual([0, 2]);
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
-        .toBe("2");
+        .toBe("3");
+      // An offline reload can fail to load Home while prior events remain
+      // queued. Connectivity returning must retry without a manual reload.
+      accountDenied = false;
+      uploadsOffline = true;
+      assignmentsOffline = true;
+      await page.reload();
+      await expect(page.locator("#name-display")).toContainText("reconnect later");
+      expect((await queuedEvents(page, userId)).length).toBe(2);
+      uploadsOffline = false;
+      assignmentsOffline = false;
+      await page.evaluate(() => setTimeout(() => window.dispatchEvent(new Event("online")), 0));
+      await expect(piece).toBeVisible();
+      await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("5");
+
     } finally {
       await site.close();
     }

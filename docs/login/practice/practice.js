@@ -3,6 +3,7 @@ import { mountPractice } from "../../practice-host.js";
 import { buildAssignmentHome, studentComments } from "./student-home.js";
 import { createSessionJournal, createMemorySessionJournal } from "./session-journal.js";
 import { createSessionRecorder } from "./session-recorder.js";
+import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
 
 const display = document.querySelector("#name-display");
@@ -56,53 +57,8 @@ async function initialize() {
   }
   if (current.outcome !== "authenticated") {
     display.textContent = messageForFailure(current.outcome);
+    if (current.outcome === "auth_unavailable") retryPageWhenOnline();
     return;
-  }
-
-  const [assignmentRead, generationRead] = await Promise.all([
-    browserData.readAssignments(), browserData.readPracticeGeneration(),
-  ]);
-  if (leaving) return;
-  if (assignmentRead.outcome !== "assignments_loaded"
-    || generationRead.outcome !== "generation_loaded") {
-    display.textContent = "Assigned Practice is unavailable. Please reconnect later.";
-    return;
-  }
-
-  const result = await browserData.readStudent();
-  if (leaving) return;
-  if (result.outcome === "unauthenticated") {
-    window.location.replace(new URL("../", practiceDirectory()).href);
-    return;
-  }
-  if (result.outcome === "student_missing") {
-    display.textContent = "No Student record for this account.";
-    return;
-  }
-  if (result.outcome !== "student_loaded") {
-    display.textContent = messageForFailure(result.outcome);
-    return;
-  }
-
-  display.textContent = result.student.name?.trim() || "Hello";
-  const comments = studentComments(result.student);
-  commentsList.replaceChildren(...comments.map(commentNode));
-  commentsSection.hidden = comments.length === 0;
-
-  const catalog = await loadCatalog();
-  if (leaving) return;
-  const home = buildAssignmentHome(assignmentRead.assignments, catalog ?? []);
-
-  if (catalog === null) {
-    pieceStatus.textContent = "Pieces are unavailable right now.";
-  } else if (home.pieces.length === 0 && !home.hasAssignedPiece) {
-    pieceStatus.textContent = "No Pieces assigned yet.";
-  } else if (home.pieces.length === 0) {
-    pieceStatus.textContent = "Assigned Pieces are unavailable right now.";
-  } else if (home.unavailable > 0) {
-    pieceStatus.textContent = "Some assigned Pieces are unavailable.";
-  } else {
-    pieceStatus.textContent = "";
   }
 
   let memoryOnly = false;
@@ -117,6 +73,7 @@ async function initialize() {
     recorder = createSessionRecorder({
       userId: current.userId,
       journal,
+      ownership: createSessionOwnership(window.navigator.locks, current.userId),
       submit: (event) => browserData.ingestPractice(event),
       onStatus: (status) => {
         if (leaving || accessBlocked) return;
@@ -171,6 +128,54 @@ async function initialize() {
     pieceStatus.textContent = "Practice storage is unavailable. Please reconnect later.";
     return;
   }
+  const [assignmentRead, generationRead] = await Promise.all([
+    browserData.readAssignments(), browserData.readPracticeGeneration(),
+  ]);
+  if (leaving) return;
+  if (assignmentRead.outcome !== "assignments_loaded"
+    || generationRead.outcome !== "generation_loaded") {
+    display.textContent = "Assigned Practice is unavailable. Please reconnect later.";
+    retryPageWhenOnline();
+    return;
+  }
+
+  const result = await browserData.readStudent();
+  if (leaving) return;
+  if (result.outcome === "unauthenticated") {
+    window.location.replace(new URL("../", practiceDirectory()).href);
+    return;
+  }
+  if (result.outcome === "student_missing") {
+    display.textContent = "No Student record for this account.";
+    return;
+  }
+  if (result.outcome !== "student_loaded") {
+    display.textContent = messageForFailure(result.outcome);
+    retryPageWhenOnline();
+    return;
+  }
+
+  display.textContent = result.student.name?.trim() || "Hello";
+  const comments = studentComments(result.student);
+  commentsList.replaceChildren(...comments.map(commentNode));
+  commentsSection.hidden = comments.length === 0;
+
+  const catalog = await loadCatalog();
+  if (leaving) return;
+  const home = buildAssignmentHome(assignmentRead.assignments, catalog ?? []);
+
+  if (catalog === null) {
+    pieceStatus.textContent = "Pieces are unavailable right now.";
+  } else if (home.pieces.length === 0 && !home.hasAssignedPiece) {
+    pieceStatus.textContent = "No Pieces assigned yet.";
+  } else if (home.pieces.length === 0) {
+    pieceStatus.textContent = "Assigned Pieces are unavailable right now.";
+  } else if (home.unavailable > 0) {
+    pieceStatus.textContent = "Some assigned Pieces are unavailable.";
+  } else {
+    pieceStatus.textContent = "";
+  }
+
   window.addEventListener("online", () => { void recorder.sync().catch(() => {}); });
   retrySync.addEventListener("click", () => { void recorder.sync().catch(() => {}); });
   const authorizeStart = createPracticeStart({
@@ -206,6 +211,7 @@ async function initialize() {
         pieceVersion: piece.version,
         credentialGeneration: authority.credentialGeneration,
       });
+      if (!opened) pieceStatus.textContent = "Practice is already open in another tab or unavailable here.";
       if (accessBlocked) {
         await recorder.cancelOpen();
         return false;
@@ -246,6 +252,10 @@ function messageForFailure(outcome) {
     return "This account has an unexpected data error.";
   }
   return "Could not load this account.";
+}
+
+function retryPageWhenOnline() {
+  window.addEventListener("online", () => window.location.reload(), { once: true });
 }
 
 function practiceDirectory() {

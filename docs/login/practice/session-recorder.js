@@ -13,8 +13,10 @@ const ACCESS_BLOCKED = new Set([
 ]);
 
 export function createSessionRecorder({ userId, journal, submit, now = Date.now,
-  uuid = () => crypto.randomUUID(), onStatus = () => {} }) {
+  uuid = () => crypto.randomUUID(), onStatus = () => {},
+  ownership = { claim: async () => () => {} } }) {
   let activeId = null;
+  let releaseActive = null;
   let syncing = null;
 
   function finalize(partition, id, endedAt, elapsedMs) {
@@ -83,24 +85,43 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
 
   return Object.freeze({
     async recover() {
-      await journal.change(userId, (partition) => {
-        for (const [id, marker] of Object.entries(partition.open)) {
-          finalize(partition, id, marker.lastActiveAt, marker.elapsedMs);
-        }
-      });
+      const release = await ownership.claim();
+      if (release) {
+        try {
+          await journal.change(userId, (partition) => {
+            for (const [id, marker] of Object.entries(partition.open)) {
+              finalize(partition, id, marker.lastActiveAt, marker.elapsedMs);
+            }
+          });
+        } finally { release(); }
+      }
       await sync();
     },
     async open({ assignmentId, pieceVersion, credentialGeneration }) {
       if (!assignmentId || !pieceVersion || !Number.isSafeInteger(credentialGeneration)
         || credentialGeneration < 1) return false;
+      const release = await ownership.claim();
+      if (!release) return false;
       const id = uuid();
       const startedAt = now();
-      await journal.change(userId, (partition) => {
-        partition.open[id] = { assignmentId, pieceVersion, credentialGeneration,
-          startedAt, lastActiveAt: startedAt, elapsedMs: 0, pausedAt: null };
-      });
-      activeId = id;
-      return true;
+      let recovered = false;
+      try {
+        await journal.change(userId, (partition) => {
+          for (const [openId, marker] of Object.entries(partition.open)) {
+            finalize(partition, openId, marker.lastActiveAt, marker.elapsedMs);
+            recovered = true;
+          }
+          partition.open[id] = { assignmentId, pieceVersion, credentialGeneration,
+            startedAt, lastActiveAt: startedAt, elapsedMs: 0, pausedAt: null };
+        });
+        activeId = id;
+        releaseActive = release;
+        if (recovered) void sync().catch(() => onStatus("retry"));
+        return true;
+      } catch (error) {
+        release();
+        throw error;
+      }
     },
     async pause(elapsedMs) {
       if (!activeId) return;
@@ -126,7 +147,12 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
         marker.pausedAt = null;
         return true;
       });
-      if (!resumed) { activeId = null; void sync().catch(() => onStatus("retry")); }
+      if (!resumed) {
+        activeId = null;
+        releaseActive?.();
+        releaseActive = null;
+        void sync().catch(() => onStatus("retry"));
+      }
       return resumed;
     },
     async finish(elapsedMs) {
@@ -140,6 +166,8 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
           marker.pausedAt === null ? elapsedMs : marker.elapsedMs);
       });
       activeId = null;
+      releaseActive?.();
+      releaseActive = null;
       void sync().catch(() => onStatus("retry"));
     },
     async cancelOpen() {
@@ -147,8 +175,14 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
       const id = activeId;
       await journal.change(userId, (partition) => { delete partition.open[id]; });
       activeId = null;
+      releaseActive?.();
+      releaseActive = null;
     },
     sync,
-    async clear() { activeId = null; await journal.remove(userId); },
+    async clear() {
+      activeId = null;
+      try { await journal.remove(userId); }
+      finally { releaseActive?.(); releaseActive = null; }
+    },
   });
 }

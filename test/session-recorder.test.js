@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createSessionRecorder } from "../docs/login/practice/session-recorder.js";
 import { createMemorySessionJournal } from "../docs/login/practice/session-journal.js";
+import { createSessionOwnership } from "../docs/login/practice/session-ownership.js";
 
 const assignmentId = "86000000-0000-4000-8000-000000000001";
 const eventId = "85000000-0000-4000-8000-000000000001";
@@ -52,6 +53,33 @@ test("recovery uses last checkpoint, isolates identities, and never resumes an i
   assert.equal(event.clientEndedAt, new Date(1_005_000).toISOString());
   assert.deepEqual(await store.read("student-b"), { open: {}, queue: {} });
   assert.equal(Object.keys((await store.read("student-a")).open).length, 0);
+});
+
+test("a second tab cannot recover or replace a live tab's Open marker", async () => {
+  const store = createMemorySessionJournal();
+  let time = 1_000_000;
+  let held = false;
+  const locks = { async request(_name, _options, callback) {
+    const granted = !held;
+    if (granted) held = true;
+    try { return await callback(granted ? {} : null); }
+    finally { if (granted) held = false; }
+  } };
+  const options = { userId: "student-a", journal: store, now: () => time,
+    uuid: () => eventId, submit: async () => { throw Error("offline"); } };
+  const first = createSessionRecorder({ ...options,
+    ownership: createSessionOwnership(locks, "student-a") });
+  const second = createSessionRecorder({ ...options,
+    ownership: createSessionOwnership(locks, "student-a") });
+  assert.equal(await first.open(details), true);
+  time += 3_000;
+  await second.recover();
+  assert.deepEqual(Object.keys((await store.read("student-a")).open), [eventId]);
+  assert.equal(await second.open(details), false);
+  await first.finish(3_000);
+  assert.equal((await store.read("student-a")).queue[eventId].event.durationSeconds, 3);
+  assert.equal(await second.open(details), true);
+  await second.cancelOpen();
 });
 
 test("abrupt loss after an uncheckpointed visible stretch may lose that stretch", async () => {
