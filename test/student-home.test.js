@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildStudentHome } from "../docs/login/practice/student-home.js";
+import { buildStudentHome, buildAssignmentHome } from "../docs/login/practice/student-home.js";
 
 const catalog = [
   { id: "first", label: "First Piece", cards: ["ending.png", "beginning.png"] },
@@ -54,4 +54,18 @@ test("empty slots and unavailable catalog Pieces have safe states", () => {
   assert.deepEqual(unavailable.pieces, []);
   assert.equal(unavailable.hasAssignedPiece, true);
   assert.equal(unavailable.unavailable, 1);
+});
+
+test("Assignment Home follows server position and carries durable IDs, not legacy slots", () => {
+  const versioned = catalog.map((piece) => ({ ...piece, version: "sha256:version" }));
+  const home = buildAssignmentHome([
+    { assignmentId: "id-second", slug: "second", position: 1 },
+    { assignmentId: "id-first", slug: "first", position: 2 },
+  ], versioned);
+  assert.deepEqual(home.pieces.map(({ id, assignmentId }) => [id, assignmentId]), [
+    ["second", "id-second"], ["first", "id-first"],
+  ]);
+  assert.equal(home.unavailable, 0);
+  assert.equal(buildAssignmentHome([{ assignmentId: "id-unknown", slug: "unknown", position: 1 }],
+    versioned).pieces.length, 0);
 });

@@ -2,6 +2,7 @@
   {
     "id": "czerny-op-821-no-2",
     "label": "Czerny Op. 821, 2",
+    "version": "sha256:9435d1fec47956939db4ce4e7ad2c430936222e70e5a6d6c9dabd5343df55671",
     "cards": [
       "01-m8.png",
       "02-m7-plus-m8-onsets.png",
@@ -16,6 +17,7 @@
   {
     "id": "burgmuller-op-100-no-2-arabesque",
     "label": "Burgmüller Arabesque, Op. 100 No. 2",
+    "version": "sha256:51873b37f607793dd2350bc1b656de8b2c10cc4a9cdbdaf36973f3c1ffa9308e",
     "cards": [
       "01-m33.png",
       "02-m32-plus-m33-onsets.png",
@@ -55,6 +57,7 @@
   {
     "id": "bach-bwv-846-prelude-1",
     "label": "Bach Prelude No. 1, BWV 846",
+    "version": "sha256:80892c4bea7bd257e70235d1acc998ea57492e348c29a1e8948b1ef349060c71",
     "cards": [
       "01-m35.png",
       "02-m34-plus-m35-onsets.png",
@@ -96,6 +99,7 @@
   {
     "id": "bach-bwv-779-invention-no-8",
     "label": "Bach Inv. No. 8",
+    "version": "sha256:2edfa7cadb60c76444f26fe7907c907cf57740463482b619cfe164cdd86634ad",
     "cards": [
       "01-m34.png",
       "02-m33-plus-m34-onsets.png",
@@ -136,6 +140,7 @@
   {
     "id": "bach-bwv-772-invention-no-1",
     "label": "Bach Inv. No. 1",
+    "version": "sha256:68d6f015ed35a7ba863a24f87d25ada2f1195f5d48c6296c8462d5d4d6a432d9",
     "cards": [
       "01-m22.png",
       "02-m21-plus-m22-onsets.png",

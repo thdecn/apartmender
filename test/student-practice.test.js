@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import { buildStudentHome } from "../docs/login/practice/student-home.js";
 
-test("assigned Student Pieces use the shared Practice controls and return Home", async () => {
+test("shared Practice controls keep General Practice separate from recorded Student visits", async () => {
   class ElementStub {
     constructor() {
       this.listeners = new Map();
@@ -46,6 +46,8 @@ test("assigned Student Pieces use the shared Practice controls and return Home",
   const hard = Object.assign(new ElementStub(), { value: "hard", checked: false });
   const intervals = new Map();
   const stored = new Map();
+  const documentListeners = new Map();
+  const windowListeners = new Map();
   let now = 0;
   let nextInterval = 1;
 
@@ -63,7 +65,7 @@ test("assigned Student Pieces use the shared Practice controls and return Home",
       querySelector: () => cardFrame,
       querySelectorAll: () => [normal, hard],
       createElement: () => new ElementStub(),
-      addEventListener() {},
+      addEventListener(type, listener) { documentListeners.set(type, listener); },
     });
     install("window", {
       setInterval(callback) {
@@ -74,7 +76,7 @@ test("assigned Student Pieces use the shared Practice controls and return Home",
       clearInterval: (id) => intervals.delete(id),
       setTimeout() {},
       matchMedia: () => ({ matches: false }),
-      addEventListener() {},
+      addEventListener(type, listener) { windowListeners.set(type, listener); },
     });
     install("navigator", {});
     install("localStorage", {
@@ -130,6 +132,94 @@ test("assigned Student Pieces use the shared Practice controls and return Home",
     assert.equal(elements.get("practice").hidden, true);
     assert.equal(intervals.size, 0);
     assert.deepEqual([...stored.keys()], ["apartmender.practice-mode"]);
+
+    const visits = [];
+    document.visibilityState = "visible";
+    window.matchMedia = () => ({ matches: true });
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open(piece) { visits.push(["open", piece.id]); return true; },
+      async resume() { visits.push(["resume"]); return true; },
+      async pause(ms) { visits.push(["pause", ms]); },
+      async finish(ms) { visits.push(["finish", ms]); },
+    } });
+    const studentButton = elements.get("piece-list").children[0];
+    await studentButton.emit("click");
+    assert.deepEqual(visits, [["open", "second"]]);
+    now = 7_000;
+    await elements.get("home-btn").emit("click");
+    assert.deepEqual(visits.at(-1), ["finish", 2_000]);
+    assert.equal(elements.get("home").hidden, false);
+
+    await studentButton.emit("click");
+    now = 9_000;
+    for (let attempt = 0; attempt < 3; attempt += 1) await elements.get("good-btn").emit("click");
+    await elements.get("advance-btn").emit("click");
+    assert.deepEqual(visits.at(-1), ["finish", 2_000]);
+    assert.equal(visits.filter(([kind]) => kind === "finish").length, 2);
+
+    let cancelled = 0;
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open() { return true; },
+      canContinue: () => false,
+      async cancel() { cancelled += 1; },
+    } });
+    await elements.get("piece-list").children[0].emit("click");
+    assert.equal(cancelled, 1);
+    assert.equal(elements.get("home").hidden, false);
+
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open() {
+        window.matchMedia = () => ({ matches: false });
+        return true;
+      },
+      async cancel() { cancelled += 1; },
+    } });
+    window.matchMedia = () => ({ matches: true });
+    await elements.get("piece-list").children[0].emit("click");
+    assert.equal(cancelled, 2);
+    assert.equal(elements.get("practice").hidden, true);
+
+    let completeResume;
+    let resumeStarted;
+    let signalResume;
+    const pendingResume = () => {
+      resumeStarted = new Promise((resolve) => { signalResume = resolve; });
+      return new Promise((resolve) => { completeResume = resolve; });
+    };
+    let paused = 0;
+    mountPractice({ pieces: [catalog[1]], lifecycle: {
+      async open() { return true; },
+      async pause() { paused += 1; },
+      async resume() { signalResume(); await pending; return true; },
+    } });
+    let pending = pendingResume();
+    window.matchMedia = () => ({ matches: true });
+    document.visibilityState = "visible";
+    await elements.get("piece-list").children[0].emit("click");
+    document.visibilityState = "hidden";
+    documentListeners.get("visibilitychange")();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0);
+
+    document.visibilityState = "visible";
+    documentListeners.get("visibilitychange")();
+    await resumeStarted;
+    document.visibilityState = "hidden";
+    documentListeners.get("visibilitychange")();
+    completeResume();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0, "hidden page cannot restart timing after a delayed resume");
+    assert.equal(paused, 2, "the resumed marker is paused again after visibility changes");
+
+    pending = pendingResume();
+    document.visibilityState = "visible";
+    windowListeners.get("orientationchange")();
+    await resumeStarted;
+    window.matchMedia = () => ({ matches: false });
+    windowListeners.get("orientationchange")();
+    completeResume();
+    await new Promise(setImmediate);
+    assert.equal(intervals.size, 0, "portrait page cannot restart timing after a delayed resume");
   } finally {
     for (const [name, descriptor] of original) {
       if (descriptor === undefined) delete globalThis[name];

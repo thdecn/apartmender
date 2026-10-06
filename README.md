@@ -26,6 +26,35 @@ Run the JavaScript tests with Node.js:
 npm test
 ```
 
+The opt-in Practice integration test uses a disposable, freshly reset local
+Sludge Supabase database with the `student_practice_generation_v1` migration.
+It creates a local Student, verifies Assignment and generation reads, uploads
+one Session, and checks that an exact retry does not add another row. Set
+`SLUDGE_REPO` to that checkout; set `SUPABASE_CLI` if the CLI is not on `PATH`:
+
+```sh
+SLUDGE_REPO=/path/to/Sludge APARTMENDER_LOCAL_SUPABASE=1 \
+  node --test test/local-supabase.integration.test.js
+```
+
+Reset the disposable database before rerunning it; the test performs the
+Assignment cutover and stores immutable Practice locally.
+
+For the served-browser path, install the dev dependency and headless browser,
+reset the disposable Sludge database, then run:
+
+```sh
+npm ci
+npx playwright install --only-shell chromium
+SLUDGE_REPO=/path/to/Sludge npm run test:browser
+```
+
+The browser test drives Login, Student Home, Home finalization, recovery from
+a lost upload acknowledgement, and final-card completion through local Sludge.
+The local stack disables email-password login, so the test supplies only that
+Auth token response; subsequent identity and Practice requests use the real
+local backend.
+
 ## Sludge browser configuration
 
 Sludge is Apartmender's V1 Supabase backend and owns the browser-facing Auth
