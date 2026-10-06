@@ -184,6 +184,26 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
         .toBe("3");
 
+      // A storage-restricted tab can still send a memory-only visit when its
+      // backend checks succeed, even if browser locks are also unavailable.
+      const restricted = await page.context().newPage();
+      await restricted.setViewportSize({ width: 844, height: 390 });
+      await restricted.addInitScript((entries) => {
+        for (const [key, value] of entries) sessionStorage.setItem(key, value);
+        Object.defineProperty(window, "indexedDB", { value: undefined });
+        Object.defineProperty(navigator, "locks", { value: undefined });
+      }, sessionEntries);
+      await restricted.goto(`${site.origin}/login/practice/`);
+      const restrictedPiece = restricted.getByRole("button", { name: "Czerny Op. 821, 2" });
+      await expect(restrictedPiece).toBeVisible();
+      await restrictedPiece.click();
+      await expect(restricted.locator("#practice")).toBeVisible();
+      await expect(restricted.locator("#practice-timer-value")).not.toHaveText("0:00");
+      await restricted.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(() => query(`select count(*) from public.practice_sessions
+        where student_id='${userId}'`)).toBe("4");
+      await restricted.close();
+
       // An older queued event may be denied after a new Piece has started.
       // The denial must end that running visit at once and retain its event.
       dropNextUpload = true;
@@ -202,7 +222,7 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
       }).toEqual([0, 2]);
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
-        .toBe("3");
+        .toBe("4");
       // An offline reload can fail to load Home while prior events remain
       // queued. Connectivity returning must retry without a manual reload.
       accountDenied = false;
@@ -217,7 +237,29 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       await expect(piece).toBeVisible();
       await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
-        .toBe("5");
+        .toBe("6");
+
+      // If the owning tab closes while Practice is open, the waiting tab
+      // recovers its last checkpoint after the browser releases the lock.
+      await piece.click();
+      await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+      const laterSession = await page.evaluate(() => Object.entries(sessionStorage));
+      const survivor = await page.context().newPage();
+      await survivor.addInitScript((entries) => {
+        for (const [key, value] of entries) sessionStorage.setItem(key, value);
+      }, laterSession);
+      await survivor.goto(`${site.origin}/login/practice/`);
+      await expect(survivor.getByRole("button", { name: "Czerny Op. 821, 2" })).toBeVisible();
+      expect(Object.keys((await practicePartition(survivor, userId)).open)).toHaveLength(1);
+      await page.evaluate(() => window.dispatchEvent(new Event("pagehide")));
+      await expect.poll(async () => Object.values((await practicePartition(survivor, userId)).open)
+        .map((marker) => marker.pausedAt !== null && marker.elapsedMs >= 1_000))
+        .toEqual([true]);
+      await page.close();
+      await expect.poll(() => query(`select count(*) from public.practice_sessions
+        where student_id='${userId}'`)).toBe("7");
+      expect(Object.keys((await practicePartition(survivor, userId)).open)).toHaveLength(0);
+      await survivor.close();
 
     } finally {
       await site.close();

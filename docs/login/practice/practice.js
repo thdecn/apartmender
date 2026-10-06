@@ -24,6 +24,11 @@ async function initialize() {
   let recorder;
   let accessBlocked = false;
   let practiceHost;
+  function blockPracticeAccess() {
+    accessBlocked = true;
+    piecesSection.hidden = true;
+    modePicker.hidden = true;
+  }
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
     if (invitation.outcome === "invite_accepted") await browserData.signOut();
@@ -73,16 +78,15 @@ async function initialize() {
     recorder = createSessionRecorder({
       userId: current.userId,
       journal,
-      ownership: createSessionOwnership(window.navigator.locks, current.userId),
+      ownership: memoryOnly ? undefined
+        : createSessionOwnership(window.navigator.locks, current.userId),
       submit: (event) => browserData.ingestPractice(event),
       onStatus: (status) => {
         if (leaving || accessBlocked) return;
         if (status === "hard_revoked" || status === "missing_identity") {
-          accessBlocked = true;
+          blockPracticeAccess();
           void practiceHost?.stop();
           commentsSection.hidden = true;
-          piecesSection.hidden = true;
-          modePicker.hidden = true;
           void (async () => {
             await recorder.clear();
             await browserData.signOut();
@@ -91,18 +95,14 @@ async function initialize() {
           return;
         }
         if (status === "disabled" || status === "password_change_required") {
-          accessBlocked = true;
+          blockPracticeAccess();
           void practiceHost?.finish();
-          piecesSection.hidden = true;
-          modePicker.hidden = true;
           syncStatus.textContent = "Account access has changed. Please contact your teacher.";
           return;
         }
         if (status === "unauthenticated" || status === "account_denied") {
-          accessBlocked = true;
+          blockPracticeAccess();
           void practiceHost?.finish();
-          piecesSection.hidden = true;
-          modePicker.hidden = true;
           syncStatus.textContent = "Sign in again to sync Practice.";
           retrySync.hidden = true;
           return;
@@ -193,9 +193,7 @@ async function initialize() {
         return false;
       }
       if (authority.outcome === "account_denied" || authority.outcome === "unauthenticated") {
-        accessBlocked = true;
-        piecesSection.hidden = true;
-        modePicker.hidden = true;
+        blockPracticeAccess();
         pieceStatus.textContent = "Account access has changed. Please sign in again.";
         return false;
       }

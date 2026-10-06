@@ -82,6 +82,42 @@ test("a second tab cannot recover or replace a live tab's Open marker", async ()
   await second.cancelOpen();
 });
 
+test("a waiting tab recovers the checkpoint when the owning tab disappears", async () => {
+  const store = createMemorySessionJournal();
+  let time = 1_000_000;
+  let held = false;
+  const waiters = [];
+  const locks = {
+    async request(_name, options, callback) {
+      if (held && options.ifAvailable) return callback(null);
+      if (held) await new Promise((resolve) => waiters.push(resolve));
+      held = true;
+      try { return await callback({}); }
+      finally {
+        held = false;
+        waiters.shift()?.();
+      }
+    },
+    ownerDisappeared() { held = false; waiters.shift()?.(); },
+  };
+  const options = { userId: "student-a", journal: store, now: () => time,
+    uuid: () => eventId, submit: async () => { throw Error("offline"); } };
+  const first = createSessionRecorder({ ...options,
+    ownership: createSessionOwnership(locks, "student-a") });
+  const second = createSessionRecorder({ ...options,
+    ownership: createSessionOwnership(locks, "student-a") });
+  await first.open(details);
+  time += 3_000;
+  await first.pause(3_000);
+  await second.recover();
+  assert.equal(waiters.length, 1);
+  locks.ownerDisappeared();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  const partition = await store.read("student-a");
+  assert.equal(Object.keys(partition.open).length, 0);
+  assert.equal(partition.queue[eventId].event.durationSeconds, 3);
+});
+
 test("abrupt loss after an uncheckpointed visible stretch may lose that stretch", async () => {
   const store = createMemorySessionJournal();
   let time = 1_000_000;

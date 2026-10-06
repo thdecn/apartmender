@@ -4,17 +4,19 @@ export function createSessionOwnership(locks, userId) {
   const name = `apartmender-practice:${userId}`;
 
   return Object.freeze({
-    async claim() {
+    supported: Boolean(locks?.request),
+    async claim({ wait = false } = {}) {
       if (!locks?.request) return null;
-      let decide;
-      const claimed = new Promise((resolve) => { decide = resolve; });
-      let release;
-      const held = new Promise((resolve) => { release = resolve; });
-      void locks.request(name, { mode: "exclusive", ifAvailable: true }, async (lock) => {
-        if (!lock) { decide(null); return; }
-        decide(release);
-        await held;
-      }).catch(() => decide(null));
+      let resolveClaim;
+      const claimed = new Promise((resolve) => { resolveClaim = resolve; });
+      let releaseLock;
+      const lockHeld = new Promise((resolve) => { releaseLock = resolve; });
+      const options = wait ? { mode: "exclusive" } : { mode: "exclusive", ifAvailable: true };
+      void locks.request(name, options, async (lock) => {
+        if (!lock) { resolveClaim(null); return; }
+        resolveClaim(releaseLock);
+        await lockHeld;
+      }).catch(() => resolveClaim(null));
       return claimed;
     },
   });

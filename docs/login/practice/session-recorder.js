@@ -18,6 +18,7 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
   let activeId = null;
   let releaseActive = null;
   let syncing = null;
+  let awaitingOwner = null;
 
   function finalize(partition, id, endedAt, elapsedMs) {
     const marker = partition.open[id];
@@ -83,19 +84,34 @@ export function createSessionRecorder({ userId, journal, submit, now = Date.now,
     return syncing;
   }
 
+  async function recoverWithLock(release) {
+    try {
+      await journal.change(userId, (partition) => {
+        for (const [id, marker] of Object.entries(partition.open)) {
+          finalize(partition, id, marker.lastActiveAt, marker.elapsedMs);
+        }
+      });
+      await sync();
+    } finally { release(); }
+  }
+
+  function awaitOwnerExit() {
+    if (awaitingOwner) return;
+    awaitingOwner = (async () => {
+      const release = await ownership.claim({ wait: true });
+      if (release) await recoverWithLock(release);
+    })().catch(() => onStatus("retry")).finally(() => { awaitingOwner = null; });
+  }
+
   return Object.freeze({
     async recover() {
       const release = await ownership.claim();
-      if (release) {
-        try {
-          await journal.change(userId, (partition) => {
-            for (const [id, marker] of Object.entries(partition.open)) {
-              finalize(partition, id, marker.lastActiveAt, marker.elapsedMs);
-            }
-          });
-        } finally { release(); }
+      if (!release) {
+        if (ownership.supported === false) await sync();
+        else awaitOwnerExit();
+        return;
       }
-      await sync();
+      await recoverWithLock(release);
     },
     async open({ assignmentId, pieceVersion, credentialGeneration }) {
       if (!assignmentId || !pieceVersion || !Number.isSafeInteger(credentialGeneration)
