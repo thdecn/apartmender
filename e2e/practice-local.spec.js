@@ -313,6 +313,46 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
       expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
         .toBe("10");
 
+      // A refresh at Piece opening is another authority-denial source. Load
+      // the peer first so only its start-time read, not its initial read, fails.
+      for (const deniedRpc of ["student_active_assignments_v1", "student_practice_generation_v1"]) {
+        const startSession = await page.evaluate(() => Object.entries(sessionStorage));
+        const startPeer = await page.context().newPage();
+        await startPeer.addInitScript((entries) => {
+          for (const [key, value] of entries) sessionStorage.setItem(key, value);
+        }, startSession);
+        let denyStart = false;
+        await startPeer.route(`**/rest/v1/rpc/${deniedRpc}`, async (route) => {
+          if (!denyStart) return route.continue();
+          await route.fulfill({ status: 403, contentType: "application/json",
+            headers: { "access-control-allow-origin": "*" },
+            body: JSON.stringify({ code: "42501", message: "Access denied" }) });
+        });
+        await startPeer.goto(`${site.origin}/login/practice/`);
+        const startPeerPiece = startPeer.getByRole("button", { name: "Czerny Op. 821, 2" });
+        await expect(startPeerPiece).toBeVisible();
+        await page.bringToFront();
+        await piece.click();
+        await expect(page.locator("#practice-timer-value")).not.toHaveText("0:00");
+        accountDenied = true;
+        denyStart = true;
+        await startPeerPiece.click();
+        await expect(startPeer.locator("#practice")).toBeHidden();
+        await expect(page.locator("#practice")).toBeHidden();
+        await expect.poll(async () => {
+          const partition = await practicePartition(page, userId);
+          return [Object.keys(partition.open).length, Object.keys(partition.queue).length];
+        }).toEqual([0, 1]);
+        await startPeer.close();
+        accountDenied = false;
+        await page.bringToFront();
+        await page.reload();
+        await expect(piece).toBeVisible();
+        await expect.poll(async () => (await queuedEvents(page, userId)).length).toBe(0);
+      }
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("12");
+
       // If the owning tab closes while Practice is open, the waiting tab
       // recovers its last checkpoint after the browser releases the lock.
       await piece.click();
@@ -331,8 +371,40 @@ test("Login records assigned Practice, retries, and stops an active visit on acc
         .toEqual([true]);
       await page.close();
       await expect.poll(() => query(`select count(*) from public.practice_sessions
-        where student_id='${userId}'`)).toBe("11");
+        where student_id='${userId}'`)).toBe("13");
       expect(Object.keys((await practicePartition(survivor, userId)).open)).toHaveLength(0);
+
+      // With IndexedDB but no Web Locks, old queued work still uploads while
+      // new visits use tab-local memory and require the live backend.
+      await survivor.route("**/rest/v1/rpc/student_ingest_practice_session_v1", async (route) => {
+        await route.abort("failed");
+      });
+      const survivorPiece = survivor.getByRole("button", { name: "Czerny Op. 821, 2" });
+      await survivorPiece.click();
+      await expect(survivor.locator("#practice-timer-value")).not.toHaveText("0:00");
+      await survivor.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(async () => (await queuedEvents(survivor, userId)).length).toBe(1);
+      const noLockSession = await survivor.evaluate(() => Object.entries(sessionStorage));
+      const noLockPage = await survivor.context().newPage();
+      await noLockPage.setViewportSize({ width: 844, height: 390 });
+      await noLockPage.addInitScript((entries) => {
+        for (const [key, value] of entries) sessionStorage.setItem(key, value);
+        Object.defineProperty(navigator, "locks", { value: undefined });
+      }, noLockSession);
+      await noLockPage.goto(`${site.origin}/login/practice/`);
+      expect(await noLockPage.evaluate(() => [Boolean(window.indexedDB), Boolean(navigator.locks)]))
+        .toEqual([true, false]);
+      const noLockPiece = noLockPage.getByRole("button", { name: "Czerny Op. 821, 2" });
+      await expect(noLockPiece).toBeVisible();
+      await expect.poll(async () => (await queuedEvents(noLockPage, userId)).length).toBe(0);
+      expect(query(`select count(*) from public.practice_sessions where student_id='${userId}'`))
+        .toBe("14");
+      await noLockPiece.click();
+      await expect(noLockPage.locator("#practice-timer-value")).not.toHaveText("0:00");
+      await noLockPage.getByRole("button", { name: "Back home" }).click();
+      await expect.poll(() => query(`select count(*) from public.practice_sessions
+        where student_id='${userId}'`)).toBe("15");
+      await noLockPage.close();
       await survivor.close();
 
     } finally {

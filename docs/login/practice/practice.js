@@ -6,6 +6,7 @@ import { createSessionRecorder } from "./session-recorder.js";
 import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
 
+// A 401 is this tab's session state; it must not stop another tab with valid Auth.
 const SHARED_ACCESS_BLOCKS = new Set([
   "account_denied", "disabled", "password_change_required", "hard_revoked", "missing_identity",
 ]);
@@ -26,6 +27,7 @@ initialize();
 async function initialize() {
   let leaving = false;
   let recorder;
+  let backlogRecorder;
   let accessBlocked = false;
   let practiceHost;
   function blockPracticeAccess() {
@@ -78,6 +80,16 @@ async function initialize() {
     journal = createMemorySessionJournal();
     memoryOnly = true;
   }
+  let locks = null;
+  try { locks = window.navigator.locks; } catch { /* Web Locks are unavailable. */ }
+  let backlogJournal = null;
+  if (!memoryOnly && !locks?.request) {
+    // Keep older durable events retryable, but new Open markers must stay in
+    // this tab when the browser cannot coordinate shared markers.
+    backlogJournal = journal;
+    journal = createMemorySessionJournal();
+    memoryOnly = true;
+  }
   let accessChannel = null;
   try {
     if (window.BroadcastChannel) {
@@ -94,7 +106,7 @@ async function initialize() {
       void practiceHost?.stop();
       commentsSection.hidden = true;
       void (async () => {
-        await recorder.clear();
+        await Promise.all([recorder.clear(), backlogRecorder?.clear()]);
         await browserData.signOut();
         window.location.replace(new URL("../", practiceDirectory()).href);
       })();
@@ -137,12 +149,21 @@ async function initialize() {
       userId: current.userId,
       journal,
       ownership: memoryOnly ? undefined
-        : createSessionOwnership(window.navigator.locks, current.userId),
+        : createSessionOwnership(locks, current.userId),
       syncWhenAnotherTabActive: Boolean(accessChannel),
       submit: (event) => browserData.ingestPractice(event),
       onStatus: onRecorderStatus,
     });
-    await recorder.recover();
+    if (backlogJournal) {
+      backlogRecorder = createSessionRecorder({
+        userId: current.userId,
+        journal: backlogJournal,
+        ownership: createSessionOwnership(null, current.userId),
+        submit: (event) => browserData.ingestPractice(event),
+        onStatus: onRecorderStatus,
+      });
+    }
+    await Promise.all([recorder.recover(), backlogRecorder?.recover()]);
     if (accessBlocked || leaving) return;
   } catch {
     pieceStatus.textContent = "Practice storage is unavailable. Please reconnect later.";
@@ -202,8 +223,9 @@ async function initialize() {
     pieceStatus.textContent = "";
   }
 
-  window.addEventListener("online", () => { void recorder.sync().catch(() => {}); });
-  retrySync.addEventListener("click", () => { void recorder.sync().catch(() => {}); });
+  const syncAll = () => Promise.all([recorder.sync(), backlogRecorder?.sync()]);
+  window.addEventListener("online", () => { void syncAll().catch(() => {}); });
+  retrySync.addEventListener("click", () => { void syncAll().catch(() => {}); });
   const authorizeStart = createPracticeStart({
     readAssignments: () => browserData.readAssignments(),
     readGeneration: () => browserData.readPracticeGeneration(),
@@ -219,7 +241,7 @@ async function initialize() {
         return false;
       }
       if (authority.outcome === "account_denied" || authority.outcome === "unauthenticated") {
-        blockPracticeAccess();
+        onRecorderStatus(authority.outcome);
         pieceStatus.textContent = "Account access has changed. Please sign in again.";
         return false;
       }
