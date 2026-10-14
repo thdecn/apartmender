@@ -1,3 +1,5 @@
+import { decodeTeacherPractice } from "./teacher/teacher-practice.js";
+
 const authRedirectKeys = ["type", "access_token", "refresh_token", "error", "error_code"];
 const defaultStorageKey = "apartmender-auth-session";
 
@@ -43,6 +45,9 @@ export function createBrowserData({
     readAssignments,
     readPracticeGeneration,
     readWeeklySummary,
+    readTeacherStudents,
+    readTeacherStudent,
+    resolveWorkspace,
     sessionIdentity,
     ingestPractice,
     refresh,
@@ -177,7 +182,7 @@ export function createBrowserData({
   }
 
   async function readAssignments() {
-    return readStudentRpc("student_active_assignments_v1", (data) => {
+    return readProtectedRpc("student_active_assignments_v1", (data) => {
       if (data?.contractVersion !== 1 || data.outcome !== "assignments"
         || !Array.isArray(data.assignments)) return null;
       const ids = new Set();
@@ -196,7 +201,7 @@ export function createBrowserData({
   async function readPracticeGeneration() {
     // This protected read is an additive Sludge prerequisite. The current
     // Assignment response does not expose the server-owned generation.
-    return readStudentRpc("student_practice_generation_v1", (data) =>
+    return readProtectedRpc("student_practice_generation_v1", (data) =>
       data?.contractVersion === 1 && data.outcome === "generation"
         && Number.isSafeInteger(data.credentialGeneration)
         && data.credentialGeneration > 0
@@ -205,7 +210,7 @@ export function createBrowserData({
   }
 
   async function readWeeklySummary() {
-    return readStudentRpc("student_weekly_summary_v1", (data) =>
+    return readProtectedRpc("student_weekly_summary_v1", (data) =>
       data?.contractVersion === 1 && data.outcome === "summary"
         && typeof data.asOf === "string" && typeof data.week?.studentTimeZone === "string"
         && Number.isSafeInteger(data.week?.isoWeekNumber)
@@ -229,13 +234,32 @@ export function createBrowserData({
     }
   }
 
-  async function readStudentRpc(name, decode) {
+  async function readTeacherStudents() {
+    return readProtectedRpc("teacher_students_practice_v1", (data) => decodeTeacherPractice(data));
+  }
+
+  async function readTeacherStudent(studentId) {
+    return readProtectedRpc("teacher_student_practice_v1", (data) => decodeTeacherPractice(data, studentId),
+      { target_student_id: studentId });
+  }
+
+  async function resolveWorkspace() {
+    // Role-protected RPCs are the authority, never Auth metadata or storage.
+    const teacher = await readTeacherStudents();
+    if (teacher.outcome === "teacher_practice_loaded") return { outcome: "workspace", workspace: "teacher" };
+    if (teacher.outcome !== "account_denied") return teacher;
+    const student = await readPracticeGeneration();
+    return student.outcome === "generation_loaded"
+      ? { outcome: "workspace", workspace: "student" } : student;
+  }
+
+  async function readProtectedRpc(name, decode, args) {
     if (!validatedUserId) {
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
     try {
-      const { data, error, status } = await client.rpc(name);
+      const { data, error, status } = await client.rpc(name, args);
       if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
       if (error) {
         if (error.code === "42501") return { outcome: "account_denied" };
@@ -353,6 +377,9 @@ function failedAdapter(outcome, { history, location, redirect }) {
     readAssignments: failure,
     readPracticeGeneration: failure,
     readWeeklySummary: failure,
+    readTeacherStudents: failure,
+    readTeacherStudent: failure,
+    resolveWorkspace: failure,
     sessionIdentity: failure,
     ingestPractice: failure,
     refresh: failure,

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student detail · Apartmender</title>
+    <link rel="stylesheet" href="../../../styles.css" />
+    <link rel="stylesheet" href="../teacher.css" />
+  </head>
+  <body data-view="student">
+    <main class="teacher-screen">
+      <p class="brand">Apartmender</p>
+      <h1>Student detail</h1>
+      <nav aria-label="Account"><a href="../">Dashboard</a>
+        <button id="teacher-refresh" class="text-btn" type="button">Refresh</button>
+        <a id="teacher-logout" class="text-btn" href="../../">Logout</a></nav>
+      <p id="teacher-status" role="status">Loading assigned Students…</p>
+      <section id="teacher-content" aria-label="Student practice" hidden>
+        <div class="teacher-table-scroll"><table id="teacher-table" aria-label="Assigned Student practice"></table></div>
+      </section>
+    </main>
+    <script type="module" src="../teacher.js"></script>
+  </body>
+</html>

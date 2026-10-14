@@ -22,18 +22,21 @@ form.addEventListener("submit", async (event) => {
   const button = form.querySelector("button");
   button.disabled = true;
   const result = await browserData.signIn({ email, password });
-  button.disabled = false;
-
   if (result.outcome === "authenticated") {
-    goToPractice();
+    await goToWorkspace(error);
+    button.disabled = false;
     return;
   }
+  button.disabled = false;
   error.textContent =
     result.outcome === "invalid_credentials"
       ? "Email or password is incorrect."
       : messageForUnavailable(result.outcome);
   form.elements.password.focus();
 });
+// The HTML starts disabled so a slow client import cannot submit credentials
+// through the browser's default form action before this handler is installed.
+form.querySelector("button").disabled = false;
 
 async function initialize() {
   const invitation = await browserData.acceptInvitation();
@@ -52,7 +55,7 @@ async function initialize() {
 
   const current = await browserData.validateCurrentUser();
   if (current.outcome === "authenticated") {
-    goToPractice();
+    await goToWorkspace(error);
   } else if (current.outcome !== "unauthenticated") {
     error.textContent = messageForUnavailable(current.outcome);
   }
@@ -64,6 +67,7 @@ function showPasswordForm() {
   inviteAccount.textContent = "Invite accepted. Choose a password to continue.";
   inviteForm.hidden = false;
   inviteForm.addEventListener("submit", establishPassword, { once: false });
+  inviteForm.querySelector("button").disabled = false;
 }
 
 async function establishPassword(event) {
@@ -81,7 +85,7 @@ async function establishPassword(event) {
   button.disabled = false;
 
   if (result.outcome === "password_established") {
-    goToPractice();
+    await goToWorkspace(inviteError);
     return;
   }
   inviteError.textContent =
@@ -98,8 +102,17 @@ function messageForUnavailable(outcome) {
     : "Could not reach the login service.";
 }
 
-function goToPractice() {
-  window.location.assign(new URL("practice/", loginDirectory()).href);
+async function goToWorkspace(status) {
+  const result = await browserData.resolveWorkspace();
+  if (result.outcome === "workspace") {
+    window.location.assign(new URL(result.workspace === "teacher" ? "teacher/" : "practice/", loginDirectory()).href);
+    return;
+  }
+  status.textContent = result.outcome === "account_denied"
+    ? "This account has no active workspace. Please contact the administrator."
+    : result.outcome === "practice_not_ready"
+      ? "Practice data is not ready. Please try again later."
+      : "Could not check account access. Please try again.";
 }
 
 function loginDirectory() {
