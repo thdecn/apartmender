@@ -12,13 +12,13 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
   const contact = document.querySelector("#admin-info");
   const keys = ["note1", "note2", "note3"];
   let episodeId = null, teacherId = null, pending = null;
-  let dirty = false, saving = false, epoch = 0;
+  let dirty = false, saving = false, epoch = 0, revision = 0;
 
   const values = () => Object.fromEntries(keys.map((key) => [key, form.elements[key].value]));
   const fill = (notes) => { for (const key of keys) form.elements[key].value = notes[key] ?? ""; };
 
   function clear() {
-    epoch += 1; episodeId = null; teacherId = null; pending = null; dirty = false; saving = false;
+    epoch += 1; revision += 1; episodeId = null; teacherId = null; pending = null; dirty = false; saving = false;
     fill({}); previous.replaceChildren(); previousPeriod.textContent = "";
     status.textContent = ""; fields.disabled = true; editor.hidden = true;
     document.querySelector("#lesson-info").textContent = "";
@@ -40,10 +40,12 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
     }
   }
 
-  function show(student, notes, actorId) {
+  function show(student, notes, actorId, readRevision) {
+    // A read begun before a completed publication cannot replace its reread.
+    if (readRevision !== revision) return false;
     const changed = episodeId !== null && episodeId !== notes.episodeId;
     if (episodeId !== notes.episodeId) {
-      epoch += 1; pending = null; dirty = false; saving = false;
+      epoch += 1; revision += 1; pending = null; dirty = false; saving = false;
       status.textContent = changed ? "The Teacher assignment changed. Notes have been reset." : "";
     }
     episodeId = notes.episodeId; teacherId = actorId;
@@ -57,6 +59,7 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
     admin.hidden = !href; if (href) admin.href = href; else admin.removeAttribute("href");
     contact.textContent = href ? "Opens your email app. Review and send your request there." : "Admin contact is unavailable.";
     fields.disabled = saving; editor.hidden = false;
+    return true;
   }
 
   form.addEventListener("input", () => { dirty = true; status.textContent = "Unpublished changes."; });
@@ -91,7 +94,7 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
           ["account_denied", "unauthenticated"].includes(read.outcome)) { clear(); onDenied(); return; }
         if (read.outcome === "teacher_notes_loaded") {
           if (read.notes.episodeId !== episodeId) { clear(); onDenied(); return; }
-          fill(read.notes.currentNotes); dirty = false; pending = null;
+          revision += 1; fill(read.notes.currentNotes); dirty = false; pending = null;
           renderHistory(read.notes.precedingPeriod);
           status.textContent = "Notes updated.";
         } else status.textContent = "Notes saved, but the latest notes could not be loaded. Your draft is retained; retry to refresh.";
@@ -105,5 +108,5 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
       if (requestEpoch === epoch) { saving = false; fields.disabled = false; }
     }
   });
-  return { show, clear };
+  return { show, clear, get revision() { return revision; } };
 }

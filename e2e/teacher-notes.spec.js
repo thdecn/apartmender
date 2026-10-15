@@ -185,3 +185,29 @@ test("an uncertain session hides private data without discarding the draft or pe
     const attempts = await writes(page); expect(attempts[0]).toEqual(attempts[1]);
   } finally { await site.close(); }
 });
+
+test("a Refresh snapshot captured before publication cannot overwrite the successful reread", async ({ page }) => {
+  const site = await serveSite();
+  let releaseCatalog;
+  const heldCatalog = new Promise((done) => { releaseCatalog = done; });
+  let captured = false;
+  try {
+    await openDetail(page, site.origin, { holdPublish: true });
+    await expect(first(page)).toBeVisible();
+    await page.route("**/pieces.json", async (route) => {
+      if (!captured) { captured = true; await heldCatalog; }
+      await route.continue();
+    });
+    await first(page).fill("Newest saved notes"); await update(page).click();
+    await expect.poll(() => page.evaluate(() => typeof window.teacherTest.releasePublish)).toBe("function");
+    await page.getByRole("button", { name: "Refresh", exact: true }).click();
+    await expect.poll(() => captured).toBe(true);
+    await page.evaluate(() => { window.teacherTest.holdPublish = false; window.teacherTest.releasePublish(); });
+    await expect(page.locator("#note-status")).toHaveText("Notes updated.");
+    expect(await first(page).inputValue()).toBe("Newest saved notes");
+    releaseCatalog();
+    await expect(first(page)).toBeVisible();
+    await expect(first(page)).toHaveValue("Newest saved notes");
+    expect(await page.evaluate(() => window.teacherTest.noteData.currentNotes.note1)).toBe("Newest saved notes");
+  } finally { releaseCatalog(); await site.close(); }
+});

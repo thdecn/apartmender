@@ -62,6 +62,7 @@ async function load() {
         : "Could not load assigned Students. Please retry.";
     return;
   }
+  const notesRevision = detailView?.revision;
   const notes = detail ? await browserData.readTeacherNotes(studentId) : null;
   if (request !== requestNumber || leaving) return;
   if (detail && notes.outcome !== "teacher_notes_loaded") {
@@ -83,9 +84,11 @@ async function load() {
     return;
   }
   if (!result.students.length) { status.textContent = "No assigned Students."; return; }
+  if (detail && !detailView.show(result.students[0], notes.notes, userId, notesRevision)) {
+    void load(); return;
+  }
   if (detail) heading.textContent = result.students[0].name?.trim() || "Student detail";
   render(teacherRows(result.students, catalog));
-  if (detail) detailView.show(result.students[0], notes.notes, userId);
   content.hidden = false;
   status.textContent = "Last completed week. Baselines include eligible earlier weeks.";
 }
