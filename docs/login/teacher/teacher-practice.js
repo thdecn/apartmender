@@ -18,6 +18,8 @@ export function decodeTeacherPractice(data, studentId) {
 function validStudent(student) {
   if (!isUuid(student?.studentId) || !(student.name === null || typeof student.name === "string") ||
     typeof student.schedule?.hasLesson !== "boolean" || !Array.isArray(student.pieces)) return false;
+  if (student.schedule.hasLesson && (!["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].includes(student.schedule.lessonStartDay) ||
+    typeof student.schedule.lessonStartTime !== "string" || !/^\d{2}:\d{2}:\d{2}/.test(student.schedule.lessonStartTime))) return false;
   const week = student.completedWeek;
   if (!instant(week?.startsAt) || !instant(week.endsAt) || Date.parse(week.startsAt) >= Date.parse(week.endsAt) ||
     week.kind !== (student.schedule.hasLesson ? "lesson" : "calendar") ||

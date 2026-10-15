@@ -1,6 +1,7 @@
 import { browserData } from "../supabase.js";
 import { teacherRows } from "./teacher-model.js";
 import { isUuid } from "./teacher-practice.js";
+import { createTeacherDetail } from "./teacher-detail.js";
 
 const status = document.querySelector("#teacher-status");
 const content = document.querySelector("#teacher-content");
@@ -14,11 +15,17 @@ const loginUrl = new URL("../", import.meta.url);
 let requestNumber = 0;
 let userId = null;
 let leaving = false;
+const detailView = detail ? createTeacherDetail({ data: browserData, studentId, onDenied() {
+  requestNumber += 1; clearView(true); status.textContent = "This Student view is unavailable to this account.";
+}, onSessionUnavailable() {
+  requestNumber += 1; clearView(); status.textContent = "Could not verify your session. Refresh to continue; your draft is retained.";
+} }) : null;
 
-function clearView() {
+function clearView(forget = false) {
   content.hidden = true;
   table.replaceChildren();
   heading.textContent = detail ? "Student detail" : "Teacher dashboard";
+  if (forget) detailView?.clear();
 }
 
 async function load() {
@@ -29,6 +36,7 @@ async function load() {
   const auth = await browserData.validateCurrentUser();
   if (request !== requestNumber || leaving) return;
   if (auth.outcome !== "authenticated" || (userId && auth.userId !== userId)) {
+    if (auth.outcome === "unauthenticated" || (auth.userId && auth.userId !== userId)) clearView(true);
     status.textContent = "Sign in again to view your assigned Students.";
     return;
   }
@@ -41,15 +49,24 @@ async function load() {
   const identity = await browserData.sessionIdentity();
   if (request !== requestNumber || leaving) return;
   if (identity.outcome !== "authenticated" || identity.userId !== userId) {
+    if (identity.outcome === "unauthenticated" || (identity.userId && identity.userId !== userId)) clearView(true);
     status.textContent = "Sign in again to view your assigned Students.";
     return;
   }
   if (result.outcome !== "teacher_practice_loaded") {
+    if (result.outcome === "account_denied") clearView(true);
     status.textContent = result.outcome === "account_denied"
       ? "This Student view is unavailable to this account."
       : result.outcome === "practice_not_ready"
         ? "Practice data is not ready. Please try again later."
         : "Could not load assigned Students. Please retry.";
+    return;
+  }
+  const notes = detail ? await browserData.readTeacherNotes(studentId) : null;
+  if (request !== requestNumber || leaving) return;
+  if (detail && notes.outcome !== "teacher_notes_loaded") {
+    if (["account_denied", "unauthenticated"].includes(notes.outcome)) clearView(true);
+    status.textContent = "Could not load this Student's notes. Please retry.";
     return;
   }
   let catalog = [];
@@ -61,12 +78,14 @@ async function load() {
   const latestIdentity = await browserData.sessionIdentity();
   if (request !== requestNumber || leaving) return;
   if (latestIdentity.outcome !== "authenticated" || latestIdentity.userId !== userId) {
+    if (latestIdentity.outcome === "unauthenticated" || (latestIdentity.userId && latestIdentity.userId !== userId)) clearView(true);
     status.textContent = "Sign in again to view your assigned Students.";
     return;
   }
   if (!result.students.length) { status.textContent = "No assigned Students."; return; }
   if (detail) heading.textContent = result.students[0].name?.trim() || "Student detail";
   render(teacherRows(result.students, catalog));
+  if (detail) detailView.show(result.students[0], notes.notes, userId);
   content.hidden = false;
   status.textContent = "Last completed week. Baselines include eligible earlier weeks.";
 }
@@ -93,12 +112,12 @@ function render(rows) {
 refresh.addEventListener("click", () => { void load(); });
 logout.addEventListener("click", async (event) => {
   event.preventDefault();
-  leaving = true; requestNumber += 1; clearView(); refresh.disabled = true;
+  leaving = true; requestNumber += 1; clearView(true); refresh.disabled = true;
   const result = await browserData.signOut();
   if (result.outcome === "signed_out") window.location.replace(loginUrl.href);
   else status.textContent = "Could not sign out. Close this tab and try again.";
 });
-window.addEventListener("pagehide", () => { requestNumber += 1; clearView(); });
+window.addEventListener("pagehide", () => { requestNumber += 1; clearView(true); });
 window.addEventListener("pageshow", () => { void load(); });
 window.addEventListener("focus", () => { void load(); });
 window.addEventListener("online", () => { void load(); });

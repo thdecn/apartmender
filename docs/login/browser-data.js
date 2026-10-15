@@ -1,4 +1,5 @@
 import { decodeTeacherPractice } from "./teacher/teacher-practice.js";
+import { decodeTeacherNotes, decodeNotePublication } from "./teacher/teacher-notes.js";
 
 const authRedirectKeys = ["type", "access_token", "refresh_token", "error", "error_code"];
 const defaultStorageKey = "apartmender-auth-session";
@@ -47,6 +48,8 @@ export function createBrowserData({
     readWeeklySummary,
     readTeacherStudents,
     readTeacherStudent,
+    readTeacherNotes,
+    publishTeacherNotes,
     resolveWorkspace,
     sessionIdentity,
     ingestPractice,
@@ -182,7 +185,7 @@ export function createBrowserData({
   }
 
   async function readAssignments() {
-    return readProtectedRpc("student_active_assignments_v1", (data) => {
+    return callProtectedRpc("student_active_assignments_v1", (data) => {
       if (data?.contractVersion !== 1 || data.outcome !== "assignments"
         || !Array.isArray(data.assignments)) return null;
       const ids = new Set();
@@ -201,7 +204,7 @@ export function createBrowserData({
   async function readPracticeGeneration() {
     // This protected read is an additive Sludge prerequisite. The current
     // Assignment response does not expose the server-owned generation.
-    return readProtectedRpc("student_practice_generation_v1", (data) =>
+    return callProtectedRpc("student_practice_generation_v1", (data) =>
       data?.contractVersion === 1 && data.outcome === "generation"
         && Number.isSafeInteger(data.credentialGeneration)
         && data.credentialGeneration > 0
@@ -210,7 +213,7 @@ export function createBrowserData({
   }
 
   async function readWeeklySummary() {
-    return readProtectedRpc("student_weekly_summary_v1", (data) =>
+    return callProtectedRpc("student_weekly_summary_v1", (data) =>
       data?.contractVersion === 1 && data.outcome === "summary"
         && typeof data.asOf === "string" && typeof data.week?.studentTimeZone === "string"
         && Number.isSafeInteger(data.week?.isoWeekNumber)
@@ -235,11 +238,11 @@ export function createBrowserData({
   }
 
   async function readTeacherStudents() {
-    return readProtectedRpc("teacher_students_practice_v1", (data) => decodeTeacherPractice(data));
+    return callProtectedRpc("teacher_students_practice_v1", (data) => decodeTeacherPractice(data));
   }
 
   async function readTeacherStudent(studentId) {
-    return readProtectedRpc("teacher_student_practice_v1", (data) => decodeTeacherPractice(data, studentId),
+    return callProtectedRpc("teacher_student_practice_v1", (data) => decodeTeacherPractice(data, studentId),
       { target_student_id: studentId });
   }
 
@@ -253,7 +256,19 @@ export function createBrowserData({
       ? { outcome: "workspace", workspace: "student" } : student;
   }
 
-  async function readProtectedRpc(name, decode, args) {
+  async function readTeacherNotes(studentId) {
+    return callProtectedRpc("teacher_student_notes_v1", (data) => decodeTeacherNotes(data, studentId),
+      { target_student_id: studentId });
+  }
+
+  async function publishTeacherNotes(studentId, requestId, notes) {
+    return callProtectedRpc("teacher_publish_notes_v1", decodeNotePublication, {
+      target_student_id: studentId, request_id: requestId,
+      note_1: notes.note1, note_2: notes.note2, note_3: notes.note3,
+    });
+  }
+
+  async function callProtectedRpc(name, decode, args) {
     if (!validatedUserId) {
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
@@ -379,6 +394,8 @@ function failedAdapter(outcome, { history, location, redirect }) {
     readWeeklySummary: failure,
     readTeacherStudents: failure,
     readTeacherStudent: failure,
+    readTeacherNotes: failure,
+    publishTeacherNotes: failure,
     resolveWorkspace: failure,
     sessionIdentity: failure,
     ingestPractice: failure,
