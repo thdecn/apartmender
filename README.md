@@ -106,18 +106,22 @@ identity changes clear the previous view; a stale request cannot restore it.
 
 Run `npm test` and `npm run test:teacher` for unit and deterministic browser
 coverage. For real local JWT/role and ownership checks, use the disposable Sludge
-stack, then reset it to remove the synthetic identities and assignments:
+stack, then reset it to remove the synthetic identities and assignments. Replace
+the two placeholder paths below with the absolute paths to your local checkouts:
 
 ```sh
-cd /Users/thdecn/GitHub/Sludge
+SLUDGE_CHECKOUT="/path/to/Sludge"
+APARTMENDER_CHECKOUT="/path/to/apartmender"
+
+cd "$SLUDGE_CHECKOUT"
 npm run supabase:reset
 npm run supabase:lint
 npm run supabase:test
-cd /path/to/apartmender
-SLUDGE_REPO=/Users/thdecn/GitHub/Sludge \
-SUPABASE_CLI=/Users/thdecn/GitHub/Sludge/node_modules/.bin/supabase \
+cd "$APARTMENDER_CHECKOUT"
+SLUDGE_REPO="$SLUDGE_CHECKOUT" \
+SUPABASE_CLI="$SLUDGE_CHECKOUT/node_modules/.bin/supabase" \
 npm run test:teacher:local
-cd /Users/thdecn/GitHub/Sludge
+cd "$SLUDGE_CHECKOUT"
 npm run supabase:reset
 ```
 
