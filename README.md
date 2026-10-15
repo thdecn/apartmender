@@ -118,9 +118,9 @@ notes so an old receipt cannot overwrite a newer publication. Refresh failures
 retain drafts in memory; ownership/identity/episode changes and leaving the page
 discard them. No note drafts or receipts are written to browser storage.
 
-Set `administratorMailbox` in `docs/login/teacher/teacher-config.js` to the one
-reviewed **public** Administrator contact address before rollout. It is blank by
-default; an unset or invalid address displays an unavailable state. **Admin
+`administratorMailbox` in `docs/login/teacher/teacher-config.js` holds the one
+reviewed **public** Administrator contact address. An unset or invalid address
+displays an unavailable state. **Admin
 Request** opens an encoded `mailto:` draft with a subject and the authenticated
 Teacher's UUID. It includes no Student details or note content. The Teacher
 reviews and sends the email in their email app; Apartmender never reports delivery.
