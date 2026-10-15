@@ -16,6 +16,10 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
 
   const values = () => Object.fromEntries(keys.map((key) => [key, form.elements[key].value]));
   const fill = (notes) => { for (const key of keys) form.elements[key].value = notes[key] ?? ""; };
+  const pauseForSession = () => {
+    status.textContent = "Could not verify your session. Your draft is retained; retry after refreshing.";
+    onSessionUnavailable();
+  };
 
   function clear() {
     epoch += 1; revision += 1; episodeId = null; teacherId = null; pending = null; dirty = false; saving = false;
@@ -82,14 +86,14 @@ export function createTeacherDetail({ data, studentId, onDenied, onSessionUnavai
       const result = await data.publishTeacherNotes(studentId, publication.requestId, publication.notes);
       const identity = await data.sessionIdentity();
       if (requestEpoch !== epoch) return;
-      if (identity.outcome === "auth_unavailable") { onSessionUnavailable(); return; }
+      if (identity.outcome === "auth_unavailable") { pauseForSession(); return; }
       if (identity.outcome !== "authenticated" || identity.userId !== teacherId ||
         ["account_denied", "unauthenticated"].includes(result.outcome)) { clear(); onDenied(); return; }
       if (["published", "already_published"].includes(result.outcome)) {
         const read = await data.readTeacherNotes(studentId);
         const latestIdentity = await data.sessionIdentity();
         if (requestEpoch !== epoch) return;
-        if (latestIdentity.outcome === "auth_unavailable") { onSessionUnavailable(); return; }
+        if (latestIdentity.outcome === "auth_unavailable") { pauseForSession(); return; }
         if (latestIdentity.outcome !== "authenticated" || latestIdentity.userId !== teacherId ||
           ["account_denied", "unauthenticated"].includes(read.outcome)) { clear(); onDenied(); return; }
         if (read.outcome === "teacher_notes_loaded") {

@@ -181,6 +181,7 @@ test("an uncertain session hides private data without discarding the draft or pe
     await page.evaluate(() => { window.teacherTest.sessionUnavailable = false; window.teacherTest.holdPublish = false; });
     await page.getByRole("button", { name: "Refresh", exact: true }).click();
     await expect(first(page)).toHaveValue("Retained during session outage");
+    await expect(page.locator("#note-status")).toContainText("Your draft is retained");
     await update(page).click(); await expect(page.locator("#note-status")).toHaveText("Notes updated.");
     const attempts = await writes(page); expect(attempts[0]).toEqual(attempts[1]);
   } finally { await site.close(); }
