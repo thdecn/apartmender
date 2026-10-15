@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "test:browser": "playwright test e2e/practice-local.spec.js --workers=1"
+    "test:browser": "playwright test e2e/practice-local.spec.js --workers=1",
+    "test:teacher": "playwright test e2e/teacher.spec.js --workers=1",
+    "test:teacher:local": "playwright test e2e/teacher-local.spec.js --workers=1"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

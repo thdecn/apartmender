@@ -1,0 +1,14 @@
+body { overflow: auto; user-select: text; }
+.teacher-screen { max-width: 1440px; margin: auto; padding: 32px; }
+.teacher-screen nav { display: flex; align-items: center; gap: 24px; }
+.teacher-screen a { color: var(--accent); }
+.teacher-screen h1 { font-weight: 500; }
+.teacher-table-scroll { overflow-x: auto; }
+#teacher-table { width: 100%; border-collapse: collapse; min-width: 950px; }
+#teacher-table th, #teacher-table td { padding: 16px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+#teacher-table td { font-variant-numeric: tabular-nums; }
+#teacher-table thead { color: var(--ink-muted); }
+.teacher-change-positive { color: var(--good); }
+.teacher-change-negative { color: var(--mistake); }
+.teacher-change-neutral { color: var(--ink-muted); }
+@media (max-width: 640px) { .teacher-screen { padding: 20px; } }

@@ -20,7 +20,7 @@
     <main class="screen home login">
       <p class="brand">Apartmender</p>
       <h1>Login</h1>
-      <form id="login-form" class="login-form">
+      <form id="login-form" class="login-form" method="post">
         <label for="email">Email</label>
         <input
           id="email"
@@ -40,11 +40,11 @@
           autocomplete="current-password"
           required
         />
-        <button type="submit" class="btn btn-continue">Continue</button>
+        <button type="submit" class="btn btn-continue" disabled>Continue</button>
         <p id="login-error" class="login-error" aria-live="polite"></p>
       </form>
       <p id="invite-account" class="invite-account" hidden></p>
-      <form id="invite-form" class="login-form" hidden>
+      <form id="invite-form" class="login-form" method="post" hidden>
         <label for="invite-password">New password</label>
         <input
           id="invite-password"
@@ -54,7 +54,7 @@
           minlength="8"
           required
         />
-        <button type="submit" class="btn btn-continue">Save password</button>
+        <button type="submit" class="btn btn-continue" disabled>Save password</button>
         <p id="invite-error" class="login-error" aria-live="polite"></p>
       </form>
     </main>

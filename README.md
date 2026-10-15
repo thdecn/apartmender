@@ -79,3 +79,53 @@ python3 -m http.server 8080 --bind 127.0.0.1 --directory docs
 ```
 
 Then open `http://127.0.0.1:8080/login/`.
+
+## Teacher dashboard
+
+`sludge-nsj.4` consumes Sludge's [Teacher contract](https://github.com/thdecn/Sludge/blob/main/docs/teacher-accounts-mvp-contract.md)
+and [practice metrics API v1](https://github.com/thdecn/Sludge/blob/main/docs/teacher-practice-api-v1.md).
+The backend Teacher identity, Active-span, and metrics migrations must be deployed
+and Piece Assignment cutover complete before releasing these browser pages.
+This frontend change adds no migration and does not provision accounts.
+
+After sign-in, restored-session validation, or invitation password setup,
+Login probes the protected Teacher list RPC. Only a role denial permits a
+fallback to the protected Student generation RPC. Network, contract, and cutover
+failures stay on Login; Auth metadata cannot choose a workspace. Active Teachers
+go to `/login/teacher/`, Active Students retain `/login/practice/`, and other
+accounts remain denied. Administrator UI remains separate work. Pending Teacher
+invitations can set a password, but operator activation is still required.
+
+The desktop dashboard lists current Pieces and the last completed lesson or
+calendar week, weekly average, eligible baseline count, and signed change.
+The sign uses exact seconds and the baseline numerator/count before display
+rounding. Unknown catalog slugs remain readable. Student links use the separately
+scoped detail RPC; note editing and Admin Request remain `sludge-nsj.5`.
+Teacher data is not persisted. Refresh, visibility changes, logout, errors, and
+identity changes clear the previous view; a stale request cannot restore it.
+
+Run `npm test` and `npm run test:teacher` for unit and deterministic browser
+coverage. For real local JWT/role and ownership checks, use the disposable Sludge
+stack, then reset it to remove the synthetic identities and assignments. Replace
+the two placeholder paths below with the absolute paths to your local checkouts:
+
+```sh
+SLUDGE_CHECKOUT="/path/to/Sludge"
+APARTMENDER_CHECKOUT="/path/to/apartmender"
+
+cd "$SLUDGE_CHECKOUT"
+npm run supabase:reset
+npm run supabase:lint
+npm run supabase:test
+cd "$APARTMENDER_CHECKOUT"
+SLUDGE_REPO="$SLUDGE_CHECKOUT" \
+SUPABASE_CLI="$SLUDGE_CHECKOUT/node_modules/.bin/supabase" \
+npm run test:teacher:local
+cd "$SLUDGE_CHECKOUT"
+npm run supabase:reset
+```
+
+The local browser test substitutes only password-token acquisition because local
+password login is disabled; Auth validation and protected RPCs use real local
+JWTs. Real invitation delivery, browser release, and hosted checks remain the
+final Teacher rollout (`sludge-nsj.6`). Never run the fixture on a hosted project.

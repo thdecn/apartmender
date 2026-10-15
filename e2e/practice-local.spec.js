@@ -1,35 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
-import { extname, resolve, sep } from "node:path";
+import { serveSite } from "./site.js";
 
 import { createLocalPracticeStudent } from "../test/local-supabase-fixture.js";
-
-const siteRoot = resolve("docs");
-const types = { ".html": "text/html", ".js": "text/javascript",
-  ".css": "text/css", ".json": "application/json", ".png": "image/png" };
-
-async function serveSite() {
-  const server = createServer(async (request, response) => {
-    const pathname = new URL(request.url, "http://127.0.0.1").pathname;
-    const path = resolve(siteRoot, `.${pathname}`,
-      pathname.endsWith("/") ? "index.html" : "");
-    if (!path.startsWith(`${siteRoot}${sep}`)) {
-      response.writeHead(403).end();
-      return;
-    }
-    try {
-      const bytes = await readFile(path);
-      response.writeHead(200, { "Content-Type": types[extname(path)] ?? "application/octet-stream",
-        "Cache-Control": "no-store" }).end(bytes);
-    } catch {
-      response.writeHead(404).end();
-    }
-  });
-  await new Promise((resolveListen) => server.listen(0, "127.0.0.1", resolveListen));
-  return { origin: `http://127.0.0.1:${server.address().port}`,
-    close: () => new Promise((resolveClose) => server.close(resolveClose)) };
-}
 
 async function practicePartition(page, userId) {
   return page.evaluate((id) => new Promise((resolveQueue, reject) => {

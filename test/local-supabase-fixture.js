@@ -11,12 +11,9 @@ export async function createLocalPracticeStudent() {
   const sludgeRepo = process.env.SLUDGE_REPO;
   assert.ok(sludgeRepo, "Set SLUDGE_REPO to the Sludge checkout with the generation migration");
   const cli = process.env.SUPABASE_CLI ?? "supabase";
-  const env = Object.fromEntries(execFileSync(cli, ["status", "--output", "env"], {
-    cwd: sludgeRepo, encoding: "utf8",
-  }).split("\n").filter((line) => /^[A-Z_]+=/.test(line)).map((line) => {
-    const equal = line.indexOf("=");
-    return [line.slice(0, equal), line.slice(equal + 1).replace(/^"|"$/g, "")];
-  }));
+  const env = localEnvironment(sludgeRepo, cli);
+  assert.equal(new URL(env.DB_URL).hostname, "127.0.0.1");
+  assert.equal(new URL(env.DB_URL).port, "54332");
   const config = readPublicSupabaseConfig({ protocol: "http:", hostname: "127.0.0.1" });
   assert.equal(config.projectUrl, env.API_URL);
   assert.equal(config.publishableKey, env.PUBLISHABLE_KEY);
@@ -44,6 +41,22 @@ export async function createLocalPracticeStudent() {
     select public.backfill_piece_assignments_v1(array['czerny-op-821-no-2'],
       public.piece_assignment_source_fingerprint_v1());`);
 
+  const session = localSession(userId, email, env);
+  const token = session.access_token;
+
+  return { config, email, userId, token, session, query };
+}
+
+function localEnvironment(sludgeRepo, cli = "supabase") {
+  return Object.fromEntries(execFileSync(cli, ["status", "--output", "env"], {
+    cwd: sludgeRepo, encoding: "utf8",
+  }).split("\n").filter((line) => /^[A-Z_]+=/.test(line)).map((line) => {
+    const equal = line.indexOf("=");
+    return [line.slice(0, equal), line.slice(equal + 1).replace(/^"|"$/g, "")];
+  }));
+}
+
+function localSession(userId, email, env) {
   // Local PostgREST containers can lag the host clock after a database reset.
   // This disposable test token spans that skew without changing client timing.
   const currentSecond = Math.floor(Date.now() / 1000);
@@ -56,9 +69,37 @@ export async function createLocalPracticeStudent() {
   })}`;
   const token = `${signed}.${createHmac("sha256", env.JWT_SECRET)
     .update(signed).digest("base64url")}`;
-  const session = { access_token: token, refresh_token: "local-test-only",
+  return { access_token: token, refresh_token: "local-test-only",
     token_type: "bearer", expires_in: 3600, expires_at: expiresAt,
     user: { id: userId, aud: "authenticated", role: "authenticated", email } };
+}
 
-  return { config, email, userId, token, session, query };
+export async function createLocalTeacherFixture() {
+  const student = await createLocalPracticeStudent();
+  const env = localEnvironment(process.env.SLUDGE_REPO, process.env.SUPABASE_CLI);
+  const identities = {};
+  for (const label of ["TeacherA", "TeacherB", "Administrator", "EmptyStudent", "OtherStudent"]) {
+    const email = `teacher-check-${randomUUID()}@example.invalid`;
+    const response = await fetch(`${env.API_URL}/auth/v1/admin/users`, {
+      method: "POST", headers: { apikey: env.SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${env.SERVICE_ROLE_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password: `Local-${randomUUID()}!`, email_confirm: true }),
+    });
+    assert.equal(response.status, 200);
+    const { id } = await response.json();
+    assert.match(id, /^[0-9a-f-]{36}$/);
+    identities[label] = { id, email, session: localSession(id, email, env) };
+  }
+  const { TeacherA: a, TeacherB: b, Administrator: admin, EmptyStudent: empty, OtherStudent: other } = identities;
+  student.query(`
+    insert into app_private.teachers(id,display_name) values ('${a.id}','Local Teacher A'),('${b.id}','Local Teacher B');
+    insert into app_private.account_access(auth_user_id,application_role,account_state) values
+      ('${a.id}','Teacher','Active'),('${b.id}','Teacher','Active'),('${admin.id}','Administrator','Active');
+    update public.students set teacher_id='${a.id}' where id='${student.userId}';
+    insert into public.students(id,email,name,teacher_id) values
+      ('${empty.id}','${empty.email}','No Pieces Student','${a.id}'),
+      ('${other.id}','${other.email}','Other Teacher Student','${b.id}');
+    update app_private.account_access set account_state='Active' where auth_user_id in ('${empty.id}','${other.id}');
+  `);
+  return { ...student, identities };
 }

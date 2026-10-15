@@ -1,29 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
-import { extname, resolve, sep } from "node:path";
+import { serveSite } from "./site.js";
+
 import { createLocalPracticeStudent } from "../test/local-supabase-fixture.js";
-
-const siteRoot = resolve("docs");
-
-async function serveSite() {
-  const server = createServer(async (request, response) => {
-    const pathname = new URL(request.url, "http://127.0.0.1").pathname;
-    const path = resolve(siteRoot, `.${pathname}`,
-      pathname.endsWith("/") ? "index.html" : "");
-    if (!path.startsWith(`${siteRoot}${sep}`)) return response.writeHead(403).end();
-    try {
-      const bytes = await readFile(path);
-      response.writeHead(200, { "Content-Type": {
-        ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
-        ".json": "application/json" }[extname(path)] ?? "application/octet-stream",
-      "Cache-Control": "no-store" }).end(bytes);
-    } catch { response.writeHead(404).end(); }
-  });
-  await new Promise((done) => server.listen(0, "127.0.0.1", done));
-  return { origin: `http://127.0.0.1:${server.address().port}`,
-    close: () => new Promise((done) => server.close(done)) };
-}
 
 test("Weekly Summary retries an uncertain initial session after reconnection", async ({ page }) => {
   const site = await serveSite();
