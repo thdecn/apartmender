@@ -16,7 +16,28 @@
         <a id="teacher-logout" class="text-btn" href="../../">Logout</a></nav>
       <p id="teacher-status" role="status">Loading assigned Students…</p>
       <section id="teacher-content" aria-label="Student practice" hidden>
+        <p id="lesson-info"></p>
+        <h2>Practice</h2>
         <div class="teacher-table-scroll"><table id="teacher-table" aria-label="Assigned Student practice"></table></div>
+        <section id="teacher-notes" hidden>
+          <h2>Preceding completed period</h2>
+          <p id="previous-period"></p>
+          <dl id="previous-notes"></dl>
+          <h2>Current notes</h2>
+          <p>Only Update publishes these notes to Student Home. Each note may contain up to 4,000 characters.</p>
+          <form id="note-form">
+            <fieldset id="note-fields" disabled>
+              <legend>Edit notes</legend>
+              <label for="note1">Note 1 (required)</label><textarea id="note1" name="note1" rows="4" required></textarea>
+              <label for="note2">Note 2 (optional)</label><textarea id="note2" name="note2" rows="4"></textarea>
+              <label for="note3">Note 3 (optional)</label><textarea id="note3" name="note3" rows="4"></textarea>
+              <button type="submit" class="btn btn-continue">Update</button>
+            </fieldset>
+            <p id="note-status" role="status"></p>
+          </form>
+          <a id="admin-request" hidden>Admin Request</a>
+          <p id="admin-info"></p>
+        </section>
       </section>
     </main>
     <script type="module" src="../teacher.js"></script>

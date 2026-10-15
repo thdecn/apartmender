@@ -11,4 +11,8 @@ body { overflow: auto; user-select: text; }
 .teacher-change-positive { color: var(--good); }
 .teacher-change-negative { color: var(--mistake); }
 .teacher-change-neutral { color: var(--ink-muted); }
+#teacher-notes { max-width: 800px; margin-top: 32px; }
+#note-fields { display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--line); padding: 20px; }
+#note-fields textarea { width: 100%; font: inherit; color: var(--ink); background: var(--bg-elevated); padding: 12px; resize: vertical; }
+#previous-notes dd { white-space: pre-wrap; overflow-wrap: anywhere; margin: 8px 0 20px; }
 @media (max-width: 640px) { .teacher-screen { padding: 20px; } }

@@ -84,7 +84,7 @@ Then open `http://127.0.0.1:8080/login/`.
 
 `sludge-nsj.4` consumes Sludge's [Teacher contract](https://github.com/thdecn/Sludge/blob/main/docs/teacher-accounts-mvp-contract.md)
 and [practice metrics API v1](https://github.com/thdecn/Sludge/blob/main/docs/teacher-practice-api-v1.md).
-The backend Teacher identity, Active-span, and metrics migrations must be deployed
+The backend Teacher identity, Active-span, metrics, and note-history migrations must be deployed
 and Piece Assignment cutover complete before releasing these browser pages.
 This frontend change adds no migration and does not provision accounts.
 
@@ -99,10 +99,31 @@ invitations can set a password, but operator activation is still required.
 The desktop dashboard lists current Pieces and the last completed lesson or
 calendar week, weekly average, eligible baseline count, and signed change.
 The sign uses exact seconds and the baseline numerator/count before display
-rounding. Unknown catalog slugs remain readable. Student links use the separately
-scoped detail RPC; note editing and Admin Request remain `sludge-nsj.5`.
+rounding. Unknown catalog slugs remain readable. Student links use separately
+scoped detail and notes RPCs.
 Teacher data is not persisted. Refresh, visibility changes, logout, errors, and
 identity changes clear the previous view; a stale request cannot restore it.
+
+Student detail (`sludge-nsj.5`) presents lesson information, the same metrics,
+read-only preceding-period notes, and three current notes prefilled from the
+Student-visible state. Only **Update** publishes a draft. Note 1 requires
+non-whitespace text; optional notes can be cleared. Limits count 4,000 Unicode
+characters per note, and accepted text is never trimmed or interpreted as markup.
+History uses its saved boundaries/timezone even after a schedule edit. No earlier
+period is invented when history is unavailable.
+
+An unconfirmed Update retains its draft and retries the same UUID and payload.
+A new intent gets a new UUID. After success or replay, the page rereads current
+notes so an old receipt cannot overwrite a newer publication. Refresh failures
+retain drafts in memory; ownership/identity/episode changes and leaving the page
+discard them. No note drafts or receipts are written to browser storage.
+
+`administratorMailbox` in `docs/login/teacher/teacher-config.js` holds the one
+reviewed **public** Administrator contact address. An unset or invalid address
+displays an unavailable state. **Admin
+Request** opens an encoded `mailto:` draft with a subject and the authenticated
+Teacher's UUID. It includes no Student details or note content. The Teacher
+reviews and sends the email in their email app; Apartmender never reports delivery.
 
 Run `npm test` and `npm run test:teacher` for unit and deterministic browser
 coverage. For real local JWT/role and ownership checks, use the disposable Sludge
