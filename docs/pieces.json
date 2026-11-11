@@ -165,5 +165,37 @@
       "21-m2-plus-m3-onsets.png",
       "22-m1-plus-m2-onsets.png"
     ]
+  },
+  {
+    "id": "bach-bwv-784-invention-no-13",
+    "label": "Bach Invention No. 13 in A minor, BWV 784",
+    "version": "sha256:b702e89886d61e13b5e0e050c8a3db959b56e9ea7d01bc2ebd16a2f82658d451",
+    "cards": [
+      "01-m25.png",
+      "02-m24-plus-m25-onsets.png",
+      "03-m23-plus-m24-onsets.png",
+      "04-m22-plus-m23-onsets.png",
+      "05-m21-plus-m22-onsets.png",
+      "06-m20-plus-m21-onsets.png",
+      "07-m19-plus-m20-onsets.png",
+      "08-m18-plus-m19-onsets.png",
+      "09-m17-plus-m18-onsets.png",
+      "10-m16-plus-m17-onsets.png",
+      "11-m15-plus-m16-onsets.png",
+      "12-m14-plus-m15-onsets.png",
+      "13-m13-plus-m14-onsets.png",
+      "14-m12-plus-m13-onsets.png",
+      "15-m11-plus-m12-onsets.png",
+      "16-m10-plus-m11-onsets.png",
+      "17-m9-plus-m10-onsets.png",
+      "18-m8-plus-m9-onsets.png",
+      "19-m7-plus-m8-onsets.png",
+      "20-m6-plus-m7-onsets.png",
+      "21-m5-plus-m6-onsets.png",
+      "22-m4-plus-m5-onsets.png",
+      "23-m3-plus-m4-onsets.png",
+      "24-m2-plus-m3-onsets.png",
+      "25-m1-plus-m2-onsets.png"
+    ]
   }
 ]

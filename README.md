@@ -11,6 +11,12 @@ The verified built-in catalog currently contains:
 - J. S. Bach, Prelude No. 1 in C major, BWV 846: 35 measures/cards
 - J. S. Bach, Invention No. 8, BWV 779: 34 measures/cards
 - J. S. Bach, Invention No. 1, BWV 772: 22 measures/cards
+- J. S. Bach, Invention No. 13 in A minor, BWV 784: 25 measures/cards
+
+BWV 784 uses the [public-domain Mutopia edition](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=59),
+rendered with Artmender's generated, parenthesized first-onset fingering suggestions.
+Its [source record](docs/cards/bach-bwv-784-invention-no-13/source.json) and
+[fingering audit](docs/cards/bach-bwv-784-invention-no-13/fingering.json) accompany the cards.
 
 ## Practice web app
 
