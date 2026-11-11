@@ -5,6 +5,7 @@ import { serveSite } from "./site.js";
 test("real local Teacher JWT scopes dashboard/detail, role routing, activation, and Student isolation", async ({ browser }) => {
   const fixture = await createLocalTeacherFixture();
   const site = await serveSite();
+  const teacherContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const { TeacherA: a, TeacherB: b, Administrator: admin, OtherStudent: other } = fixture.identities;
   const seeded = await fetch(`${fixture.config.projectUrl}/rest/v1/rpc/teacher_publish_notes_v1`, {
     method: "POST", headers: { apikey: fixture.config.publishableKey,
@@ -14,8 +15,9 @@ test("real local Teacher JWT scopes dashboard/detail, role routing, activation, 
       note_1: "  Current Student-visible note  ", note_2: "Optional two", note_3: null }),
   });
   expect(seeded.status).toBe(200);
-  async function signIn(session) {
-    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  async function signIn(session, context) {
+    const page = context ? await context.newPage()
+      : await browser.newPage({ viewport: { width: 1440, height: 900 } });
     await page.route(/\/auth\/v1\/token\?grant_type=password/, async (route) => {
       if (route.request().method() !== "POST") return route.continue();
       await route.fulfill({ status: 200, contentType: "application/json",
@@ -28,7 +30,7 @@ test("real local Teacher JWT scopes dashboard/detail, role routing, activation, 
     return page;
   }
   try {
-    const page = await signIn(a.session);
+    const page = await signIn(a.session, teacherContext);
     await expect(page).toHaveURL(/\/login\/teacher\/$/);
     await expect(page.getByRole("table")).toBeVisible();
     await expect(page.getByRole("link", { name: "Integration Student", exact: true })).toBeVisible();
@@ -72,14 +74,33 @@ test("real local Teacher JWT scopes dashboard/detail, role routing, activation, 
     expect(attempts[2].request_id).not.toBe(attempts[0].request_id);
     await homePage.reload();
     await expect(homePage.locator("#comments-list")).not.toContainText("Optional two");
+    // Separate tabs in one profile retain each Teacher's sessionStorage Auth.
+    // Both dashboards must observe reassignment through in-page Refresh.
+    const oldDashboard = await signIn(a.session, teacherContext);
+    const newDashboard = await signIn(b.session, teacherContext);
+    await expect(oldDashboard.getByRole("link", { name: "Integration Student", exact: true })).toBeVisible();
+    await expect(newDashboard.getByRole("link", { name: "Other Teacher Student", exact: true })).toBeVisible();
+    await expect(newDashboard.getByRole("link", { name: "Integration Student", exact: true })).toHaveCount(0);
     await page.getByLabel("Note 1 (required)").fill("Old Teacher private unsaved draft");
     fixture.query(`update public.students set teacher_id='${b.id}' where id='${fixture.userId}'`);
+    await oldDashboard.getByRole("button", { name: "Refresh", exact: true }).click();
+    await expect(oldDashboard.getByRole("link", { name: "Integration Student", exact: true })).toHaveCount(0);
+    await newDashboard.getByRole("button", { name: "Refresh", exact: true }).click();
+    await expect(newDashboard.getByRole("link", { name: "Integration Student", exact: true })).toBeVisible();
     await page.getByRole("button", { name: "Refresh", exact: true }).click();
     await expect(page.locator("#teacher-status")).toContainText("unavailable");
     await expect(page.locator("#teacher-content")).toBeHidden();
     expect(await page.getByLabel("Note 1 (required)").inputValue()).toBe("");
+    const formerTeacherUpdate = await fetch(`${fixture.config.projectUrl}/rest/v1/rpc/teacher_publish_notes_v1`, {
+      method: "POST", headers: { apikey: fixture.config.publishableKey,
+        Authorization: `Bearer ${a.session.access_token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ target_student_id: fixture.userId,
+        request_id: "d5000000-0000-4000-8000-000000000003",
+        note_1: "Former Teacher must not publish", note_2: null, note_3: null }),
+    });
+    expect(formerTeacherUpdate.status).toBe(403);
     await homePage.reload(); await expect(homePage.locator("#comments-section")).toBeHidden();
-    const newTeacherPage = await signIn(b.session);
+    const newTeacherPage = newDashboard;
     await expect(newTeacherPage).toHaveURL(/\/login\/teacher\/$/);
     await newTeacherPage.getByRole("link", { name: "Integration Student", exact: true }).click();
     await expect(newTeacherPage.getByLabel("Note 1 (required)")).toHaveValue("");
@@ -110,5 +131,5 @@ test("real local Teacher JWT scopes dashboard/detail, role routing, activation, 
     await expect(studentPage.locator("#teacher-status")).toContainText("unavailable");
     await expect(studentPage.locator("#teacher-table")).toBeEmpty();
     await studentPage.close();
-  } finally { await site.close(); }
+  } finally { await teacherContext.close(); await site.close(); }
 });
