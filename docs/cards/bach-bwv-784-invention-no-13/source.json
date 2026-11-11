@@ -1,0 +1,51 @@
+{
+  "piece": {
+    "title": "J. S. Bach — Invention No. 13 in A minor, BWV 784",
+    "composer": "Johann Sebastian Bach",
+    "catalog": "BWV 784",
+    "movement": "Invention No. 13 in A minor",
+    "measure_count": 25
+  },
+  "source": {
+    "corpus": "Mutopia Project",
+    "source_page_url": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=59",
+    "download_url": "https://www.mutopiaproject.org/ftp/BachJS/BWV784/bach-invention-13/bach-invention-13.ly",
+    "format": "lilypond",
+    "license": "Public Domain (Mutopia Project edition)",
+    "retrieved_at": "2026-11-11T13:04:51.185330+00:00",
+    "sha256": "dabd266006e9dd5ae8584daa1e00ac08460ee8ac90cae6d0472f620d2eaeb7b5",
+    "reference_pdf_url": "https://www.mutopiaproject.org/ftp/BachJS/BWV784/bach-invention-13/bach-invention-13-a4.pdf"
+  },
+  "card_policy": {
+    "order": "last measure to first measure",
+    "landing": "first sounding onset on each staff, with preceding rests",
+    "staff_semantics": "upper and lower staff",
+    "repeated_context": [
+      "clef",
+      "key signature",
+      "time signature"
+    ],
+    "original_measure_number": true,
+    "image_size_px": [
+      1170,
+      2532
+    ],
+    "first_onset_fingering": {
+      "mode": "both",
+      "engine": "PianoPlayer 3",
+      "hand_size": "M",
+      "generated_style": "native fingering style; upper above and lower below; parenthesized and grouped by chord",
+      "existing_fingerings": "preserved as optimizer anchors",
+      "inference_context": "whole piece, one staff per hand",
+      "editorial_profile": null
+    }
+  },
+  "published_card_set": "fingered",
+  "master_dimensions": [
+    1170,
+    2532
+  ],
+  "web_projection": "scripts/sync_web_cards.py crop_card",
+  "version": "sha256:b702e89886d61e13b5e0e050c8a3db959b56e9ea7d01bc2ebd16a2f82658d451",
+  "fingering_audit": "fingering.json"
+}
