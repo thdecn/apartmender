@@ -1,6 +1,6 @@
 // Non-sensitive UI intent only. These records never grant application access.
 export function createRecoveryProgress(storage, prefix) {
-  const phases = new Set(["setup", "write_pending", "cleanup"]);
+  const phases = new Set(["setup", "write_pending", "cleanup", "complete"]);
   const key = userId => `${prefix}-recovery-${encodeURIComponent(userId)}`;
   function read(userId) {
     try {
@@ -27,10 +27,14 @@ export function createRecoveryProgress(storage, prefix) {
       return write({ ...record, phase });
     },
     remove(record) {
-      const current = read(record.userId);
-      if (!current) return true;
-      if (current.operationId !== record.operationId) return false;
-      try { storage.removeItem(key(record.userId)); return read(record.userId) === null; }
+      try {
+        const raw = storage.getItem(key(record.userId));
+        if (raw === null) return true;
+        const current = read(record.userId);
+        if (!current || current.operationId !== record.operationId) return false;
+        storage.removeItem(key(record.userId));
+        return storage.getItem(key(record.userId)) === null;
+      }
       catch { return false; }
     },
   };

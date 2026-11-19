@@ -29,7 +29,9 @@ export const adapterModule = `
     signInWithPassword: async () => { if (state.signInError) return { error: state.signInError };
       state.userId = state.loginId;
       sessionStorage.setItem('teacher-test-user', state.userId); return { data: { user: user() } }; },
-    updateUser: async () => { state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
+    updateUser: async () => {
+      if (state.passwordWriteRateLimits > 0) { state.passwordWriteRateLimits--; return { error: { status: 429 } }; }
+      state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
       return { data: { user: user() } }; },
     signOut: async (options) => { (state.signOutScopes ||= []).push(options.scope);
       if (state.signOutFailures > 0) { state.signOutFailures--; return { error: { status: 503 } }; }

@@ -102,6 +102,35 @@ test("unavailable recovery storage discards the session before any password writ
   } finally { await site.close(); }
 });
 
+test("rate-limited recovery writes retain the session and form for a successful retry", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", passwordWriteRateLimits: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("New-local-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#invite-error")).toContainText("retry Save password");
+    await expect(page.locator("#invite-form")).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.signOutScopes)).toBeUndefined();
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#invite-account")).toContainText("Password reset complete");
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBe(1);
+  } finally { await site.close(); }
+});
+
+test("ordinary unavailable-Auth Student entry preserves the offline summary fallback", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { role: "Student", validationFailures: 1 });
+    await page.goto(`${site.origin}/login/practice/`);
+    await expect(page.locator("#weekly-summary-link")).toBeVisible();
+    await expect(page).toHaveURL(`${site.origin}/login/practice/`);
+  } finally { await site.close(); }
+});
+
 test("saved-but-unverified invitation cannot reuse its old session after reload", async ({ page }) => {
   const site = await serveSite();
   try {

@@ -32,6 +32,11 @@ the tab and resumes after authenticated return, before any workspace entry.
 An uncertain write resumes cleanup without claiming that the password was saved.
 Stale operations cannot erase newer progress. A browser that cannot save this
 progress is denied recovery setup with actionable storage/fresh-link guidance.
+No-fragment invitation inspection stays network-free for ordinary offline
+Student entry; Login explicitly asks to resume recovery. After confirmed global
+sign-out, failed progress deletion can record a completed phase instead of
+repeating global logout. If both storage actions fail, a separate cleanup retry
+remains available without another server sign-out.
 
 Setup is bound to the identity validated from the email link and rechecked
 before writing a password. A restored form after an account switch cannot

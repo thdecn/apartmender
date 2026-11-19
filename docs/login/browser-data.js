@@ -20,6 +20,7 @@ export function createBrowserData({
   let passwordSetupUserId = null;
   let passwordSetupPurpose = "invite";
   let recoveryOperation = null;
+  let recoverySignOutConfirmed = false;
   const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
 
   const failedAdapterContext = { history, location, redirect };
@@ -68,7 +69,7 @@ export function createBrowserData({
   });
 
   async function acceptInvitation() {
-    if (redirect === "none") return resumePasswordRecovery();
+    if (redirect === "none") return { outcome: "no_invitation" };
 
     try {
       if (redirect === "error") return { outcome: "invite_invalid_or_expired" };
@@ -119,8 +120,13 @@ export function createBrowserData({
     if (current.outcome === "unauthenticated") return { outcome: "no_invitation" };
     if (current.outcome !== "authenticated") return current;
     const progress = recoveryProgress.read(current.userId);
-    if (!progress) return { outcome: "no_invitation" };
+    if (!progress || progress.phase === "complete") {
+      if (progress) recoveryProgress.remove(progress);
+      if (recoveryOperation?.userId === current.userId) recoveryOperation = null;
+      return { outcome: "no_invitation" };
+    }
     recoveryOperation = progress;
+    recoverySignOutConfirmed = false;
     if (progress.phase !== "setup") return { outcome: "password_cleanup_pending",
       userId: current.userId, passwordSaved: progress.phase === "cleanup" };
     passwordSetupUserId = current.userId;
@@ -129,19 +135,29 @@ export function createBrowserData({
   }
 
   async function completePasswordRecovery() {
-    const current = await getAuthenticatedUser();
-    if (current.outcome !== "authenticated") return current;
-    if (!recoveryOperation || recoveryOperation.phase === "setup" || current.userId !== recoveryOperation.userId
-      || recoveryProgress.read(current.userId)?.operationId !== recoveryOperation.operationId) {
+    if (!recoveryOperation || recoveryOperation.phase === "setup") {
       return { outcome: "logout_failed" };
     }
     try {
-      const { error } = await client.auth.signOut({ scope: "global" });
-      if (error) return { outcome: "logout_failed" };
-      recoveryProgress.remove(recoveryOperation);
+      if (!recoverySignOutConfirmed) {
+        const current = await getAuthenticatedUser();
+        if (current.outcome !== "authenticated") return current;
+        if (current.userId !== recoveryOperation.userId
+          || recoveryProgress.read(current.userId)?.operationId !== recoveryOperation.operationId) return { outcome: "logout_failed" };
+        const { error } = await client.auth.signOut({ scope: "global" });
+        if (error) return { outcome: "logout_failed" };
+        recoverySignOutConfirmed = true;
+        validatedUserId = null;
+        passwordSetupUserId = null;
+      }
+      const cleared = recoveryProgress.remove(recoveryOperation)
+        || recoveryProgress.move(recoveryOperation, "complete");
+      const remaining = recoveryProgress.read(recoveryOperation.userId);
+      if (!cleared && (!remaining || remaining.operationId === recoveryOperation.operationId)) {
+        return { outcome: "recovery_progress_cleanup_failed" };
+      }
       recoveryOperation = null;
-      validatedUserId = null;
-      passwordSetupUserId = null;
+      recoverySignOutConfirmed = false;
       return { outcome: "signed_out" };
     } catch { return { outcome: "logout_failed" }; }
   }
@@ -169,6 +185,18 @@ export function createBrowserData({
       }
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
+        if (error.status === 429) {
+          if (passwordSetupPurpose === "recovery") {
+            const setup = recoveryProgress.move(recoveryOperation, "setup");
+            if (!setup) {
+              recoveryProgress.remove(recoveryOperation);
+              await discardRedirectSession();
+              return { outcome: "auth_progress_unavailable" };
+            }
+            recoveryOperation = setup;
+          }
+          return { outcome: "auth_rate_limited" };
+        }
         if (passwordSetupPurpose === "recovery") {
           if (isUnavailable(error)) return { outcome: "password_change_uncertain" };
           recoveryOperation = recoveryProgress.move(recoveryOperation, "setup") ?? recoveryOperation;
@@ -225,7 +253,7 @@ export function createBrowserData({
 
   async function validateCurrentUser() {
     const current = await getAuthenticatedUser();
-    return current.outcome === "authenticated" && recoveryProgress.read(current.userId)
+    return current.outcome === "authenticated" && pendingRecoveryProgress(current.userId)
       ? { outcome: "password_completion_required" } : current;
   }
 
@@ -247,7 +275,7 @@ export function createBrowserData({
           : { outcome: "session_expired" };
       }
       const userId = data?.session?.user?.id;
-      if (userId && recoveryProgress.read(userId)) return { outcome: "password_completion_required" };
+      if (userId && pendingRecoveryProgress(userId)) return { outcome: "password_completion_required" };
       if (!userId) {
         validatedUserId = null;
         return { outcome: "session_expired" };
@@ -264,7 +292,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
-    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
 
     try {
       const { data, error, status } = await client
@@ -332,7 +360,7 @@ export function createBrowserData({
       const { data, error } = await client.auth.getSession();
       if (error) return { outcome: isUnavailable(error) ? "auth_unavailable" : "unauthenticated" };
       const userId = data?.session?.user?.id;
-      if (userId && recoveryProgress.read(userId)) return { outcome: "password_completion_required" };
+      if (userId && pendingRecoveryProgress(userId)) return { outcome: "password_completion_required" };
       return typeof userId === "string" && userId
         ? { outcome: "authenticated", userId }
         : { outcome: "unauthenticated" };
@@ -377,7 +405,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
-    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(name, args);
       if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
@@ -394,7 +422,7 @@ export function createBrowserData({
 
   async function ingestPractice(event) {
     if (!validatedUserId) return { outcome: "unauthenticated" };
-    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(
         "student_ingest_practice_session_v1", { payload: event });
@@ -431,6 +459,11 @@ export function createBrowserData({
       await client.auth.signOut({ scope: "local" });
     } catch { /* Discard local state even if server-aware sign-out fails. */ }
     finally { storage.removeItem(storageKey); }
+  }
+
+  function pendingRecoveryProgress(userId) {
+    const progress = recoveryProgress.read(userId);
+    return progress?.phase === "complete" ? null : progress;
   }
 
   async function getAuthenticatedUser() {

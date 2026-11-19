@@ -65,6 +65,7 @@ async function initialize() {
   validationRetry.hidden = true;
   const invitation = await browserData.acceptInvitation();
   if (await handleAuthFlow(invitation)) return;
+  if (await handleAuthFlow(await browserData.resumePasswordRecovery())) return;
   const current = await browserData.validateCurrentUser();
   if (current.outcome === "authenticated") {
     await goToWorkspace(error);
@@ -181,6 +182,10 @@ async function establishPassword(event) {
     inviteError.textContent = messageForUnavailable(result.outcome);
     return;
   }
+  if (result.outcome === "auth_rate_limited") {
+    inviteError.textContent = "Too many password-change attempts. Wait a few minutes, then retry Save password.";
+    return;
+  }
   inviteError.textContent =
     result.outcome === "password_rejected"
       ? "That password was not accepted."
@@ -230,6 +235,12 @@ async function finishRecovery() {
   form.hidden = true;
   signoutRetry.hidden = true;
   const result = await browserData.completePasswordRecovery();
+  if (result.outcome === "recovery_progress_cleanup_failed") {
+    inviteAccount.textContent = "Sessions were signed out, but this browser could not clear recovery progress. Retry cleanup.";
+    signoutRetry.textContent = "Retry cleanup";
+    signoutRetry.hidden = false;
+    return;
+  }
   if (result.outcome === "unauthenticated") {
     form.hidden = false;
     inviteAccount.textContent = "Sign in with your chosen password to finish recovery cleanup.";
