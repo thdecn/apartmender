@@ -40,13 +40,12 @@ async function initialize() {
     modePicker.hidden = true;
     summaryLink.hidden = true;
   }
-  const authFragment = location.hash;
-  const invitation = await browserData.acceptInvitation();
+  const invitation = await browserData.acceptInvitation({ handoffToLogin: true });
   if (invitation.outcome !== "no_invitation") {
     const login = new URL("../", practiceDirectory());
     // Login owns password setup. Preserve its session and any still-pending
     // fragment; invitation setup must be revalidated at that entrypoint.
-    login.hash = invitation.outcome === "invite_accepted" ? authFragment : location.hash;
+    login.hash = location.hash;
     window.location.replace(login.href);
     return;
   }

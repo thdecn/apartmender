@@ -27,6 +27,9 @@ without signing out the invitation or recovery session. Revoked tab-storage
 access must not prevent uncertain or saved-but-unverified outcomes from exposing sign-in.
 While the recovery event is still pending, restore a supported SDK-cleared
 fragment so navigation to Login or reload retains a recoverable link.
+Practice explicitly requests a Login handoff so accepted invitations also retain
+their supported fragment until Login revalidates setup. Volatile fragment copies
+are cleared on definitive classification, session discard, or durable recovery intent.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 

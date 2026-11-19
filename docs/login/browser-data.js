@@ -15,8 +15,8 @@ export function createBrowserData({
   storageKey = defaultStorageKey,
   initialSessionTimeoutMs = 10_000,
 }) {
-  const initialAuthFragment = location?.hash ?? "";
-  const redirect = classifyAuthRedirect(initialAuthFragment);
+  let pendingAuthFragment = location?.hash ?? "";
+  const redirect = classifyAuthRedirect(pendingAuthFragment);
   let validatedUserId = null;
   let passwordSetupUserId = null;
   let passwordSetupPurpose = "invite";
@@ -51,6 +51,7 @@ export function createBrowserData({
   const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect, userId => {
     if (redirect !== "recovery" || !userId || recoveryOperation) return;
     recoveryOperation = recoveryProgress.start(userId);
+    pendingAuthFragment = "";
     if (authFragmentRestored) {
       removeAuthFragment(location, history);
       authFragmentRestored = false;
@@ -86,7 +87,7 @@ export function createBrowserData({
     validateCurrentUser,
   });
 
-  async function acceptInvitation() {
+  async function acceptInvitation({ handoffToLogin = false } = {}) {
     if (redirect === "none") return { outcome: "no_invitation" };
     let preserveFragment = false;
     try {
@@ -101,12 +102,7 @@ export function createBrowserData({
         preserveFragment = true;
         // The SDK can clear the URL before its recovery event is delivered.
         // Keep pending navigation/reload recoverable until durable intent exists.
-        if (!location.hash && initialAuthFragment && typeof history?.replaceState === "function") {
-          const pending = new URL(location.href);
-          pending.hash = initialAuthFragment;
-          history.replaceState(null, "", pending.href);
-          authFragmentRestored = true;
-        }
+        restorePendingAuthFragment();
         return { outcome: redirect === "recovery" ? "auth_link_validation_pending" : "auth_unavailable" };
       }
       if (recoveryStorageFailed) {
@@ -134,6 +130,10 @@ export function createBrowserData({
         }
         passwordSetupUserId = result.userId;
         passwordSetupPurpose = redirect;
+        if (redirect === "invite" && handoffToLogin) {
+          preserveFragment = true;
+          restorePendingAuthFragment();
+        }
         return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
       if (result.outcome === "unauthenticated" && recoveryOperation) {
@@ -144,8 +144,19 @@ export function createBrowserData({
         ? { outcome: recoveryOperation ? "auth_link_validation_pending" : "auth_unavailable" }
         : { outcome: "invite_invalid_or_expired" };
     } finally {
-      if (!preserveFragment) removeAuthFragment(location, history);
+      if (!preserveFragment) {
+        pendingAuthFragment = "";
+        removeAuthFragment(location, history);
+      }
     }
+  }
+
+  function restorePendingAuthFragment() {
+    if (location.hash || !pendingAuthFragment || typeof history?.replaceState !== "function") return;
+    const pending = new URL(location.href);
+    pending.hash = pendingAuthFragment;
+    history.replaceState(null, "", pending.href);
+    authFragmentRestored = true;
   }
 
   async function resumePasswordRecovery() {
@@ -498,6 +509,7 @@ export function createBrowserData({
   async function discardRedirectSession() {
     validatedUserId = null;
     passwordSetupUserId = null;
+    pendingAuthFragment = "";
     redirectDiscard ??= (async () => {
       try {
         await initialSession;

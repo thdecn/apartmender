@@ -85,7 +85,7 @@ test("Practice hands recovery and invitation setup to Login without discarding t
   try {
     for (const purpose of ["recovery", "invite"]) {
       const page = await browser.newPage();
-      await mockAdapter(page, { authEvent: purpose === "recovery" ? "PASSWORD_RECOVERY" : "INITIAL_SESSION" });
+      await mockAdapter(page, { authEvent: purpose === "recovery" ? "PASSWORD_RECOVERY" : "INITIAL_SESSION", sdkClearsFragment: true });
       await page.goto(`${site.origin}/login/practice/#type=${purpose}&access_token=synthetic-only`);
       await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
       await expect(page).toHaveURL(`${site.origin}/login/`);
