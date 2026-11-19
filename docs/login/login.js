@@ -7,9 +7,12 @@ const inviteForm = document.querySelector("#invite-form");
 const inviteError = document.querySelector("#invite-error");
 const confirmation = ensurePasswordConfirmation();
 const signoutRetry = ensureRecoveryRetry();
+const validationRetry = ensureRetryButton("auth-validation-retry", "Retry verification");
+const workspaceRetry = ensureRetryButton("password-workspace-retry", "Retry workspace");
 const minimumPasswordLengths = Object.freeze({ invite: 8, recovery: 12 });
 let passwordPurpose = "invite";
 let passwordVerified = false;
+let passwordSaved = false;
 
 document.querySelector("#show-login-password")?.addEventListener("change", (event) => {
   form.elements.password.type = event.target.checked ? "text" : "password";
@@ -20,6 +23,8 @@ document.querySelector("#show-new-password")?.addEventListener("change", (event)
   confirmation.type = type;
 });
 signoutRetry.addEventListener("click", finishRecovery);
+validationRetry.addEventListener("click", initialize);
+workspaceRetry.addEventListener("click", () => goToWorkspace(inviteError));
 
 initialize();
 
@@ -40,6 +45,7 @@ form.addEventListener("submit", async (event) => {
   const result = await browserData.signIn({ email, password });
   if (result.outcome === "authenticated") {
     form.elements.password.value = "";
+    if (await handleAuthFlow(await browserData.resumePasswordRecovery())) { button.disabled = false; return; }
     await goToWorkspace(error);
     button.disabled = false;
     return;
@@ -56,30 +62,57 @@ form.addEventListener("submit", async (event) => {
 form.querySelector("button").disabled = false;
 
 async function initialize() {
+  validationRetry.hidden = true;
   const invitation = await browserData.acceptInvitation();
-  if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) {
-    showPasswordForm(invitation.outcome === "password_recovery" ? "recovery" : "invite");
-    return;
-  }
-  if (invitation.outcome === "invite_invalid_or_expired") {
-    error.textContent = "That email link is invalid or expired. Ask the administrator for a fresh link.";
-    return;
-  }
-  if (invitation.outcome === "auth_unavailable" || invitation.outcome === "configuration_error") {
-    error.textContent = messageForUnavailable(invitation.outcome);
-    return;
-  }
-
+  if (await handleAuthFlow(invitation)) return;
   const current = await browserData.validateCurrentUser();
   if (current.outcome === "authenticated") {
     await goToWorkspace(error);
   } else if (current.outcome !== "unauthenticated") {
     error.textContent = messageForUnavailable(current.outcome);
+    validationRetry.hidden = false;
   }
+}
+
+async function handleAuthFlow(invitation) {
+  if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) {
+    showPasswordForm(invitation.outcome === "password_recovery" ? "recovery" : "invite");
+    return true;
+  }
+  if (invitation.outcome === "password_cleanup_pending") {
+    passwordSaved = invitation.passwordSaved;
+    passwordVerified = false;
+    inviteAccount.hidden = false;
+    await finishRecovery();
+    return true;
+  }
+  if (invitation.outcome === "invite_invalid_or_expired") {
+    form.hidden = false;
+    inviteForm.hidden = true;
+    inviteAccount.hidden = true;
+    error.textContent = "That email link is invalid or expired. Ask the administrator for a fresh link.";
+    return true;
+  }
+  if (["auth_unavailable", "auth_link_validation_pending", "auth_progress_unavailable", "configuration_error"].includes(invitation.outcome)) {
+    error.textContent = messageForUnavailable(invitation.outcome);
+    if (invitation.outcome === "auth_link_validation_pending") {
+      form.hidden = true;
+      inviteAccount.hidden = false;
+      inviteAccount.textContent = "Could not verify the reset session. Retry verification to continue.";
+    }
+    validationRetry.hidden = ["auth_progress_unavailable", "configuration_error"].includes(invitation.outcome);
+    return true;
+  }
+  return false;
 }
 
 function showPasswordForm(purpose) {
   passwordPurpose = purpose;
+  validationRetry.hidden = true;
+  workspaceRetry.hidden = true;
+  signoutRetry.hidden = true;
+  inviteForm.append(inviteError);
+  inviteError.textContent = "";
   const minimum = minimumPasswordLengths[purpose];
   form.hidden = true;
   inviteAccount.hidden = false;
@@ -116,14 +149,18 @@ async function establishPassword(event) {
   button.disabled = false;
 
   if (result.outcome === "password_established") {
+    passwordSaved = true;
     passwordVerified = true;
     clearPasswordFields();
     if (passwordPurpose === "recovery") { await finishRecovery(); return; }
-    inviteError.textContent = "Password saved and verified.";
+    inviteForm.after(inviteError);
+    inviteForm.hidden = true;
+    inviteAccount.textContent = "Password saved and verified.";
     await goToWorkspace(inviteError);
     return;
   }
   if (result.outcome === "password_saved_signin_failed") {
+    passwordSaved = true;
     clearPasswordFields();
     passwordVerified = false;
     if (passwordPurpose === "recovery") { await finishRecovery(); return; }
@@ -131,6 +168,17 @@ async function establishPassword(event) {
     form.hidden = false;
     inviteAccount.textContent = "Your password was saved. Sign in with your new password to continue.";
     error.textContent = messageForUnavailable(result.reason);
+    return;
+  }
+  if (result.outcome === "password_change_uncertain") {
+    passwordSaved = false;
+    passwordVerified = false;
+    clearPasswordFields();
+    await finishRecovery();
+    return;
+  }
+  if (result.outcome === "auth_progress_unavailable") {
+    inviteError.textContent = messageForUnavailable(result.outcome);
     return;
   }
   inviteError.textContent =
@@ -165,27 +213,38 @@ function ensurePasswordConfirmation() {
 }
 
 function ensureRecoveryRetry() {
-  const existing = document.querySelector("#recovery-signout-retry");
+  return ensureRetryButton("recovery-signout-retry", "Retry sign-out");
+}
+
+function ensureRetryButton(id, label) {
+  const existing = document.getElementById(id);
   if (existing) return existing;
   const button = document.createElement("button");
-  Object.assign(button, { id: "recovery-signout-retry", type: "button", className: "btn",
-    textContent: "Retry sign-out", hidden: true });
+  Object.assign(button, { id, type: "button", className: "btn", textContent: label, hidden: true });
   inviteForm.after(button);
   return button;
 }
 
 async function finishRecovery() {
   inviteForm.hidden = true;
+  form.hidden = true;
   signoutRetry.hidden = true;
-  const result = await browserData.signOut({ scope: "global" });
+  const result = await browserData.completePasswordRecovery();
+  if (result.outcome === "unauthenticated") {
+    form.hidden = false;
+    inviteAccount.textContent = "Sign in with your chosen password to finish recovery cleanup.";
+    return;
+  }
   if (result.outcome !== "signed_out") {
-    inviteAccount.textContent = "Your password was saved. Could not finish signing out; retry to complete the reset.";
+    inviteAccount.textContent = `${passwordSaved ? "Your password was saved." : "Could not confirm the password change."} Could not finish signing out; retry to complete the reset.`;
     signoutRetry.hidden = false;
     return;
   }
   form.hidden = false;
   form.elements.password.value = "";
-  inviteAccount.textContent = passwordVerified
+  inviteAccount.textContent = !passwordSaved
+    ? "Recovery session closed. Try signing in with the password you just chose; the change could not be confirmed."
+    : passwordVerified
     ? "Password reset complete. Sign in with your new password."
     : "Your password was saved. Sign in with your new password to finish verification.";
   error.textContent = "";
@@ -193,6 +252,7 @@ async function finishRecovery() {
 }
 
 function messageForUnavailable(outcome) {
+  if (outcome === "auth_progress_unavailable") return "Could not save recovery progress. Allow site storage and ask the administrator for a fresh reset link.";
   if (outcome === "auth_configuration_error") return "Email sign-in is not configured. Please contact the administrator.";
   if (outcome === "auth_rate_limited") return "Too many sign-in attempts. Wait a few minutes and try again.";
   return outcome === "configuration_error"
@@ -201,11 +261,15 @@ function messageForUnavailable(outcome) {
 }
 
 async function goToWorkspace(status) {
+  workspaceRetry.hidden = true;
+  workspaceRetry.disabled = true;
   const result = await browserData.resolveWorkspace();
   if (result.outcome === "workspace") {
     window.location.assign(new URL(result.workspace === "teacher" ? "teacher/" : "practice/", loginDirectory()).href);
     return;
   }
+  workspaceRetry.hidden = false;
+  workspaceRetry.disabled = false;
   status.textContent = result.outcome === "account_denied"
     ? `${status === inviteError ? "Password saved and verified. " : ""}This account has no active workspace. Please contact the administrator.`
     : result.outcome === "practice_not_ready"

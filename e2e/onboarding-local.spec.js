@@ -10,7 +10,21 @@ test("real local invitation, password verification, operator activation and reco
   try {
     fixture = await createLocalOnboardingTeacher(`${site.origin}/login/`);
     context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-    const page = await context.newPage();
+    let page = await context.newPage();
+    let recoveryReads = 0;
+    let interruptRecoveryValidation = false;
+    let interruptGlobalSignOut = false;
+    await context.route("**/auth/v1/user", async route => {
+      if (interruptRecoveryValidation && route.request().method() === "GET" && ++recoveryReads === 2) {
+        await route.fulfill({ status: 503, contentType: "application/json", body: '{"message":"synthetic unavailable"}' });
+      } else await route.continue();
+    });
+    await context.route("**/auth/v1/logout?scope=global", async route => {
+      if (interruptGlobalSignOut && route.request().method() === "POST") {
+        interruptGlobalSignOut = false;
+        await route.fulfill({ status: 503, contentType: "application/json", body: '{"message":"synthetic unavailable"}' });
+      } else await route.continue();
+    });
     async function openAuthLink(link) {
       // Never include a credential-bearing link in an error or test output.
       try { await page.goto(link); } catch { throw new Error("Local Auth link navigation failed"); }
@@ -42,10 +56,22 @@ test("real local invitation, password verification, operator activation and reco
     await page.locator("#teacher-logout").click();
     await expect(page).toHaveURL(`${site.origin}/login/`);
     const recoveryLink = await fixture.recoveryLink();
-    await openAuthLink(recoveryLink);
+    interruptRecoveryValidation = true;
+    try { await page.goto(recoveryLink); } catch { throw new Error("Local recovery navigation failed"); }
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    await page.reload();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    interruptRecoveryValidation = false;
     await expect(page.locator("#invite-account")).toContainText("Reset link accepted");
+    interruptGlobalSignOut = true;
     await savePassword(fixture.replacementPassword);
-    await expect(page.locator("#invite-account")).toContainText("Password reset complete");
+    await expect(page.getByRole("button", { name: "Retry sign-out" })).toBeVisible();
+    await page.close();
+    page = await context.newPage();
+    await page.goto(`${site.origin}/login/`);
+    await expect(page.locator("#login-form")).toBeVisible();
+    await signIn(fixture.replacementPassword);
+    await expect(page.locator("#invite-account")).toContainText("Your password was saved");
     await expect(page.locator("#login-form")).toBeVisible();
     await signIn(fixture.password);
     await expect(page.locator("#login-error")).toHaveText("Email or password is incorrect.");

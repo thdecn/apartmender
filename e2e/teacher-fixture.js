@@ -20,7 +20,10 @@ export const adapterModule = `
   const user = () => state.userId ? { id: state.userId, email: 'teacher@example.invalid', user_metadata: { role: 'Student' } } : null;
   const client = { auth: {
     onAuthStateChange(callback) { queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
-    getUser: async () => ({ data: { user: user() } }),
+    getUser: async () => {
+      if (state.validationFailures > 0) { state.validationFailures--; return { error: { status: 503 } }; }
+      return { data: { user: user() } };
+    },
     getSession: async () => state.sessionUnavailable ? { error: { status: 503 } }
       : ({ data: { session: user() ? { user: user() } : null } }),
     signInWithPassword: async () => { if (state.signInError) return { error: state.signInError };
@@ -67,8 +70,13 @@ export const adapterModule = `
     }
     return { error: { code: '42501' }, status: 403 };
   }};
+  const tabStorage = { getItem: key => sessionStorage.getItem(key), setItem: (key,value) => sessionStorage.setItem(key,value),
+    removeItem(key) { sessionStorage.removeItem(key);
+      if (key === 'apartmender-auth-session') { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); }
+    } };
   export const browserData = createBrowserData({ config: {}, createClient: () => client,
-    storage: sessionStorage, location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });
+    storage: tabStorage, completionStorage: state.recoveryStorageUnavailable ? null : localStorage,
+    location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });
 `;
 
 export function notesResponse() {

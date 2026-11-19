@@ -1,4 +1,4 @@
-import { browserData } from "../supabase.js";
+import { browserData } from "../supabase.js?auth=operator-onboarding-v1";
 import { mountPractice } from "../../practice-host.js";
 import { buildAssignmentHome, studentComments } from "./student-home.js";
 import { createSessionJournal, createMemorySessionJournal } from "./session-journal.js";
@@ -68,6 +68,10 @@ async function initialize() {
   });
 
   const current = await browserData.validateCurrentUser();
+  if (current.outcome === "password_completion_required") {
+    window.location.replace(new URL("../", practiceDirectory()).href);
+    return;
+  }
   currentUserId = current.outcome === "authenticated" ? current.userId : null;
   if (leaving) return;
   if (current.outcome === "unauthenticated") {

@@ -55,7 +55,91 @@ test("the release entrypoint and Auth module chain bypass cached unversioned scr
     await page.goto(`${site.origin}/login/`);
     await expect(page.getByRole("button", { name: "Continue", exact: true })).toBeEnabled();
     expect(staleLoads).toEqual([]);
-    expect([...requested].sort()).toEqual(["browser-data.js", "login.js", "supabase.js"]);
+    expect([...requested].sort()).toEqual(["browser-data.js", "login.js", "recovery-progress.js", "supabase.js"]);
+  } finally { await site.close(); }
+});
+
+test("verified password setup retries workspace loading without another password write", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { error: "XX000" });
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.getByRole("button", { name: "Retry workspace" })).toBeVisible();
+    await expect(page.locator("#invite-form")).toBeHidden();
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBe(1);
+    await page.evaluate(() => { window.teacherTest.error = null; });
+    await page.getByRole("button", { name: "Retry workspace" }).click();
+    await expect(page).toHaveURL(/\/login\/teacher\/$/);
+  } finally { await site.close(); }
+});
+
+test("recovery validation retries after a transient service failure", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", validationFailures: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    expect(new URL(page.url()).hash).toBe("");
+    await page.getByRole("button", { name: "Retry verification" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+  } finally { await site.close(); }
+});
+
+test("unavailable recovery storage discards the session before any password write", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", recoveryStorageUnavailable: true });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.locator("#login-error")).toContainText("Allow site storage");
+    await expect(page.locator("#invite-form")).toBeHidden();
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+  } finally { await site.close(); }
+});
+
+test("saved-but-unverified invitation cannot reuse its old session after reload", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { signInError: { status: 503 }, signOutFailures: 1 });
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#invite-account")).toContainText("Your password was saved");
+    await page.reload();
+    await expect(page.locator("#login-form")).toBeVisible();
+    await expect(page).toHaveURL(`${site.origin}/login/`);
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+  } finally { await site.close(); }
+});
+
+test("pending recovery cleanup survives reload and gates direct workspace entry", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", signOutFailures: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("New-local-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.getByRole("button", { name: "Retry sign-out" })).toBeVisible();
+    for (const path of ["/login/", "/login/teacher/", "/login/practice/", "/login/practice/weekly-summary/"]) {
+      await page.goto(`${site.origin}${path}`);
+      await expect(page).toHaveURL(`${site.origin}/login/`);
+      await expect(page.getByRole("button", { name: "Retry sign-out" })).toBeVisible();
+      expect(await page.evaluate(() => window.teacherTest.signOutScopes)).toEqual(["global"]);
+      expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+    }
+    await page.getByRole("button", { name: "Retry sign-out" }).click();
+    await expect(page.locator("#invite-account")).toContainText("Your password was saved");
+    await expect(page.locator("#login-form")).toBeVisible();
+    expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.includes('-recovery-')))).toEqual([]);
   } finally { await site.close(); }
 });
 

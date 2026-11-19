@@ -15,15 +15,17 @@ export const browserData = createBrowserData({
   createClient,
   history: window.history,
   location: window.location,
-  storage: availableSessionStorage(),
+  storage: availableStorage("sessionStorage"),
+  completionStorage: availableStorage("localStorage"),
 });
 
-function availableSessionStorage() {
-  const probe = "apartmender-storage-probe";
+function availableStorage(kind) {
+  const probe = `apartmender-${kind}-probe`;
   try {
-    window.sessionStorage.setItem(probe, probe);
-    window.sessionStorage.removeItem(probe);
-    return window.sessionStorage;
+    const storage = window[kind];
+    storage.setItem(probe, probe);
+    storage.removeItem(probe);
+    return storage;
   } catch {
     return null;
   }

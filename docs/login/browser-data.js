@@ -1,5 +1,6 @@
 import { decodeTeacherPractice } from "./teacher/teacher-practice.js";
 import { decodeTeacherNotes, decodeNotePublication } from "./teacher/teacher-notes.js";
+import { createRecoveryProgress } from "./recovery-progress.js?auth=operator-onboarding-v1";
 
 const authRedirectKeys = ["type", "access_token", "refresh_token", "error", "error_code"];
 const defaultStorageKey = "apartmender-auth-session";
@@ -10,12 +11,16 @@ export function createBrowserData({
   location,
   history,
   storage,
+  completionStorage = storage,
   storageKey = defaultStorageKey,
   initialSessionTimeoutMs = 10_000,
 }) {
   const redirect = classifyAuthRedirect(location?.hash ?? "");
   let validatedUserId = null;
   let passwordSetupUserId = null;
+  let passwordSetupPurpose = "invite";
+  let recoveryOperation = null;
+  const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
 
   const failedAdapterContext = { history, location, redirect };
   if (!config) return failedAdapter("configuration_error", failedAdapterContext);
@@ -43,6 +48,8 @@ export function createBrowserData({
   return Object.freeze({
     acceptInvitation,
     establishPassword,
+    resumePasswordRecovery,
+    completePasswordRecovery,
     readStudent,
     readAssignments,
     readPracticeGeneration,
@@ -61,7 +68,7 @@ export function createBrowserData({
   });
 
   async function acceptInvitation() {
-    if (redirect === "none") return { outcome: "no_invitation" };
+    if (redirect === "none") return resumePasswordRecovery();
 
     try {
       if (redirect === "error") return { outcome: "invite_invalid_or_expired" };
@@ -72,21 +79,71 @@ export function createBrowserData({
 
       const initial = await initialSession;
       if (!initial.receivedEvent) return { outcome: "auth_unavailable" };
+      if (redirect === "recovery" && initial.recoveryUserId && !recoveryOperation) {
+        recoveryOperation = recoveryProgress.start(initial.recoveryUserId);
+        if (!recoveryOperation) {
+          await discardRedirectSession();
+          return { outcome: "auth_progress_unavailable" };
+        }
+      }
       const result = await getAuthenticatedUser();
       if (result.outcome === "authenticated") {
         if (redirect === "recovery" && initial.recoveryUserId !== result.userId) {
+          if (recoveryOperation) recoveryProgress.remove(recoveryOperation);
+          recoveryOperation = null;
           await discardRedirectSession();
           return { outcome: "invite_invalid_or_expired" };
         }
+        if (redirect === "recovery" && recoveryOperation?.phase !== "setup") {
+          return { outcome: "password_cleanup_pending", userId: result.userId,
+            passwordSaved: recoveryOperation?.phase === "cleanup" };
+        }
         passwordSetupUserId = result.userId;
+        passwordSetupPurpose = redirect;
         return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
+      if (result.outcome === "unauthenticated" && recoveryOperation) {
+        recoveryProgress.remove(recoveryOperation); recoveryOperation = null;
+        await discardRedirectSession();
+      }
       return result.outcome === "auth_unavailable"
-        ? result
+        ? { outcome: recoveryOperation ? "auth_link_validation_pending" : "auth_unavailable" }
         : { outcome: "invite_invalid_or_expired" };
     } finally {
       removeAuthFragment(location, history);
     }
+  }
+
+  async function resumePasswordRecovery() {
+    const current = await getAuthenticatedUser();
+    if (current.outcome === "unauthenticated") return { outcome: "no_invitation" };
+    if (current.outcome !== "authenticated") return current;
+    const progress = recoveryProgress.read(current.userId);
+    if (!progress) return { outcome: "no_invitation" };
+    recoveryOperation = progress;
+    if (progress.phase !== "setup") return { outcome: "password_cleanup_pending",
+      userId: current.userId, passwordSaved: progress.phase === "cleanup" };
+    passwordSetupUserId = current.userId;
+    passwordSetupPurpose = "recovery";
+    return { outcome: "password_recovery", userId: current.userId };
+  }
+
+  async function completePasswordRecovery() {
+    const current = await getAuthenticatedUser();
+    if (current.outcome !== "authenticated") return current;
+    if (!recoveryOperation || recoveryOperation.phase === "setup" || current.userId !== recoveryOperation.userId
+      || recoveryProgress.read(current.userId)?.operationId !== recoveryOperation.operationId) {
+      return { outcome: "logout_failed" };
+    }
+    try {
+      const { error } = await client.auth.signOut({ scope: "global" });
+      if (error) return { outcome: "logout_failed" };
+      recoveryProgress.remove(recoveryOperation);
+      recoveryOperation = null;
+      validatedUserId = null;
+      passwordSetupUserId = null;
+      return { outcome: "signed_out" };
+    } catch { return { outcome: "logout_failed" }; }
   }
 
   async function establishPassword({ password }) {
@@ -101,29 +158,51 @@ export function createBrowserData({
         validatedUserId = null;
         return { outcome: "unauthenticated" };
       }
+      if (passwordSetupPurpose === "recovery") {
+        const pending = recoveryProgress.move(recoveryOperation, "write_pending");
+        if (!pending) {
+          recoveryProgress.remove(recoveryOperation);
+          await discardRedirectSession();
+          return { outcome: "auth_progress_unavailable" };
+        }
+        recoveryOperation = pending;
+      }
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
+        if (passwordSetupPurpose === "recovery") {
+          if (isUnavailable(error)) return { outcome: "password_change_uncertain" };
+          recoveryOperation = recoveryProgress.move(recoveryOperation, "setup") ?? recoveryOperation;
+        }
         if (isUnavailable(error)) return { outcome: "auth_unavailable" };
         if (isUnauthenticated(error)) return { outcome: "unauthenticated" };
         return { outcome: "password_rejected" };
       }
       passwordSaved = true;
       passwordSetupUserId = null;
+      if (passwordSetupPurpose === "recovery") {
+        recoveryOperation = recoveryProgress.move(recoveryOperation, "cleanup") ?? recoveryOperation;
+      }
       const userId = data?.user?.id;
       const email = data?.user?.email;
-      if (userId !== expectedUserId || !email) return { outcome: "password_saved_signin_failed", reason: "auth_unavailable" };
+      if (userId !== expectedUserId || !email) return savedButUnverified("auth_unavailable");
       const verification = await signIn({ email, password });
       if (verification.outcome !== "authenticated" || verification.userId !== userId) {
         validatedUserId = null;
-        return { outcome: "password_saved_signin_failed", reason: verification.outcome === "authenticated"
-          ? "auth_unavailable" : verification.outcome };
+        return savedButUnverified(verification.outcome === "authenticated" ? "auth_unavailable" : verification.outcome);
       }
       validatedUserId = userId;
       return { outcome: "password_established", userId };
     } catch {
-      return passwordSaved ? { outcome: "password_saved_signin_failed", reason: "auth_unavailable" }
+      return passwordSaved ? savedButUnverified("auth_unavailable")
+        : passwordSetupPurpose === "recovery" && recoveryOperation?.phase === "write_pending"
+          ? { outcome: "password_change_uncertain" }
         : { outcome: "auth_unavailable" };
     }
+  }
+
+  async function savedButUnverified(reason) {
+    if (passwordSetupPurpose === "invite") await discardRedirectSession();
+    return { outcome: "password_saved_signin_failed", reason };
   }
 
   async function signIn({ email, password }) {
@@ -145,7 +224,9 @@ export function createBrowserData({
   }
 
   async function validateCurrentUser() {
-    return getAuthenticatedUser();
+    const current = await getAuthenticatedUser();
+    return current.outcome === "authenticated" && recoveryProgress.read(current.userId)
+      ? { outcome: "password_completion_required" } : current;
   }
 
   async function refresh() {
@@ -166,6 +247,7 @@ export function createBrowserData({
           : { outcome: "session_expired" };
       }
       const userId = data?.session?.user?.id;
+      if (userId && recoveryProgress.read(userId)) return { outcome: "password_completion_required" };
       if (!userId) {
         validatedUserId = null;
         return { outcome: "session_expired" };
@@ -182,6 +264,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
+    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
 
     try {
       const { data, error, status } = await client
@@ -249,6 +332,7 @@ export function createBrowserData({
       const { data, error } = await client.auth.getSession();
       if (error) return { outcome: isUnavailable(error) ? "auth_unavailable" : "unauthenticated" };
       const userId = data?.session?.user?.id;
+      if (userId && recoveryProgress.read(userId)) return { outcome: "password_completion_required" };
       return typeof userId === "string" && userId
         ? { outcome: "authenticated", userId }
         : { outcome: "unauthenticated" };
@@ -293,6 +377,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
+    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(name, args);
       if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
@@ -309,6 +394,7 @@ export function createBrowserData({
 
   async function ingestPractice(event) {
     if (!validatedUserId) return { outcome: "unauthenticated" };
+    if (recoveryProgress.read(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(
         "student_ingest_practice_session_v1", { payload: event });
@@ -428,6 +514,8 @@ function failedAdapter(outcome, { history, location, redirect }) {
   return Object.freeze({
     acceptInvitation,
     establishPassword: failure,
+    resumePasswordRecovery: failure,
+    completePasswordRecovery: failure,
     readStudent: failure,
     readAssignments: failure,
     readPracticeGeneration: failure,

@@ -1,4 +1,4 @@
-import { browserData } from "../supabase.js";
+import { browserData } from "../supabase.js?auth=operator-onboarding-v1";
 import { teacherRows } from "./teacher-model.js";
 import { isUuid } from "./teacher-practice.js";
 import { createTeacherDetail } from "./teacher-detail.js";
@@ -34,6 +34,7 @@ async function load() {
   clearView();
   status.textContent = "Loading assigned Students…";
   const auth = await browserData.validateCurrentUser();
+  if (auth.outcome === "password_completion_required") { window.location.replace(loginUrl.href); return; }
   if (request !== requestNumber || leaving) return;
   if (auth.outcome !== "authenticated" || (userId && auth.userId !== userId)) {
     if (auth.outcome === "unauthenticated" || (auth.userId && auth.userId !== userId)) clearView(true);

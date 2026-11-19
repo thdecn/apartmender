@@ -1,4 +1,4 @@
-import { browserData } from "../../supabase.js";
+import { browserData } from "../../supabase.js?auth=operator-onboarding-v1";
 import { createSessionJournal } from "../session-journal.js";
 import { createSessionRecorder } from "../session-recorder.js";
 import { createSessionOwnership } from "../session-ownership.js";
@@ -33,6 +33,10 @@ async function initialize() {
     };
     window.addEventListener("online", retry, { signal: retryListeners.signal });
     retrySummary.addEventListener("click", retry, { signal: retryListeners.signal });
+    return;
+  }
+  if (identity.outcome === "password_completion_required") {
+    window.location.replace(new URL("../../", import.meta.url).href);
     return;
   }
   if (identity.outcome !== "authenticated") {
@@ -109,6 +113,11 @@ async function initialize() {
     }
     status.textContent = snapshot ? "Refreshing summary…" : "Loading summary…";
     const auth = await browserData.validateCurrentUser();
+    if (auth.outcome === "password_completion_required") {
+      denyAccess();
+      window.location.replace(new URL("../../", import.meta.url).href);
+      return;
+    }
     if (request !== requestNumber || accessBlocked) return;
     if (auth.outcome === "unauthenticated" ||
       (auth.outcome === "authenticated" && auth.userId !== userId)) {

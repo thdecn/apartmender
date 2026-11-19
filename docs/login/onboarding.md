@@ -19,6 +19,20 @@ Login. A failed sign-out can be retried without repeating the password write.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 
+Verification, workspace loading and recovery sign-out have separate retry
+actions. Workspace retry never repeats the password write. A saved but
+unverified invitation password clears the invitation session before Login,
+including when server-aware sign-out fails.
+
+Recovery keeps only a per-user operation identifier and phase in localStorage;
+passwords and Auth tokens remain excluded. This intent is never authorization:
+resumption network-validates the same identity. A validation outage can resume
+after URL cleanup and reload. Pending global cleanup survives reload or closing
+the tab and resumes after authenticated return, before any workspace entry.
+An uncertain write resumes cleanup without claiming that the password was saved.
+Stale operations cannot erase newer progress. A browser that cannot save this
+progress is denied recovery setup with actionable storage/fresh-link guidance.
+
 Setup is bound to the identity validated from the email link and rechecked
 before writing a password. A restored form after an account switch cannot
 change the newly signed-in user's password. The Login entrypoint and its Auth
