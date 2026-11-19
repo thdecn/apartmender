@@ -316,6 +316,26 @@ test("pending recovery cleanup survives reload and gates direct workspace entry"
   } finally { await site.close(); }
 });
 
+test("lost unwritable progress and failed global logout ends the local session with fresh-link guidance", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", dropRecoveryProgressOnWrite: true, signOutFailures: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#invite-account")).toContainText("fresh reset link");
+    await expect(page.locator("#login-form")).toBeHidden();
+    await expect(page.getByRole("button", { name: "Retry sign-out" })).toBeHidden();
+    expect(await page.evaluate(() => window.teacherTest.signOutScopes)).toEqual(["global", "local"]);
+    await page.reload();
+    await expect(page.locator("#login-form")).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+    await expect(page).toHaveURL(`${site.origin}/login/`);
+  } finally { await site.close(); }
+});
+
 test("an uncertain invitation write offers working sign-in without another password save", async ({ page }) => {
   const site = await serveSite();
   try {

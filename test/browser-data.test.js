@@ -595,6 +595,42 @@ test("deleted recovery progress is restored before a failed global sign-out for 
   assert.deepEqual(await resumed.resumePasswordRecovery(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: true });
 });
 
+test("missing unwritable recovery progress plus failed validation or logout discards the tab session", async () => {
+  for (const failure of ["response", "throw", "validation"]) {
+    const user = { id: "recovery-user", email: "teacher@example.invalid" };
+    const saved = new MapStorage();
+    let readOnly = false;
+    let activeUser = user;
+    let validationFails = false;
+    const progress = { getItem: key => saved.getItem(key), removeItem: key => saved.removeItem(key),
+      setItem(key, value) { if (readOnly) throw new Error("read only"); saved.setItem(key, value); } };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    client.auth.getUser = async () => validationFails ? { error: { status: 503 } } : { data: { user: activeUser } };
+    const scopes = [];
+    client.auth.signOut = async ({ scope }) => {
+      scopes.push(scope);
+      if (scope === "global") {
+        if (failure === "throw") throw new Error("network failed");
+        return { error: { status: 503 } };
+      }
+      activeUser = null;
+      return { error: null };
+    };
+    const adapter = recoveryData(client, progress, true);
+    await adapter.acceptInvitation();
+    await adapter.establishPassword({ password: "synthetic-only" });
+    saved.removeItem(`${storageKey}-recovery-${user.id}`);
+    readOnly = true;
+    validationFails = failure === "validation";
+    assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "auth_progress_unavailable" });
+    assert.deepEqual(scopes, failure === "validation" ? ["local"] : ["global", "local"]);
+    assert.equal(activeUser, null);
+    const reloaded = recoveryData(fakeClient(), progress);
+    assert.deepEqual(await reloaded.resumePasswordRecovery(), { outcome: "no_invitation" });
+  }
+});
+
 test("a rejected rate-limited recovery write preserves setup and its authenticated retry", async () => {
   const user = { id: "recovery-user", email: "teacher@example.invalid" };
   const storage = new MapStorage();

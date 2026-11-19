@@ -37,6 +37,10 @@ export const adapterModule = `
     updateUser: async () => {
       if (state.passwordWriteRateLimits > 0) { state.passwordWriteRateLimits--; return { error: { status: 429 } }; }
       state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
+      if (state.dropRecoveryProgressOnWrite) {
+        for (const key of Object.keys(localStorage)) if (key.includes('-recovery-')) localStorage.removeItem(key);
+        state.recoveryStorageWritesBlocked = true;
+      }
       if (state.passwordWriteResponseLost) throw new Error('password response lost');
       return { data: { user: user() } }; },
     signOut: async (options) => { (state.signOutScopes ||= []).push(options.scope);
@@ -84,7 +88,10 @@ export const adapterModule = `
       if (key === 'apartmender-auth-session') { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); }
     } };
   export const browserData = createBrowserData({ config: {}, createClient: () => client,
-    storage: tabStorage, completionStorage: state.recoveryStorageUnavailable ? null : localStorage,
+    storage: tabStorage, completionStorage: state.recoveryStorageUnavailable ? null : {
+      getItem: key => localStorage.getItem(key), removeItem: key => localStorage.removeItem(key),
+      setItem(key, value) { if (state.recoveryStorageWritesBlocked) throw new Error('storage read only'); localStorage.setItem(key, value); }
+    },
     location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });
 `;
 

@@ -188,24 +188,25 @@ export function createBrowserData({
     if (!recoveryOperation || recoveryOperation.phase === "setup") {
       return { outcome: "logout_failed" };
     }
+    let cleanupIntentDurable = true;
     try {
       if (!recoverySignOutConfirmed) {
-        const current = await getAuthenticatedUser();
-        if (current.outcome !== "authenticated") return current;
-        const progress = recoveryProgress.read(current.userId);
-        if (current.userId !== recoveryOperation.userId
-          || (progress && progress.operationId !== recoveryOperation.operationId)) return { outcome: "logout_failed" };
+        const progress = recoveryProgress.read(recoveryOperation.userId);
+        if (progress && progress.operationId !== recoveryOperation.operationId) return { outcome: "logout_failed" };
         if (progress) {
           if (progress.phase === "setup") return { outcome: "logout_failed" };
           recoveryOperation = progress;
         }
         // Local UI intent can disappear; it is not authority to veto cleanup
         // for the recovery identity already validated in this adapter.
-        if (!progress) recoveryProgress.restore(recoveryOperation);
+        cleanupIntentDurable = Boolean(progress ?? recoveryProgress.restore(recoveryOperation));
+        const current = await getAuthenticatedUser();
+        if (current.outcome !== "authenticated") return cleanupIntentDurable ? current : recoveryCleanupFailure(false);
+        if (current.userId !== recoveryOperation.userId) return { outcome: "logout_failed" };
         if (progress?.phase === "complete") await discardRedirectSession();
         else {
           const { error } = await client.auth.signOut({ scope: "global" });
-          if (error) return { outcome: "logout_failed" };
+          if (error) return recoveryCleanupFailure(cleanupIntentDurable);
         }
         recoverySignOutConfirmed = true;
         validatedUserId = null;
@@ -222,7 +223,13 @@ export function createBrowserData({
       recoveryOperation = null;
       recoverySignOutConfirmed = false;
       return { outcome: "signed_out" };
-    } catch { return { outcome: "logout_failed" }; }
+    } catch { return recoveryCleanupFailure(cleanupIntentDurable || recoverySignOutConfirmed); }
+  }
+
+  async function recoveryCleanupFailure(hasDurableIntent) {
+    if (hasDurableIntent) return { outcome: "logout_failed" };
+    await discardRedirectSession();
+    return { outcome: "auth_progress_unavailable" };
   }
 
   async function establishPassword({ password }) {

@@ -247,6 +247,10 @@ async function finishRecovery() {
   form.hidden = true;
   signoutRetry.hidden = true;
   const result = await browserData.completePasswordRecovery();
+  if (result.outcome === "auth_progress_unavailable") {
+    inviteAccount.textContent = "Could not save recovery cleanup or finish signing out all sessions. This tab was signed out. Allow site storage and ask the administrator for a fresh reset link to finish recovery.";
+    return;
+  }
   if (result.outcome === "recovery_progress_cleanup_failed") {
     inviteAccount.textContent = "Sessions were signed out, but this browser could not clear recovery progress. Retry cleanup.";
     signoutRetry.textContent = "Retry cleanup";
