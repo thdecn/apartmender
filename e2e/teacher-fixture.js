@@ -75,7 +75,8 @@ export const adapterModule = `
     return { error: { code: '42501' }, status: 403 };
   }};
   const tabStorage = { getItem: key => sessionStorage.getItem(key), setItem: (key,value) => sessionStorage.setItem(key,value),
-    removeItem(key) { sessionStorage.removeItem(key);
+    removeItem(key) { if (state.authStorageRemovalBlocked) throw new Error('storage revoked');
+      sessionStorage.removeItem(key);
       if (key === 'apartmender-auth-session') { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); }
     } };
   export const browserData = createBrowserData({ config: {}, createClient: () => client,

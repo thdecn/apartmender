@@ -40,10 +40,14 @@ async function initialize() {
     modePicker.hidden = true;
     summaryLink.hidden = true;
   }
+  const authFragment = location.hash;
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
-    if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) await browserData.signOut();
-    window.location.replace(new URL("../", practiceDirectory()).href);
+    const login = new URL("../", practiceDirectory());
+    // Login owns password setup. Preserve its session and any still-pending
+    // fragment; invitation setup must be revalidated at that entrypoint.
+    login.hash = invitation.outcome === "invite_accepted" ? authFragment : location.hash;
+    window.location.replace(login.href);
     return;
   }
 

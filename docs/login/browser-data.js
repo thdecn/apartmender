@@ -489,7 +489,9 @@ export function createBrowserData({
         await initialSession;
         await client.auth.signOut({ scope: "local" });
       } catch { /* Discard local state even if server-aware sign-out fails. */ }
-      finally { storage.removeItem(storageKey); }
+      finally {
+        try { storage.removeItem(storageKey); } catch { /* Storage may have been revoked after setup. */ }
+      }
     })();
     return redirectDiscard;
   }
@@ -585,6 +587,7 @@ function isUnauthenticated(error) {
 function failedAdapter(outcome, { history, location, redirect }) {
   const failure = async () => ({ outcome });
   const acceptInvitation = async () => {
+    if (["invite", "recovery"].includes(redirect)) return { outcome, retry: "reload" };
     if (redirect !== "none") removeAuthFragment(location, history);
     return { outcome };
   };

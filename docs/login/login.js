@@ -13,6 +13,7 @@ const minimumPasswordLengths = Object.freeze({ invite: 8, recovery: 12 });
 let passwordPurpose = "invite";
 let passwordVerified = false;
 let passwordSaved = false;
+let validationReloadRequired = false;
 
 document.querySelector("#show-login-password")?.addEventListener("change", (event) => {
   form.elements.password.type = event.target.checked ? "text" : "password";
@@ -23,7 +24,7 @@ document.querySelector("#show-new-password")?.addEventListener("change", (event)
   confirmation.type = type;
 });
 signoutRetry.addEventListener("click", finishRecovery);
-validationRetry.addEventListener("click", initialize);
+validationRetry.addEventListener("click", () => validationReloadRequired ? window.location.reload() : initialize());
 workspaceRetry.addEventListener("click", () => goToWorkspace(inviteError));
 
 initialize();
@@ -62,6 +63,7 @@ form.addEventListener("submit", async (event) => {
 form.querySelector("button").disabled = false;
 
 async function initialize() {
+  validationReloadRequired = false;
   validationRetry.hidden = true;
   const invitation = await browserData.acceptInvitation();
   if (await handleAuthFlow(invitation)) return;
@@ -96,12 +98,16 @@ async function handleAuthFlow(invitation) {
   }
   if (["auth_unavailable", "auth_link_validation_pending", "auth_progress_unavailable", "configuration_error"].includes(invitation.outcome)) {
     error.textContent = messageForUnavailable(invitation.outcome);
-    if (invitation.outcome === "auth_link_validation_pending") {
+    validationReloadRequired = invitation.retry === "reload";
+    validationRetry.textContent = validationReloadRequired ? "Reload page" : "Retry verification";
+    if (validationReloadRequired || invitation.outcome === "auth_link_validation_pending") {
       form.hidden = true;
       inviteAccount.hidden = false;
-      inviteAccount.textContent = "Could not verify the reset session. Retry verification to continue.";
+      inviteAccount.textContent = validationReloadRequired
+        ? `${messageForUnavailable(invitation.outcome)} Reload this page to retry your email link.`
+        : "Could not verify the reset session. Retry verification to continue.";
     }
-    validationRetry.hidden = ["auth_progress_unavailable", "configuration_error"].includes(invitation.outcome);
+    validationRetry.hidden = !validationReloadRequired && ["auth_progress_unavailable", "configuration_error"].includes(invitation.outcome);
     return true;
   }
   return false;

@@ -59,6 +59,57 @@ test("the release entrypoint and Auth module chain bypass cached unversioned scr
   } finally { await site.close(); }
 });
 
+test("a failed CDN import preserves recovery and Reload page retries with a fresh adapter", async ({ page }) => {
+  const site = await serveSite();
+  let unavailable = true;
+  try {
+    await page.route("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/+esm", route => unavailable
+      ? route.abort()
+      : route.fulfill({ contentType: "text/javascript", body: `export function createClient() { return { auth: {
+        onAuthStateChange(callback) { queueMicrotask(() => callback('PASSWORD_RECOVERY', {user:{id:'recovery-user'}})); },
+        getUser: async () => ({data:{user:{id:'recovery-user'}}})
+      } }; }` }));
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Reload page" })).toBeVisible();
+    await expect(page.locator("#invite-form")).toBeHidden();
+    expect(new URL(page.url()).hash).not.toBe("");
+    unavailable = false;
+    await page.getByRole("button", { name: "Reload page" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    expect(new URL(page.url()).hash).toBe("");
+  } finally { await site.close(); }
+});
+
+test("Practice hands recovery and invitation setup to Login without discarding their sessions", async ({ browser }) => {
+  const site = await serveSite();
+  try {
+    for (const purpose of ["recovery", "invite"]) {
+      const page = await browser.newPage();
+      await mockAdapter(page, { authEvent: purpose === "recovery" ? "PASSWORD_RECOVERY" : "INITIAL_SESSION" });
+      await page.goto(`${site.origin}/login/practice/#type=${purpose}&access_token=synthetic-only`);
+      await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+      await expect(page).toHaveURL(`${site.origin}/login/`);
+      expect(await page.evaluate(() => window.teacherTest.userId)).toBe("teacher-a");
+      await page.close();
+    }
+  } finally { await site.close(); }
+});
+
+test("revoked tab storage still exposes sign-in after uncertain invitation setup", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { passwordWriteResponseLost: true, authStorageRemovalBlocked: true });
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#login-form")).toBeVisible();
+    await expect(page.locator("#invite-account")).toContainText("Could not confirm the password change");
+    await expect(page.getByRole("button", { name: "Continue" })).toBeEnabled();
+  } finally { await site.close(); }
+});
+
 test("verified password setup retries workspace loading without another password write", async ({ page }) => {
   const site = await serveSite();
   try {

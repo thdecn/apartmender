@@ -61,12 +61,12 @@ test("invalid configuration fails closed before creating a Supabase client", asy
     storage,
   });
 
-  assert.deepEqual(await data.acceptInvitation(), { outcome: "configuration_error" });
+  assert.deepEqual(await data.acceptInvitation(), { outcome: "configuration_error", retry: "reload" });
   assert.deepEqual(await data.signIn({ email: "student@example.invalid", password: "secret" }), {
     outcome: "configuration_error",
   });
   assert.equal(clientCreated, false);
-  assert.deepEqual(replaced, ["https://example.com/login/"]);
+  assert.deepEqual(replaced, []);
 });
 
 test("unavailable session storage fails closed before creating a Supabase client", async () => {
@@ -85,6 +85,23 @@ test("unavailable session storage fails closed before creating a Supabase client
     outcome: "auth_unavailable",
   });
   assert.equal(clientCreated, false);
+});
+
+test("transient client initialization failures preserve recovery links for a working reload", async () => {
+  for (const createClient of [undefined, () => { throw new Error("initialization unavailable"); }]) {
+    const replaced = [];
+    const options = { config, storage: new MapStorage(),
+      location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+      history: { replaceState: (_state, _title, url) => replaced.push(url) } };
+    const failed = createBrowserData({ ...options, createClient });
+    assert.deepEqual(await failed.acceptInvitation(), { outcome: "auth_unavailable", retry: "reload" });
+    assert.deepEqual(replaced, []);
+    const user = { id: "recovery-user" };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    const reloaded = createBrowserData({ ...options, createClient: () => client });
+    assert.deepEqual(await reloaded.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+  }
 });
 
 test("client creation opts into the implicit flow while keeping sessions private", async () => {
@@ -481,6 +498,22 @@ test("uncertain invitation writes discard the session and expose normal sign-in 
     assert.equal((await adapter.signIn({ email: user.email, password: "synthetic-only" })).outcome, "authenticated");
     assert.equal(writes, 1);
     assert.deepEqual(scopes, ["local"]);
+  }
+});
+
+test("revoked tab storage cannot hide uncertain or saved-but-unverified invitation outcomes", async () => {
+  for (const saved of [false, true]) {
+    const user = { id: "invite-user", email: "teacher@example.invalid" };
+    const client = fakeClient({ user });
+    client.auth.updateUser = async () => saved ? { data: { user }, error: null } : { error: { status: 503 } };
+    client.auth.signInWithPassword = async () => ({ error: { status: 503 } });
+    const revoked = { getItem() { return null; }, setItem() {}, removeItem() { throw new Error("storage revoked"); } };
+    const adapter = createBrowserData({ config, createClient: () => client, storage: revoked,
+      location: { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/" }, history: {} });
+    await adapter.acceptInvitation();
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), saved
+      ? { outcome: "password_saved_signin_failed", reason: "auth_unavailable" }
+      : { outcome: "password_change_uncertain" });
   }
 });
 
