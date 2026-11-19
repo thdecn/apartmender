@@ -40,7 +40,7 @@ test("Login cannot submit before the Auth module installs its handlers", async (
   let release;
   const ready = new Promise((done) => { release = done; });
   try {
-    await page.route("**/login/supabase.js", async (route) => {
+    await page.route("**/login/supabase.js*", async (route) => {
       await ready;
       await route.fulfill({ contentType: "text/javascript", body: adapterModule });
     });

@@ -15,6 +15,7 @@ export function createBrowserData({
 }) {
   const redirect = classifyAuthRedirect(location?.hash ?? "");
   let validatedUserId = null;
+  let passwordSetupUserId = null;
 
   const failedAdapterContext = { history, location, redirect };
   if (!config) return failedAdapter("configuration_error", failedAdapterContext);
@@ -65,15 +66,7 @@ export function createBrowserData({
     try {
       if (redirect === "error") return { outcome: "invite_invalid_or_expired" };
       if (redirect === "unsupported") {
-        validatedUserId = null;
-        try {
-          await initialSession;
-          await client.auth.signOut({ scope: "local" });
-        } catch {
-          // Local storage is cleared below even when server-aware sign-out fails.
-        } finally {
-          storage.removeItem(storageKey);
-        }
+        await discardRedirectSession();
         return { outcome: "invite_invalid_or_expired" };
       }
 
@@ -82,12 +75,10 @@ export function createBrowserData({
       const result = await getAuthenticatedUser();
       if (result.outcome === "authenticated") {
         if (redirect === "recovery" && initial.recoveryUserId !== result.userId) {
-          validatedUserId = null;
-          try { await client.auth.signOut({ scope: "local" }); }
-          catch { /* Discard the local session even if server sign-out fails. */ }
-          finally { storage.removeItem(storageKey); }
+          await discardRedirectSession();
           return { outcome: "invite_invalid_or_expired" };
         }
+        passwordSetupUserId = result.userId;
         return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
       return result.outcome === "auth_unavailable"
@@ -99,8 +90,17 @@ export function createBrowserData({
   }
 
   async function establishPassword({ password }) {
+    const expectedUserId = passwordSetupUserId;
+    if (!expectedUserId) return { outcome: "unauthenticated" };
     let passwordSaved = false;
     try {
+      const current = await getAuthenticatedUser();
+      if (current.outcome !== "authenticated") return current;
+      if (current.userId !== expectedUserId) {
+        passwordSetupUserId = null;
+        validatedUserId = null;
+        return { outcome: "unauthenticated" };
+      }
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
         if (isUnavailable(error)) return { outcome: "auth_unavailable" };
@@ -108,9 +108,10 @@ export function createBrowserData({
         return { outcome: "password_rejected" };
       }
       passwordSaved = true;
+      passwordSetupUserId = null;
       const userId = data?.user?.id;
       const email = data?.user?.email;
-      if (!userId || !email) return { outcome: "password_saved_signin_failed", reason: "auth_unavailable" };
+      if (userId !== expectedUserId || !email) return { outcome: "password_saved_signin_failed", reason: "auth_unavailable" };
       const verification = await signIn({ email, password });
       if (verification.outcome !== "authenticated" || verification.userId !== userId) {
         validatedUserId = null;
@@ -329,10 +330,21 @@ export function createBrowserData({
       const { error } = await client.auth.signOut({ scope });
       if (error) return { outcome: "logout_failed" };
       validatedUserId = null;
+      passwordSetupUserId = null;
       return { outcome: "signed_out" };
     } catch {
       return { outcome: "logout_failed" };
     }
+  }
+
+  async function discardRedirectSession() {
+    validatedUserId = null;
+    passwordSetupUserId = null;
+    try {
+      await initialSession;
+      await client.auth.signOut({ scope: "local" });
+    } catch { /* Discard local state even if server-aware sign-out fails. */ }
+    finally { storage.removeItem(storageKey); }
   }
 
   async function getAuthenticatedUser() {

@@ -2,6 +2,63 @@ import { test, expect } from "@playwright/test";
 import { serveSite } from "./site.js";
 import { mockAdapter } from "./teacher-fixture.js";
 
+test("cached legacy HTML can use new modules for sign-in and confirmed password setup", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { userId: null });
+    await page.route(`${site.origin}/login/`, route => route.fulfill({ contentType: "text/html", body: `
+      <!doctype html><html><body><main>
+      <form id="login-form"><label for="email">Email</label><input id="email" name="email" type="email" required>
+      <label for="password">Password</label><input id="password" name="password" type="password" required>
+      <button type="submit" disabled>Continue</button><p id="login-error"></p></form>
+      <p id="invite-account" hidden></p><form id="invite-form" hidden>
+      <label for="invite-password">New password</label><input id="invite-password" name="password" type="password" required>
+      <button type="submit" disabled>Save password</button><p id="invite-error"></p></form>
+      </main><script type="module" src="./login.js"></script></body></html>` }));
+    await page.goto(`${site.origin}/login/`);
+    await page.getByLabel("Email", { exact: true }).fill("teacher@example.invalid");
+    await page.getByLabel("Password", { exact: true }).fill("Local-test-password");
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
+    await expect(page).toHaveURL(/\/login\/teacher\/$/);
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    await page.getByLabel("New password", { exact: true }).fill("Local-test-password");
+    await page.getByLabel("Confirm new password", { exact: true }).fill("Mismatch-password");
+    await page.getByRole("button", { name: "Save password", exact: true }).click();
+    await expect(page.locator("#invite-error")).toContainText("do not match");
+    await page.getByLabel("Confirm new password", { exact: true }).fill("Local-test-password");
+    await page.getByRole("button", { name: "Save password", exact: true }).click();
+    await expect(page).toHaveURL(/\/login\/teacher\/$/);
+  } finally { await site.close(); }
+});
+
+test("the release entrypoint and Auth module chain bypass cached unversioned scripts", async ({ page }) => {
+  const site = await serveSite();
+  const staleLoads = [];
+  const requested = new Set();
+  try {
+    for (const filename of ["login.js", "supabase.js", "browser-data.js"]) {
+      await page.route(`${site.origin}/login/${filename}`, route => {
+        staleLoads.push(filename);
+        return route.fulfill({ contentType: "text/javascript", body: 'throw new Error("Cached legacy module loaded")' });
+      });
+    }
+    await page.route("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/+esm", route => route.fulfill({
+      contentType: "text/javascript", body: `export function createClient() { return { auth: {
+        onAuthStateChange(callback) { queueMicrotask(() => callback('INITIAL_SESSION', null)); },
+        getUser: async () => ({data:{user:null},error:{status:401}})
+      } }; }`,
+    }));
+    page.on("request", request => {
+      const url = new URL(request.url());
+      if (url.searchParams.get("auth") === "operator-onboarding-v1") requested.add(url.pathname.split("/").pop());
+    });
+    await page.goto(`${site.origin}/login/`);
+    await expect(page.getByRole("button", { name: "Continue", exact: true })).toBeEnabled();
+    expect(staleLoads).toEqual([]);
+    expect([...requested].sort()).toEqual(["browser-data.js", "login.js", "supabase.js"]);
+  } finally { await site.close(); }
+});
+
 test("password confirmation and visibility prevent saving an unintended password", async ({ page }) => {
   const site = await serveSite();
   try {

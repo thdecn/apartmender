@@ -87,5 +87,5 @@ export async function mockAdapter(page, options = {}) {
     if (saved) window.teacherTest.userId = saved === "signed-out" ? null : saved;
     localStorage.setItem("unrelated-sentinel", "keep");
   }, { data: response(), notes: notesResponse(), options });
-  await page.route("**/login/supabase.js", (route) => route.fulfill({ contentType: "text/javascript", body: adapterModule }));
+  await page.route("**/login/supabase.js*", (route) => route.fulfill({ contentType: "text/javascript", body: adapterModule }));
 }

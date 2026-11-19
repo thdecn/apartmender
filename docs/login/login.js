@@ -1,21 +1,23 @@
-import { browserData } from "./supabase.js";
+import { browserData } from "./supabase.js?auth=operator-onboarding-v1";
 
 const form = document.querySelector("#login-form");
 const error = document.querySelector("#login-error");
 const inviteAccount = document.querySelector("#invite-account");
 const inviteForm = document.querySelector("#invite-form");
 const inviteError = document.querySelector("#invite-error");
-const signoutRetry = document.querySelector("#recovery-signout-retry");
+const confirmation = ensurePasswordConfirmation();
+const signoutRetry = ensureRecoveryRetry();
+const minimumPasswordLengths = Object.freeze({ invite: 8, recovery: 12 });
 let passwordPurpose = "invite";
 let passwordVerified = false;
 
-document.querySelector("#show-login-password").addEventListener("change", (event) => {
+document.querySelector("#show-login-password")?.addEventListener("change", (event) => {
   form.elements.password.type = event.target.checked ? "text" : "password";
 });
-document.querySelector("#show-new-password").addEventListener("change", (event) => {
+document.querySelector("#show-new-password")?.addEventListener("change", (event) => {
   const type = event.target.checked ? "text" : "password";
   inviteForm.elements.password.type = type;
-  inviteForm.elements.passwordConfirmation.type = type;
+  confirmation.type = type;
 });
 signoutRetry.addEventListener("click", finishRecovery);
 
@@ -78,13 +80,14 @@ async function initialize() {
 
 function showPasswordForm(purpose) {
   passwordPurpose = purpose;
+  const minimum = minimumPasswordLengths[purpose];
   form.hidden = true;
   inviteAccount.hidden = false;
   inviteAccount.textContent = purpose === "recovery"
-    ? "Reset link accepted. Choose a new password of at least 12 characters."
-    : "Invite accepted. Choose and confirm a password of at least 8 characters.";
-  for (const input of [inviteForm.elements.password, inviteForm.elements.passwordConfirmation]) {
-    input.minLength = purpose === "recovery" ? 12 : 8;
+    ? `Reset link accepted. Choose a new password of at least ${minimum} characters.`
+    : `Invite accepted. Choose and confirm a password of at least ${minimum} characters.`;
+  for (const input of [inviteForm.elements.password, confirmation]) {
+    input.minLength = minimum;
   }
   inviteForm.hidden = false;
   inviteForm.addEventListener("submit", establishPassword, { once: false });
@@ -97,12 +100,12 @@ async function establishPassword(event) {
   if (button.disabled) return;
   const password = inviteForm.elements.password.value;
   inviteError.textContent = "";
-  const minimum = passwordPurpose === "recovery" ? 12 : 8;
+  const minimum = minimumPasswordLengths[passwordPurpose];
   if (password.length < minimum) {
     inviteError.textContent = `Use at least ${minimum} characters.`;
     return;
   }
-  if (password !== inviteForm.elements.passwordConfirmation.value) {
+  if (password !== confirmation.value) {
     inviteError.textContent = "The passwords do not match. Check both entries.";
     return;
   }
@@ -140,10 +143,35 @@ async function establishPassword(event) {
 
 function clearPasswordFields() {
   inviteForm.elements.password.value = "";
-  inviteForm.elements.passwordConfirmation.value = "";
+  confirmation.value = "";
   inviteForm.elements.password.type = "password";
-  inviteForm.elements.passwordConfirmation.type = "password";
-  document.querySelector("#show-new-password").checked = false;
+  confirmation.type = "password";
+  const visibility = document.querySelector("#show-new-password");
+  if (visibility) visibility.checked = false;
+}
+
+// A cached pre-release HTML page can load refreshed modules. Add required
+// controls before initialization instead of leaving its Continue button disabled.
+function ensurePasswordConfirmation() {
+  if (inviteForm.elements.passwordConfirmation) return inviteForm.elements.passwordConfirmation;
+  const label = document.createElement("label");
+  label.htmlFor = "invite-password-confirm"; label.textContent = "Confirm new password";
+  const input = document.createElement("input");
+  Object.assign(input, { id: label.htmlFor, name: "passwordConfirmation", type: "password",
+    autocomplete: "new-password", required: true });
+  const submit = inviteForm.querySelector('button[type="submit"]');
+  inviteForm.insertBefore(label, submit); inviteForm.insertBefore(input, submit);
+  return input;
+}
+
+function ensureRecoveryRetry() {
+  const existing = document.querySelector("#recovery-signout-retry");
+  if (existing) return existing;
+  const button = document.createElement("button");
+  Object.assign(button, { id: "recovery-signout-retry", type: "button", className: "btn",
+    textContent: "Retry sign-out", hidden: true });
+  inviteForm.after(button);
+  return button;
 }
 
 async function finishRecovery() {

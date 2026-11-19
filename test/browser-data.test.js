@@ -257,7 +257,7 @@ test("sign-in throttling is distinct from credential failures; other session thr
 test("an accepted invitation can establish a password without exposing its session", async () => {
   const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" } });
 
-  assert.deepEqual(await createData(client).establishPassword({ password: "not-a-real-password" }), {
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "not-a-real-password" }), {
     outcome: "password_established",
     userId: "91ef348a-84fe-4b67-8122-5090f95472ae",
   });
@@ -276,7 +276,7 @@ test("password setup verifies the submitted password with a real password-sign-i
   const calls = [];
   client.auth.updateUser = async (input) => { calls.push(["save", input]); return { data: { user }, error: null }; };
   client.auth.signInWithPassword = async (input) => { calls.push(["verify", input]); return { data: { user }, error: null }; };
-  assert.equal((await createData(client).establishPassword({ password: "synthetic-only" })).outcome, "password_established");
+  assert.equal((await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" })).outcome, "password_established");
   assert.deepEqual(calls, [["save", { password: "synthetic-only" }],
     ["verify", { email: user.email, password: "synthetic-only" }]]);
 });
@@ -285,7 +285,7 @@ test("a saved password is distinguished from failed subsequent sign-in verificat
   const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" };
   const client = fakeClient({ user });
   client.auth.signInWithPassword = async () => ({ data: {}, error: { status: 503 } });
-  assert.deepEqual(await createData(client).establishPassword({ password: "synthetic-only" }),
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" }),
     { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
 });
 
@@ -293,8 +293,34 @@ test("password setup cannot report success for a different authenticated UUID", 
   const user = { id: "expected-user", email: "teacher@example.invalid" };
   const client = fakeClient({ user });
   client.auth.signInWithPassword = async () => ({ data: { user: { id: "different-user" } }, error: null });
-  assert.deepEqual(await createData(client).establishPassword({ password: "synthetic-only" }),
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" }),
     { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+});
+
+test("an account switch after recovery acceptance prevents writing another user's password", async () => {
+  const original = { id: "recovery-user", email: "original@example.invalid" };
+  const client = fakeClient({ user: original });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user: original })); };
+  let writes = 0;
+  client.auth.updateUser = async () => { writes++; return { data: { user: { id: "different-user" } }, error: null }; };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.equal((await adapter.acceptInvitation()).userId, original.id);
+  client.auth.getUser = async () => ({ data: { user: { id: "different-user" } }, error: null });
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+  assert.equal(writes, 0);
+});
+
+test("a mismatched password-write identity cannot be verified as setup success", async () => {
+  const client = fakeClient({ user: { id: "original-user", email: "original@example.invalid" } });
+  let verificationCalls = 0;
+  const adapter = await createPasswordData(client);
+  client.auth.updateUser = async () => ({ data: { user: { id: "different-user", email: "other@example.invalid" } }, error: null });
+  client.auth.signInWithPassword = async () => { verificationCalls++; return { data: {}, error: null }; };
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+  assert.equal(verificationCalls, 0);
 });
 
 test("recovery requires its Auth event and a matching network-validated user", async () => {
@@ -535,6 +561,14 @@ test("transient session errors preserve an uncertain summary identity", async ()
   client.auth.getSession = async () => ({ data: { session: null }, error: { status: 401 } });
   assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
 });
+
+async function createPasswordData(client) {
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/#type=invite&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.equal((await adapter.acceptInvitation()).outcome, "invite_accepted");
+  return adapter;
+}
 
 function createData(client) {
   return createBrowserData({

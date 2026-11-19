@@ -19,6 +19,13 @@ Login. A failed sign-out can be retried without repeating the password write.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 
+Setup is bound to the identity validated from the email link and rechecked
+before writing a password. A restored form after an account switch cannot
+change the newly signed-in user's password. The Login entrypoint and its Auth
+module chain use a shared release query version so cached older scripts cannot
+silently omit the new behavior; refreshed modules also tolerate cached older
+HTML by adding required confirmation and sign-out-retry controls.
+
 Sign-in distinguishes incorrect credentials, disabled email-provider
 configuration, throttling, and unavailable service without revealing whether
 an arbitrary email belongs to an account. Passwords and Auth tokens stay out of

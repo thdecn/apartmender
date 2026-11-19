@@ -1,4 +1,4 @@
-import { createBrowserData } from "./browser-data.js";
+import { createBrowserData } from "./browser-data.js?auth=operator-onboarding-v1";
 import { readPublicSupabaseConfig } from "./config.js";
 
 let createClient;
