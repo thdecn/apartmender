@@ -7,7 +7,7 @@
     "test:browser": "playwright test e2e/practice-local.spec.js --workers=1",
     "test:teacher": "playwright test e2e/teacher.spec.js e2e/teacher-notes.spec.js --workers=1",
     "test:teacher:local": "playwright test e2e/teacher-local.spec.js --workers=1",
-    "test:onboarding": "playwright test e2e/onboarding.spec.js --workers=1",
+    "test:onboarding": "playwright test e2e/onboarding.spec.js e2e/password-visibility.spec.js --workers=1",
     "test:onboarding:local": "playwright test e2e/onboarding-local.spec.js --workers=1"
   },
   "devDependencies": {
