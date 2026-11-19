@@ -1,5 +1,6 @@
 import { decodeTeacherPractice } from "./teacher/teacher-practice.js";
 import { decodeTeacherNotes, decodeNotePublication } from "./teacher/teacher-notes.js";
+import { createRecoveryProgress } from "./recovery-progress.js?auth=operator-onboarding-v1";
 
 const authRedirectKeys = ["type", "access_token", "refresh_token", "error", "error_code"];
 const defaultStorageKey = "apartmender-auth-session";
@@ -10,11 +11,22 @@ export function createBrowserData({
   location,
   history,
   storage,
+  completionStorage = storage,
   storageKey = defaultStorageKey,
   initialSessionTimeoutMs = 10_000,
 }) {
-  const redirect = classifyAuthRedirect(location?.hash ?? "");
+  let pendingAuthFragment = location?.hash ?? "";
+  const redirect = classifyAuthRedirect(pendingAuthFragment);
   let validatedUserId = null;
+  let passwordSetupUserId = null;
+  let passwordSetupPurpose = "invite";
+  let recoveryOperation = null;
+  let recoverySignOutConfirmed = false;
+  let recoveryStorageFailed = false;
+  let rejectedRecoveryCleanup = false;
+  let redirectDiscard = null;
+  let authFragmentRestored = false;
+  const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
 
   const failedAdapterContext = { history, location, redirect };
   if (!config) return failedAdapter("configuration_error", failedAdapterContext);
@@ -37,11 +49,28 @@ export function createBrowserData({
   } catch {
     return failedAdapter("auth_unavailable", failedAdapterContext);
   }
-  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs);
+  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect, userId => {
+    if (redirect !== "recovery" || !userId || recoveryOperation) return;
+    recoveryOperation = recoveryProgress.start(userId);
+    pendingAuthFragment = "";
+    if (authFragmentRestored) {
+      removeAuthFragment(location, history);
+      authFragmentRestored = false;
+    }
+    if (!recoveryOperation) {
+      recoveryStorageFailed = true;
+      // The SDK may already have removed the fragment. Prevent a reload from
+      // retaining an ordinary session when recovery intent cannot be saved.
+      try { storage.removeItem(storageKey); } catch { /* Server-aware discard follows. */ }
+      setTimeout(() => { discardRedirectSession().catch(() => {}); }, 0);
+    }
+  });
 
   return Object.freeze({
     acceptInvitation,
     establishPassword,
+    resumePasswordRecovery,
+    completePasswordRecovery,
     readStudent,
     readAssignments,
     readPracticeGeneration,
@@ -59,61 +88,274 @@ export function createBrowserData({
     validateCurrentUser,
   });
 
-  async function acceptInvitation() {
+  async function acceptInvitation({ handoffToLogin = false } = {}) {
     if (redirect === "none") return { outcome: "no_invitation" };
-
+    let preserveFragment = false;
     try {
       if (redirect === "error") return { outcome: "invite_invalid_or_expired" };
       if (redirect === "unsupported") {
-        validatedUserId = null;
-        try {
-          await initialSession;
-          await client.auth.signOut({ scope: "local" });
-        } catch {
-          // Local storage is cleared below even when server-aware sign-out fails.
-        } finally {
-          storage.removeItem(storageKey);
-        }
+        await discardRedirectSession();
         return { outcome: "invite_invalid_or_expired" };
       }
 
-      if (!(await initialSession)) return { outcome: "auth_unavailable" };
+      const initial = await initialSession;
+      if (initial.recoveryPending || !initial.receivedEvent) {
+        preserveFragment = true;
+        // The SDK can clear the URL before its recovery event is delivered.
+        // Keep pending navigation/reload recoverable until durable intent exists.
+        restorePendingAuthFragment();
+        return { outcome: redirect === "recovery" ? "auth_link_validation_pending" : "auth_unavailable" };
+      }
+      if (recoveryStorageFailed) {
+        await discardRedirectSession();
+        return { outcome: "auth_progress_unavailable" };
+      }
+      if (redirect === "recovery" && initial.recoveryUserId && !recoveryOperation) {
+        recoveryOperation = recoveryProgress.start(initial.recoveryUserId);
+        if (!recoveryOperation) {
+          await discardRedirectSession();
+          return { outcome: "auth_progress_unavailable" };
+        }
+      }
       const result = await getAuthenticatedUser();
       if (result.outcome === "authenticated") {
-        return { outcome: "invite_accepted", userId: result.userId };
+        if (redirect === "recovery" && initial.recoveryUserId !== result.userId) {
+          return rejectRecoverySetup();
+        }
+        if (redirect === "recovery" && recoveryOperation?.phase !== "setup") {
+          return { outcome: "password_cleanup_pending", userId: result.userId,
+            passwordSaved: recoveryOperation?.phase === "cleanup" };
+        }
+        passwordSetupUserId = result.userId;
+        passwordSetupPurpose = redirect;
+        if (redirect === "invite") {
+          preserveFragment = true;
+          restorePendingAuthFragment();
+          if (!handoffToLogin) pendingAuthFragment = "";
+        }
+        return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
+      }
+      if (result.outcome === "unauthenticated" && recoveryOperation) {
+        return rejectRecoverySetup();
+      }
+      if (result.outcome === "auth_unavailable" && redirect === "invite") {
+        preserveFragment = true;
+        restorePendingAuthFragment();
       }
       return result.outcome === "auth_unavailable"
-        ? result
+        ? { outcome: recoveryOperation ? "auth_link_validation_pending" : "auth_unavailable" }
         : { outcome: "invite_invalid_or_expired" };
     } finally {
-      removeAuthFragment(location, history);
+      if (!preserveFragment) {
+        pendingAuthFragment = "";
+        removeAuthFragment(location, history);
+      }
     }
   }
 
-  async function establishPassword({ password }) {
+  function restorePendingAuthFragment() {
+    if (location.hash || !pendingAuthFragment || typeof history?.replaceState !== "function") return;
+    const pending = new URL(location.href);
+    pending.hash = pendingAuthFragment;
+    history.replaceState(null, "", pending.href);
+    authFragmentRestored = true;
+  }
+
+  async function resumePasswordRecovery() {
+    const current = await getAuthenticatedUser();
+    if (current.outcome === "unauthenticated") return { outcome: "no_invitation" };
+    if (current.outcome !== "authenticated") return current;
+    const progress = recoveryProgress.read(current.userId)
+      ?? (recoveryOperation?.userId === current.userId ? recoveryOperation : null);
+    if (!progress || ["complete", "cancelled"].includes(progress.phase)) {
+      if (progress) recoveryProgress.remove(progress);
+      if (recoveryOperation?.userId === current.userId) recoveryOperation = null;
+      return { outcome: "no_invitation" };
+    }
+    recoveryOperation = progress;
+    recoverySignOutConfirmed = false;
+    if (progress.phase !== "setup") return { outcome: "password_cleanup_pending",
+      userId: current.userId, passwordSaved: progress.phase === "cleanup" };
+    passwordSetupUserId = current.userId;
+    passwordSetupPurpose = "recovery";
+    return { outcome: "password_recovery", userId: current.userId };
+  }
+
+  async function completePasswordRecovery() {
+    if (rejectedRecoveryCleanup) return clearRejectedRecovery();
+    if (!recoveryOperation || recoveryOperation.phase === "setup") {
+      return { outcome: "logout_failed" };
+    }
+    let cleanupIntentDurable = true;
     try {
+      if (!recoverySignOutConfirmed) {
+        const progress = recoveryProgress.read(recoveryOperation.userId);
+        if (progress && progress.operationId !== recoveryOperation.operationId) return recoverySuperseded();
+        if (progress) {
+          if (progress.phase === "setup") return recoverySuperseded();
+          recoveryOperation = progress;
+        }
+        // Local UI intent can disappear; it is not authority to veto cleanup
+        // for the recovery identity already validated in this adapter.
+        cleanupIntentDurable = Boolean(progress ?? recoveryProgress.restore(recoveryOperation));
+        const current = await getAuthenticatedUser();
+        if (current.outcome !== "authenticated") return cleanupIntentDurable ? current : recoveryCleanupFailure(false);
+        if (current.userId !== recoveryOperation.userId) return { outcome: "logout_failed" };
+        if (["complete", "cancelled"].includes(progress?.phase)) await discardRedirectSession();
+        else {
+          const { error } = await client.auth.signOut({ scope: "global" });
+          if (error) return recoveryCleanupFailure(cleanupIntentDurable);
+        }
+        recoverySignOutConfirmed = true;
+        validatedUserId = null;
+        passwordSetupUserId = null;
+      }
+      const latest = recoveryProgress.read(recoveryOperation.userId);
+      if (latest?.operationId === recoveryOperation.operationId) recoveryOperation = latest;
+      const cleared = recoveryProgress.remove(recoveryOperation)
+        || recoveryProgress.move(recoveryOperation, "complete");
+      const remaining = recoveryProgress.read(recoveryOperation.userId);
+      if (!cleared && (!remaining || remaining.operationId === recoveryOperation.operationId)) {
+        return { outcome: "recovery_progress_cleanup_failed" };
+      }
+      recoveryOperation = null;
+      recoverySignOutConfirmed = false;
+      return { outcome: "signed_out" };
+    } catch { return recoveryCleanupFailure(cleanupIntentDurable || recoverySignOutConfirmed); }
+  }
+
+  async function recoveryCleanupFailure(hasDurableIntent) {
+    if (hasDurableIntent) return { outcome: "logout_failed" };
+    await discardRedirectSession();
+    return { outcome: "auth_progress_unavailable" };
+  }
+
+  async function rejectRecoverySetup() {
+    await discardRedirectSession();
+    // Validation failure may cancel setup, never an earlier write's outstanding cleanup.
+    if (recoveryOperation && !["setup", "cancelled"].includes(recoveryOperation.phase)) {
+      return { outcome: "invite_invalid_or_expired" };
+    }
+    rejectedRecoveryCleanup = true;
+    return clearRejectedRecovery();
+  }
+
+  function clearRejectedRecovery() {
+    if (!recoveryOperation) {
+      rejectedRecoveryCleanup = false;
+      return { outcome: "invite_invalid_or_expired" };
+    }
+    const current = recoveryProgress.read(recoveryOperation.userId);
+    if (current && (current.operationId !== recoveryOperation.operationId || current.phase !== recoveryOperation.phase)) {
+      return recoverySuperseded();
+    }
+    if (!recoveryProgress.remove(recoveryOperation) && !recoveryProgress.move(recoveryOperation, "cancelled")) {
+      return { outcome: "recovery_progress_cleanup_failed" };
+    }
+    recoveryOperation = null;
+    rejectedRecoveryCleanup = false;
+    return { outcome: "invite_invalid_or_expired" };
+  }
+
+  function recoverySuperseded() {
+    recoveryOperation = null;
+    passwordSetupUserId = null;
+    recoverySignOutConfirmed = false;
+    rejectedRecoveryCleanup = false;
+    return { outcome: "recovery_superseded" };
+  }
+
+  async function establishPassword({ password }) {
+    const expectedUserId = passwordSetupUserId;
+    if (!expectedUserId) return { outcome: "unauthenticated" };
+    let passwordSaved = false;
+    let writeAttempted = false;
+    try {
+      const current = await getAuthenticatedUser();
+      if (current.outcome !== "authenticated") return current;
+      if (current.userId !== expectedUserId) {
+        passwordSetupUserId = null;
+        validatedUserId = null;
+        return { outcome: "unauthenticated" };
+      }
+      if (passwordSetupPurpose === "recovery") {
+        const pending = recoveryProgress.move(recoveryOperation, "write_pending");
+        if (!pending) {
+          recoveryProgress.remove(recoveryOperation);
+          await discardRedirectSession();
+          return { outcome: "auth_progress_unavailable" };
+        }
+        recoveryOperation = pending;
+      }
+      writeAttempted = true;
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
-        if (isUnavailable(error)) return { outcome: "auth_unavailable" };
+        if (error.status === 429) {
+          if (!await restoreRecoverySetup()) return { outcome: "auth_progress_unavailable" };
+          return { outcome: "auth_rate_limited" };
+        }
+        if (isUnavailable(error)) return uncertainPasswordChange();
+        if (!await restoreRecoverySetup()) return { outcome: "auth_progress_unavailable" };
         if (isUnauthenticated(error)) return { outcome: "unauthenticated" };
         return { outcome: "password_rejected" };
       }
-      const userId = data?.user?.id ?? validatedUserId;
-      if (!userId) return { outcome: "unauthenticated" };
+      passwordSaved = true;
+      passwordSetupUserId = null;
+      if (passwordSetupPurpose === "invite") removeAuthFragment(location, history);
+      if (passwordSetupPurpose === "recovery") {
+        recoveryOperation = recoveryProgress.move(recoveryOperation, "cleanup") ?? recoveryOperation;
+      }
+      const userId = data?.user?.id;
+      const email = data?.user?.email;
+      if (userId !== expectedUserId || !email) return savedButUnverified("auth_unavailable");
+      const verification = await signIn({ email, password });
+      if (verification.outcome !== "authenticated" || verification.userId !== userId) {
+        validatedUserId = null;
+        return savedButUnverified(verification.outcome === "authenticated" ? "auth_unavailable" : verification.outcome);
+      }
       validatedUserId = userId;
       return { outcome: "password_established", userId };
     } catch {
-      return { outcome: "auth_unavailable" };
+      return passwordSaved ? savedButUnverified("auth_unavailable")
+        : writeAttempted ? uncertainPasswordChange()
+        : { outcome: "auth_unavailable" };
     }
+  }
+
+  async function restoreRecoverySetup() {
+    if (passwordSetupPurpose !== "recovery") return true;
+    const setup = recoveryProgress.move(recoveryOperation, "setup");
+    if (!setup) {
+      recoveryProgress.remove(recoveryOperation);
+      await discardRedirectSession();
+      return false;
+    }
+    recoveryOperation = setup;
+    return true;
+  }
+
+  async function savedButUnverified(reason) {
+    if (passwordSetupPurpose === "invite") await discardRedirectSession();
+    return { outcome: "password_saved_signin_failed", reason };
+  }
+
+  async function uncertainPasswordChange() {
+    passwordSetupUserId = null;
+    if (passwordSetupPurpose === "invite") {
+      removeAuthFragment(location, history);
+      await discardRedirectSession();
+    }
+    return { outcome: "password_change_uncertain" };
   }
 
   async function signIn({ email, password }) {
     try {
       const { data, error } = await client.auth.signInWithPassword({ email, password });
       if (error) {
-        return isUnavailable(error)
-          ? { outcome: "auth_unavailable" }
-          : { outcome: "invalid_credentials" };
+        if (error.code === "email_provider_disabled") return { outcome: "auth_configuration_error" };
+        if (error.status === 429) return { outcome: "auth_rate_limited" };
+        return error.code === "invalid_credentials" || (!error.code && error.status === 400)
+          ? { outcome: "invalid_credentials" } : { outcome: "auth_unavailable" };
       }
       const userId = data?.user?.id;
       if (!userId) return { outcome: "auth_unavailable" };
@@ -125,7 +367,9 @@ export function createBrowserData({
   }
 
   async function validateCurrentUser() {
-    return getAuthenticatedUser();
+    const current = await getAuthenticatedUser();
+    return current.outcome === "authenticated" && pendingRecoveryProgress(current.userId)
+      ? { outcome: "password_completion_required" } : current;
   }
 
   async function refresh() {
@@ -146,6 +390,7 @@ export function createBrowserData({
           : { outcome: "session_expired" };
       }
       const userId = data?.session?.user?.id;
+      if (userId && pendingRecoveryProgress(userId)) return { outcome: "password_completion_required" };
       if (!userId) {
         validatedUserId = null;
         return { outcome: "session_expired" };
@@ -162,6 +407,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
 
     try {
       const { data, error, status } = await client
@@ -229,6 +475,7 @@ export function createBrowserData({
       const { data, error } = await client.auth.getSession();
       if (error) return { outcome: isUnavailable(error) ? "auth_unavailable" : "unauthenticated" };
       const userId = data?.session?.user?.id;
+      if (userId && pendingRecoveryProgress(userId)) return { outcome: "password_completion_required" };
       return typeof userId === "string" && userId
         ? { outcome: "authenticated", userId }
         : { outcome: "unauthenticated" };
@@ -273,6 +520,7 @@ export function createBrowserData({
       const auth = await getAuthenticatedUser();
       if (auth.outcome !== "authenticated") return auth;
     }
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(name, args);
       if (status === 401) { validatedUserId = null; return { outcome: "unauthenticated" }; }
@@ -289,6 +537,7 @@ export function createBrowserData({
 
   async function ingestPractice(event) {
     if (!validatedUserId) return { outcome: "unauthenticated" };
+    if (pendingRecoveryProgress(validatedUserId)) return { outcome: "account_denied" };
     try {
       const { data, error, status } = await client.rpc(
         "student_ingest_practice_session_v1", { payload: event });
@@ -304,15 +553,39 @@ export function createBrowserData({
     }
   }
 
-  async function signOut() {
+  async function signOut({ scope = "local" } = {}) {
+    if (!["local", "global"].includes(scope)) return { outcome: "logout_failed" };
     try {
-      const { error } = await client.auth.signOut({ scope: "local" });
+      const { error } = await client.auth.signOut({ scope });
       if (error) return { outcome: "logout_failed" };
       validatedUserId = null;
+      passwordSetupUserId = null;
       return { outcome: "signed_out" };
     } catch {
       return { outcome: "logout_failed" };
     }
+  }
+
+  async function discardRedirectSession() {
+    validatedUserId = null;
+    passwordSetupUserId = null;
+    pendingAuthFragment = "";
+    redirectDiscard ??= (async () => {
+      try {
+        await initialSession;
+        await client.auth.signOut({ scope: "local" });
+      } catch { /* Discard local state even if server-aware sign-out fails. */ }
+      finally {
+        try { storage.removeItem(storageKey); } catch { /* Storage may have been revoked after setup. */ }
+      }
+    })();
+    return redirectDiscard;
+  }
+
+  function pendingRecoveryProgress(userId) {
+    const progress = recoveryProgress.read(userId)
+      ?? (recoveryOperation?.userId === userId ? recoveryOperation : null);
+    return ["complete", "cancelled"].includes(progress?.phase) ? null : progress;
   }
 
   async function getAuthenticatedUser() {
@@ -342,7 +615,8 @@ function classifyAuthRedirect(hash) {
   const containsAuthData = authRedirectKeys.some((key) => fragment.has(key));
   if (!containsAuthData) return "none";
   if (fragment.has("error") || fragment.has("error_code")) return "error";
-  return fragment.get("type") === "invite" ? "invite" : "unsupported";
+  const type = fragment.get("type");
+  return type === "invite" || type === "recovery" ? type : "unsupported";
 }
 
 function removeAuthFragment(location, history) {
@@ -352,17 +626,34 @@ function removeAuthFragment(location, history) {
   history.replaceState(null, "", clean.href);
 }
 
-function waitForInitialSession(client, timeoutMs) {
+function waitForInitialSession(client, timeoutMs, redirect, onRecovery) {
+  // Keep the resolved state live: a timeout is not evidence that the SDK will
+  // never finish exchanging a link. Retry can observe its eventual Auth event.
+  const state = { receivedEvent: false, recoveryUserId: null, recoveryPending: redirect === "recovery" };
   return new Promise((resolve) => {
     let settled = false;
-    const finish = (receivedEvent) => {
+    const finish = () => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      resolve(receivedEvent);
+      resolve(state);
     };
-    const timer = setTimeout(() => finish(false), timeoutMs);
-    client.auth.onAuthStateChange(() => finish(true));
+    const timer = setTimeout(finish, timeoutMs);
+    client.auth.onAuthStateChange((event, session) => {
+      state.receivedEvent = true;
+      if (event === "PASSWORD_RECOVERY") {
+        state.recoveryUserId = session?.user?.id ?? null;
+        onRecovery(state.recoveryUserId);
+        state.recoveryPending = false;
+        finish();
+      }
+      // The SDK schedules PASSWORD_RECOVERY after initialization; INITIAL_SESSION
+      // may arrive first. A stored session cannot substitute for the recovery event.
+      else if (redirect !== "recovery" || event === "SIGNED_OUT") {
+        state.recoveryPending = false;
+        finish();
+      }
+    });
   });
 }
 
@@ -382,12 +673,15 @@ function isUnauthenticated(error) {
 function failedAdapter(outcome, { history, location, redirect }) {
   const failure = async () => ({ outcome });
   const acceptInvitation = async () => {
+    if (["invite", "recovery"].includes(redirect)) return { outcome, retry: "reload" };
     if (redirect !== "none") removeAuthFragment(location, history);
     return { outcome };
   };
   return Object.freeze({
     acceptInvitation,
     establishPassword: failure,
+    resumePasswordRecovery: failure,
+    completePasswordRecovery: failure,
     readStudent: failure,
     readAssignments: failure,
     readPracticeGeneration: failure,

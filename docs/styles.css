@@ -121,6 +121,19 @@ button {
   outline-offset: 2px;
 }
 
+.login-form .password-visibility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-form .password-visibility input {
+  min-height: 20px;
+  width: 20px;
+  padding: 0;
+  accent-color: var(--accent);
+}
+
 .btn-continue {
   background: var(--accent);
   color: var(--accent-ink);
@@ -143,6 +156,10 @@ button {
 }
 
 .invite-account[hidden] {
+  display: none;
+}
+
+#recovery-signout-retry[hidden] {
   display: none;
 }
 

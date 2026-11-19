@@ -6,7 +6,7 @@ import { createLocalPracticeStudent } from "../test/local-supabase-fixture.js";
 test("Weekly Summary retries an uncertain initial session after reconnection", async ({ page }) => {
   const site = await serveSite();
   try {
-    await page.route("**/login/supabase.js", (route) => route.fulfill({
+    await page.route("**/login/supabase.js*", (route) => route.fulfill({
       status: 200, contentType: "text/javascript", body: `
         let identityChecks = 0;
         export const browserData = Object.freeze({

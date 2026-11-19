@@ -61,12 +61,12 @@ test("invalid configuration fails closed before creating a Supabase client", asy
     storage,
   });
 
-  assert.deepEqual(await data.acceptInvitation(), { outcome: "configuration_error" });
+  assert.deepEqual(await data.acceptInvitation(), { outcome: "configuration_error", retry: "reload" });
   assert.deepEqual(await data.signIn({ email: "student@example.invalid", password: "secret" }), {
     outcome: "configuration_error",
   });
   assert.equal(clientCreated, false);
-  assert.deepEqual(replaced, ["https://example.com/login/"]);
+  assert.deepEqual(replaced, []);
 });
 
 test("unavailable session storage fails closed before creating a Supabase client", async () => {
@@ -85,6 +85,23 @@ test("unavailable session storage fails closed before creating a Supabase client
     outcome: "auth_unavailable",
   });
   assert.equal(clientCreated, false);
+});
+
+test("transient client initialization failures preserve recovery links for a working reload", async () => {
+  for (const createClient of [undefined, () => { throw new Error("initialization unavailable"); }]) {
+    const replaced = [];
+    const options = { config, storage: new MapStorage(),
+      location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+      history: { replaceState: (_state, _title, url) => replaced.push(url) } };
+    const failed = createBrowserData({ ...options, createClient });
+    assert.deepEqual(await failed.acceptInvitation(), { outcome: "auth_unavailable", retry: "reload" });
+    assert.deepEqual(replaced, []);
+    const user = { id: "recovery-user" };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    const reloaded = createBrowserData({ ...options, createClient: () => client });
+    assert.deepEqual(await reloaded.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+  }
 });
 
 test("client creation opts into the implicit flow while keeping sessions private", async () => {
@@ -117,7 +134,7 @@ test("client creation opts into the implicit flow while keeping sessions private
   ]);
 });
 
-test("an invitation is validated and its fragment is removed", async () => {
+test("an invitation is validated and remains recoverable until password completion", async () => {
   const replaced = [];
   const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae" } });
   const data = createBrowserData({
@@ -135,7 +152,27 @@ test("an invitation is validated and its fragment is removed", async () => {
     outcome: "invite_accepted",
     userId: "91ef348a-84fe-4b67-8122-5090f95472ae",
   });
-  assert.deepEqual(replaced, ["https://example.com/login/"]);
+  assert.deepEqual(replaced, []);
+});
+
+test("unavailable invitation validation retains setup for a fresh Login adapter", async () => {
+  const user = { id: "invited-user", email: "teacher@example.invalid" };
+  const location = { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/" };
+  const history = { replaceState: (_state, _title, url) => { location.href = url; location.hash = new URL(url).hash; } };
+  const unavailable = fakeClient({ user });
+  unavailable.auth.onAuthStateChange = callback => {
+    location.hash = "";
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  unavailable.auth.getUser = async () => ({ error: { status: 503 } });
+  const first = createBrowserData({ config, createClient: () => unavailable, location, history, storage: new MapStorage() });
+  assert.deepEqual(await first.acceptInvitation({ handoffToLogin: true }), { outcome: "auth_unavailable" });
+  assert.equal(location.hash, "#type=invite&access_token=synthetic");
+  const fresh = createBrowserData({ config, createClient: () => fakeClient({ user }), location, history, storage: new MapStorage() });
+  assert.deepEqual(await fresh.acceptInvitation(), { outcome: "invite_accepted", userId: user.id });
+  assert.notEqual(location.hash, "");
+  assert.equal((await fresh.establishPassword({ password: "synthetic-only" })).outcome, "password_established");
+  assert.equal(location.hash, "");
 });
 
 test("an unsupported Auth fragment discards its session when sign-out reports an error", async () => {
@@ -152,8 +189,8 @@ test("an unsupported Auth fragment discards its session when sign-out reports an
     createClient: () => client,
     history: { replaceState() {} },
     location: {
-      hash: "#type=recovery&access_token=private",
-      href: "https://example.com/login/#type=recovery&access_token=private",
+      hash: "#type=magiclink&access_token=private",
+      href: "https://example.com/login/#type=magiclink&access_token=private",
     },
     storage: redirectStorage,
   });
@@ -175,8 +212,8 @@ test("an unsupported Auth fragment discards its session when sign-out throws", a
     createClient: () => client,
     history: { replaceState() {} },
     location: {
-      hash: "#type=recovery&access_token=private",
-      href: "https://example.com/login/#type=recovery&access_token=private",
+      hash: "#type=magiclink&access_token=private",
+      href: "https://example.com/login/#type=magiclink&access_token=private",
     },
     storage: redirectStorage,
   });
@@ -226,7 +263,7 @@ test("session validation and refresh classify status-zero network failures as un
   });
 });
 
-test("Auth throttling is unavailable rather than a credential or session failure", async () => {
+test("sign-in throttling is distinct from credential failures; other session throttling is unavailable", async () => {
   const signInClient = fakeClient();
   signInClient.auth.signInWithPassword = async () => ({ data: {}, error: { status: 429 } });
   assert.deepEqual(
@@ -234,7 +271,7 @@ test("Auth throttling is unavailable rather than a credential or session failure
       email: "student@example.invalid",
       password: "secret",
     }),
-    { outcome: "auth_unavailable" },
+    { outcome: "auth_rate_limited" },
   );
 
   const validationClient = fakeClient();
@@ -255,12 +292,503 @@ test("Auth throttling is unavailable rather than a credential or session failure
 });
 
 test("an accepted invitation can establish a password without exposing its session", async () => {
-  const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae" } });
+  const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" } });
 
-  assert.deepEqual(await createData(client).establishPassword({ password: "not-a-real-password" }), {
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "not-a-real-password" }), {
     outcome: "password_established",
     userId: "91ef348a-84fe-4b67-8122-5090f95472ae",
   });
+});
+
+test("email provider configuration failures are not reported as incorrect passwords", async () => {
+  const client = fakeClient();
+  client.auth.signInWithPassword = async () => ({ data: {}, error: { status: 422, code: "email_provider_disabled" } });
+  assert.deepEqual(await createData(client).signIn({ email: "teacher@example.invalid", password: "synthetic" }),
+    { outcome: "auth_configuration_error" });
+});
+
+test("password setup verifies the submitted password with a real password-sign-in operation", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  const calls = [];
+  client.auth.updateUser = async (input) => { calls.push(["save", input]); return { data: { user }, error: null }; };
+  client.auth.signInWithPassword = async (input) => { calls.push(["verify", input]); return { data: { user }, error: null }; };
+  assert.equal((await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" })).outcome, "password_established");
+  assert.deepEqual(calls, [["save", { password: "synthetic-only" }],
+    ["verify", { email: user.email, password: "synthetic-only" }]]);
+});
+
+test("a saved password is distinguished from failed subsequent sign-in verification", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  client.auth.signInWithPassword = async () => ({ data: {}, error: { status: 503 } });
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+});
+
+test("password setup cannot report success for a different authenticated UUID", async () => {
+  const user = { id: "expected-user", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  client.auth.signInWithPassword = async () => ({ data: { user: { id: "different-user" } }, error: null });
+  assert.deepEqual(await (await createPasswordData(client)).establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+});
+
+test("an account switch after recovery acceptance prevents writing another user's password", async () => {
+  const original = { id: "recovery-user", email: "original@example.invalid" };
+  const client = fakeClient({ user: original });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user: original })); };
+  let writes = 0;
+  client.auth.updateUser = async () => { writes++; return { data: { user: { id: "different-user" } }, error: null }; };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.equal((await adapter.acceptInvitation()).userId, original.id);
+  client.auth.getUser = async () => ({ data: { user: { id: "different-user" } }, error: null });
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+  assert.equal(writes, 0);
+});
+
+test("a mismatched password-write identity cannot be verified as setup success", async () => {
+  const client = fakeClient({ user: { id: "original-user", email: "original@example.invalid" } });
+  let verificationCalls = 0;
+  const adapter = await createPasswordData(client);
+  client.auth.updateUser = async () => ({ data: { user: { id: "different-user", email: "other@example.invalid" } }, error: null });
+  client.auth.signInWithPassword = async () => { verificationCalls++; return { data: {}, error: null }; };
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+  assert.equal(verificationCalls, 0);
+});
+
+test("recovery requires its Auth event and a matching network-validated user", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae" };
+  for (const event of ["PASSWORD_RECOVERY", "INITIAL_SESSION"]) {
+    let discarded = false;
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback(event, { user })); };
+    client.auth.signOut = async () => { discarded = true; return { error: null }; };
+    const replaced = [];
+    const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+      location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+      history: { replaceState: (_state, _title, url) => replaced.push(url) } });
+    assert.deepEqual(await adapter.acceptInvitation(), event === "PASSWORD_RECOVERY"
+      ? { outcome: "password_recovery", userId: user.id } : { outcome: "auth_link_validation_pending" });
+    assert.equal(discarded, false);
+    assert.deepEqual(replaced, event === "PASSWORD_RECOVERY" ? ["https://example.com/login/"] : []);
+  }
+});
+
+test("recovery waits for PASSWORD_RECOVERY when INITIAL_SESSION arrives first", async () => {
+  const user = { id: "network-user" };
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => {
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+    setTimeout(() => callback("PASSWORD_RECOVERY", { user }), 0);
+  };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("recovery retries a late event after timeout without consuming the link or accepting a stored session", async () => {
+  const user = { id: "late-recovery-user" };
+  const client = fakeClient({ user });
+  let authEvent;
+  client.auth.onAuthStateChange = callback => {
+    authEvent = callback;
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  const replaced = [];
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState: (_state, _title, url) => replaced.push(url) } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+  assert.deepEqual(replaced, []);
+  authEvent("PASSWORD_RECOVERY", { user });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+  assert.deepEqual(replaced, ["https://example.com/login/"]);
+});
+
+test("a late recovery event persists intent before Retry so an SDK-cleaned URL can reload safely", async () => {
+  const user = { id: "late-recovery-user" };
+  const client = fakeClient({ user });
+  const progress = new MapStorage();
+  let authEvent;
+  client.auth.onAuthStateChange = callback => {
+    authEvent = callback;
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), completionStorage: progress,
+    initialSessionTimeoutMs: 5, location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/" }, history: {} });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  authEvent("PASSWORD_RECOVERY", { user });
+  const fresh = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+  assert.deepEqual(await fresh.validateCurrentUser(), { outcome: "password_completion_required" });
+});
+
+test("pending initialization restores an SDK-cleared fragment until recovery intent is durable", async () => {
+  const user = { id: "late-recovery-user" };
+  const location = { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/" };
+  const client = fakeClient({ user });
+  let authEvent;
+  client.auth.onAuthStateChange = callback => {
+    authEvent = callback;
+    location.hash = "";
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+    location, history: { replaceState: (_state, _title, url) => { location.href = url; location.hash = new URL(url).hash; } } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  assert.equal(location.hash, "#type=recovery&access_token=synthetic");
+  authEvent("PASSWORD_RECOVERY", { user });
+  assert.equal(location.hash, "");
+  assert.deepEqual(await adapter.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("a recovery event for another user cannot authorize password setup", async () => {
+  const client = fakeClient({ user: { id: "network-user" } });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user: { id: "other-user" } })); };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "invite_invalid_or_expired" });
+});
+
+test("rejected recovery intent can be cancelled or cleaned without an Auth session", async () => {
+  for (const writesBlocked of [false, true]) {
+    const user = { id: "rejected-user" };
+    const saved = new MapStorage();
+    let blocked = false;
+    const progress = { getItem: key => saved.getItem(key),
+      setItem(key, value) { if (blocked && writesBlocked) throw new Error("blocked"); saved.setItem(key, value); },
+      removeItem(key) { if (blocked) throw new Error("blocked"); saved.removeItem(key); } };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    client.auth.getUser = async () => { blocked = true; return { error: { status: 401 } }; };
+    const adapter = recoveryData(client, progress, true);
+    assert.deepEqual(await adapter.acceptInvitation(), { outcome: writesBlocked
+      ? "recovery_progress_cleanup_failed" : "invite_invalid_or_expired" });
+    if (writesBlocked) {
+      blocked = false;
+      assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "invite_invalid_or_expired" });
+      assert.equal(saved.getItem(`${storageKey}-recovery-${user.id}`), null);
+    } else {
+      const fresh = recoveryData(fakeClient({ user }), progress);
+      assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "no_invitation" });
+      assert.equal((await fresh.validateCurrentUser()).outcome, "authenticated");
+    }
+  }
+});
+
+test("newer recovery supersedes stale cleanup without changing its progress or signing out globally", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const adapter = recoveryData(client, progress, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  const newer = JSON.stringify({ version: 1, operationId: "newer-operation", phase: "setup" });
+  progress.setItem(key, newer);
+  const scopes = [];
+  client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "recovery_superseded" });
+  assert.equal(progress.getItem(key), newer);
+  assert.deepEqual(scopes, []);
+  const fresh = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("rejected fresh-link validation cannot cancel an earlier write's outstanding cleanup", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  await first.establishPassword({ password: "synthetic-only" });
+  const outstanding = progress.getItem(key);
+  const invalid = fakeClient({ user });
+  invalid.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  invalid.auth.getUser = async () => ({ error: { status: 401 } });
+  assert.deepEqual(await recoveryData(invalid, progress, true).acceptInvitation(), { outcome: "invite_invalid_or_expired" });
+  assert.equal(progress.getItem(key), outstanding);
+});
+
+test("recovery can globally sign out without changing ordinary tab-local sign-out", async () => {
+  const client = fakeClient();
+  const scopes = [];
+  client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const data = createData(client);
+  await data.signOut();
+  await data.signOut({ scope: "global" });
+  assert.deepEqual(scopes, ["local", "global"]);
+});
+
+test("recovery intent survives unavailable validation and reload without keeping link credentials", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const unavailable = fakeClient({ user });
+  unavailable.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  unavailable.auth.getUser = async () => ({ error: { status: 503 } });
+  const first = recoveryData(unavailable, progress, true);
+  assert.deepEqual(await first.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  const fresh = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("acknowledged password writes retain cleanup across reload and do not block another identity", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.signInWithPassword = async () => ({ error: { status: 503 } });
+  client.auth.signOut = async () => ({ error: { status: 503 } });
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  assert.equal((await first.establishPassword({ password: "synthetic-only" })).outcome, "password_saved_signin_failed");
+  assert.deepEqual(await first.completePasswordRecovery(), { outcome: "logout_failed" });
+  const other = recoveryData(fakeClient({ user: { id: "other-user" } }), progress);
+  assert.deepEqual(await other.resumePasswordRecovery(), { outcome: "no_invitation" });
+  const resumedClient = fakeClient({ user });
+  const scopes = [];
+  resumedClient.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const resumed = recoveryData(resumedClient, progress);
+  assert.deepEqual(await resumed.resumePasswordRecovery(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: true });
+  assert.deepEqual(await resumed.validateCurrentUser(), { outcome: "password_completion_required" });
+  assert.deepEqual(await resumed.readTeacherStudents(), { outcome: "account_denied" });
+  assert.deepEqual(await resumed.completePasswordRecovery(), { outcome: "signed_out" });
+  assert.deepEqual(scopes, ["global"]);
+});
+
+test("an uncertain recovery write resumes cleanup without asserting password success", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  let writes = 0;
+  client.auth.updateUser = async () => { writes++; return { error: { status: 503 } }; };
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  assert.deepEqual(await first.establishPassword({ password: "synthetic-only" }), { outcome: "password_change_uncertain" });
+  const resumed = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await resumed.resumePasswordRecovery(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: false });
+  assert.deepEqual(await resumed.completePasswordRecovery(), { outcome: "signed_out" });
+  assert.equal(writes, 1);
+});
+
+test("uncertain invitation writes discard the session and expose normal sign-in without another write", async () => {
+  for (const throws of [false, true]) {
+    const user = { id: "invite-user", email: "teacher@example.invalid" };
+    const client = fakeClient({ user });
+    let writes = 0;
+    const scopes = [];
+    client.auth.updateUser = async () => {
+      writes++;
+      if (throws) throw new Error("response lost");
+      return { error: { status: 503 } };
+    };
+    client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+    const adapter = await createPasswordData(client);
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "password_change_uncertain" });
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+    assert.equal((await adapter.signIn({ email: user.email, password: "synthetic-only" })).outcome, "authenticated");
+    assert.equal(writes, 1);
+    assert.deepEqual(scopes, ["local"]);
+  }
+});
+
+test("revoked tab storage cannot hide uncertain or saved-but-unverified invitation outcomes", async () => {
+  for (const saved of [false, true]) {
+    const user = { id: "invite-user", email: "teacher@example.invalid" };
+    const client = fakeClient({ user });
+    client.auth.updateUser = async () => saved ? { data: { user }, error: null } : { error: { status: 503 } };
+    client.auth.signInWithPassword = async () => ({ error: { status: 503 } });
+    const revoked = { getItem() { return null; }, setItem() {}, removeItem() { throw new Error("storage revoked"); } };
+    const adapter = createBrowserData({ config, createClient: () => client, storage: revoked,
+      location: { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/" }, history: {} });
+    await adapter.acceptInvitation();
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), saved
+      ? { outcome: "password_saved_signin_failed", reason: "auth_unavailable" }
+      : { outcome: "password_change_uncertain" });
+  }
+});
+
+test("recovery cleanup uses its validated identity when progress disappears or cannot be read", async () => {
+  for (const unreadable of [false, true]) {
+    const user = { id: "recovery-user", email: "teacher@example.invalid" };
+    const saved = new MapStorage();
+    let blocked = false;
+    const progressKey = `${storageKey}-recovery-${user.id}`;
+    const progress = { getItem(key) { if (blocked) throw new Error("read blocked"); return saved.getItem(key); },
+      setItem: (key, value) => saved.setItem(key, value), removeItem: key => saved.removeItem(key) };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    const scopes = [];
+    client.auth.signOut = async options => { scopes.push(options.scope); blocked = false; return { error: null }; };
+    const adapter = recoveryData(client, progress, true);
+    await adapter.acceptInvitation();
+    await adapter.establishPassword({ password: "synthetic-only" });
+    if (unreadable) blocked = true;
+    else saved.removeItem(progressKey);
+    assert.equal((await adapter.validateCurrentUser()).outcome, "password_completion_required");
+    assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "signed_out" });
+    assert.deepEqual(scopes, ["global"]);
+    assert.equal(saved.getItem(progressKey), null);
+  }
+});
+
+test("deleted recovery progress is restored before a failed global sign-out for later resumption", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.signOut = async () => ({ error: { status: 503 } });
+  const adapter = recoveryData(client, progress, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  progress.removeItem(`${storageKey}-recovery-${user.id}`);
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "logout_failed" });
+  const resumed = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await resumed.resumePasswordRecovery(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: true });
+});
+
+test("missing unwritable recovery progress plus failed validation or logout discards the tab session", async () => {
+  for (const failure of ["response", "throw", "validation"]) {
+    const user = { id: "recovery-user", email: "teacher@example.invalid" };
+    const saved = new MapStorage();
+    let readOnly = false;
+    let activeUser = user;
+    let validationFails = false;
+    const progress = { getItem: key => saved.getItem(key), removeItem: key => saved.removeItem(key),
+      setItem(key, value) { if (readOnly) throw new Error("read only"); saved.setItem(key, value); } };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    client.auth.getUser = async () => validationFails ? { error: { status: 503 } } : { data: { user: activeUser } };
+    const scopes = [];
+    client.auth.signOut = async ({ scope }) => {
+      scopes.push(scope);
+      if (scope === "global") {
+        if (failure === "throw") throw new Error("network failed");
+        return { error: { status: 503 } };
+      }
+      activeUser = null;
+      return { error: null };
+    };
+    const adapter = recoveryData(client, progress, true);
+    await adapter.acceptInvitation();
+    await adapter.establishPassword({ password: "synthetic-only" });
+    saved.removeItem(`${storageKey}-recovery-${user.id}`);
+    readOnly = true;
+    validationFails = failure === "validation";
+    assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "auth_progress_unavailable" });
+    assert.deepEqual(scopes, failure === "validation" ? ["local"] : ["global", "local"]);
+    assert.equal(activeUser, null);
+    const reloaded = recoveryData(fakeClient(), progress);
+    assert.deepEqual(await reloaded.resumePasswordRecovery(), { outcome: "no_invitation" });
+  }
+});
+
+test("a rejected rate-limited recovery write preserves setup and its authenticated retry", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const storage = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  let writes = 0;
+  let logouts = 0;
+  client.auth.updateUser = async () => ++writes === 1 ? { error: { status: 429 } } : { data: { user }, error: null };
+  client.auth.signOut = async () => { logouts++; return { error: null }; };
+  const adapter = recoveryData(client, storage, true);
+  await adapter.acceptInvitation();
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "auth_rate_limited" });
+  assert.equal(logouts, 0);
+  const restored = recoveryData(fakeClient({ user }), storage);
+  assert.deepEqual(await restored.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+  assert.equal((await adapter.establishPassword({ password: "synthetic-only" })).outcome, "password_established");
+});
+
+test("a fresh recovery link resumes existing cleanup without exposing another password write", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  await first.establishPassword({ password: "synthetic-only" });
+  const freshClient = fakeClient({ user });
+  freshClient.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const fresh = recoveryData(freshClient, progress, true);
+  assert.deepEqual(await fresh.acceptInvitation(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: true });
+  assert.deepEqual(await fresh.establishPassword({ password: "different-synthetic" }), { outcome: "unauthenticated" });
+  assert.deepEqual(await fresh.completePasswordRecovery(), { outcome: "signed_out" });
+});
+
+test("cleanup adopts a same-operation phase advanced before or during global sign-out", async () => {
+  for (const duringSignOut of [false, true]) {
+    const user = { id: "recovery-user", email: "teacher@example.invalid" };
+    const progress = new MapStorage();
+    const key = `${storageKey}-recovery-${user.id}`;
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    client.auth.updateUser = async () => ({ error: { status: 503 } });
+    const first = recoveryData(client, progress, true);
+    await first.acceptInvitation();
+    await first.establishPassword({ password: "synthetic-only" });
+    const advance = () => progress.setItem(key, JSON.stringify({ ...JSON.parse(progress.getItem(key)), phase: "cleanup" }));
+    let logouts = 0;
+    const resumedClient = fakeClient({ user });
+    resumedClient.auth.signOut = async () => { logouts++; if (duringSignOut) advance(); return { error: null }; };
+    const resumed = recoveryData(resumedClient, progress);
+    await resumed.resumePasswordRecovery();
+    if (!duringSignOut) advance();
+    assert.deepEqual(await resumed.completePasswordRecovery(), { outcome: "signed_out" });
+    assert.equal(progress.getItem(key), null);
+    assert.equal(logouts, 1);
+  }
+});
+
+test("cleanup completed by another tab discards only this tab session without repeating global logout", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.updateUser = async () => ({ error: { status: 503 } });
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  await first.establishPassword({ password: "synthetic-only" });
+  const resumedClient = fakeClient({ user });
+  const scopes = [];
+  resumedClient.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const resumed = recoveryData(resumedClient, progress);
+  await resumed.resumePasswordRecovery();
+  progress.setItem(key, JSON.stringify({ ...JSON.parse(progress.getItem(key)), phase: "complete" }));
+  assert.deepEqual(await resumed.completePasswordRecovery(), { outcome: "signed_out" });
+  assert.deepEqual(scopes, ["local"]);
+  assert.equal(progress.getItem(key), null);
+});
+
+test("a rejected recovery write with failed setup rollback reports storage failure rather than uncertainty", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const saved = new MapStorage();
+  let readOnly = false;
+  const progress = { getItem: key => saved.getItem(key), removeItem: key => saved.removeItem(key),
+    setItem(key, value) { if (readOnly) throw new Error("read only"); saved.setItem(key, value); } };
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.updateUser = async () => { readOnly = true; return { error: { status: 400 } }; };
+  const scopes = [];
+  client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const adapter = recoveryData(client, progress, true);
+  await adapter.acceptInvitation();
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "auth_progress_unavailable" });
+  assert.deepEqual(scopes, ["local"]);
+  assert.equal(saved.getItem(`${storageKey}-recovery-${user.id}`), null);
 });
 
 test("student reads preserve zero, one, and unexpected-many cardinality", async () => {
@@ -451,6 +979,67 @@ test("transient session errors preserve an uncertain summary identity", async ()
   client.auth.getSession = async () => ({ data: { session: null }, error: { status: 401 } });
   assert.deepEqual(await data.sessionIdentity(), { outcome: "unauthenticated" });
 });
+
+async function createPasswordData(client) {
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/#type=invite&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.equal((await adapter.acceptInvitation()).outcome, "invite_accepted");
+  return adapter;
+}
+
+test("ordinary no-fragment invitation inspection is network-free for offline Student entry", async () => {
+  let validations = 0;
+  const client = fakeClient({ user: { id: "offline-student" } });
+  client.auth.getUser = async () => { validations++; return { error: { status: 503 } }; };
+  assert.deepEqual(await createData(client).acceptInvitation(), { outcome: "no_invitation" });
+  assert.equal(validations, 0);
+});
+
+test("failed progress deletion records completed cleanup without repeating global logout", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const saved = new MapStorage();
+  const storage = { getItem: key => saved.getItem(key), setItem: (key, value) => saved.setItem(key, value),
+    removeItem() { throw new Error("deletion blocked"); } };
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  let logouts = 0;
+  client.auth.signOut = async () => { logouts++; return { error: null }; };
+  const adapter = recoveryData(client, storage, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "signed_out" });
+  const fresh = recoveryData(fakeClient({ user }), storage);
+  assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "no_invitation" });
+  assert.equal((await fresh.validateCurrentUser()).outcome, "authenticated");
+  assert.equal(logouts, 1);
+});
+
+test("failed progress deletion and completion write expose retry without another global logout", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const saved = new MapStorage();
+  let blocked = false;
+  const storage = { getItem: key => saved.getItem(key),
+    setItem(key, value) { if (blocked) throw new Error("blocked"); saved.setItem(key, value); },
+    removeItem(key) { if (blocked) throw new Error("blocked"); saved.removeItem(key); } };
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  let logouts = 0;
+  client.auth.signOut = async () => { logouts++; blocked = true; return { error: null }; };
+  const adapter = recoveryData(client, storage, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "recovery_progress_cleanup_failed" });
+  blocked = false;
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "signed_out" });
+  assert.equal(logouts, 1);
+});
+
+function recoveryData(client, completionStorage, hasLink = false) {
+  return createBrowserData({ config, createClient: () => client, storage: new MapStorage(), completionStorage,
+    location: { hash: hasLink ? "#type=recovery&access_token=synthetic" : "", href: "https://example.com/login/" },
+    history: { replaceState() {} } });
+}
 
 function createData(client) {
   return createBrowserData({

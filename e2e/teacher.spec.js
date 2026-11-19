@@ -40,7 +40,7 @@ test("Login cannot submit before the Auth module installs its handlers", async (
   let release;
   const ready = new Promise((done) => { release = done; });
   try {
-    await page.route("**/login/supabase.js", async (route) => {
+    await page.route("**/login/supabase.js*", async (route) => {
       await ready;
       await route.fulfill({ contentType: "text/javascript", body: adapterModule });
     });
@@ -61,9 +61,10 @@ test("invitation password flow routes an Active Teacher without creating a Stude
   try {
     await mockAdapter(page);
     await page.goto(`${site.origin}/login/#type=invite&access_token=test-only`);
-    await expect(page.getByLabel("New password")).toBeVisible();
-    expect(new URL(page.url()).hash).toBe("");
-    await page.getByLabel("New password").fill("local-test-password");
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    expect(Boolean(new URL(page.url()).hash)).toBe(true);
+    await page.getByLabel("New password", { exact: true }).fill("local-test-password");
+    await page.getByLabel("Confirm new password", { exact: true }).fill("local-test-password");
     await page.getByRole("button", { name: "Save password" }).click();
     await expect(page).toHaveURL(/\/login\/teacher\/$/);
     await expect(page.getByRole("table")).toBeVisible();

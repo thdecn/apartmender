@@ -17,16 +17,39 @@ export function response() {
 export const adapterModule = `
   import { createBrowserData } from './browser-data.js';
   const state = window.teacherTest;
-  const user = () => state.userId ? { id: state.userId, user_metadata: { role: 'Student' } } : null;
+  const user = () => state.userId ? { id: state.userId, email: 'teacher@example.invalid', user_metadata: { role: 'Student' } } : null;
   const client = { auth: {
-    onAuthStateChange(callback) { queueMicrotask(() => callback()); },
-    getUser: async () => ({ data: { user: user() } }),
+    onAuthStateChange(callback) { state.authEventCallback = callback;
+      if (state.sdkClearsFragment) history.replaceState(null, '', location.pathname + location.search);
+      if (state.authEventDelayMs) {
+        queueMicrotask(() => callback('INITIAL_SESSION', { user: user() }));
+        setTimeout(() => callback(state.authEvent, { user: user() }), state.authEventDelayMs);
+      } else queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
+    getUser: async () => {
+      if (state.validationRejections > 0) {
+        state.validationRejections--; state.recoveryStorageWritesBlocked = true; state.recoveryStorageRemovalsBlocked = true;
+        return { error: { status: 401 } };
+      }
+      if (state.validationFailures > 0) { state.validationFailures--; return { error: { status: 503 } }; }
+      return { data: { user: user() } };
+    },
     getSession: async () => state.sessionUnavailable ? { error: { status: 503 } }
       : ({ data: { session: user() ? { user: user() } : null } }),
-    signInWithPassword: async () => { state.userId = state.loginId;
+    signInWithPassword: async () => { if (state.signInError) return { error: state.signInError };
+      state.userId = state.loginId;
       sessionStorage.setItem('teacher-test-user', state.userId); return { data: { user: user() } }; },
-    updateUser: async () => { state.passwordChanged = true; return { data: { user: user() } }; },
-    signOut: async () => { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); return {}; },
+    updateUser: async () => {
+      if (state.passwordWriteRateLimits > 0) { state.passwordWriteRateLimits--; return { error: { status: 429 } }; }
+      state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
+      if (state.dropRecoveryProgressOnWrite) {
+        for (const key of Object.keys(localStorage)) if (key.includes('-recovery-')) localStorage.removeItem(key);
+        state.recoveryStorageWritesBlocked = true;
+      }
+      if (state.passwordWriteResponseLost) throw new Error('password response lost');
+      return { data: { user: user() } }; },
+    signOut: async (options) => { (state.signOutScopes ||= []).push(options.scope);
+      if (state.signOutFailures > 0) { state.signOutFailures--; return { error: { status: 503 } }; }
+      state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); return {}; },
   }, rpc: async (name, args) => {
     state.calls.push(name);
     if (state.delay) await new Promise((done) => { state.release = done; });
@@ -63,8 +86,18 @@ export const adapterModule = `
     }
     return { error: { code: '42501' }, status: 403 };
   }};
+  const tabStorage = { getItem: key => sessionStorage.getItem(key), setItem: (key,value) => sessionStorage.setItem(key,value),
+    removeItem(key) { if (state.authStorageRemovalBlocked) throw new Error('storage revoked');
+      sessionStorage.removeItem(key);
+      if (key === 'apartmender-auth-session') { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); }
+    } };
   export const browserData = createBrowserData({ config: {}, createClient: () => client,
-    storage: sessionStorage, location, history });
+    storage: tabStorage, completionStorage: state.recoveryStorageUnavailable ? null : {
+      getItem: key => localStorage.getItem(key),
+      removeItem(key) { if (state.recoveryStorageRemovalsBlocked) throw new Error('storage read only'); localStorage.removeItem(key); },
+      setItem(key, value) { if (state.recoveryStorageWritesBlocked) throw new Error('storage read only'); localStorage.setItem(key, value); }
+    },
+    location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });
 `;
 
 export function notesResponse() {
@@ -83,5 +116,5 @@ export async function mockAdapter(page, options = {}) {
     if (saved) window.teacherTest.userId = saved === "signed-out" ? null : saved;
     localStorage.setItem("unrelated-sentinel", "keep");
   }, { data: response(), notes: notesResponse(), options });
-  await page.route("**/login/supabase.js", (route) => route.fulfill({ contentType: "text/javascript", body: adapterModule }));
+  await page.route("**/login/supabase.js*", (route) => route.fulfill({ contentType: "text/javascript", body: adapterModule }));
 }

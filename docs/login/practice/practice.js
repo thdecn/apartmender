@@ -1,4 +1,4 @@
-import { browserData } from "../supabase.js";
+import { browserData } from "../supabase.js?auth=operator-onboarding-v1";
 import { mountPractice } from "../../practice-host.js";
 import { buildAssignmentHome, studentComments } from "./student-home.js";
 import { createSessionJournal, createMemorySessionJournal } from "./session-journal.js";
@@ -40,10 +40,13 @@ async function initialize() {
     modePicker.hidden = true;
     summaryLink.hidden = true;
   }
-  const invitation = await browserData.acceptInvitation();
+  const invitation = await browserData.acceptInvitation({ handoffToLogin: true });
   if (invitation.outcome !== "no_invitation") {
-    if (invitation.outcome === "invite_accepted") await browserData.signOut();
-    window.location.replace(new URL("../", practiceDirectory()).href);
+    const login = new URL("../", practiceDirectory());
+    // Login owns password setup. Preserve its session and any still-pending
+    // fragment; invitation setup must be revalidated at that entrypoint.
+    login.hash = location.hash;
+    window.location.replace(login.href);
     return;
   }
 
@@ -68,6 +71,10 @@ async function initialize() {
   });
 
   const current = await browserData.validateCurrentUser();
+  if (current.outcome === "password_completion_required") {
+    window.location.replace(new URL("../", practiceDirectory()).href);
+    return;
+  }
   currentUserId = current.outcome === "authenticated" ? current.userId : null;
   if (leaving) return;
   if (current.outcome === "unauthenticated") {

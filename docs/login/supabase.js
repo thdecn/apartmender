@@ -1,4 +1,4 @@
-import { createBrowserData } from "./browser-data.js";
+import { createBrowserData } from "./browser-data.js?auth=operator-onboarding-v1";
 import { readPublicSupabaseConfig } from "./config.js";
 
 let createClient;
@@ -15,15 +15,20 @@ export const browserData = createBrowserData({
   createClient,
   history: window.history,
   location: window.location,
-  storage: availableSessionStorage(),
+  storage: availableStorage("sessionStorage"),
+  completionStorage: availableStorage("localStorage"),
 });
 
-function availableSessionStorage() {
-  const probe = "apartmender-storage-probe";
+function availableStorage(kind) {
+  const probe = `apartmender-${kind}-probe`;
   try {
-    window.sessionStorage.setItem(probe, probe);
-    window.sessionStorage.removeItem(probe);
-    return window.sessionStorage;
+    const storage = window[kind];
+    // Existing recovery progress must remain readable when writes are blocked.
+    // The progress store verifies its own writes before allowing password setup.
+    if (kind === "localStorage") { storage.getItem(probe); return storage; }
+    storage.setItem(probe, probe);
+    storage.removeItem(probe);
+    return storage;
   } catch {
     return null;
   }
