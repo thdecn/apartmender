@@ -30,6 +30,8 @@ fragment so navigation to Login or reload retains a recoverable link.
 Practice explicitly requests a Login handoff so accepted invitations also retain
 their supported fragment until Login revalidates setup. Volatile fragment copies
 are cleared on definitive classification, session discard, or durable recovery intent.
+An unavailable invitation-user validation also preserves its supported fragment
+until a retry can classify the session, including during Practice handoff.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 

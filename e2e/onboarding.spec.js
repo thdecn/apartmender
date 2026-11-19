@@ -110,6 +110,22 @@ test("pending Practice recovery survives SDK fragment cleanup before the delayed
   } finally { await site.close(); }
 });
 
+test("Practice invitation setup survives a validation outage during handoff and at Login", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { validationFailures: 1, sdkClearsFragment: true });
+    await page.goto(`${site.origin}/login/practice/#type=invite&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    await expect(page.locator("#invite-form")).toBeHidden();
+    expect(new URL(page.url()).pathname).toBe("/login/");
+    expect(new URL(page.url()).hash).not.toBe("");
+    await page.getByRole("button", { name: "Retry verification" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    await expect(page).toHaveURL(`${site.origin}/login/`);
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+  } finally { await site.close(); }
+});
+
 test("revoked tab storage still exposes sign-in after uncertain invitation setup", async ({ page }) => {
   const site = await serveSite();
   try {

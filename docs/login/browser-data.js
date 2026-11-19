@@ -140,6 +140,10 @@ export function createBrowserData({
         recoveryProgress.remove(recoveryOperation); recoveryOperation = null;
         await discardRedirectSession();
       }
+      if (result.outcome === "auth_unavailable" && redirect === "invite") {
+        preserveFragment = true;
+        restorePendingAuthFragment();
+      }
       return result.outcome === "auth_unavailable"
         ? { outcome: recoveryOperation ? "auth_link_validation_pending" : "auth_unavailable" }
         : { outcome: "invite_invalid_or_expired" };

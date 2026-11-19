@@ -155,6 +155,24 @@ test("an invitation is validated and its fragment is removed", async () => {
   assert.deepEqual(replaced, ["https://example.com/login/"]);
 });
 
+test("unavailable invitation validation retains setup for a fresh Login adapter", async () => {
+  const user = { id: "invited-user" };
+  const location = { hash: "#type=invite&access_token=synthetic", href: "https://example.com/login/" };
+  const history = { replaceState: (_state, _title, url) => { location.href = url; location.hash = new URL(url).hash; } };
+  const unavailable = fakeClient({ user });
+  unavailable.auth.onAuthStateChange = callback => {
+    location.hash = "";
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  unavailable.auth.getUser = async () => ({ error: { status: 503 } });
+  const first = createBrowserData({ config, createClient: () => unavailable, location, history, storage: new MapStorage() });
+  assert.deepEqual(await first.acceptInvitation({ handoffToLogin: true }), { outcome: "auth_unavailable" });
+  assert.equal(location.hash, "#type=invite&access_token=synthetic");
+  const fresh = createBrowserData({ config, createClient: () => fakeClient({ user }), location, history, storage: new MapStorage() });
+  assert.deepEqual(await fresh.acceptInvitation(), { outcome: "invite_accepted", userId: user.id });
+  assert.equal(location.hash, "");
+});
+
 test("an unsupported Auth fragment discards its session when sign-out reports an error", async () => {
   const signOutScopes = [];
   const redirectStorage = new MapStorage();
