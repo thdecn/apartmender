@@ -15,7 +15,8 @@ export function createBrowserData({
   storageKey = defaultStorageKey,
   initialSessionTimeoutMs = 10_000,
 }) {
-  const redirect = classifyAuthRedirect(location?.hash ?? "");
+  const initialAuthFragment = location?.hash ?? "";
+  const redirect = classifyAuthRedirect(initialAuthFragment);
   let validatedUserId = null;
   let passwordSetupUserId = null;
   let passwordSetupPurpose = "invite";
@@ -23,6 +24,7 @@ export function createBrowserData({
   let recoverySignOutConfirmed = false;
   let recoveryStorageFailed = false;
   let redirectDiscard = null;
+  let authFragmentRestored = false;
   const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
 
   const failedAdapterContext = { history, location, redirect };
@@ -49,6 +51,10 @@ export function createBrowserData({
   const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect, userId => {
     if (redirect !== "recovery" || !userId || recoveryOperation) return;
     recoveryOperation = recoveryProgress.start(userId);
+    if (authFragmentRestored) {
+      removeAuthFragment(location, history);
+      authFragmentRestored = false;
+    }
     if (!recoveryOperation) {
       recoveryStorageFailed = true;
       // The SDK may already have removed the fragment. Prevent a reload from
@@ -93,6 +99,14 @@ export function createBrowserData({
       const initial = await initialSession;
       if (initial.recoveryPending || !initial.receivedEvent) {
         preserveFragment = true;
+        // The SDK can clear the URL before its recovery event is delivered.
+        // Keep pending navigation/reload recoverable until durable intent exists.
+        if (!location.hash && initialAuthFragment && typeof history?.replaceState === "function") {
+          const pending = new URL(location.href);
+          pending.hash = initialAuthFragment;
+          history.replaceState(null, "", pending.href);
+          authFragmentRestored = true;
+        }
         return { outcome: redirect === "recovery" ? "auth_link_validation_pending" : "auth_unavailable" };
       }
       if (recoveryStorageFailed) {

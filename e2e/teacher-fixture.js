@@ -20,7 +20,11 @@ export const adapterModule = `
   const user = () => state.userId ? { id: state.userId, email: 'teacher@example.invalid', user_metadata: { role: 'Student' } } : null;
   const client = { auth: {
     onAuthStateChange(callback) { state.authEventCallback = callback;
-      queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
+      if (state.sdkClearsFragment) history.replaceState(null, '', location.pathname + location.search);
+      if (state.authEventDelayMs) {
+        queueMicrotask(() => callback('INITIAL_SESSION', { user: user() }));
+        setTimeout(() => callback(state.authEvent, { user: user() }), state.authEventDelayMs);
+      } else queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
     getUser: async () => {
       if (state.validationFailures > 0) { state.validationFailures--; return { error: { status: 503 } }; }
       return { data: { user: user() } };

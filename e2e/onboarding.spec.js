@@ -95,6 +95,21 @@ test("Practice hands recovery and invitation setup to Login without discarding t
   } finally { await site.close(); }
 });
 
+test("pending Practice recovery survives SDK fragment cleanup before the delayed event", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", authEventDelayMs: 200,
+      initialSessionTimeoutMs: 20, sdkClearsFragment: true });
+    await page.goto(`${site.origin}/login/practice/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    await expect.poll(() => page.evaluate(() => Object.keys(localStorage).filter(key => key.includes('-recovery-')).length)).toBe(1);
+    await page.getByRole("button", { name: "Retry verification" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    await expect(page).toHaveURL(`${site.origin}/login/`);
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBe("teacher-a");
+  } finally { await site.close(); }
+});
+
 test("revoked tab storage still exposes sign-in after uncertain invitation setup", async ({ page }) => {
   const site = await serveSite();
   try {

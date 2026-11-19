@@ -409,6 +409,25 @@ test("a late recovery event persists intent before Retry so an SDK-cleaned URL c
   assert.deepEqual(await fresh.validateCurrentUser(), { outcome: "password_completion_required" });
 });
 
+test("pending initialization restores an SDK-cleared fragment until recovery intent is durable", async () => {
+  const user = { id: "late-recovery-user" };
+  const location = { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/" };
+  const client = fakeClient({ user });
+  let authEvent;
+  client.auth.onAuthStateChange = callback => {
+    authEvent = callback;
+    location.hash = "";
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+    location, history: { replaceState: (_state, _title, url) => { location.href = url; location.hash = new URL(url).hash; } } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  assert.equal(location.hash, "#type=recovery&access_token=synthetic");
+  authEvent("PASSWORD_RECOVERY", { user });
+  assert.equal(location.hash, "");
+  assert.deepEqual(await adapter.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+});
+
 test("a recovery event for another user cannot authorize password setup", async () => {
   const client = fakeClient({ user: { id: "network-user" } });
   client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user: { id: "other-user" } })); };

@@ -25,6 +25,8 @@ If Auth cannot initialize, retain a supported email-link fragment and offer a
 page reload that creates a fresh adapter. Practice hands password setup to Login
 without signing out the invitation or recovery session. Revoked tab-storage
 access must not prevent uncertain or saved-but-unverified outcomes from exposing sign-in.
+While the recovery event is still pending, restore a supported SDK-cleared
+fragment so navigation to Login or reload retains a recoverable link.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 
