@@ -5,11 +5,26 @@ const error = document.querySelector("#login-error");
 const inviteAccount = document.querySelector("#invite-account");
 const inviteForm = document.querySelector("#invite-form");
 const inviteError = document.querySelector("#invite-error");
+const signoutRetry = document.querySelector("#recovery-signout-retry");
+let passwordPurpose = "invite";
+let passwordVerified = false;
+
+document.querySelector("#show-login-password").addEventListener("change", (event) => {
+  form.elements.password.type = event.target.checked ? "text" : "password";
+});
+document.querySelector("#show-new-password").addEventListener("change", (event) => {
+  const type = event.target.checked ? "text" : "password";
+  inviteForm.elements.password.type = type;
+  inviteForm.elements.passwordConfirmation.type = type;
+});
+signoutRetry.addEventListener("click", finishRecovery);
 
 initialize();
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  const button = form.querySelector("button");
+  if (button.disabled) return;
   const email = form.elements.email.value.trim();
   const password = form.elements.password.value;
   form.elements.email.value = email;
@@ -19,10 +34,10 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  const button = form.querySelector("button");
   button.disabled = true;
   const result = await browserData.signIn({ email, password });
   if (result.outcome === "authenticated") {
+    form.elements.password.value = "";
     await goToWorkspace(error);
     button.disabled = false;
     return;
@@ -40,12 +55,12 @@ form.querySelector("button").disabled = false;
 
 async function initialize() {
   const invitation = await browserData.acceptInvitation();
-  if (invitation.outcome === "invite_accepted") {
-    showPasswordForm();
+  if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) {
+    showPasswordForm(invitation.outcome === "password_recovery" ? "recovery" : "invite");
     return;
   }
   if (invitation.outcome === "invite_invalid_or_expired") {
-    error.textContent = "That invite link could not be opened.";
+    error.textContent = "That email link is invalid or expired. Ask the administrator for a fresh link.";
     return;
   }
   if (invitation.outcome === "auth_unavailable" || invitation.outcome === "configuration_error") {
@@ -61,10 +76,16 @@ async function initialize() {
   }
 }
 
-function showPasswordForm() {
+function showPasswordForm(purpose) {
+  passwordPurpose = purpose;
   form.hidden = true;
   inviteAccount.hidden = false;
-  inviteAccount.textContent = "Invite accepted. Choose a password to continue.";
+  inviteAccount.textContent = purpose === "recovery"
+    ? "Reset link accepted. Choose a new password of at least 12 characters."
+    : "Invite accepted. Choose and confirm a password of at least 8 characters.";
+  for (const input of [inviteForm.elements.password, inviteForm.elements.passwordConfirmation]) {
+    input.minLength = purpose === "recovery" ? 12 : 8;
+  }
   inviteForm.hidden = false;
   inviteForm.addEventListener("submit", establishPassword, { once: false });
   inviteForm.querySelector("button").disabled = false;
@@ -72,31 +93,80 @@ function showPasswordForm() {
 
 async function establishPassword(event) {
   event.preventDefault();
+  const button = inviteForm.querySelector("button");
+  if (button.disabled) return;
   const password = inviteForm.elements.password.value;
   inviteError.textContent = "";
-  if (password.length < 8) {
-    inviteError.textContent = "Use at least 8 characters.";
+  const minimum = passwordPurpose === "recovery" ? 12 : 8;
+  if (password.length < minimum) {
+    inviteError.textContent = `Use at least ${minimum} characters.`;
+    return;
+  }
+  if (password !== inviteForm.elements.passwordConfirmation.value) {
+    inviteError.textContent = "The passwords do not match. Check both entries.";
     return;
   }
 
-  const button = inviteForm.querySelector("button");
   button.disabled = true;
+  inviteError.textContent = "Saving and verifying your password…";
   const result = await browserData.establishPassword({ password });
   button.disabled = false;
 
   if (result.outcome === "password_established") {
+    passwordVerified = true;
+    clearPasswordFields();
+    if (passwordPurpose === "recovery") { await finishRecovery(); return; }
+    inviteError.textContent = "Password saved and verified.";
     await goToWorkspace(inviteError);
+    return;
+  }
+  if (result.outcome === "password_saved_signin_failed") {
+    clearPasswordFields();
+    passwordVerified = false;
+    if (passwordPurpose === "recovery") { await finishRecovery(); return; }
+    inviteForm.hidden = true;
+    form.hidden = false;
+    inviteAccount.textContent = "Your password was saved. Sign in with your new password to continue.";
+    error.textContent = messageForUnavailable(result.reason);
     return;
   }
   inviteError.textContent =
     result.outcome === "password_rejected"
       ? "That password was not accepted."
       : result.outcome === "unauthenticated"
-        ? "That invite link could not be opened."
-        : messageForUnavailable(result.outcome);
+        ? "That email link could not be verified. Ask the administrator for a fresh link."
+        : "Could not confirm the password change. Try signing in with the password you just chose before trying again.";
+}
+
+function clearPasswordFields() {
+  inviteForm.elements.password.value = "";
+  inviteForm.elements.passwordConfirmation.value = "";
+  inviteForm.elements.password.type = "password";
+  inviteForm.elements.passwordConfirmation.type = "password";
+  document.querySelector("#show-new-password").checked = false;
+}
+
+async function finishRecovery() {
+  inviteForm.hidden = true;
+  signoutRetry.hidden = true;
+  const result = await browserData.signOut({ scope: "global" });
+  if (result.outcome !== "signed_out") {
+    inviteAccount.textContent = "Your password was saved. Could not finish signing out; retry to complete the reset.";
+    signoutRetry.hidden = false;
+    return;
+  }
+  form.hidden = false;
+  form.elements.password.value = "";
+  inviteAccount.textContent = passwordVerified
+    ? "Password reset complete. Sign in with your new password."
+    : "Your password was saved. Sign in with your new password to finish verification.";
+  error.textContent = "";
+  form.elements.email.focus();
 }
 
 function messageForUnavailable(outcome) {
+  if (outcome === "auth_configuration_error") return "Email sign-in is not configured. Please contact the administrator.";
+  if (outcome === "auth_rate_limited") return "Too many sign-in attempts. Wait a few minutes and try again.";
   return outcome === "configuration_error"
     ? "Login is not configured for this site."
     : "Could not reach the login service.";
@@ -109,7 +179,7 @@ async function goToWorkspace(status) {
     return;
   }
   status.textContent = result.outcome === "account_denied"
-    ? "This account has no active workspace. Please contact the administrator."
+    ? `${status === inviteError ? "Password saved and verified. " : ""}This account has no active workspace. Please contact the administrator.`
     : result.outcome === "practice_not_ready"
       ? "Practice data is not ready. Please try again later."
       : "Could not check account access. Please try again.";

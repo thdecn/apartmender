@@ -17,16 +17,20 @@ export function response() {
 export const adapterModule = `
   import { createBrowserData } from './browser-data.js';
   const state = window.teacherTest;
-  const user = () => state.userId ? { id: state.userId, user_metadata: { role: 'Student' } } : null;
+  const user = () => state.userId ? { id: state.userId, email: 'teacher@example.invalid', user_metadata: { role: 'Student' } } : null;
   const client = { auth: {
-    onAuthStateChange(callback) { queueMicrotask(() => callback()); },
+    onAuthStateChange(callback) { queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
     getUser: async () => ({ data: { user: user() } }),
     getSession: async () => state.sessionUnavailable ? { error: { status: 503 } }
       : ({ data: { session: user() ? { user: user() } : null } }),
-    signInWithPassword: async () => { state.userId = state.loginId;
+    signInWithPassword: async () => { if (state.signInError) return { error: state.signInError };
+      state.userId = state.loginId;
       sessionStorage.setItem('teacher-test-user', state.userId); return { data: { user: user() } }; },
-    updateUser: async () => { state.passwordChanged = true; return { data: { user: user() } }; },
-    signOut: async () => { state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); return {}; },
+    updateUser: async () => { state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
+      return { data: { user: user() } }; },
+    signOut: async (options) => { (state.signOutScopes ||= []).push(options.scope);
+      if (state.signOutFailures > 0) { state.signOutFailures--; return { error: { status: 503 } }; }
+      state.userId = null; sessionStorage.setItem('teacher-test-user', 'signed-out'); return {}; },
   }, rpc: async (name, args) => {
     state.calls.push(name);
     if (state.delay) await new Promise((done) => { state.release = done; });
@@ -64,7 +68,7 @@ export const adapterModule = `
     return { error: { code: '42501' }, status: 403 };
   }};
   export const browserData = createBrowserData({ config: {}, createClient: () => client,
-    storage: sessionStorage, location, history });
+    storage: sessionStorage, location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });
 `;
 
 export function notesResponse() {

@@ -152,8 +152,8 @@ test("an unsupported Auth fragment discards its session when sign-out reports an
     createClient: () => client,
     history: { replaceState() {} },
     location: {
-      hash: "#type=recovery&access_token=private",
-      href: "https://example.com/login/#type=recovery&access_token=private",
+      hash: "#type=magiclink&access_token=private",
+      href: "https://example.com/login/#type=magiclink&access_token=private",
     },
     storage: redirectStorage,
   });
@@ -175,8 +175,8 @@ test("an unsupported Auth fragment discards its session when sign-out throws", a
     createClient: () => client,
     history: { replaceState() {} },
     location: {
-      hash: "#type=recovery&access_token=private",
-      href: "https://example.com/login/#type=recovery&access_token=private",
+      hash: "#type=magiclink&access_token=private",
+      href: "https://example.com/login/#type=magiclink&access_token=private",
     },
     storage: redirectStorage,
   });
@@ -226,7 +226,7 @@ test("session validation and refresh classify status-zero network failures as un
   });
 });
 
-test("Auth throttling is unavailable rather than a credential or session failure", async () => {
+test("sign-in throttling is distinct from credential failures; other session throttling is unavailable", async () => {
   const signInClient = fakeClient();
   signInClient.auth.signInWithPassword = async () => ({ data: {}, error: { status: 429 } });
   assert.deepEqual(
@@ -234,7 +234,7 @@ test("Auth throttling is unavailable rather than a credential or session failure
       email: "student@example.invalid",
       password: "secret",
     }),
-    { outcome: "auth_unavailable" },
+    { outcome: "auth_rate_limited" },
   );
 
   const validationClient = fakeClient();
@@ -255,12 +255,96 @@ test("Auth throttling is unavailable rather than a credential or session failure
 });
 
 test("an accepted invitation can establish a password without exposing its session", async () => {
-  const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae" } });
+  const client = fakeClient({ user: { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" } });
 
   assert.deepEqual(await createData(client).establishPassword({ password: "not-a-real-password" }), {
     outcome: "password_established",
     userId: "91ef348a-84fe-4b67-8122-5090f95472ae",
   });
+});
+
+test("email provider configuration failures are not reported as incorrect passwords", async () => {
+  const client = fakeClient();
+  client.auth.signInWithPassword = async () => ({ data: {}, error: { status: 422, code: "email_provider_disabled" } });
+  assert.deepEqual(await createData(client).signIn({ email: "teacher@example.invalid", password: "synthetic" }),
+    { outcome: "auth_configuration_error" });
+});
+
+test("password setup verifies the submitted password with a real password-sign-in operation", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  const calls = [];
+  client.auth.updateUser = async (input) => { calls.push(["save", input]); return { data: { user }, error: null }; };
+  client.auth.signInWithPassword = async (input) => { calls.push(["verify", input]); return { data: { user }, error: null }; };
+  assert.equal((await createData(client).establishPassword({ password: "synthetic-only" })).outcome, "password_established");
+  assert.deepEqual(calls, [["save", { password: "synthetic-only" }],
+    ["verify", { email: user.email, password: "synthetic-only" }]]);
+});
+
+test("a saved password is distinguished from failed subsequent sign-in verification", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  client.auth.signInWithPassword = async () => ({ data: {}, error: { status: 503 } });
+  assert.deepEqual(await createData(client).establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+});
+
+test("password setup cannot report success for a different authenticated UUID", async () => {
+  const user = { id: "expected-user", email: "teacher@example.invalid" };
+  const client = fakeClient({ user });
+  client.auth.signInWithPassword = async () => ({ data: { user: { id: "different-user" } }, error: null });
+  assert.deepEqual(await createData(client).establishPassword({ password: "synthetic-only" }),
+    { outcome: "password_saved_signin_failed", reason: "auth_unavailable" });
+});
+
+test("recovery requires its Auth event and a matching network-validated user", async () => {
+  const user = { id: "91ef348a-84fe-4b67-8122-5090f95472ae" };
+  for (const event of ["PASSWORD_RECOVERY", "INITIAL_SESSION"]) {
+    let discarded = false;
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback(event, { user })); };
+    client.auth.signOut = async () => { discarded = true; return { error: null }; };
+    const replaced = [];
+    const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+      location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+      history: { replaceState: (_state, _title, url) => replaced.push(url) } });
+    assert.deepEqual(await adapter.acceptInvitation(), event === "PASSWORD_RECOVERY"
+      ? { outcome: "password_recovery", userId: user.id } : { outcome: "invite_invalid_or_expired" });
+    assert.equal(discarded, event !== "PASSWORD_RECOVERY");
+    assert.deepEqual(replaced, ["https://example.com/login/"]);
+  }
+});
+
+test("recovery waits for PASSWORD_RECOVERY when INITIAL_SESSION arrives first", async () => {
+  const user = { id: "network-user" };
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => {
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+    setTimeout(() => callback("PASSWORD_RECOVERY", { user }), 0);
+  };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("a recovery event for another user cannot authorize password setup", async () => {
+  const client = fakeClient({ user: { id: "network-user" } });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user: { id: "other-user" } })); };
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(),
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState() {} } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "invite_invalid_or_expired" });
+});
+
+test("recovery can globally sign out without changing ordinary tab-local sign-out", async () => {
+  const client = fakeClient();
+  const scopes = [];
+  client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const data = createData(client);
+  await data.signOut();
+  await data.signOut({ scope: "global" });
+  assert.deepEqual(scopes, ["local", "global"]);
 });
 
 test("student reads preserve zero, one, and unexpected-many cardinality", async () => {

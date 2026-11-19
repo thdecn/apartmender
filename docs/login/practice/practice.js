@@ -42,7 +42,7 @@ async function initialize() {
   }
   const invitation = await browserData.acceptInvitation();
   if (invitation.outcome !== "no_invitation") {
-    if (invitation.outcome === "invite_accepted") await browserData.signOut();
+    if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) await browserData.signOut();
     window.location.replace(new URL("../", practiceDirectory()).href);
     return;
   }

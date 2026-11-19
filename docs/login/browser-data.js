@@ -37,7 +37,7 @@ export function createBrowserData({
   } catch {
     return failedAdapter("auth_unavailable", failedAdapterContext);
   }
-  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs);
+  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect);
 
   return Object.freeze({
     acceptInvitation,
@@ -77,10 +77,18 @@ export function createBrowserData({
         return { outcome: "invite_invalid_or_expired" };
       }
 
-      if (!(await initialSession)) return { outcome: "auth_unavailable" };
+      const initial = await initialSession;
+      if (!initial.receivedEvent) return { outcome: "auth_unavailable" };
       const result = await getAuthenticatedUser();
       if (result.outcome === "authenticated") {
-        return { outcome: "invite_accepted", userId: result.userId };
+        if (redirect === "recovery" && initial.recoveryUserId !== result.userId) {
+          validatedUserId = null;
+          try { await client.auth.signOut({ scope: "local" }); }
+          catch { /* Discard the local session even if server sign-out fails. */ }
+          finally { storage.removeItem(storageKey); }
+          return { outcome: "invite_invalid_or_expired" };
+        }
+        return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
       return result.outcome === "auth_unavailable"
         ? result
@@ -91,6 +99,7 @@ export function createBrowserData({
   }
 
   async function establishPassword({ password }) {
+    let passwordSaved = false;
     try {
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
@@ -98,12 +107,21 @@ export function createBrowserData({
         if (isUnauthenticated(error)) return { outcome: "unauthenticated" };
         return { outcome: "password_rejected" };
       }
-      const userId = data?.user?.id ?? validatedUserId;
-      if (!userId) return { outcome: "unauthenticated" };
+      passwordSaved = true;
+      const userId = data?.user?.id;
+      const email = data?.user?.email;
+      if (!userId || !email) return { outcome: "password_saved_signin_failed", reason: "auth_unavailable" };
+      const verification = await signIn({ email, password });
+      if (verification.outcome !== "authenticated" || verification.userId !== userId) {
+        validatedUserId = null;
+        return { outcome: "password_saved_signin_failed", reason: verification.outcome === "authenticated"
+          ? "auth_unavailable" : verification.outcome };
+      }
       validatedUserId = userId;
       return { outcome: "password_established", userId };
     } catch {
-      return { outcome: "auth_unavailable" };
+      return passwordSaved ? { outcome: "password_saved_signin_failed", reason: "auth_unavailable" }
+        : { outcome: "auth_unavailable" };
     }
   }
 
@@ -111,9 +129,10 @@ export function createBrowserData({
     try {
       const { data, error } = await client.auth.signInWithPassword({ email, password });
       if (error) {
-        return isUnavailable(error)
-          ? { outcome: "auth_unavailable" }
-          : { outcome: "invalid_credentials" };
+        if (error.code === "email_provider_disabled") return { outcome: "auth_configuration_error" };
+        if (error.status === 429) return { outcome: "auth_rate_limited" };
+        return error.code === "invalid_credentials" || (!error.code && error.status === 400)
+          ? { outcome: "invalid_credentials" } : { outcome: "auth_unavailable" };
       }
       const userId = data?.user?.id;
       if (!userId) return { outcome: "auth_unavailable" };
@@ -304,9 +323,10 @@ export function createBrowserData({
     }
   }
 
-  async function signOut() {
+  async function signOut({ scope = "local" } = {}) {
+    if (!["local", "global"].includes(scope)) return { outcome: "logout_failed" };
     try {
-      const { error } = await client.auth.signOut({ scope: "local" });
+      const { error } = await client.auth.signOut({ scope });
       if (error) return { outcome: "logout_failed" };
       validatedUserId = null;
       return { outcome: "signed_out" };
@@ -342,7 +362,8 @@ function classifyAuthRedirect(hash) {
   const containsAuthData = authRedirectKeys.some((key) => fragment.has(key));
   if (!containsAuthData) return "none";
   if (fragment.has("error") || fragment.has("error_code")) return "error";
-  return fragment.get("type") === "invite" ? "invite" : "unsupported";
+  const type = fragment.get("type");
+  return type === "invite" || type === "recovery" ? type : "unsupported";
 }
 
 function removeAuthFragment(location, history) {
@@ -352,17 +373,24 @@ function removeAuthFragment(location, history) {
   history.replaceState(null, "", clean.href);
 }
 
-function waitForInitialSession(client, timeoutMs) {
+function waitForInitialSession(client, timeoutMs, redirect) {
   return new Promise((resolve) => {
     let settled = false;
-    const finish = (receivedEvent) => {
+    let receivedEvent = false;
+    const finish = (receivedEvent, recoveryUserId = null) => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      resolve(receivedEvent);
+      resolve({ receivedEvent, recoveryUserId });
     };
-    const timer = setTimeout(() => finish(false), timeoutMs);
-    client.auth.onAuthStateChange(() => finish(true));
+    const timer = setTimeout(() => finish(receivedEvent), timeoutMs);
+    client.auth.onAuthStateChange((event, session) => {
+      receivedEvent = true;
+      if (event === "PASSWORD_RECOVERY") finish(true, session?.user?.id ?? null);
+      // The SDK schedules PASSWORD_RECOVERY after initialization; INITIAL_SESSION
+      // may arrive first. A stored session cannot substitute for the recovery event.
+      else if (redirect !== "recovery" || event === "SIGNED_OUT") finish(true);
+    });
   });
 }
 

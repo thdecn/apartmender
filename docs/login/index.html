@@ -40,6 +40,7 @@
           autocomplete="current-password"
           required
         />
+        <label class="password-visibility"><input id="show-login-password" type="checkbox" /> Show password</label>
         <button type="submit" class="btn btn-continue" disabled>Continue</button>
         <p id="login-error" class="login-error" aria-live="polite"></p>
       </form>
@@ -54,9 +55,20 @@
           minlength="8"
           required
         />
+        <label for="invite-password-confirm">Confirm new password</label>
+        <input
+          id="invite-password-confirm"
+          name="passwordConfirmation"
+          type="password"
+          autocomplete="new-password"
+          minlength="8"
+          required
+        />
+        <label class="password-visibility"><input id="show-new-password" type="checkbox" /> Show new password</label>
         <button type="submit" class="btn btn-continue" disabled>Save password</button>
         <p id="invite-error" class="login-error" aria-live="polite"></p>
       </form>
+      <button id="recovery-signout-retry" type="button" class="btn" hidden>Retry sign-out</button>
     </main>
     <script type="module" src="./login.js"></script>
   </body>

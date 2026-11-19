@@ -2,7 +2,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 
-export async function serveSite() {
+export async function serveSite({ port = 0 } = {}) {
   const root = resolve("docs");
   const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
     ".json": "application/json", ".png": "image/png" };
@@ -16,7 +16,10 @@ export async function serveSite() {
         "Cache-Control": "no-store" }).end(bytes);
     } catch { response.writeHead(404).end(); }
   });
-  await new Promise((done) => server.listen(0, "127.0.0.1", done));
+  await new Promise((done, reject) => {
+    server.once("error", reject);
+    server.listen(port, "127.0.0.1", done);
+  });
   return { origin: `http://127.0.0.1:${server.address().port}`,
     close: () => new Promise((done) => server.close(done)) };
 }
