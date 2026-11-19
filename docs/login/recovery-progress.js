@@ -22,6 +22,12 @@ export function createRecoveryProgress(storage, prefix) {
   return {
     read,
     start(userId) { return write({ userId, operationId: crypto.randomUUID(), phase: "setup" }); },
+    restore(record) {
+      try {
+        if (storage.getItem(key(record.userId)) !== null) return null;
+        return write(record);
+      } catch { return null; }
+    },
     move(record, phase) {
       if (read(record.userId)?.operationId !== record.operationId) return null;
       return write({ ...record, phase });

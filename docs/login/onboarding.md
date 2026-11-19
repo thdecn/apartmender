@@ -23,6 +23,8 @@ Verification, workspace loading and recovery sign-out have separate retry
 actions. Workspace retry never repeats the password write. A saved but
 unverified invitation password clears the invitation session before Login,
 including when server-aware sign-out fails.
+An invitation write with a lost response also clears its session and exposes
+normal sign-in, without claiming that the password was saved or repeating the write.
 
 Recovery keeps only a per-user operation identifier and phase in localStorage;
 passwords and Auth tokens remain excluded. This intent is never authorization:
@@ -37,6 +39,9 @@ Student entry; Login explicitly asks to resume recovery. After confirmed global
 sign-out, failed progress deletion can record a completed phase instead of
 repeating global logout. If both storage actions fail, a separate cleanup retry
 remains available without another server sign-out.
+If progress disappears during an in-page recovery, its validated in-memory
+identity still permits global sign-out. Restore a missing marker when possible
+so a failed sign-out can resume; never overwrite a newer operation.
 
 Setup is bound to the identity validated from the email link and rechecked
 before writing a password. A restored form after an account switch cannot

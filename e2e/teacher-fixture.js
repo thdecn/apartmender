@@ -32,6 +32,7 @@ export const adapterModule = `
     updateUser: async () => {
       if (state.passwordWriteRateLimits > 0) { state.passwordWriteRateLimits--; return { error: { status: 429 } }; }
       state.passwordChanged = true; state.passwordChanges = (state.passwordChanges || 0) + 1;
+      if (state.passwordWriteResponseLost) throw new Error('password response lost');
       return { data: { user: user() } }; },
     signOut: async (options) => { (state.signOutScopes ||= []).push(options.scope);
       if (state.signOutFailures > 0) { state.signOutFailures--; return { error: { status: 503 } }; }

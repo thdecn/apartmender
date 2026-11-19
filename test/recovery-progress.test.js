@@ -27,6 +27,7 @@ test("a stale tab cannot overwrite or clear a newer recovery operation", () => {
   const first = progress.start("user-a");
   const second = progress.start("user-a");
   assert.equal(progress.move(first, "cleanup"), null);
+  assert.equal(progress.restore(first), null);
   assert.equal(progress.remove(first), false);
   assert.equal(progress.read("user-a").operationId, second.operationId);
 });

@@ -425,6 +425,66 @@ test("an uncertain recovery write resumes cleanup without asserting password suc
   assert.equal(writes, 1);
 });
 
+test("uncertain invitation writes discard the session and expose normal sign-in without another write", async () => {
+  for (const throws of [false, true]) {
+    const user = { id: "invite-user", email: "teacher@example.invalid" };
+    const client = fakeClient({ user });
+    let writes = 0;
+    const scopes = [];
+    client.auth.updateUser = async () => {
+      writes++;
+      if (throws) throw new Error("response lost");
+      return { error: { status: 503 } };
+    };
+    client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+    const adapter = await createPasswordData(client);
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "password_change_uncertain" });
+    assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+    assert.equal((await adapter.signIn({ email: user.email, password: "synthetic-only" })).outcome, "authenticated");
+    assert.equal(writes, 1);
+    assert.deepEqual(scopes, ["local"]);
+  }
+});
+
+test("recovery cleanup uses its validated identity when progress disappears or cannot be read", async () => {
+  for (const unreadable of [false, true]) {
+    const user = { id: "recovery-user", email: "teacher@example.invalid" };
+    const saved = new MapStorage();
+    let blocked = false;
+    const progressKey = `${storageKey}-recovery-${user.id}`;
+    const progress = { getItem(key) { if (blocked) throw new Error("read blocked"); return saved.getItem(key); },
+      setItem: (key, value) => saved.setItem(key, value), removeItem: key => saved.removeItem(key) };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    const scopes = [];
+    client.auth.signOut = async options => { scopes.push(options.scope); blocked = false; return { error: null }; };
+    const adapter = recoveryData(client, progress, true);
+    await adapter.acceptInvitation();
+    await adapter.establishPassword({ password: "synthetic-only" });
+    if (unreadable) blocked = true;
+    else saved.removeItem(progressKey);
+    assert.equal((await adapter.validateCurrentUser()).outcome, "password_completion_required");
+    assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "signed_out" });
+    assert.deepEqual(scopes, ["global"]);
+    assert.equal(saved.getItem(progressKey), null);
+  }
+});
+
+test("deleted recovery progress is restored before a failed global sign-out for later resumption", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.signOut = async () => ({ error: { status: 503 } });
+  const adapter = recoveryData(client, progress, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  progress.removeItem(`${storageKey}-recovery-${user.id}`);
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "logout_failed" });
+  const resumed = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await resumed.resumePasswordRecovery(), { outcome: "password_cleanup_pending", userId: user.id, passwordSaved: true });
+});
+
 test("a rejected rate-limited recovery write preserves setup and its authenticated retry", async () => {
   const user = { id: "recovery-user", email: "teacher@example.invalid" };
   const storage = new MapStorage();

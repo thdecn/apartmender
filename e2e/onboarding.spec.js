@@ -172,6 +172,29 @@ test("pending recovery cleanup survives reload and gates direct workspace entry"
   } finally { await site.close(); }
 });
 
+test("an uncertain invitation write offers working sign-in without another password save", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { passwordWriteResponseLost: true });
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.locator("#invite-account")).toContainText("Could not confirm the password change");
+    await expect(page.locator("#invite-form")).toBeHidden();
+    await expect(page.locator("#login-form")).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBe(1);
+    await page.reload();
+    await expect(page.locator("#login-form")).toBeVisible();
+    await page.getByLabel("Email", { exact: true }).fill("teacher@example.invalid");
+    await page.getByLabel("Password", { exact: true }).fill("Local-test-password");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await expect(page).toHaveURL(/\/login\/teacher\/$/);
+  } finally { await site.close(); }
+});
+
 test("password confirmation and visibility prevent saving an unintended password", async ({ page }) => {
   const site = await serveSite();
   try {

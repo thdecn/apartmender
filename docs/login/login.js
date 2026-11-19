@@ -175,7 +175,12 @@ async function establishPassword(event) {
     passwordSaved = false;
     passwordVerified = false;
     clearPasswordFields();
-    await finishRecovery();
+    if (passwordPurpose === "recovery") { await finishRecovery(); return; }
+    inviteForm.hidden = true;
+    form.hidden = false;
+    inviteAccount.textContent = "Could not confirm the password change. Try signing in with the password you just chose. If it does not work, ask the administrator for a fresh link.";
+    error.textContent = "";
+    form.elements.email.focus();
     return;
   }
   if (result.outcome === "auth_progress_unavailable") {

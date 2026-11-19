@@ -119,7 +119,8 @@ export function createBrowserData({
     const current = await getAuthenticatedUser();
     if (current.outcome === "unauthenticated") return { outcome: "no_invitation" };
     if (current.outcome !== "authenticated") return current;
-    const progress = recoveryProgress.read(current.userId);
+    const progress = recoveryProgress.read(current.userId)
+      ?? (recoveryOperation?.userId === current.userId ? recoveryOperation : null);
     if (!progress || progress.phase === "complete") {
       if (progress) recoveryProgress.remove(progress);
       if (recoveryOperation?.userId === current.userId) recoveryOperation = null;
@@ -142,8 +143,12 @@ export function createBrowserData({
       if (!recoverySignOutConfirmed) {
         const current = await getAuthenticatedUser();
         if (current.outcome !== "authenticated") return current;
+        const progress = recoveryProgress.read(current.userId);
         if (current.userId !== recoveryOperation.userId
-          || recoveryProgress.read(current.userId)?.operationId !== recoveryOperation.operationId) return { outcome: "logout_failed" };
+          || (progress && progress.operationId !== recoveryOperation.operationId)) return { outcome: "logout_failed" };
+        // Local UI intent can disappear; it is not authority to veto cleanup
+        // for the recovery identity already validated in this adapter.
+        if (!progress) recoveryProgress.restore(recoveryOperation);
         const { error } = await client.auth.signOut({ scope: "global" });
         if (error) return { outcome: "logout_failed" };
         recoverySignOutConfirmed = true;
@@ -166,6 +171,7 @@ export function createBrowserData({
     const expectedUserId = passwordSetupUserId;
     if (!expectedUserId) return { outcome: "unauthenticated" };
     let passwordSaved = false;
+    let writeAttempted = false;
     try {
       const current = await getAuthenticatedUser();
       if (current.outcome !== "authenticated") return current;
@@ -183,6 +189,7 @@ export function createBrowserData({
         }
         recoveryOperation = pending;
       }
+      writeAttempted = true;
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
         if (error.status === 429) {
@@ -197,11 +204,10 @@ export function createBrowserData({
           }
           return { outcome: "auth_rate_limited" };
         }
+        if (isUnavailable(error)) return uncertainPasswordChange();
         if (passwordSetupPurpose === "recovery") {
-          if (isUnavailable(error)) return { outcome: "password_change_uncertain" };
           recoveryOperation = recoveryProgress.move(recoveryOperation, "setup") ?? recoveryOperation;
         }
-        if (isUnavailable(error)) return { outcome: "auth_unavailable" };
         if (isUnauthenticated(error)) return { outcome: "unauthenticated" };
         return { outcome: "password_rejected" };
       }
@@ -222,8 +228,7 @@ export function createBrowserData({
       return { outcome: "password_established", userId };
     } catch {
       return passwordSaved ? savedButUnverified("auth_unavailable")
-        : passwordSetupPurpose === "recovery" && recoveryOperation?.phase === "write_pending"
-          ? { outcome: "password_change_uncertain" }
+        : writeAttempted ? uncertainPasswordChange()
         : { outcome: "auth_unavailable" };
     }
   }
@@ -231,6 +236,12 @@ export function createBrowserData({
   async function savedButUnverified(reason) {
     if (passwordSetupPurpose === "invite") await discardRedirectSession();
     return { outcome: "password_saved_signin_failed", reason };
+  }
+
+  async function uncertainPasswordChange() {
+    passwordSetupUserId = null;
+    if (passwordSetupPurpose === "invite") await discardRedirectSession();
+    return { outcome: "password_change_uncertain" };
   }
 
   async function signIn({ email, password }) {
@@ -462,7 +473,8 @@ export function createBrowserData({
   }
 
   function pendingRecoveryProgress(userId) {
-    const progress = recoveryProgress.read(userId);
+    const progress = recoveryProgress.read(userId)
+      ?? (recoveryOperation?.userId === userId ? recoveryOperation : null);
     return progress?.phase === "complete" ? null : progress;
   }
 
