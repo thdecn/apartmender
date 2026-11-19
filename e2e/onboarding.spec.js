@@ -88,7 +88,8 @@ test("Practice hands recovery and invitation setup to Login without discarding t
       await mockAdapter(page, { authEvent: purpose === "recovery" ? "PASSWORD_RECOVERY" : "INITIAL_SESSION", sdkClearsFragment: true });
       await page.goto(`${site.origin}/login/practice/#type=${purpose}&access_token=synthetic-only`);
       await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
-      await expect(page).toHaveURL(`${site.origin}/login/`);
+      expect(new URL(page.url()).pathname).toBe("/login/");
+      expect(Boolean(new URL(page.url()).hash)).toBe(purpose === "invite");
       expect(await page.evaluate(() => window.teacherTest.userId)).toBe("teacher-a");
       await page.close();
     }
@@ -121,7 +122,8 @@ test("Practice invitation setup survives a validation outage during handoff and 
     expect(new URL(page.url()).hash).not.toBe("");
     await page.getByRole("button", { name: "Retry verification" }).click();
     await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
-    await expect(page).toHaveURL(`${site.origin}/login/`);
+    expect(new URL(page.url()).pathname).toBe("/login/");
+    expect(Boolean(new URL(page.url()).hash)).toBe(true);
     expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
   } finally { await site.close(); }
 });
@@ -138,6 +140,66 @@ test("revoked tab storage still exposes sign-in after uncertain invitation setup
     await expect(page.locator("#login-form")).toBeVisible();
     await expect(page.locator("#invite-account")).toContainText("Could not confirm the password change");
     await expect(page.getByRole("button", { name: "Continue" })).toBeEnabled();
+  } finally { await site.close(); }
+});
+
+test("read-only localStorage still resumes existing recovery cleanup", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await page.addInitScript(() => {
+      localStorage.setItem('apartmender-auth-session-recovery-recovery-user', JSON.stringify({
+        version: 1, operationId: 'existing-cleanup', phase: 'cleanup' }));
+      const setItem = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(key, value) {
+        if (this === localStorage) throw new Error('quota full');
+        return setItem.call(this, key, value);
+      };
+    });
+    await page.route("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/+esm", route => route.fulfill({
+      contentType: "text/javascript", body: `export function createClient() {
+        let user = {id:'recovery-user'};
+        return {auth:{onAuthStateChange(callback) {queueMicrotask(() => callback('INITIAL_SESSION',{user}));},
+          getUser:async () => ({data:{user}}), signOut:async ({scope}) => {
+            (window.signOutScopes ||= []).push(scope); user=null; return {}; }}};
+      }`,
+    }));
+    await page.goto(`${site.origin}/login/`);
+    await expect(page.locator("#login-form")).toBeVisible();
+    await expect(page.locator("#invite-account")).toContainText("Your password was saved");
+    expect(await page.evaluate(() => window.signOutScopes)).toEqual(["global"]);
+    expect(await page.evaluate(() => localStorage.getItem('apartmender-auth-session-recovery-recovery-user'))).toBeNull();
+  } finally { await site.close(); }
+});
+
+test("ordinary workspace retry updates the visible sign-in status", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { userId: null, error: "XX000" });
+    await page.goto(`${site.origin}/login/`);
+    await page.getByLabel("Email", { exact: true }).fill("teacher@example.invalid");
+    await page.getByLabel("Password", { exact: true }).fill("Local-test-password");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await expect(page.locator("#login-error")).toContainText("Could not check account access");
+    await page.evaluate(() => { window.teacherTest.error = "42501"; });
+    await page.getByRole("button", { name: "Retry workspace" }).click();
+    await expect(page.locator("#login-error")).toContainText("no active workspace");
+    await expect(page.locator("#login-error")).toBeVisible();
+  } finally { await site.close(); }
+});
+
+test("accepted invitation setup survives reload before the password is saved", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { sdkClearsFragment: true });
+    await page.goto(`${site.origin}/login/#type=invite&access_token=synthetic-only`);
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    await page.reload();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page).toHaveURL(/\/login\/teacher\/$/);
   } finally { await site.close(); }
 });
 

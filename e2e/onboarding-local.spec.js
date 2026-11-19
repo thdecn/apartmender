@@ -29,7 +29,7 @@ test("real local invitation, password verification, operator activation and reco
       // Never include a credential-bearing link in an error or test output.
       try { await page.goto(link); } catch { throw new Error("Local Auth link navigation failed"); }
       await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
-      expect(new URL(page.url()).hash).toBe("");
+      expect(Boolean(new URL(page.url()).hash)).toBe(true);
     }
     async function savePassword(password) {
       await page.getByLabel("New password", { exact: true }).fill(password);
@@ -42,8 +42,11 @@ test("real local invitation, password verification, operator activation and reco
       await page.getByRole("button", { name: "Continue", exact: true }).click();
     }
     await openAuthLink(fixture.invitationLink);
+    await page.reload();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
     await savePassword(fixture.password);
     await expect(page.locator("#invite-error")).toContainText("Password saved and verified");
+    expect(Boolean(new URL(page.url()).hash)).toBe(false);
     await expect(page.locator("#invite-error")).toContainText("no active workspace");
     fixture.activate();
     await page.reload();

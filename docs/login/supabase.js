@@ -23,6 +23,9 @@ function availableStorage(kind) {
   const probe = `apartmender-${kind}-probe`;
   try {
     const storage = window[kind];
+    // Existing recovery progress must remain readable when writes are blocked.
+    // The progress store verifies its own writes before allowing password setup.
+    if (kind === "localStorage") { storage.getItem(probe); return storage; }
     storage.setItem(probe, probe);
     storage.removeItem(probe);
     return storage;

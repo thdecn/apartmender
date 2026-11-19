@@ -14,6 +14,7 @@ let passwordPurpose = "invite";
 let passwordVerified = false;
 let passwordSaved = false;
 let validationReloadRequired = false;
+let workspaceStatus = error;
 
 document.querySelector("#show-login-password")?.addEventListener("change", (event) => {
   form.elements.password.type = event.target.checked ? "text" : "password";
@@ -25,7 +26,7 @@ document.querySelector("#show-new-password")?.addEventListener("change", (event)
 });
 signoutRetry.addEventListener("click", finishRecovery);
 validationRetry.addEventListener("click", () => validationReloadRequired ? window.location.reload() : initialize());
-workspaceRetry.addEventListener("click", () => goToWorkspace(inviteError));
+workspaceRetry.addEventListener("click", () => goToWorkspace(workspaceStatus));
 
 initialize();
 
@@ -283,6 +284,7 @@ function messageForUnavailable(outcome) {
 }
 
 async function goToWorkspace(status) {
+  workspaceStatus = status;
   workspaceRetry.hidden = true;
   workspaceRetry.disabled = true;
   const result = await browserData.resolveWorkspace();

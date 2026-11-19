@@ -32,6 +32,9 @@ their supported fragment until Login revalidates setup. Volatile fragment copies
 are cleared on definitive classification, session discard, or durable recovery intent.
 An unavailable invitation-user validation also preserves its supported fragment
 until a retry can classify the session, including during Practice handoff.
+Accepted invitation setup keeps its supported URL until a password-write outcome
+allows cleanup, so reload before Save still revalidates and resumes the form.
+The default Login adapter releases its volatile fragment copy after acceptance.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 
@@ -48,7 +51,13 @@ resumption network-validates the same identity. A validation outage can resume
 after URL cleanup and reload. Pending global cleanup survives reload or closing
 the tab and resumes after authenticated return, before any workspace entry.
 An uncertain write resumes cleanup without claiming that the password was saved.
-Stale operations cannot erase newer progress. A browser that cannot save this
+Stale operations cannot erase newer progress. Existing markers remain readable
+even if storage writes become blocked.
+Fresh recovery links resume existing write/cleanup phases before another setup,
+and phase transitions/deletion require a matching stored operation and phase.
+A rejected write whose setup rollback cannot be saved reports a storage failure
+and discards the local session, with storage/fresh-link guidance.
+A browser that cannot initially save this
 progress is denied recovery setup with actionable storage/fresh-link guidance.
 No-fragment invitation inspection stays network-free for ordinary offline
 Student entry; Login explicitly asks to resume recovery. After confirmed global

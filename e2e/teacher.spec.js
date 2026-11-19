@@ -62,7 +62,7 @@ test("invitation password flow routes an Active Teacher without creating a Stude
     await mockAdapter(page);
     await page.goto(`${site.origin}/login/#type=invite&access_token=test-only`);
     await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
-    expect(new URL(page.url()).hash).toBe("");
+    expect(Boolean(new URL(page.url()).hash)).toBe(true);
     await page.getByLabel("New password", { exact: true }).fill("local-test-password");
     await page.getByLabel("Confirm new password", { exact: true }).fill("local-test-password");
     await page.getByRole("button", { name: "Save password" }).click();

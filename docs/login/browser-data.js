@@ -130,9 +130,10 @@ export function createBrowserData({
         }
         passwordSetupUserId = result.userId;
         passwordSetupPurpose = redirect;
-        if (redirect === "invite" && handoffToLogin) {
+        if (redirect === "invite") {
           preserveFragment = true;
           restorePendingAuthFragment();
+          if (!handoffToLogin) pendingAuthFragment = "";
         }
         return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
@@ -194,6 +195,10 @@ export function createBrowserData({
         const progress = recoveryProgress.read(current.userId);
         if (current.userId !== recoveryOperation.userId
           || (progress && progress.operationId !== recoveryOperation.operationId)) return { outcome: "logout_failed" };
+        if (progress) {
+          if (progress.phase === "setup") return { outcome: "logout_failed" };
+          recoveryOperation = progress;
+        }
         // Local UI intent can disappear; it is not authority to veto cleanup
         // for the recovery identity already validated in this adapter.
         if (!progress) recoveryProgress.restore(recoveryOperation);
@@ -203,6 +208,8 @@ export function createBrowserData({
         validatedUserId = null;
         passwordSetupUserId = null;
       }
+      const latest = recoveryProgress.read(recoveryOperation.userId);
+      if (latest?.operationId === recoveryOperation.operationId) recoveryOperation = latest;
       const cleared = recoveryProgress.remove(recoveryOperation)
         || recoveryProgress.move(recoveryOperation, "complete");
       const remaining = recoveryProgress.read(recoveryOperation.userId);
@@ -241,26 +248,17 @@ export function createBrowserData({
       const { data, error } = await client.auth.updateUser({ password });
       if (error) {
         if (error.status === 429) {
-          if (passwordSetupPurpose === "recovery") {
-            const setup = recoveryProgress.move(recoveryOperation, "setup");
-            if (!setup) {
-              recoveryProgress.remove(recoveryOperation);
-              await discardRedirectSession();
-              return { outcome: "auth_progress_unavailable" };
-            }
-            recoveryOperation = setup;
-          }
+          if (!await restoreRecoverySetup()) return { outcome: "auth_progress_unavailable" };
           return { outcome: "auth_rate_limited" };
         }
         if (isUnavailable(error)) return uncertainPasswordChange();
-        if (passwordSetupPurpose === "recovery") {
-          recoveryOperation = recoveryProgress.move(recoveryOperation, "setup") ?? recoveryOperation;
-        }
+        if (!await restoreRecoverySetup()) return { outcome: "auth_progress_unavailable" };
         if (isUnauthenticated(error)) return { outcome: "unauthenticated" };
         return { outcome: "password_rejected" };
       }
       passwordSaved = true;
       passwordSetupUserId = null;
+      if (passwordSetupPurpose === "invite") removeAuthFragment(location, history);
       if (passwordSetupPurpose === "recovery") {
         recoveryOperation = recoveryProgress.move(recoveryOperation, "cleanup") ?? recoveryOperation;
       }
@@ -281,6 +279,18 @@ export function createBrowserData({
     }
   }
 
+  async function restoreRecoverySetup() {
+    if (passwordSetupPurpose !== "recovery") return true;
+    const setup = recoveryProgress.move(recoveryOperation, "setup");
+    if (!setup) {
+      recoveryProgress.remove(recoveryOperation);
+      await discardRedirectSession();
+      return false;
+    }
+    recoveryOperation = setup;
+    return true;
+  }
+
   async function savedButUnverified(reason) {
     if (passwordSetupPurpose === "invite") await discardRedirectSession();
     return { outcome: "password_saved_signin_failed", reason };
@@ -288,7 +298,10 @@ export function createBrowserData({
 
   async function uncertainPasswordChange() {
     passwordSetupUserId = null;
-    if (passwordSetupPurpose === "invite") await discardRedirectSession();
+    if (passwordSetupPurpose === "invite") {
+      removeAuthFragment(location, history);
+      await discardRedirectSession();
+    }
     return { outcome: "password_change_uncertain" };
   }
 
