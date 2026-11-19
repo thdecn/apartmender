@@ -653,6 +653,27 @@ test("cleanup adopts a same-operation phase advanced before or during global sig
   }
 });
 
+test("cleanup completed by another tab discards only this tab session without repeating global logout", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  client.auth.updateUser = async () => ({ error: { status: 503 } });
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  await first.establishPassword({ password: "synthetic-only" });
+  const resumedClient = fakeClient({ user });
+  const scopes = [];
+  resumedClient.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  const resumed = recoveryData(resumedClient, progress);
+  await resumed.resumePasswordRecovery();
+  progress.setItem(key, JSON.stringify({ ...JSON.parse(progress.getItem(key)), phase: "complete" }));
+  assert.deepEqual(await resumed.completePasswordRecovery(), { outcome: "signed_out" });
+  assert.deepEqual(scopes, ["local"]);
+  assert.equal(progress.getItem(key), null);
+});
+
 test("a rejected recovery write with failed setup rollback reports storage failure rather than uncertainty", async () => {
   const user = { id: "recovery-user", email: "teacher@example.invalid" };
   const saved = new MapStorage();

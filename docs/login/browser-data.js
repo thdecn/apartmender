@@ -202,8 +202,11 @@ export function createBrowserData({
         // Local UI intent can disappear; it is not authority to veto cleanup
         // for the recovery identity already validated in this adapter.
         if (!progress) recoveryProgress.restore(recoveryOperation);
-        const { error } = await client.auth.signOut({ scope: "global" });
-        if (error) return { outcome: "logout_failed" };
+        if (progress?.phase === "complete") await discardRedirectSession();
+        else {
+          const { error } = await client.auth.signOut({ scope: "global" });
+          if (error) return { outcome: "logout_failed" };
+        }
         recoverySignOutConfirmed = true;
         validatedUserId = null;
         passwordSetupUserId = null;
