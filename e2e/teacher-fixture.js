@@ -26,6 +26,10 @@ export const adapterModule = `
         setTimeout(() => callback(state.authEvent, { user: user() }), state.authEventDelayMs);
       } else queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
     getUser: async () => {
+      if (state.validationRejections > 0) {
+        state.validationRejections--; state.recoveryStorageWritesBlocked = true; state.recoveryStorageRemovalsBlocked = true;
+        return { error: { status: 401 } };
+      }
       if (state.validationFailures > 0) { state.validationFailures--; return { error: { status: 503 } }; }
       return { data: { user: user() } };
     },
@@ -89,7 +93,8 @@ export const adapterModule = `
     } };
   export const browserData = createBrowserData({ config: {}, createClient: () => client,
     storage: tabStorage, completionStorage: state.recoveryStorageUnavailable ? null : {
-      getItem: key => localStorage.getItem(key), removeItem: key => localStorage.removeItem(key),
+      getItem: key => localStorage.getItem(key),
+      removeItem(key) { if (state.recoveryStorageRemovalsBlocked) throw new Error('storage read only'); localStorage.removeItem(key); },
       setItem(key, value) { if (state.recoveryStorageWritesBlocked) throw new Error('storage read only'); localStorage.setItem(key, value); }
     },
     location, history, initialSessionTimeoutMs: state.initialSessionTimeoutMs ?? 10000 });

@@ -246,6 +246,60 @@ test("unavailable recovery storage discards the session before any password writ
   } finally { await site.close(); }
 });
 
+test("late recovery storage failure exposes Reload instead of leaving pending verification stranded", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { initialSessionTimeoutMs: 50, recoveryStorageUnavailable: true });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    await page.evaluate(() => window.teacherTest.authEventCallback("PASSWORD_RECOVERY", { user: { id: window.teacherTest.userId } }));
+    await page.getByRole("button", { name: "Retry verification" }).click();
+    await expect(page.getByRole("button", { name: "Reload page" })).toBeVisible();
+    await expect(page.locator("#invite-account")).toContainText("Allow site storage");
+    await page.getByRole("button", { name: "Reload page" }).click();
+    await expect(page.locator("#login-form")).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+  } finally { await site.close(); }
+});
+
+test("rejected recovery markers have a cleanup retry that does not require Auth", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", validationRejections: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry cleanup" })).toBeVisible();
+    expect(await page.evaluate(() => window.teacherTest.userId)).toBeNull();
+    await page.evaluate(() => { window.teacherTest.recoveryStorageWritesBlocked = false; window.teacherTest.recoveryStorageRemovalsBlocked = false; });
+    await page.getByRole("button", { name: "Retry cleanup" }).click();
+    await expect(page.locator("#login-form")).toBeVisible();
+    await expect(page.locator("#login-error")).toContainText("fresh link");
+    expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.includes('-recovery-')).length)).toBe(0);
+  } finally { await site.close(); }
+});
+
+test("superseded cleanup offers Reload into the newer recovery instead of endless sign-out retry", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { authEvent: "PASSWORD_RECOVERY", signOutFailures: 1 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    for (const label of ["New password", "Confirm new password"]) {
+      await page.getByLabel(label, { exact: true }).fill("Local-test-password");
+    }
+    await page.getByRole("button", { name: "Save password" }).click();
+    await expect(page.getByRole("button", { name: "Retry sign-out" })).toBeVisible();
+    await page.evaluate(() => {
+      const key = Object.keys(localStorage).find(key => key.includes('-recovery-'));
+      localStorage.setItem(key, JSON.stringify({ version: 1, operationId: 'newer-flow', phase: 'setup' }));
+    });
+    await page.getByRole("button", { name: "Retry sign-out" }).click();
+    await expect(page.getByRole("button", { name: "Reload page" })).toBeVisible();
+    await expect(page.locator("#invite-account")).toContainText("newer reset flow");
+    expect(await page.evaluate(() => window.teacherTest.signOutScopes)).toEqual(["global"]);
+    await page.getByRole("button", { name: "Reload page" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+  } finally { await site.close(); }
+});
+
 test("rate-limited recovery writes retain the session and form for a successful retry", async ({ page }) => {
   const site = await serveSite();
   try {

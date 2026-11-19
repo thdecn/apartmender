@@ -79,6 +79,19 @@ async function initialize() {
 }
 
 async function handleAuthFlow(invitation) {
+  if (invitation.outcome === "recovery_superseded") {
+    showReloadAction("A newer reset flow replaced this tab. Reload to continue the latest recovery.");
+    return true;
+  }
+  if (invitation.outcome === "recovery_progress_cleanup_failed") {
+    showCleanupRetry("That reset link could not be verified. Allow site storage, then retry cleanup before signing in.");
+    return true;
+  }
+  if (invitation.outcome === "auth_progress_unavailable") {
+    error.textContent = messageForUnavailable(invitation.outcome);
+    showReloadAction(`${error.textContent} Reload after enabling site storage.`);
+    return true;
+  }
   if (["invite_accepted", "password_recovery"].includes(invitation.outcome)) {
     showPasswordForm(invitation.outcome === "password_recovery" ? "recovery" : "invite");
     return true;
@@ -97,7 +110,7 @@ async function handleAuthFlow(invitation) {
     error.textContent = "That email link is invalid or expired. Ask the administrator for a fresh link.";
     return true;
   }
-  if (["auth_unavailable", "auth_link_validation_pending", "auth_progress_unavailable", "configuration_error"].includes(invitation.outcome)) {
+  if (["auth_unavailable", "auth_link_validation_pending", "configuration_error"].includes(invitation.outcome)) {
     error.textContent = messageForUnavailable(invitation.outcome);
     validationReloadRequired = invitation.retry === "reload";
     validationRetry.textContent = validationReloadRequired ? "Reload page" : "Retry verification";
@@ -108,10 +121,34 @@ async function handleAuthFlow(invitation) {
         ? `${messageForUnavailable(invitation.outcome)} Reload this page to retry your email link.`
         : "Could not verify the reset session. Retry verification to continue.";
     }
-    validationRetry.hidden = !validationReloadRequired && ["auth_progress_unavailable", "configuration_error"].includes(invitation.outcome);
+    validationRetry.hidden = !validationReloadRequired && invitation.outcome === "configuration_error";
     return true;
   }
   return false;
+}
+
+function showReloadAction(message) {
+  clearPasswordFields();
+  form.hidden = true;
+  inviteForm.hidden = true;
+  inviteAccount.hidden = false;
+  inviteAccount.textContent = message;
+  validationReloadRequired = true;
+  validationRetry.textContent = "Reload page";
+  validationRetry.hidden = false;
+  signoutRetry.hidden = true;
+  workspaceRetry.hidden = true;
+}
+
+function showCleanupRetry(message) {
+  form.hidden = true;
+  inviteForm.hidden = true;
+  inviteAccount.hidden = false;
+  inviteAccount.textContent = message;
+  signoutRetry.textContent = "Retry cleanup";
+  signoutRetry.hidden = false;
+  validationRetry.hidden = true;
+  workspaceRetry.hidden = true;
 }
 
 function showPasswordForm(purpose) {
@@ -247,14 +284,16 @@ async function finishRecovery() {
   form.hidden = true;
   signoutRetry.hidden = true;
   const result = await browserData.completePasswordRecovery();
+  if (["invite_invalid_or_expired", "recovery_superseded"].includes(result.outcome)) {
+    await handleAuthFlow(result);
+    return;
+  }
   if (result.outcome === "auth_progress_unavailable") {
-    inviteAccount.textContent = "Could not save recovery cleanup or finish signing out all sessions. This tab was signed out. Allow site storage and ask the administrator for a fresh reset link to finish recovery.";
+    showReloadAction("Could not save recovery cleanup or finish signing out all sessions. This tab was signed out. Allow site storage and ask the administrator for a fresh reset link to finish recovery.");
     return;
   }
   if (result.outcome === "recovery_progress_cleanup_failed") {
-    inviteAccount.textContent = "Sessions were signed out, but this browser could not clear recovery progress. Retry cleanup.";
-    signoutRetry.textContent = "Retry cleanup";
-    signoutRetry.hidden = false;
+    showCleanupRetry("Sessions were signed out, but this browser could not clear recovery progress. Allow site storage, then retry cleanup.");
     return;
   }
   if (result.outcome === "unauthenticated") {

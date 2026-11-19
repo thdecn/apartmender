@@ -23,6 +23,7 @@ export function createBrowserData({
   let recoveryOperation = null;
   let recoverySignOutConfirmed = false;
   let recoveryStorageFailed = false;
+  let rejectedRecoveryCleanup = false;
   let redirectDiscard = null;
   let authFragmentRestored = false;
   const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
@@ -119,10 +120,7 @@ export function createBrowserData({
       const result = await getAuthenticatedUser();
       if (result.outcome === "authenticated") {
         if (redirect === "recovery" && initial.recoveryUserId !== result.userId) {
-          if (recoveryOperation) recoveryProgress.remove(recoveryOperation);
-          recoveryOperation = null;
-          await discardRedirectSession();
-          return { outcome: "invite_invalid_or_expired" };
+          return rejectRecoverySetup();
         }
         if (redirect === "recovery" && recoveryOperation?.phase !== "setup") {
           return { outcome: "password_cleanup_pending", userId: result.userId,
@@ -138,8 +136,7 @@ export function createBrowserData({
         return { outcome: redirect === "recovery" ? "password_recovery" : "invite_accepted", userId: result.userId };
       }
       if (result.outcome === "unauthenticated" && recoveryOperation) {
-        recoveryProgress.remove(recoveryOperation); recoveryOperation = null;
-        await discardRedirectSession();
+        return rejectRecoverySetup();
       }
       if (result.outcome === "auth_unavailable" && redirect === "invite") {
         preserveFragment = true;
@@ -170,7 +167,7 @@ export function createBrowserData({
     if (current.outcome !== "authenticated") return current;
     const progress = recoveryProgress.read(current.userId)
       ?? (recoveryOperation?.userId === current.userId ? recoveryOperation : null);
-    if (!progress || progress.phase === "complete") {
+    if (!progress || ["complete", "cancelled"].includes(progress.phase)) {
       if (progress) recoveryProgress.remove(progress);
       if (recoveryOperation?.userId === current.userId) recoveryOperation = null;
       return { outcome: "no_invitation" };
@@ -185,6 +182,7 @@ export function createBrowserData({
   }
 
   async function completePasswordRecovery() {
+    if (rejectedRecoveryCleanup) return clearRejectedRecovery();
     if (!recoveryOperation || recoveryOperation.phase === "setup") {
       return { outcome: "logout_failed" };
     }
@@ -192,9 +190,9 @@ export function createBrowserData({
     try {
       if (!recoverySignOutConfirmed) {
         const progress = recoveryProgress.read(recoveryOperation.userId);
-        if (progress && progress.operationId !== recoveryOperation.operationId) return { outcome: "logout_failed" };
+        if (progress && progress.operationId !== recoveryOperation.operationId) return recoverySuperseded();
         if (progress) {
-          if (progress.phase === "setup") return { outcome: "logout_failed" };
+          if (progress.phase === "setup") return recoverySuperseded();
           recoveryOperation = progress;
         }
         // Local UI intent can disappear; it is not authority to veto cleanup
@@ -203,7 +201,7 @@ export function createBrowserData({
         const current = await getAuthenticatedUser();
         if (current.outcome !== "authenticated") return cleanupIntentDurable ? current : recoveryCleanupFailure(false);
         if (current.userId !== recoveryOperation.userId) return { outcome: "logout_failed" };
-        if (progress?.phase === "complete") await discardRedirectSession();
+        if (["complete", "cancelled"].includes(progress?.phase)) await discardRedirectSession();
         else {
           const { error } = await client.auth.signOut({ scope: "global" });
           if (error) return recoveryCleanupFailure(cleanupIntentDurable);
@@ -230,6 +228,41 @@ export function createBrowserData({
     if (hasDurableIntent) return { outcome: "logout_failed" };
     await discardRedirectSession();
     return { outcome: "auth_progress_unavailable" };
+  }
+
+  async function rejectRecoverySetup() {
+    await discardRedirectSession();
+    // Validation failure may cancel setup, never an earlier write's outstanding cleanup.
+    if (recoveryOperation && !["setup", "cancelled"].includes(recoveryOperation.phase)) {
+      return { outcome: "invite_invalid_or_expired" };
+    }
+    rejectedRecoveryCleanup = true;
+    return clearRejectedRecovery();
+  }
+
+  function clearRejectedRecovery() {
+    if (!recoveryOperation) {
+      rejectedRecoveryCleanup = false;
+      return { outcome: "invite_invalid_or_expired" };
+    }
+    const current = recoveryProgress.read(recoveryOperation.userId);
+    if (current && (current.operationId !== recoveryOperation.operationId || current.phase !== recoveryOperation.phase)) {
+      return recoverySuperseded();
+    }
+    if (!recoveryProgress.remove(recoveryOperation) && !recoveryProgress.move(recoveryOperation, "cancelled")) {
+      return { outcome: "recovery_progress_cleanup_failed" };
+    }
+    recoveryOperation = null;
+    rejectedRecoveryCleanup = false;
+    return { outcome: "invite_invalid_or_expired" };
+  }
+
+  function recoverySuperseded() {
+    recoveryOperation = null;
+    passwordSetupUserId = null;
+    recoverySignOutConfirmed = false;
+    rejectedRecoveryCleanup = false;
+    return { outcome: "recovery_superseded" };
   }
 
   async function establishPassword({ password }) {
@@ -552,7 +585,7 @@ export function createBrowserData({
   function pendingRecoveryProgress(userId) {
     const progress = recoveryProgress.read(userId)
       ?? (recoveryOperation?.userId === userId ? recoveryOperation : null);
-    return progress?.phase === "complete" ? null : progress;
+    return ["complete", "cancelled"].includes(progress?.phase) ? null : progress;
   }
 
   async function getAuthenticatedUser() {

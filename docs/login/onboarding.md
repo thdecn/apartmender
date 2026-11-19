@@ -59,6 +59,10 @@ A rejected write whose setup rollback cannot be saved reports a storage failure
 and discards the local session, with storage/fresh-link guidance.
 A browser that cannot initially save this
 progress is denied recovery setup with actionable storage/fresh-link guidance.
+Definitively rejected setup is removed or marked cancelled; if storage prevents
+both, local cleanup can be retried without Auth. Cancellation never removes an
+earlier write's pending cleanup. Superseded recovery and late storage failures
+offer explicit Reload actions, so no stale verification/sign-out retry traps the user.
 No-fragment invitation inspection stays network-free for ordinary offline
 Student entry; Login explicitly asks to resume recovery. After confirmed global
 sign-out, failed progress deletion can record a completed phase instead of

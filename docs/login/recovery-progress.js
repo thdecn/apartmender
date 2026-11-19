@@ -1,7 +1,7 @@
 // Non-sensitive UI intent only. These records never grant application access.
 export function createRecoveryProgress(storage, prefix) {
-  const transitions = { setup: ["write_pending"], write_pending: ["setup", "cleanup", "complete"],
-    cleanup: ["complete"], complete: [] };
+  const transitions = { setup: ["write_pending", "cancelled"], write_pending: ["setup", "cleanup", "complete"],
+    cleanup: ["complete"], complete: [], cancelled: [] };
   const key = userId => `${prefix}-recovery-${encodeURIComponent(userId)}`;
   function read(userId) {
     try {

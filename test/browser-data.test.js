@@ -457,6 +457,69 @@ test("a recovery event for another user cannot authorize password setup", async 
   assert.deepEqual(await adapter.acceptInvitation(), { outcome: "invite_invalid_or_expired" });
 });
 
+test("rejected recovery intent can be cancelled or cleaned without an Auth session", async () => {
+  for (const writesBlocked of [false, true]) {
+    const user = { id: "rejected-user" };
+    const saved = new MapStorage();
+    let blocked = false;
+    const progress = { getItem: key => saved.getItem(key),
+      setItem(key, value) { if (blocked && writesBlocked) throw new Error("blocked"); saved.setItem(key, value); },
+      removeItem(key) { if (blocked) throw new Error("blocked"); saved.removeItem(key); } };
+    const client = fakeClient({ user });
+    client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+    client.auth.getUser = async () => { blocked = true; return { error: { status: 401 } }; };
+    const adapter = recoveryData(client, progress, true);
+    assert.deepEqual(await adapter.acceptInvitation(), { outcome: writesBlocked
+      ? "recovery_progress_cleanup_failed" : "invite_invalid_or_expired" });
+    if (writesBlocked) {
+      blocked = false;
+      assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "invite_invalid_or_expired" });
+      assert.equal(saved.getItem(`${storageKey}-recovery-${user.id}`), null);
+    } else {
+      const fresh = recoveryData(fakeClient({ user }), progress);
+      assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "no_invitation" });
+      assert.equal((await fresh.validateCurrentUser()).outcome, "authenticated");
+    }
+  }
+});
+
+test("newer recovery supersedes stale cleanup without changing its progress or signing out globally", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const adapter = recoveryData(client, progress, true);
+  await adapter.acceptInvitation();
+  await adapter.establishPassword({ password: "synthetic-only" });
+  const newer = JSON.stringify({ version: 1, operationId: "newer-operation", phase: "setup" });
+  progress.setItem(key, newer);
+  const scopes = [];
+  client.auth.signOut = async options => { scopes.push(options.scope); return { error: null }; };
+  assert.deepEqual(await adapter.completePasswordRecovery(), { outcome: "recovery_superseded" });
+  assert.equal(progress.getItem(key), newer);
+  assert.deepEqual(scopes, []);
+  const fresh = recoveryData(fakeClient({ user }), progress);
+  assert.deepEqual(await fresh.resumePasswordRecovery(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("rejected fresh-link validation cannot cancel an earlier write's outstanding cleanup", async () => {
+  const user = { id: "recovery-user", email: "teacher@example.invalid" };
+  const progress = new MapStorage();
+  const key = `${storageKey}-recovery-${user.id}`;
+  const client = fakeClient({ user });
+  client.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  const first = recoveryData(client, progress, true);
+  await first.acceptInvitation();
+  await first.establishPassword({ password: "synthetic-only" });
+  const outstanding = progress.getItem(key);
+  const invalid = fakeClient({ user });
+  invalid.auth.onAuthStateChange = callback => { queueMicrotask(() => callback("PASSWORD_RECOVERY", { user })); };
+  invalid.auth.getUser = async () => ({ error: { status: 401 } });
+  assert.deepEqual(await recoveryData(invalid, progress, true).acceptInvitation(), { outcome: "invite_invalid_or_expired" });
+  assert.equal(progress.getItem(key), outstanding);
+});
+
 test("recovery can globally sign out without changing ordinary tab-local sign-out", async () => {
   const client = fakeClient();
   const scopes = [];
