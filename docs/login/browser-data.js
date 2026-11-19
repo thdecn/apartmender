@@ -21,6 +21,8 @@ export function createBrowserData({
   let passwordSetupPurpose = "invite";
   let recoveryOperation = null;
   let recoverySignOutConfirmed = false;
+  let recoveryStorageFailed = false;
+  let redirectDiscard = null;
   const recoveryProgress = createRecoveryProgress(completionStorage, storageKey);
 
   const failedAdapterContext = { history, location, redirect };
@@ -44,7 +46,17 @@ export function createBrowserData({
   } catch {
     return failedAdapter("auth_unavailable", failedAdapterContext);
   }
-  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect);
+  const initialSession = waitForInitialSession(client, initialSessionTimeoutMs, redirect, userId => {
+    if (redirect !== "recovery" || !userId || recoveryOperation) return;
+    recoveryOperation = recoveryProgress.start(userId);
+    if (!recoveryOperation) {
+      recoveryStorageFailed = true;
+      // The SDK may already have removed the fragment. Prevent a reload from
+      // retaining an ordinary session when recovery intent cannot be saved.
+      try { storage.removeItem(storageKey); } catch { /* Server-aware discard follows. */ }
+      setTimeout(() => { discardRedirectSession().catch(() => {}); }, 0);
+    }
+  });
 
   return Object.freeze({
     acceptInvitation,
@@ -82,6 +94,10 @@ export function createBrowserData({
       if (initial.recoveryPending || !initial.receivedEvent) {
         preserveFragment = true;
         return { outcome: redirect === "recovery" ? "auth_link_validation_pending" : "auth_unavailable" };
+      }
+      if (recoveryStorageFailed) {
+        await discardRedirectSession();
+        return { outcome: "auth_progress_unavailable" };
       }
       if (redirect === "recovery" && initial.recoveryUserId && !recoveryOperation) {
         recoveryOperation = recoveryProgress.start(initial.recoveryUserId);
@@ -468,11 +484,14 @@ export function createBrowserData({
   async function discardRedirectSession() {
     validatedUserId = null;
     passwordSetupUserId = null;
-    try {
-      await initialSession;
-      await client.auth.signOut({ scope: "local" });
-    } catch { /* Discard local state even if server-aware sign-out fails. */ }
-    finally { storage.removeItem(storageKey); }
+    redirectDiscard ??= (async () => {
+      try {
+        await initialSession;
+        await client.auth.signOut({ scope: "local" });
+      } catch { /* Discard local state even if server-aware sign-out fails. */ }
+      finally { storage.removeItem(storageKey); }
+    })();
+    return redirectDiscard;
   }
 
   function pendingRecoveryProgress(userId) {
@@ -519,7 +538,7 @@ function removeAuthFragment(location, history) {
   history.replaceState(null, "", clean.href);
 }
 
-function waitForInitialSession(client, timeoutMs, redirect) {
+function waitForInitialSession(client, timeoutMs, redirect, onRecovery) {
   // Keep the resolved state live: a timeout is not evidence that the SDK will
   // never finish exchanging a link. Retry can observe its eventual Auth event.
   const state = { receivedEvent: false, recoveryUserId: null, recoveryPending: redirect === "recovery" };
@@ -536,6 +555,7 @@ function waitForInitialSession(client, timeoutMs, redirect) {
       state.receivedEvent = true;
       if (event === "PASSWORD_RECOVERY") {
         state.recoveryUserId = session?.user?.id ?? null;
+        onRecovery(state.recoveryUserId);
         state.recoveryPending = false;
         finish();
       }

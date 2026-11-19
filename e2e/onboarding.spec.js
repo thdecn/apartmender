@@ -251,6 +251,23 @@ test("a recovery URL waits for a late event and can retry after the initializati
   } finally { await site.close(); }
 });
 
+test("a late recovery event survives reload before Retry after the SDK cleans its URL", async ({ page }) => {
+  const site = await serveSite();
+  try {
+    await mockAdapter(page, { initialSessionTimeoutMs: 50 });
+    await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
+    await page.evaluate(() => {
+      history.replaceState(null, "", location.pathname);
+      window.teacherTest.authEventCallback("PASSWORD_RECOVERY", { user: { id: window.teacherTest.userId } });
+    });
+    await page.reload();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
+    await expect(page).toHaveURL(`${site.origin}/login/`);
+    expect(await page.evaluate(() => window.teacherTest.passwordChanges)).toBeUndefined();
+  } finally { await site.close(); }
+});
+
 test("expired or rejected email links remove private error details and offer a fresh-link path", async ({ page }) => {
   const site = await serveSite();
   try {
