@@ -1,3 +1,4 @@
+import { syncPasswordVisibility } from "./password-visibility.js?ui=password-visibility-v1";
 import { browserData } from "./supabase.js?auth=operator-onboarding-v1";
 
 const form = document.querySelector("#login-form");
@@ -16,14 +17,8 @@ let passwordSaved = false;
 let validationReloadRequired = false;
 let workspaceStatus = error;
 
-document.querySelector("#show-login-password")?.addEventListener("change", (event) => {
-  form.elements.password.type = event.target.checked ? "text" : "password";
-});
-document.querySelector("#show-new-password")?.addEventListener("change", (event) => {
-  const type = event.target.checked ? "text" : "password";
-  inviteForm.elements.password.type = type;
-  confirmation.type = type;
-});
+// Includes confirmation controls created for supported cached markup.
+syncPasswordVisibility();
 signoutRetry.addEventListener("click", finishRecovery);
 validationRetry.addEventListener("click", () => validationReloadRequired ? window.location.reload() : initialize());
 workspaceRetry.addEventListener("click", () => goToWorkspace(workspaceStatus));

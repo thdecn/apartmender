@@ -6,6 +6,9 @@ There is no self-service recovery-request form or automatic role activation in
 this change. Sludge's browser contract owns the shared interface.
 
 Both password forms require confirmation and allow users to show the entries.
+Password visibility loads independently of Auth, so the controls work while
+the login service initializes. Their checked state is applied at startup and
+on page restoration, including confirmation fields added for cached markup.
 After a password write, the adapter verifies the submitted password through
 Supabase password sign-in for the same user before reporting success. A failed
 verification after a successful write is reported as saved but unverified,
