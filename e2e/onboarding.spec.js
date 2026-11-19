@@ -236,13 +236,17 @@ test("validated recovery replaces the password, globally signs out, then require
   } finally { await site.close(); }
 });
 
-test("a recovery URL with only an ordinary stored session cannot expose password setup", async ({ page }) => {
+test("a recovery URL waits for a late event and can retry after the initialization timeout", async ({ page }) => {
   const site = await serveSite();
   try {
     await mockAdapter(page, { initialSessionTimeoutMs: 50 });
     await page.goto(`${site.origin}/login/#type=recovery&access_token=synthetic-only`);
-    await expect(page.locator("#login-error")).toContainText("fresh link");
+    await expect(page.getByRole("button", { name: "Retry verification" })).toBeVisible();
     await expect(page.locator("#invite-form")).toBeHidden();
+    expect(new URL(page.url()).hash).not.toBe("");
+    await page.evaluate(() => window.teacherTest.authEventCallback("PASSWORD_RECOVERY", { user: { id: window.teacherTest.userId } }));
+    await page.getByRole("button", { name: "Retry verification" }).click();
+    await expect(page.getByLabel("New password", { exact: true })).toBeVisible();
     expect(new URL(page.url()).hash).toBe("");
   } finally { await site.close(); }
 });

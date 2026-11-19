@@ -70,7 +70,7 @@ export function createBrowserData({
 
   async function acceptInvitation() {
     if (redirect === "none") return { outcome: "no_invitation" };
-
+    let preserveFragment = false;
     try {
       if (redirect === "error") return { outcome: "invite_invalid_or_expired" };
       if (redirect === "unsupported") {
@@ -79,7 +79,10 @@ export function createBrowserData({
       }
 
       const initial = await initialSession;
-      if (!initial.receivedEvent) return { outcome: "auth_unavailable" };
+      if (initial.recoveryPending || !initial.receivedEvent) {
+        preserveFragment = true;
+        return { outcome: redirect === "recovery" ? "auth_link_validation_pending" : "auth_unavailable" };
+      }
       if (redirect === "recovery" && initial.recoveryUserId && !recoveryOperation) {
         recoveryOperation = recoveryProgress.start(initial.recoveryUserId);
         if (!recoveryOperation) {
@@ -111,7 +114,7 @@ export function createBrowserData({
         ? { outcome: recoveryOperation ? "auth_link_validation_pending" : "auth_unavailable" }
         : { outcome: "invite_invalid_or_expired" };
     } finally {
-      removeAuthFragment(location, history);
+      if (!preserveFragment) removeAuthFragment(location, history);
     }
   }
 
@@ -517,22 +520,31 @@ function removeAuthFragment(location, history) {
 }
 
 function waitForInitialSession(client, timeoutMs, redirect) {
+  // Keep the resolved state live: a timeout is not evidence that the SDK will
+  // never finish exchanging a link. Retry can observe its eventual Auth event.
+  const state = { receivedEvent: false, recoveryUserId: null, recoveryPending: redirect === "recovery" };
   return new Promise((resolve) => {
     let settled = false;
-    let receivedEvent = false;
-    const finish = (receivedEvent, recoveryUserId = null) => {
+    const finish = () => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      resolve({ receivedEvent, recoveryUserId });
+      resolve(state);
     };
-    const timer = setTimeout(() => finish(receivedEvent), timeoutMs);
+    const timer = setTimeout(finish, timeoutMs);
     client.auth.onAuthStateChange((event, session) => {
-      receivedEvent = true;
-      if (event === "PASSWORD_RECOVERY") finish(true, session?.user?.id ?? null);
+      state.receivedEvent = true;
+      if (event === "PASSWORD_RECOVERY") {
+        state.recoveryUserId = session?.user?.id ?? null;
+        state.recoveryPending = false;
+        finish();
+      }
       // The SDK schedules PASSWORD_RECOVERY after initialization; INITIAL_SESSION
       // may arrive first. A stored session cannot substitute for the recovery event.
-      else if (redirect !== "recovery" || event === "SIGNED_OUT") finish(true);
+      else if (redirect !== "recovery" || event === "SIGNED_OUT") {
+        state.recoveryPending = false;
+        finish();
+      }
     });
   });
 }

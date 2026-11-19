@@ -335,9 +335,9 @@ test("recovery requires its Auth event and a matching network-validated user", a
       location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
       history: { replaceState: (_state, _title, url) => replaced.push(url) } });
     assert.deepEqual(await adapter.acceptInvitation(), event === "PASSWORD_RECOVERY"
-      ? { outcome: "password_recovery", userId: user.id } : { outcome: "invite_invalid_or_expired" });
-    assert.equal(discarded, event !== "PASSWORD_RECOVERY");
-    assert.deepEqual(replaced, ["https://example.com/login/"]);
+      ? { outcome: "password_recovery", userId: user.id } : { outcome: "auth_link_validation_pending" });
+    assert.equal(discarded, false);
+    assert.deepEqual(replaced, event === "PASSWORD_RECOVERY" ? ["https://example.com/login/"] : []);
   }
 });
 
@@ -352,6 +352,26 @@ test("recovery waits for PASSWORD_RECOVERY when INITIAL_SESSION arrives first", 
     location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
     history: { replaceState() {} } });
   assert.deepEqual(await adapter.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+});
+
+test("recovery retries a late event after timeout without consuming the link or accepting a stored session", async () => {
+  const user = { id: "late-recovery-user" };
+  const client = fakeClient({ user });
+  let authEvent;
+  client.auth.onAuthStateChange = callback => {
+    authEvent = callback;
+    queueMicrotask(() => callback("INITIAL_SESSION", { user }));
+  };
+  const replaced = [];
+  const adapter = createBrowserData({ config, createClient: () => client, storage: new MapStorage(), initialSessionTimeoutMs: 5,
+    location: { hash: "#type=recovery&access_token=synthetic", href: "https://example.com/login/#type=recovery&access_token=synthetic" },
+    history: { replaceState: (_state, _title, url) => replaced.push(url) } });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "auth_link_validation_pending" });
+  assert.deepEqual(await adapter.establishPassword({ password: "synthetic-only" }), { outcome: "unauthenticated" });
+  assert.deepEqual(replaced, []);
+  authEvent("PASSWORD_RECOVERY", { user });
+  assert.deepEqual(await adapter.acceptInvitation(), { outcome: "password_recovery", userId: user.id });
+  assert.deepEqual(replaced, ["https://example.com/login/"]);
 });
 
 test("a recovery event for another user cannot authorize password setup", async () => {

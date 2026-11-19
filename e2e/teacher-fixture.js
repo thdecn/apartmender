@@ -19,7 +19,8 @@ export const adapterModule = `
   const state = window.teacherTest;
   const user = () => state.userId ? { id: state.userId, email: 'teacher@example.invalid', user_metadata: { role: 'Student' } } : null;
   const client = { auth: {
-    onAuthStateChange(callback) { queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
+    onAuthStateChange(callback) { state.authEventCallback = callback;
+      queueMicrotask(() => callback(state.authEvent || 'INITIAL_SESSION', { user: user() })); },
     getUser: async () => {
       if (state.validationFailures > 0) { state.validationFailures--; return { error: { status: 503 } }; }
       return { data: { user: user() } };

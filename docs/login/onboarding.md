@@ -16,6 +16,9 @@ Recovery requires a matching `PASSWORD_RECOVERY` Auth event and network-backed
 current-user validation. It must tolerate `INITIAL_SESSION` arriving before the
 recovery event. After password replacement, global sign-out returns the user to
 Login. A failed sign-out can be retried without repeating the password write.
+An initialization timeout keeps verification pending and retains the fragment;
+Retry verification can observe the eventual recovery event without accepting
+an ordinary stored session as proof of recovery.
 Ordinary Logout remains scoped to the current tab. Roles, assignments, and
 practice data are unaffected by recovery.
 
