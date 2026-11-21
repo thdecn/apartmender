@@ -1,5 +1,5 @@
 {
-  "status": "human-review-pending",
+  "status": "owner-accepted-awaiting-incorporation",
   "preparedOn": "2026-11-21",
   "slug": "bach-bwv-779-invention-no-8",
   "title": "Invention No. 8 in F major, BWV 779",
@@ -23,7 +23,7 @@
     "normalizedInputOrigin": "Retained complete BWV 779 source fixture from Sludge notation experiment at 5f0218276496a8e541c9cca12345f5b122570f0e, experiments/piano-notation/fixtures/sources/bach-bwv-779-invention-no-8/score.json",
     "tool": "../../../tools/verify-bwv779.py",
     "referenceRenderer": "Verovio 6.3.0-425dd7b",
-    "humanReview": "pending; see README.md"
+    "humanReview": "Owner accepted 2026-11-21; see humanReview and README.md"
   },
   "checks": {
     "orderedMeasures": 34,
@@ -36,7 +36,7 @@
   "sha256": {
     "score.musicxml": "2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49",
     "review-inventory.json": "e205773dc5491b7422e5cdeb76577c220e2542e7775552377460e636c5c0fa09",
-    "README.md": "4089beb056d9d076c9268c2f6b3052ca654f36be82b5ab0278efb225765c2ac4",
+    "README.md": "ca5a9a342770079670770d212876a5571a885c3c31e2c60371c8094a1b6109a6",
     "source/score.normalized.json": "fc5021cc4b76e36e420cd153335ce2609844d0aac7448df9e49f7356026e7477",
     "source/bach-invention-08.ly": "ddc634821a618e9a5e9ffcefbd96005bd02bd1f12573e2fefc4e6e6653d83ebe",
     "source/bach-invention-08.mid": "07238719180171f76283756405ee43a0319226e869283bf29affb9e4c360e6f8",
@@ -44,5 +44,15 @@
     "review/page-2.svg": "92b23207a1a991470dff859ebdd59cf8915ce07379b58cc5a95d555f08014c10",
     "review/page-1.svg": "6c8974edf49bbf402c8a9dbe32536872014ba3ce06a1ccdfa4aff01fc70f0379",
     "review/render-check.json": "11b934459e24f9468fb55f462c916c54947a31cb59034c30f833127aab93475e"
+  },
+  "humanReview": {
+    "reviewer": "repository owner",
+    "date": "2026-11-21",
+    "outcome": "accepted",
+    "editionId": "sha256:2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49",
+    "reviewedScoreCommit": "5891a2d81ba858157a8e168df99f871e1812e285",
+    "evidence": "Owner statement in migration chat: the score in PR#69 of Apartmender looks ok to me",
+    "correctionsRequested": false,
+    "scope": "Owner acceptance of the exact score candidate; no itemized review procedure or physical-device evidence is inferred."
   }
 }

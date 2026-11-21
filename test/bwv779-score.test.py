@@ -52,6 +52,13 @@ class FixedScoreAcceptance(unittest.TestCase):
             with patch.object(verifier, 'ROOT', root), patch('sys.argv', ['verify-bwv779.py']):
                 with contextlib.redirect_stdout(io.StringIO()):
                     verifier.main()
+                # Acceptance of another digest cannot authorize this source.
+                provenance['humanReview']['editionId'] = 'sha256:' + '0' * 64
+                (root / 'provenance.json').write_text(json.dumps(provenance))
+                with self.assertRaisesRegex(ValueError, 'Human review edition mismatch'):
+                    verifier.main()
+                provenance['humanReview']['editionId'] = provenance['editionId']
+                (root / 'provenance.json').write_text(json.dumps(provenance))
                 # Same filename/title, changed whitespace: still a different edition.
                 with (root / 'score.musicxml').open('ab') as file:
                     file.write(b'\n')

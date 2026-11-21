@@ -246,14 +246,18 @@ def main():
             target.write_bytes(content)
         require(target.read_bytes() == content, f'Immutable candidate mismatch: {path}')
     provenance_path = ROOT / 'provenance.json'
+    review_outcome = 'pending'
     if provenance_path.exists() or not arguments.prepare:
         provenance = json.loads(provenance_path.read_text())
         require(provenance['editionId'] == edition, 'Provenance edition mismatch')
+        if 'humanReview' in provenance:
+            require(provenance['humanReview']['editionId'] == edition, 'Human review edition mismatch')
+            review_outcome = provenance['humanReview']['outcome']
         for path, expected_sha in provenance['sha256'].items():
             require(digest((ROOT / path).read_bytes()) == expected_sha, f'Provenance digest mismatch: {path}')
     print(json.dumps({'editionId': edition, 'inventorySha256': digest(files['review-inventory.json']),
         'normalizedInputSha256': digest(normalized_bytes), 'measureCount': 34, 'pitchedNotes': 598,
-        'midiPitchOnsetDurationMatches': sum(actual.values()), 'humanReview': 'pending'}, indent=2))
+        'midiPitchOnsetDurationMatches': sum(actual.values()), 'humanReview': review_outcome}, indent=2))
 
 
 if __name__ == '__main__':

@@ -1,8 +1,9 @@
 # BWV 779 fixed-edition candidate
 
-**Human musical review is pending. Do not enable this candidate in the Piece
-Catalog, register it for private fingerings, close #56 / `sludge-s16.9`, or
-claim a verified production edition yet.**
+**The owner accepted this score candidate on 21 November 2026; incorporation
+is pending. Keep #56 / `sludge-s16.9` open until the owner merges PR69.
+Production indexing, catalog activation and private registration remain
+separate dependent work.**
 
 This is one complete 34-measure score, prepared from the full Mutopia edition
 of Bach's Invention No. 8. It is not assembled from experimental MusicXML
@@ -88,12 +89,20 @@ Compare the **entire** candidate with the
 and retained original source. The static candidate pages are
 [page 1](review/page-1.svg) and [page 2](review/page-2.svg).
 
-Record reviewer/date, the exact candidate digest, observations and any
-corrections in this section or the linked PR. Check all 34 bars for pitches,
-rhythms, voice/staff allocation, key/time/clef context, accidental spelling,
-beam groups, ties/grace/tuplets, original fingerings, measure ordering and
-the final chord/rests/barline. **Reviewer/date: pending. Corrections: not yet
-assessed.** MIDI equality does not prove those engraving/annotation details.
+Review checklist: all 34 bars, pitches, rhythms, voice/staff allocation,
+key/time/clef context, accidental spelling, beam groups, ties/grace/tuplets,
+original fingerings, measure ordering and the final chord/rests/barline.
+MIDI equality does not prove those engraving/annotation details.
+
+**Reviewer: repository owner. Date: 21 November 2026. Outcome: accepted.**
+The owner stated in the migration chat: “the score in PR#69 of Apartmender
+looks ok to me”. No corrections were requested. This records the owner's
+acceptance of the exact score digest listed above, prepared in commit
+`5891a2d81ba858157a8e168df99f871e1812e285`; it does not invent an itemized
+review procedure or physical-device evidence beyond that statement.
+The structured acceptance record is in `provenance.json` under `humanReview`.
+The review inventory's pending status and XML encoding note describe the
+preparation-time snapshot; they are not the current acceptance record.
 
 Corrections before acceptance require a deliberately revised candidate,
 inventory, digest, previews and renewed review. Once accepted/registered,
