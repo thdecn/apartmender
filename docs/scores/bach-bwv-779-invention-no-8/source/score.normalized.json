@@ -1,0 +1,5686 @@
+{
+  "format": "artmender-lilypond-measures-v1",
+  "measure_count": 34,
+  "upper_staff": {
+    "variable": "voiceone",
+    "measures": [
+      {
+        "number": 1,
+        "lilypond": "\\key f \\major\n  \\time 3/4\n\n  r8  f'[ a' f' c'' f'] |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "r8",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "8",
+            "source_start": 29,
+            "source_end": 31
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 35
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 42
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 46
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 49
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "lilypond": "f''[ e''16 d'']  c''[ d'' c'' bes']  a'[ bes' a' g'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "e''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 5,
+            "source_end": 10
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 20
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 25
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 29
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 34
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 41,
+            "source_end": 45
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 48
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 49,
+            "source_end": 51
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "lilypond": "f'8[ a' c'' a' f'' c''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 11
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 14
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "lilypond": "a''16[ c''' bes'' c''']  a''16[ c''' bes'' c''']  a''16[ c''' bes'' c'''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "a''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 11
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 17
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 22
+          },
+          {
+            "token": "a''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 25,
+            "source_end": 30
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 36
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 42
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 47
+          },
+          {
+            "token": "a''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 50,
+            "source_end": 55
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 57,
+            "source_end": 61
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 62,
+            "source_end": 67
+          },
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 68,
+            "source_end": 72
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "lilypond": "f''[ a'' g'' a'']  f''[ a'' g'' a'']  f''[ a'' g'' a''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 27
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 31
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 35
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 41
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 46
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 50
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 51,
+            "source_end": 54
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "lilypond": "d''[ f'' e'' f'']  d''[ f'' e'' f'']  d''[ f'' e'' f''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 27
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 31
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 35
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 41
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 46
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 50
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 51,
+            "source_end": 54
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "lilypond": "b'8[ g' d'' b' f'' d''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "b'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 11
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 14
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "lilypond": "g''16[ a'' g'' f'']  e''[ f'' e'' d'']  c''[ d'' c'' bes'!] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 29
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 33
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 37
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 43
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 45,
+            "source_end": 48
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 49,
+            "source_end": 52
+          },
+          {
+            "token": "bes'!",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 53,
+            "source_end": 58
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "lilypond": "a'8[ d''16 c'']  b'[ c'' b' a']  g'[ a' g' f'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "a'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "d''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 5,
+            "source_end": 10
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 19
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 27
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 30
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 35
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 42
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 45
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "lilypond": "e'[ f' e' d']  c'8[ c''16 b' c''8 e'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 6
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "c'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "c''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 20,
+            "source_end": 25
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 28
+          },
+          {
+            "token": "c''8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 29,
+            "source_end": 33
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "lilypond": "f'[ c'' e' c'' d' b'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 7
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 10
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 20
+          }
+        ]
+      },
+      {
+        "number": 12,
+        "lilypond": "c''4 r r |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "lilypond": "r8  c''[ e'' c'' g'' c''] |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "r8",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 7
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 20
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24
+          }
+        ]
+      },
+      {
+        "number": 14,
+        "lilypond": "c'''[ b''16 a'']  g''[ a'' g'' f'']  e''[ f'' e'' d''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "b''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 6,
+            "source_end": 11
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 15
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 21
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 30
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 34
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 40
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 42,
+            "source_end": 45
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 49
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 53
+          }
+        ]
+      },
+      {
+        "number": 15,
+        "lilypond": "c''[ bes'! c'' a'']  c''[ a'' bes' a'']  c''[ a'' a' a''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "bes'!",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 10
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 29
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 34
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 35,
+            "source_end": 38
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 41,
+            "source_end": 44
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 49
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 52
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 53,
+            "source_end": 56
+          }
+        ]
+      },
+      {
+        "number": 16,
+        "lilypond": "bes'8[ g' bes' g' d'' g'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 14
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 21
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          }
+        ]
+      },
+      {
+        "number": 17,
+        "lilypond": "g''[ f''16 es'']  d''[ es'' d'' c'']  bes'[ c'' bes' a'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "f''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 5,
+            "source_end": 10
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 15
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 21
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 27
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 31
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 35
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 42
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 44,
+            "source_end": 47
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 48,
+            "source_end": 52
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 53,
+            "source_end": 55
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "lilypond": "g'8[ bes' d'' bes' g'' d''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 9
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 13
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 18
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          }
+        ]
+      },
+      {
+        "number": 19,
+        "lilypond": "bes''[ cis'' bes'' cis'' bes'' cis''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "cis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 12
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 18
+          },
+          {
+            "token": "cis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 24
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 30
+          },
+          {
+            "token": "cis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 36
+          }
+        ]
+      },
+      {
+        "number": 20,
+        "lilypond": "d''[ a' f'' d'' a'' f''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 11
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 15
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 19
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 23
+          }
+        ]
+      },
+      {
+        "number": 21,
+        "lilypond": "g''16[ f'' g'' bes'']  c''[ bes'' d'' bes'']  e''[ bes'' c'' bes''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 20
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 33
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 37
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 43
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 49
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 51,
+            "source_end": 56
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 57,
+            "source_end": 60
+          },
+          {
+            "token": "bes''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 61,
+            "source_end": 66
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "lilypond": "f''[ e'' f'' a'']  b'[ a'' cis'' a'']  d''[ a'' b' a''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          },
+          {
+            "token": "cis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 32
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 36
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 42
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 44,
+            "source_end": 47
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 48,
+            "source_end": 50
+          },
+          {
+            "token": "a''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 51,
+            "source_end": 54
+          }
+        ]
+      },
+      {
+        "number": 23,
+        "lilypond": "e''[ d'' e'' g'']  a'[ g'' b' g'']  cis''[ g'' a' g''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          },
+          {
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 29
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 33
+          },
+          {
+            "token": "cis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 41
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 46
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 49
+          },
+          {
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 53
+          }
+        ]
+      },
+      {
+        "number": 24,
+        "lilypond": "f''8[ d'' bes'! d'' g' f''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f''8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 9
+          },
+          {
+            "token": "bes'!",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 15
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 19
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 22
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 26
+          }
+        ]
+      },
+      {
+        "number": 25,
+        "lilypond": "e''[ c'' a' c'' f' es''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 11
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 15
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 18
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 23
+          }
+        ]
+      },
+      {
+        "number": 26,
+        "lilypond": "d''16[ f'' es'' f'']  d''[ f'' es'' f'']  d''[ f'' es'' f''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 15
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 19
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 25
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 30
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 35
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 39
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 42,
+            "source_end": 45
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 50
+          },
+          {
+            "token": "es''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 51,
+            "source_end": 55
+          },
+          {
+            "token": "f''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 56,
+            "source_end": 59
+          }
+        ]
+      },
+      {
+        "number": 27,
+        "lilypond": "bes'[ d'' c'' d'']  bes'[ d'' c'' d'']  bes'[ d'' c'' d''] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 9
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 13
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 17
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 24
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 29
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 33
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 37
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 44
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 49
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 53
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 54,
+            "source_end": 57
+          }
+        ]
+      },
+      {
+        "number": 28,
+        "lilypond": "g'[ bes' a' bes']  g'[ bes' a' bes']  g'[ bes' a' bes'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 8
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 11
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 16
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 27
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 30
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 35
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 40
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 42,
+            "source_end": 46
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 49
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 54
+          }
+        ]
+      },
+      {
+        "number": 29,
+        "lilypond": "e'8[ c' g' e' bes' g'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "e'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 10
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 18
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          }
+        ]
+      },
+      {
+        "number": 30,
+        "lilypond": "c''16[ d'' c'' bes']  a'[ bes' a' g']  f'[ g' f' es'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 14
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 19
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 30
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 33
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 41
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 45
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 46,
+            "source_end": 48
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 49,
+            "source_end": 52
+          }
+        ]
+      },
+      {
+        "number": 31,
+        "lilypond": "d'8[ g'16 f']  e'[ f' e' d']  c'[ d' c' bes] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "g'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 5,
+            "source_end": 9
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 27
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 32
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 43
+          }
+        ]
+      },
+      {
+        "number": 32,
+        "lilypond": "a[ bes a g]  f8[ f'16 e' f'8 a] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 6
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "f8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 13,
+            "source_end": 15
+          },
+          {
+            "token": "f'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 17,
+            "source_end": 21
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "f'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 25,
+            "source_end": 28
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 30
+          }
+        ]
+      },
+      {
+        "number": 33,
+        "lilypond": "bes[ f']  a[ f']  g[ e'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 15
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          }
+        ]
+      },
+      {
+        "number": 34,
+        "lilypond": "<a c' f'>4 r r \\bar \"|.\"",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "<a c' f'>4",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 0,
+            "source_end": 10
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 14
+          }
+        ]
+      }
+    ]
+  },
+  "lower_staff": {
+    "variable": "voicetwo",
+    "measures": [
+      {
+        "number": 1,
+        "lilypond": "\\key f \\major\n  \\time 3/4\n  \\clef \"bass\"\n\n  r2. |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "r2.",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "2.",
+            "source_start": 44,
+            "source_end": 47
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "lilypond": "r8  f[ a f c' f]",
+        "inherited_duration": "2.",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "r8",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "lilypond": "f'8[ e'16 d']  c'[ d' c' bes]  a[ bes a g] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "e'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 5,
+            "source_end": 9
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 28
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 32
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 37
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 39
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 41
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "lilypond": "f8[ a c' a f' c'] \\clef \"treble\"|",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 8
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 16
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "lilypond": "a'16[ c'' bes' c'']  a'[ c'' bes' c''] a'[ c'' bes' c''] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "a'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 9
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 14
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 18
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 28
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 33
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 37
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 41
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 46
+          },
+          {
+            "token": "bes'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 47,
+            "source_end": 51
+          },
+          {
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 52,
+            "source_end": 55
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "lilypond": "f'[ a' g' a']  f'[ a' g' a']  f'[ a' g' a'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 6
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 27
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 32
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 42
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "lilypond": "d'[ f' e' f']  d'[ f' e' f']  d'[ f' e' f'] \\clef \"bass\"|",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 6
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 21
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 27
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 32
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 42
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "lilypond": "b8[ g c' g e' c'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "b8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 8
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 16
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "lilypond": "f'16[ g' f' e']  d'[ e' d' c']  b[ c' b a] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 8
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 11
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 14
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 19
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 26
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 29
+          },
+          {
+            "token": "b",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 33
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 35,
+            "source_end": 37
+          },
+          {
+            "token": "b",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 39
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 41
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "lilypond": "g8[ c'16 b]  a[ b a g]  f[ g f e] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "c'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 4,
+            "source_end": 8
+          },
+          {
+            "token": "b",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 14
+          },
+          {
+            "token": "b",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 17
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 21
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 25
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 28
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 30
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 32
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "lilypond": "d[ e d c]  g[ f e f]  g8[ g,] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 17
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19
+          },
+          {
+            "token": "g8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 28
+          }
+        ]
+      },
+      {
+        "number": 12,
+        "lilypond": "r  c[ e c g c] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "lilypond": "c'[ b16 a]  g[ a g f]  e[ f e d] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "b16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 4,
+            "source_end": 7
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 16
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 18
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 24
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 27
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 29
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 31
+          }
+        ]
+      },
+      {
+        "number": 14,
+        "lilypond": "c8[ e g e c' g] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 14
+          }
+        ]
+      },
+      {
+        "number": 15,
+        "lilypond": "es'[ fis es' fis es' fis] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "fis",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "fis",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 20
+          },
+          {
+            "token": "fis",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24
+          }
+        ]
+      },
+      {
+        "number": 16,
+        "lilypond": "g[ f!16 es]  d[ es d c]  bes,[ c bes, a,] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "f!16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 3,
+            "source_end": 7
+          },
+          {
+            "token": "es",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 10
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 14
+          },
+          {
+            "token": "es",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 18
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 22
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 29
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 32
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 37
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 40
+          }
+        ]
+      },
+      {
+        "number": 17,
+        "lilypond": "g,8[ g bes g d' g] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g,8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 15
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 17
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "lilypond": "g'[ f'16 es']  d'[ es' d' c']  bes[ c' bes a] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "f'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 4,
+            "source_end": 8
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 22
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 25
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 28
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 34
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 38
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 42
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 44
+          }
+        ]
+      },
+      {
+        "number": 19,
+        "lilypond": "g[ f g e'!]  g[ e' f e']  g[ e' e e'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "e'!",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 10
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 14
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 18
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 27
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 31
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 33
+          },
+          {
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          }
+        ]
+      },
+      {
+        "number": 20,
+        "lilypond": "f[ e f d']  f[ d' e d']  f[ d' d d'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 22
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 26
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 30
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 32
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 35
+          }
+        ]
+      },
+      {
+        "number": 21,
+        "lilypond": "bes8[ g e g c e] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "lilypond": "a[ f d f b, d] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 6
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "b,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 11
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          }
+        ]
+      },
+      {
+        "number": 23,
+        "lilypond": "g[ e cis e a, cis] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 4
+          },
+          {
+            "token": "cis",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 8
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "cis",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 17
+          }
+        ]
+      },
+      {
+        "number": 24,
+        "lilypond": "d,16[ d c! d]  g,[ d a, d]  bes,[ d g, d] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d,16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          },
+          {
+            "token": "c!",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 10
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 25
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 32
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 35
+          },
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 38
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 40
+          }
+        ]
+      },
+      {
+        "number": 25,
+        "lilypond": "c,[ c bes, c]  f,[ c g, c]  a,[ c f, c] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 10
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "f,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 17
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 25
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 30
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 33
+          },
+          {
+            "token": "f,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 38
+          }
+        ]
+      },
+      {
+        "number": 26,
+        "lilypond": "bes,8[ d f d bes f] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes,8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 10
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 12
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 16
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 18
+          }
+        ]
+      },
+      {
+        "number": 27,
+        "lilypond": "d'16[ f' es' f']  d'[ f' es' f']  d'[ f' es' f'] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "d'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 4
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 8
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 15
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 20
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 24
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 28
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 31
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 36
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 40
+          },
+          {
+            "token": "es'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 41,
+            "source_end": 44
+          },
+          {
+            "token": "f'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 45,
+            "source_end": 47
+          }
+        ]
+      },
+      {
+        "number": 28,
+        "lilypond": "bes[ d' c' d']  bes[ d' c' d']  bes[ d' c' d'] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 7
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 10
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 19
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 23
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 26
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 27,
+            "source_end": 29
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 35
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 42
+          },
+          {
+            "token": "d'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 45
+          }
+        ]
+      },
+      {
+        "number": 29,
+        "lilypond": "g[ bes a bes]  g[ bes a bes]  g[ bes a bes] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 1
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 3,
+            "source_end": 6
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 8
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 12
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 16
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 21
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 23
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 27
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 30,
+            "source_end": 31
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 33,
+            "source_end": 36
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 38
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 39,
+            "source_end": 42
+          }
+        ]
+      },
+      {
+        "number": 30,
+        "lilypond": "e8[ c f c a f] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "e8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          }
+        ]
+      },
+      {
+        "number": 31,
+        "lilypond": "bes16[ c' bes a]  g[ a g f]  e[ f e d] |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "bes16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 0,
+            "source_end": 5
+          },
+          {
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "bes",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 13
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19
+          },
+          {
+            "token": "a",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 22
+          },
+          {
+            "token": "g",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 24
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 26
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 30
+          },
+          {
+            "token": "f",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 33
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 35
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 37
+          }
+        ]
+      },
+      {
+        "number": 32,
+        "lilypond": "c8[ f16 e]  d[ e d c]  bes,[ c bes, a,] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "c8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "f16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 4,
+            "source_end": 7
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13
+          },
+          {
+            "token": "e",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 16
+          },
+          {
+            "token": "d",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 18
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 20
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 27
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 30
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 31,
+            "source_end": 35
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 36,
+            "source_end": 38
+          }
+        ]
+      },
+      {
+        "number": 33,
+        "lilypond": "g,[ a, g, f,]  c[ bes, a, bes,]  c8[ c,] |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 2
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 6
+          },
+          {
+            "token": "g,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 7,
+            "source_end": 9
+          },
+          {
+            "token": "f,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12
+          },
+          {
+            "token": "c",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 15,
+            "source_end": 16
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 22
+          },
+          {
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 23,
+            "source_end": 25
+          },
+          {
+            "token": "bes,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 30
+          },
+          {
+            "token": "c8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 33,
+            "source_end": 35
+          },
+          {
+            "token": "c,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 39
+          }
+        ]
+      },
+      {
+        "number": 34,
+        "lilypond": "f,4 r r",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key f \\major",
+          "\\time 3/4"
+        ],
+        "events": [
+          {
+            "token": "f,4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 0,
+            "source_end": 3
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 4,
+            "source_end": 5
+          },
+          {
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7
+          }
+        ]
+      }
+    ]
+  }
+}
