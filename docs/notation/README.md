@@ -6,6 +6,9 @@ Sludge `sludge-s16.10`, following the
 It performs no network, Auth, Supabase, private-storage or renderer operation.
 It is not connected to existing Practice routes or the Piece Catalog yet.
 
+The [complete-measure card projection](measure-card.md) consumes this validated
+index without changing the source or its identities.
+
 ## Interface and identity
 
 ```js
