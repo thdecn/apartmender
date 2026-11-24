@@ -9,6 +9,9 @@ It is not connected to existing Practice routes or the Piece Catalog yet.
 The [complete-measure card projection](measure-card.md) consumes this validated
 index without changing the source or its identities.
 
+The [standalone Verovio renderer](score-renderer.md) engraves these cards with
+individual note selection and in-memory overrides; it is not wired to routes yet.
+
 ## Interface and identity
 
 ```js

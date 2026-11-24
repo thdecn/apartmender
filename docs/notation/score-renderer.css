@@ -1,0 +1,12 @@
+.score-renderer { position: relative; min-width: 0; max-width: 100%; }
+.score-renderer > [role] { margin: 0; }
+.score-renderer > [role]:empty { display: none; }
+.score-renderer .score-viewport > svg,
+.score-renderer .score-staging > svg { display: block; width: 100%; height: auto; }
+.score-renderer .score-staging { position: absolute; visibility: hidden; pointer-events: none; left: 0; top: 0; width: 100%; }
+.score-renderer [data-note-targets] > rect {
+  fill: transparent !important; stroke: transparent !important; stroke-width: 1.5; vector-effect: non-scaling-stroke;
+  pointer-events: all; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent;
+}
+.score-renderer [data-note-targets] > rect[aria-pressed="true"] { stroke: #a54208 !important; }
+.score-renderer [data-note-targets] > rect:focus-visible { stroke: #005a9c !important; stroke-dasharray: 3 2; }

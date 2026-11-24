@@ -1,0 +1,151 @@
+{
+  "name": "Verovio",
+  "npmVersion": "6.3.0",
+  "toolkitVersion": "6.3.0-425dd7b",
+  "license": "LGPL-3.0-or-later",
+  "upstream": "https://registry.npmjs.org/verovio/-/verovio-6.3.0.tgz",
+  "source": "https://codeload.github.com/rism-digital/verovio/tar.gz/refs/tags/version-6.3.0",
+  "selectedFont": "Leipzig",
+  "embeddedWasm": {
+    "container": "verovio-module.mjs",
+    "version": "6.3.0-425dd7b",
+    "separateRequest": false,
+    "bytes": 6813308,
+    "sha256": "f19c664d477fb5a1fc9d2afe644d471e3d8dc4881a5432c4ccdc50ac47319087"
+  },
+  "embeddedFonts": [
+    {
+      "name": "Leipzig",
+      "version": "5.2.102",
+      "license": "OFL-1.1",
+      "sourcePath": "verovio-version-6.3.0/fonts/Leipzig/Leipzig.svg",
+      "sourceSha256": "da1aeb8831ac3646314816ebad1447ec28e55a568a927c95234e8ada61ae4d81"
+    },
+    {
+      "name": "Bravura",
+      "version": "exact font revision bundled in Verovio 6.3.0 (no independent version supplied)",
+      "license": "OFL-1.1",
+      "sourcePath": "verovio-version-6.3.0/fonts/Bravura/Bravura.svg",
+      "sourceSha256": "63e96aac24ad10ee8cc4dbbcf55ab8ce423360bc42c4e1ff1a3bd573421e818b"
+    },
+    {
+      "name": "Gootville",
+      "version": "exact font revision bundled in Verovio 6.3.0 (no independent version supplied)",
+      "license": "OFL-1.1",
+      "sourcePath": "verovio-version-6.3.0/fonts/Gootville/Gootville.svg",
+      "sourceSha256": "91104d9ccbdf982e21a035a8a28511abda18ee7bb3226bc9ebce026e33292d71"
+    },
+    {
+      "name": "Petaluma",
+      "version": "exact font revision bundled in Verovio 6.3.0 (no independent version supplied)",
+      "license": "OFL-1.1",
+      "sourcePath": "verovio-version-6.3.0/fonts/Petaluma/Petaluma.svg",
+      "sourceSha256": "0173a4b53c8535f023e9d7dfff9ec9864bff635d72c4ae01d4fd1fece1d5d1f5"
+    },
+    {
+      "name": "Leland",
+      "version": "exact font revision bundled in Verovio 6.3.0 (no independent version supplied)",
+      "license": "OFL-1.1",
+      "sourcePath": "verovio-version-6.3.0/fonts/Leland/Leland.svg",
+      "sourceSha256": "214a67baf94496682b7940ef602cd2ca9dcf9ef9b38d46c11cee1a2dea96f14c"
+    },
+    {
+      "name": "Liberation",
+      "version": "Version 1.04",
+      "license": "GPL-2.0-only WITH Liberation-font-exception",
+      "sourcePath": "verovio-version-6.3.0/data/Liberation.css",
+      "sourceSha256": "bbf84fa312d14d7c1520532c8655137faf9f2dbd323ebb10318f6deda9a81698",
+      "family": "Liberation Serif",
+      "licenseFiles": [
+        "Liberation-LICENSE.txt",
+        "GPL-2.0.txt"
+      ],
+      "editableFont": "LiberationSerif-1.04.ttf"
+    }
+  ],
+  "files": [
+    {
+      "path": "COPYING",
+      "bytes": 35148,
+      "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
+      "gzipBytes": 12124,
+      "runtime": false
+    },
+    {
+      "path": "COPYING.LESSER",
+      "bytes": 7651,
+      "sha256": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b",
+      "gzipBytes": 2634,
+      "runtime": false
+    },
+    {
+      "path": "GPL-2.0.txt",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "gzipBytes": 6802,
+      "runtime": false
+    },
+    {
+      "path": "Liberation-LICENSE.txt",
+      "bytes": 4012,
+      "sha256": "c40dd6adebad817defd68c7edad151d9c13d2ac3b4e1790ce2b727b024438b6d",
+      "gzipBytes": 1704,
+      "runtime": false
+    },
+    {
+      "path": "Liberation-NOTICE.txt",
+      "bytes": 270,
+      "sha256": "b7f93b403c46c96f8efef3816fd724d2c9b29d7491460a18d02b23156a8fb965",
+      "gzipBytes": 200,
+      "runtime": false
+    },
+    {
+      "path": "LiberationSerif-1.04.ttf",
+      "bytes": 145320,
+      "sha256": "dc9356d2bb8406add421d9f98e3dbbf2b6e369f12e047e9fd89d87f66d59c705",
+      "gzipBytes": 92685,
+      "runtime": false
+    },
+    {
+      "path": "LiberationSerif-1.04.woff2",
+      "bytes": 76444,
+      "sha256": "4053734bfb32c1c92366b12fdc119b243533502f973d37a8848bf8378af66c56",
+      "gzipBytes": 76487,
+      "runtime": false
+    },
+    {
+      "path": "NOTICES.md",
+      "bytes": 37058,
+      "sha256": "30ebf0236496a1269e0056c26df3d23087f47e75ed7170ae49e5335c4ebc8612",
+      "gzipBytes": 10019,
+      "runtime": false
+    },
+    {
+      "path": "verovio-6.3.0-source.tar.gz",
+      "bytes": 6327135,
+      "sha256": "095a561e9bd26c97787ad49e01009576d1ca234feae3995948c5aede97a40598",
+      "gzipBytes": 6316036,
+      "runtime": false
+    },
+    {
+      "path": "verovio-module.mjs",
+      "bytes": 7296807,
+      "sha256": "cd7c77d0738e9359b9f77956ae398556bf9949f35e4c5b3471ab3198fd660431",
+      "gzipBytes": 2335636,
+      "runtime": true
+    },
+    {
+      "path": "verovio.mjs",
+      "bytes": 14478,
+      "sha256": "3db61c94295aeb4983baff06b5e03b2fc0e397fa405fa2461f81427954ec874b",
+      "gzipBytes": 2646,
+      "runtime": true
+    }
+  ],
+  "runtimeDownload": {
+    "requests": 2,
+    "uncompressedBytes": 7311285,
+    "gzipBytes": 2338282,
+    "note": "Local gzip estimate; actual HTTP transfer depends on server compression. WASM/music glyphs/text fonts are embedded; no separate font/WASM fetch. Score/index and authored modules are additional."
+  }
+}
