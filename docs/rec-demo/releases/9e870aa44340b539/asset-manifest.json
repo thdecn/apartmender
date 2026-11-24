@@ -1,0 +1,300 @@
+{
+  "buildId": "9e870aa44340b539",
+  "versions": {
+    "basicPitch": "1.0.1",
+    "tensorflow": "3.21.0",
+    "verovio": "6.3.0-425dd7b"
+  },
+  "verovioProvenance": "thdecn/apartmender shared docs/vendor/verovio, verified against its pinned manifest",
+  "backend": "TensorFlow.js CPU in a disposable local module worker",
+  "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement.",
+  "assets": [
+    {
+      "path": "app.mjs",
+      "bytes": 10186,
+      "gzipBytes": 3539,
+      "sha256": "3b99c4f942fbb3592d3bbabc300b144e44857225e6ec59853cc90a0449a4eca5",
+      "runtime": true
+    },
+    {
+      "path": "audio.mjs",
+      "bytes": 7663,
+      "gzipBytes": 2412,
+      "sha256": "6631b6a1577af6575825622a80feaa29f0fb12c854d38c5410a589f9b9bdfaec",
+      "runtime": true
+    },
+    {
+      "path": "capture-worklet.js",
+      "bytes": 1974,
+      "gzipBytes": 722,
+      "sha256": "dbc75bcc734d2d05ff8953eade53d5b85f16bc7eb88863efcfc5d3c3795aa3b5",
+      "runtime": true
+    },
+    {
+      "path": "events.mjs",
+      "bytes": 1490,
+      "gzipBytes": 548,
+      "sha256": "c7dcdfae9dd51670a53ef8d3871dfbc0893c94c9c10e18ecb8f35f344c0b0b6d",
+      "runtime": true
+    },
+    {
+      "path": "index.html",
+      "bytes": 4162,
+      "gzipBytes": 1828,
+      "sha256": "49e3979d33d7a6cfd7311f6c6700786067f1f8f2947dcb4ce216ade982edc717",
+      "runtime": true
+    },
+    {
+      "path": "inference-worker.js",
+      "bytes": 1066628,
+      "gzipBytes": 270249,
+      "sha256": "5ba1032d5355248135c2d86b366c691d39b5b99165988760f9f18663a777bd74",
+      "runtime": true
+    },
+    {
+      "path": "inference-worker.js.LEGAL.txt",
+      "bytes": 74554,
+      "gzipBytes": 7388,
+      "sha256": "962317dde29e752033a1d98f1e58aea7d62009fba34358d6277a35bbf9b42e6e",
+      "runtime": false
+    },
+    {
+      "path": "model/group1-shard1of1.bin",
+      "bytes": 742392,
+      "gzipBytes": 427533,
+      "sha256": "b142a95737a52e1e412d5f92e73d8bb80dfe8d04941acc0702f11f4524fb377c",
+      "runtime": true
+    },
+    {
+      "path": "model/model.json",
+      "bytes": 174537,
+      "gzipBytes": 8685,
+      "sha256": "1ed1aaee3409ec1dc098c8b01f430c0911f6fe9412e7af8086750f9e8f302f68",
+      "runtime": true
+    },
+    {
+      "path": "notices/@spotify__basic-pitch/LICENSE",
+      "bytes": 11357,
+      "gzipBytes": 3966,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-backend-cpu/SOURCE-NOTICES.txt",
+      "bytes": 3554,
+      "gzipBytes": 479,
+      "sha256": "86bcec9986426db32d479c0b4d7bfc829f7bd2d79862f9e0fdb0dfb672ce9687",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-backend-webgl/SOURCE-NOTICES.txt",
+      "bytes": 5666,
+      "gzipBytes": 510,
+      "sha256": "ac4c0e0b875d7c38f5376752ddb815a95dd1d87ab22acd65dc75c867df80f897",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-converter/SOURCE-NOTICES.txt",
+      "bytes": 4265,
+      "gzipBytes": 480,
+      "sha256": "0895b3d41428b4cbd36e45d143c3244b233cdc59b4d8a9570f04a6e05614883b",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-core/SOURCE-NOTICES.txt",
+      "bytes": 7079,
+      "gzipBytes": 536,
+      "sha256": "691a10c1c17e5b766f617664eb8e7cdae7bd03402282e71486e5597327697aab",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-data/SOURCE-NOTICES.txt",
+      "bytes": 2156,
+      "gzipBytes": 458,
+      "sha256": "74f01674bb03dde1b89643221bacaa9c0dce562227f7f6721e9520b8de73ad85",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs-layers/SOURCE-NOTICES.txt",
+      "bytes": 2165,
+      "gzipBytes": 532,
+      "sha256": "3cda11b79de7a1ad5188525cb9ff5b49a9582ab6546302e712b6ce36b5e3e421",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tensorflow__tfjs/SOURCE-NOTICES.txt",
+      "bytes": 742,
+      "gzipBytes": 429,
+      "sha256": "a253a578b2c0e552b3c991b55c75fd087e5976b0c2693ffa11b54acd5bac9e6e",
+      "runtime": false
+    },
+    {
+      "path": "notices/@tonejs__midi/LICENSE.md",
+      "bytes": 1107,
+      "gzipBytes": 680,
+      "sha256": "6debbf1ddd278dcf5d8e7b6c42c7a827cb944943401fc37ee017e172bbccbaea",
+      "runtime": false
+    },
+    {
+      "path": "notices/array-flatten/LICENSE",
+      "bytes": 1103,
+      "gzipBytes": 669,
+      "sha256": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+      "runtime": false
+    },
+    {
+      "path": "notices/index.html",
+      "bytes": 2516,
+      "gzipBytes": 792,
+      "sha256": "b0801b0ee930c8b08a7f82b7345b84f0186607785f813f67d5c8d6c4c242a975",
+      "runtime": false
+    },
+    {
+      "path": "notices/licenses.json",
+      "bytes": 2068,
+      "gzipBytes": 374,
+      "sha256": "30bb976b46c3b214da9cc818089d20d8b504de5892d144586dd18d5048419015",
+      "runtime": false
+    },
+    {
+      "path": "notices/long/LICENSE",
+      "bytes": 11560,
+      "gzipBytes": 3981,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "runtime": false
+    },
+    {
+      "path": "notices/midi-file/LICENSE.md",
+      "bytes": 1112,
+      "gzipBytes": 684,
+      "sha256": "fd9d36e800b506237769b003ca988319db06f585a9ebe27eb739a34f1be30d5f",
+      "runtime": false
+    },
+    {
+      "path": "notices/seedrandom/SOURCE-NOTICES.txt",
+      "bytes": 1057,
+      "gzipBytes": 640,
+      "sha256": "35239de2e7f05b0ae7dd0f521f21cfb4045898973091b9331e1a044a3cf01e3b",
+      "runtime": false
+    },
+    {
+      "path": "runtime.mjs",
+      "bytes": 3723,
+      "gzipBytes": 1443,
+      "sha256": "8c45a7c57fbe5b9576b413cca4554b2cd432fff42a4c93e24dbb5faccf8aecc7",
+      "runtime": true
+    },
+    {
+      "path": "score-viewer.mjs",
+      "bytes": 7179,
+      "gzipBytes": 2377,
+      "sha256": "0c487de756b4f0b52b3577d280016c3d3a8fefc72344440ac0f14511748ad6ea",
+      "runtime": true
+    },
+    {
+      "path": "score.mjs",
+      "bytes": 11525,
+      "gzipBytes": 3790,
+      "sha256": "393c74016ae331eb66e328e426bc5ef69fcaf30614681b9bd9bb0ed537a5c155",
+      "runtime": true
+    },
+    {
+      "path": "style.css",
+      "bytes": 3590,
+      "gzipBytes": 1353,
+      "sha256": "11e7d28e32e2c6303c5fbde960c0e6719771c8f254d7a2d834ba105f8295a44b",
+      "runtime": true
+    },
+    {
+      "path": "timing.mjs",
+      "bytes": 2433,
+      "gzipBytes": 978,
+      "sha256": "2396848ec54a53e5ae7613360aacccd6bcc26be1408333293045853965219f46",
+      "runtime": true
+    },
+    {
+      "path": "transcription.mjs",
+      "bytes": 2924,
+      "gzipBytes": 1121,
+      "sha256": "44e41bf2077d5e573fb8870d248339edc4ec70e58910e1e220894401f238e621",
+      "runtime": true
+    },
+    {
+      "path": "../../../vendor/verovio/COPYING",
+      "bytes": 35148,
+      "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
+      "gzipBytes": 12124,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/COPYING.LESSER",
+      "bytes": 7651,
+      "sha256": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b",
+      "gzipBytes": 2634,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/GPL-2.0.txt",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "gzipBytes": 6802,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/Liberation-LICENSE.txt",
+      "bytes": 4012,
+      "sha256": "c40dd6adebad817defd68c7edad151d9c13d2ac3b4e1790ce2b727b024438b6d",
+      "gzipBytes": 1704,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/Liberation-NOTICE.txt",
+      "bytes": 270,
+      "sha256": "b7f93b403c46c96f8efef3816fd724d2c9b29d7491460a18d02b23156a8fb965",
+      "gzipBytes": 200,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/LiberationSerif-1.04.ttf",
+      "bytes": 145320,
+      "sha256": "dc9356d2bb8406add421d9f98e3dbbf2b6e369f12e047e9fd89d87f66d59c705",
+      "gzipBytes": 92685,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/LiberationSerif-1.04.woff2",
+      "bytes": 76444,
+      "sha256": "4053734bfb32c1c92366b12fdc119b243533502f973d37a8848bf8378af66c56",
+      "gzipBytes": 76487,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/NOTICES.md",
+      "bytes": 37058,
+      "sha256": "30ebf0236496a1269e0056c26df3d23087f47e75ed7170ae49e5335c4ebc8612",
+      "gzipBytes": 10019,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/verovio-6.3.0-source.tar.gz",
+      "bytes": 6327135,
+      "sha256": "095a561e9bd26c97787ad49e01009576d1ca234feae3995948c5aede97a40598",
+      "gzipBytes": 6316036,
+      "runtime": false
+    },
+    {
+      "path": "../../../vendor/verovio/verovio-module.mjs",
+      "bytes": 7296807,
+      "sha256": "cd7c77d0738e9359b9f77956ae398556bf9949f35e4c5b3471ab3198fd660431",
+      "gzipBytes": 2335636,
+      "runtime": true
+    },
+    {
+      "path": "../../../vendor/verovio/verovio.mjs",
+      "bytes": 14478,
+      "sha256": "3db61c94295aeb4983baff06b5e03b2fc0e397fa405fa2461f81427954ec874b",
+      "gzipBytes": 2646,
+      "runtime": true
+    }
+  ]
+}

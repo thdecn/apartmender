@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data: blob:; base-uri 'none'; form-action 'none'">
   <title>Piano recording demo</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
+  <link rel="stylesheet" href="./releases/c34cf73b6818d417/style.css">
+  <script type="module" src="./releases/c34cf73b6818d417/app.mjs"></script>
 </head>
 <body data-state="idle">
   <main>
     <p class="eyebrow">Piano recording demo</p>
     <h1>Play. Stop. See the notes.</h1>
     <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
-    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. Short takes are useful for trying the demo. Straight-rhythm MusicXML is available after Stop; triplets and on-screen score pages come in later steps.</p>
+    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. After Stop, view the piano score and turn or zoom its pages. This version uses straight rhythms; triplet interpretation comes next.</p>
     <section class="controls" aria-label="Recording controls">
       <div class="setup">
         <div><label for="meter">Time signature</label><select id="meter"><option value="2">2/4</option><option value="3">3/4</option><option value="4" selected>4/4</option></select></div>
@@ -29,6 +29,11 @@
       <progress id="progress" max="1" value="0" hidden aria-label="Local inference progress"></progress>
       <button id="cancel" class="secondary" disabled>Cancel check</button>
       <p id="error" role="alert" hidden></p>
+    </section>
+    <section id="score-output" hidden aria-label="Piano score">
+      <h2>Piano score</h2>
+      <p class="muted">Straight rhythms through sixteenths. Triplet interpretation is still pending. Zoom in and scroll the page for a closer view.</p>
+      <div id="score-viewer"></div>
     </section>
     <section id="results" hidden>
       <h2>Estimated note events</h2>
@@ -48,7 +53,7 @@
       <p class="muted">The report includes detected notes, timings and failures, but no recorded audio. Peak device memory remains unmeasured.</p>
     </details>
     <details><summary>Engine diagnostics</summary><pre id="diagnostics">No check run yet.</pre></details>
-    <footer>Basic Pitch 1.0.1 · TensorFlow.js 3.21.0 (local CPU worker) · Verovio 6.3.0<br><a href="./notices/index.html">Runtime licenses and source</a> · <a href="./asset-manifest.json">Pinned asset manifest</a></footer>
+    <footer>Basic Pitch 1.0.1 · TensorFlow.js 3.21.0 (local CPU worker) · Verovio 6.3.0<br><a href="./releases/c34cf73b6818d417/notices/index.html">Runtime licenses and source</a> · <a href="./releases/c34cf73b6818d417/asset-manifest.json">Pinned asset manifest</a></footer>
   </main>
 </body>
 </html>

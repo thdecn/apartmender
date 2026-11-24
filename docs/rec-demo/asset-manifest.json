@@ -7,7 +7,7 @@
   },
   "verovioProvenance": "thdecn/apartmender shared docs/vendor/verovio, verified against its pinned manifest",
   "backend": "TensorFlow.js CPU in a disposable local module worker",
-  "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement.",
+  "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement. Frozen unversioned compatibility graph from merged PR79; entry snapshot is legacy-index.html. Current builds use release.json and immutable releases.",
   "assets": [
     {
       "path": "app.mjs",
@@ -38,7 +38,7 @@
       "runtime": true
     },
     {
-      "path": "index.html",
+      "path": "legacy-index.html",
       "bytes": 3880,
       "gzipBytes": 1728,
       "sha256": "ef40d86bfb8324213b2adde3c09664bf85fd3df3f6cb87078858e80491f2aa8d",
@@ -289,5 +289,6 @@
       "gzipBytes": 2646,
       "runtime": true
     }
-  ]
+  ],
+  "legacyEntry": "legacy-index.html"
 }

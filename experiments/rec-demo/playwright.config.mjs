@@ -5,7 +5,8 @@ export default defineConfig({
   workers: 1, reporter: 'list',
   use: { baseURL: 'http://127.0.0.1:4178', viewport: { width: 390, height: 844 },
     trace: 'retain-on-failure' },
-  webServer: { command: 'npm run serve', url: 'http://127.0.0.1:4178/apartmender/rec-demo/', reuseExistingServer: false },
+  webServer: { command: 'npm run serve', url: 'http://127.0.0.1:4178/apartmender/rec-demo/', reuseExistingServer: false,
+    env: { PIANO_CACHE_CONTROL: 'public, max-age=600' } },
   projects: [{ name: 'chromium', use: { browserName: 'chromium' } },
     { name: 'webkit', use: { browserName: 'webkit' } }],
 });

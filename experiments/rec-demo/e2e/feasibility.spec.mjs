@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { moduleURL } from './release.mjs';
 
 // These checks use a generated Web Audio stream, not a real microphone or piano.
 // The browser still performs actual timestamped AudioWorklet capture/resampling,
@@ -44,6 +45,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
   await page.goto('/apartmender/rec-demo/');
   for (let run = 0; run < 2; run++) {
     await page.getByRole('button', { name: 'Prepare local engines' }).click();
+    await expect(page.locator('#score-output')).toBeHidden();
+    await expect(page.locator('#score-viewer img')).toHaveCount(0);
     await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
     await page.getByRole('button', { name: 'Start', exact: true }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'countin');
@@ -55,6 +58,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     await page.getByRole('button', { name: 'Stop and transcribe' }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
     await expect(page.locator('#notes tr').first()).toBeVisible();
+    await expect(page.locator('#score-output')).toBeVisible();
+    await expect(page.locator('#score-viewer img')).toBeVisible();
     expect(await page.evaluate(() => window.testAudioContexts.every(context => context.state === 'closed'))).toBe(true);
   }
   const scoreDownloadEvent = page.waitForEvent('download');
@@ -96,6 +101,9 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     expect(take.score.rhythm).toBe('straight');
     expect(take.score.noteCount).toBe(take.transcription.notes.length);
     expect(take.score.musicXML).toContain('<score-partwise');
+    expect(take.display.outcome).toBe('rendered');
+    expect(take.display.pageCount).toBeGreaterThan(0);
+    expect(take.stopToScoreMs).toBeGreaterThanOrEqual(take.stopToEventsMs);
     expect(take.transcription.notes.every(note => Number.isFinite(note.onsetSeconds)
       && note.onsetSeconds >= 0 && note.offsetSeconds > note.onsetSeconds
       && note.offsetSeconds <= take.transcription.durationSeconds)).toBe(true);
@@ -114,8 +122,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
 
 test('44.1 and 48 kHz conversion preserve performance silence and onset time', async ({ page }) => {
   await page.goto('/apartmender/rec-demo/');
-  const results = await page.evaluate(async () => {
-    const { resamplePerformance, MODEL_SAMPLE_RATE } = await import('./transcription.mjs');
+  const results = await page.evaluate(async transcriptionURL => {
+    const { resamplePerformance, MODEL_SAMPLE_RATE } = await import(transcriptionURL);
     const output = [];
     for (const rate of [44100, 48000]) {
       const samples = new Float32Array(rate);
@@ -126,7 +134,7 @@ test('44.1 and 48 kHz conversion preserve performance silence and onset time', a
         initialSilence: converted.slice(0, Math.round(MODEL_SAMPLE_RATE * 0.2)).every(sample => Math.abs(sample) < 0.0001) });
     }
     return output;
-  });
+  }, moduleURL('transcription.mjs'));
   for (const result of results) {
     expect(result.length).toBe(result.outputRate);
     expect(result.initialSilence).toBe(true);

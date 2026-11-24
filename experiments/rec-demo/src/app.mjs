@@ -3,8 +3,10 @@ import { InferenceWorker, initializeVerovio } from './runtime.mjs';
 import { TapTempo } from './timing.mjs';
 import { createTranscription } from './transcription.mjs';
 import { buildStraightScore } from './score.mjs';
+import { createScoreViewer } from './score-viewer.mjs';
 
 const $ = id => document.getElementById(id);
+const scoreViewer = createScoreViewer($('score-viewer'));
 const report = {
   schemaVersion: 2, startedAt: new Date().toISOString(),
   environment: { userAgent: navigator.userAgent, secureContext: window.isSecureContext,
@@ -14,12 +16,13 @@ const report = {
   takes: [],
 };
 let state = 'idle', generation = 0, worker, capture, take;
+const isActiveTake = phase => ['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(phase);
 const tapTempo = new TapTempo();
 let bpm = 120;
 let manifestPromise;
 function loadManifest() {
   if (!manifestPromise) {
-    manifestPromise = fetch('./asset-manifest.json').then(response => {
+    manifestPromise = fetch(new URL('./asset-manifest.json', import.meta.url)).then(response => {
       if (!response.ok) throw new Error(`Asset manifest failed (${response.status}).`);
       return response.json();
     }).catch(error => {
@@ -37,7 +40,7 @@ function showState(next, message) {
   $('prepare').disabled = !['idle', 'complete', 'error'].includes(next);
   $('start').disabled = next !== 'ready';
   $('stop').disabled = next !== 'recording';
-  $('cancel').disabled = !['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(next);
+  $('cancel').disabled = !isActiveTake(next);
   const frozen = ['permission', 'countin', 'recording', 'processing'].includes(next);
   $('meter').disabled = $('tap').disabled = frozen;
   $('download').disabled = !report.takes.length;
@@ -82,6 +85,7 @@ function fail(error) {
   worker = undefined;
   capture?.cancel().catch(() => {});
   capture = undefined;
+  scoreViewer.clear(); $('score-output').hidden = true;
   const message = error instanceof Error ? error.message : String(error);
   if (take) { take.status = 'error'; take.error = message; take.endedAt = new Date().toISOString(); }
   $('error').textContent = message;
@@ -94,6 +98,7 @@ $('prepare').addEventListener('click', async () => {
   const current = ++generation;
   take = { number: report.takes.length + 1, startedAt: new Date().toISOString(), status: 'preparing' };
   report.takes.push(take);
+  scoreViewer.clear(); $('score-output').hidden = true;
   $('results').hidden = true;
   $('error').hidden = true;
   $('progress').value = 0;
@@ -155,23 +160,38 @@ $('stop').addEventListener('click', async () => {
     take.transcription = createTranscription(result.notes, audio.metadata);
     take.score = buildStraightScore(take.transcription);
     take.stopToEventsMs = performance.now() - started;
+    take.status = 'rendering';
+    showState('processing', 'Engraving piano score on this device…');
+    $('score-output').hidden = false;
+    take.display = await scoreViewer.render({ musicXML: take.score.musicXML, noteCount: take.score.noteCount });
+    if (current !== generation) return;
+    take.stopToScoreMs = performance.now() - started;
     take.status = 'complete';
     take.endedAt = new Date().toISOString();
     if (performance.memory) take.chromiumJSHeapBytes = performance.memory.usedJSHeapSize;
     renderNotes(take.transcription.notes);
-    $('score-summary').textContent = `${take.score.measureCount} measures of straight-rhythm piano MusicXML prepared. Triplet interpretation and the on-screen score remain later steps.`;
-    showState('complete', 'Local transcription finished. Prepare again for a repeat take.');
+    $('score-summary').textContent = `${take.score.measureCount} measures of straight-rhythm piano MusicXML prepared. Triplet interpretation remains a later step.`;
+    showState('complete', take.display.outcome === 'error'
+      ? 'Local transcription finished, but the score could not be displayed. You can download the MusicXML or prepare again.'
+      : take.display.outcome === 'empty' ? 'No notes detected. Prepare a new take to try again.'
+        : 'Local transcription finished. View the score or prepare again for a repeat take.');
     diagnostics();
   } catch (error) { if (current === generation) fail(error); }
 });
 
 $('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.'));
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden && ['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(state)) {
+  if (document.hidden && isActiveTake(state)) {
     fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.');
   }
 });
-window.addEventListener('pagehide', () => { worker?.destroy(); capture?.cancel().catch(() => {}); });
+window.addEventListener('pagehide', () => {
+  if (isActiveTake(state)) fail('The page was left. Prepare a new take when you return.');
+  else {
+    scoreViewer.clear(); $('score-output').hidden = true;
+    if (state === 'complete') showState('complete', 'The score was cleared after leaving the page. Prepare a new take.');
+  }
+});
 
 function downloadFile(filename, content, type) {
   const url = URL.createObjectURL(new Blob([content], { type }));

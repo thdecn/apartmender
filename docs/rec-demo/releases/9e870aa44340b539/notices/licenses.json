@@ -1,0 +1,106 @@
+[
+  {
+    "name": "@spotify/basic-pitch",
+    "version": "1.0.1",
+    "license": "Apache-2.0",
+    "files": [
+      "@spotify__basic-pitch/LICENSE"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-cpu",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-cpu/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-webgl",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-webgl/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-converter",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-converter/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-core",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-core/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-data",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-data/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-layers",
+    "version": "3.21.0",
+    "license": "Apache-2.0 AND MIT",
+    "files": [
+      "@tensorflow__tfjs-layers/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tonejs/midi",
+    "version": "2.0.28",
+    "license": "MIT",
+    "files": [
+      "@tonejs__midi/LICENSE.md"
+    ]
+  },
+  {
+    "name": "array-flatten",
+    "version": "3.0.0",
+    "license": "MIT",
+    "files": [
+      "array-flatten/LICENSE"
+    ]
+  },
+  {
+    "name": "long",
+    "version": "4.0.0",
+    "license": "Apache-2.0",
+    "files": [
+      "long/LICENSE"
+    ]
+  },
+  {
+    "name": "midi-file",
+    "version": "1.2.4",
+    "license": "MIT",
+    "files": [
+      "midi-file/LICENSE.md"
+    ]
+  },
+  {
+    "name": "seedrandom",
+    "version": "3.0.5",
+    "license": "MIT",
+    "files": [
+      "seedrandom/SOURCE-NOTICES.txt"
+    ]
+  }
+]

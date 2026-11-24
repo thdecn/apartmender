@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import { straightExamples } from '../fixtures/straight-scores.mjs';
+import { moduleURL } from './release.mjs';
 
 test('generated straight piano scores retain every attack and engrave with pinned Verovio', async ({ page }, testInfo) => {
   await page.goto('/apartmender/rec-demo/');
-  const results = await page.evaluate(async examples => {
-    const { buildStraightScore } = await import('./score.mjs');
+  const results = await page.evaluate(async ({ examples, scoreURL }) => {
+    const { buildStraightScore } = await import(scoreURL);
     const { indexScore, scoreEditionId } = await import('../notation/score-index.js');
     const [{ default: createModule }, { VerovioToolkit }] = await Promise.all([
       import('../vendor/verovio/verovio-module.mjs'), import('../vendor/verovio/verovio.mjs'),
@@ -53,7 +54,7 @@ test('generated straight piano scores retain every attack and engrave with pinne
       } finally { toolkit.destroy(); }
     }
     return results;
-  }, straightExamples);
+  }, { examples: straightExamples, scoreURL: moduleURL('score.mjs') });
   for (const [i, result] of results.entries()) {
     expect(result.version).toMatch(/^6\.3\.0/);
     expect(result.attacks).toBe(straightExamples[i].take.notes.length);
