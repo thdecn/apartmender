@@ -1,0 +1,79 @@
+{
+  "buildId": "06f89f0458488f9f",
+  "bead": "sludge-0z8.2",
+  "physicalPhonePassForNewCapture": false,
+  "unitTests": {
+    "passed": 171,
+    "skipped": 1
+  },
+  "focusedBrowserChecksPassed": 14,
+  "clockProbe": "Real AudioWorklet capture with pre-origin tone removed, initial silence retained, tone at origin+0.25 seconds detected, and 750 ms UI block across origin. Exactly three scheduled clicks in 3/4 end before origin; sample length matches stop-origin frames after resampling. Passed Chromium and WebKit.",
+  "failureProbe": "Real AudioWorklet module404 displays an error and ends microphone tracks in both engines; page.route alone did not inject this fault consistently.",
+  "limits": [
+    "Fresh physical-iPhone check still required for the new worklet path.",
+    "Hardware/acoustic I/O latency and room click tails are uncalibrated.",
+    "Peak device memory and total cold navigation-to-ready time unmeasured."
+  ],
+  "runs": [
+    {
+      "browser": "chromium",
+      "take": 1,
+      "performanceSeconds": 2.453333333333333,
+      "notes": 21,
+      "stopToEventsMs": 1960.5,
+      "meter": {
+        "beats": 4,
+        "beatType": 4
+      },
+      "tempoBPM": 120,
+      "scoreOriginFrame": 95583,
+      "captureToOriginSeconds": 2.15,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "chromium",
+      "take": 2,
+      "performanceSeconds": 2.4475510204081634,
+      "notes": 21,
+      "stopToEventsMs": 1976.5,
+      "meter": {
+        "beats": 4,
+        "beatType": 4
+      },
+      "tempoBPM": 120,
+      "scoreOriginFrame": 95583,
+      "captureToOriginSeconds": 2.15,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 1,
+      "performanceSeconds": 2.4852607709750565,
+      "notes": 22,
+      "stopToEventsMs": 1589,
+      "meter": {
+        "beats": 4,
+        "beatType": 4
+      },
+      "tempoBPM": 120,
+      "scoreOriginFrame": 94943,
+      "captureToOriginSeconds": 2.152902494331066,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 2,
+      "performanceSeconds": 2.51140589569161,
+      "notes": 21,
+      "stopToEventsMs": 1427,
+      "meter": {
+        "beats": 4,
+        "beatType": 4
+      },
+      "tempoBPM": 120,
+      "scoreOriginFrame": 95071,
+      "captureToOriginSeconds": 2.1558049886621315,
+      "tensorsAfterCleanup": 0
+    }
+  ]
+}

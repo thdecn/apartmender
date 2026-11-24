@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-24",
+  "buildId": "1558feaa98006db3",
+  "captureWorkletSHA256": "dbc75bcc734d2d05ff8953eade53d5b85f16bc7eb88863efcfc5d3c3795aa3b5",
+  "evidenceKind": "Automated desktop synthetic Web Audio, not physical iPhone or acoustic piano evidence",
+  "validation": {
+    "nodePassed": 175,
+    "nodeSkipped": 1,
+    "browserPassed": 14,
+    "browserEngines": [
+      "chromium",
+      "webkit"
+    ],
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    },
+    "manifestAssetsVerified": 38
+  },
+  "regressions": [
+    "Gap inside a final packet remains detectable with delayed Stop",
+    "Skipped and overlapping render frames preserve timestamps for collector rejection",
+    "Startup gaps before score zero do not invalidate continuous performance audio",
+    "Initial absent input and continuous multi-packet capture preserve exact frames",
+    "Real source disconnect/reconnect yields a visible post-Stop error, hidden results and ended microphone tracks in both engines"
+  ],
+  "repeatCapture": {
+    "webkit": {
+      "reportSHA256": "25b4183e59105cf8dd5adb14771f4bfe919e332f441d7dda4686547bcfb84e61",
+      "startedAt": "2026-11-24T15:23:30.271Z",
+      "takes": [
+        {
+          "number": 1,
+          "status": "complete",
+          "performanceDurationSeconds": 2.4707709750566895,
+          "noteEvents": 22,
+          "stopToEventsMs": 1736,
+          "tensorMemoryAfterCleanup": {
+            "unreliable": true,
+            "reasons": [
+              "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+            ],
+            "numTensors": 0,
+            "numDataBuffers": 0,
+            "numBytes": 0
+          }
+        },
+        {
+          "number": 2,
+          "status": "complete",
+          "performanceDurationSeconds": 2.482358276643991,
+          "noteEvents": 21,
+          "stopToEventsMs": 1625,
+          "tensorMemoryAfterCleanup": {
+            "unreliable": true,
+            "reasons": [
+              "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+            ],
+            "numTensors": 0,
+            "numDataBuffers": 0,
+            "numBytes": 0
+          }
+        }
+      ]
+    },
+    "chromium": {
+      "reportSHA256": "515569aafd51f3db01c4584bd26d8f7e6e8d8229abc1933cef5d0bd42bc31d4a",
+      "startedAt": "2026-11-24T15:23:03.117Z",
+      "takes": [
+        {
+          "number": 1,
+          "status": "complete",
+          "performanceDurationSeconds": 2.621700680272109,
+          "noteEvents": 21,
+          "stopToEventsMs": 1997.1000001430511,
+          "tensorMemoryAfterCleanup": {
+            "unreliable": true,
+            "reasons": [
+              "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+            ],
+            "numTensors": 0,
+            "numDataBuffers": 0,
+            "numBytes": 0
+          }
+        },
+        {
+          "number": 2,
+          "status": "complete",
+          "performanceDurationSeconds": 2.453333333333333,
+          "noteEvents": 21,
+          "stopToEventsMs": 2112.2999999523163,
+          "tensorMemoryAfterCleanup": {
+            "unreliable": true,
+            "reasons": [
+              "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+            ],
+            "numTensors": 0,
+            "numDataBuffers": 0,
+            "numBytes": 0
+          }
+        }
+      ]
+    }
+  },
+  "limits": [
+    "No fresh physical-iPhone pass",
+    "Hardware/acoustic I/O latency and peak device memory remain unmeasured"
+  ],
+  "priorEvidence": "count-in-* files retain historical initial implementation build 06f89f0458488f9f; this summary records the capture-gap correction build"
+}

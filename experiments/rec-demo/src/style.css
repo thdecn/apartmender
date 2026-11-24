@@ -10,7 +10,11 @@ p { line-height: 1.55; }
 .controls, details, #results { padding: 1.2rem; background: white; border: 1px solid #d5dfe9; border-radius: .8rem; margin-top: 1.25rem; }
 button { font: inherit; font-weight: 600; color: white; background: #174f83; padding: .85rem 1rem; border: 0; border-radius: .45rem; min-height: 48px; cursor: pointer; }
 button:disabled { background: #e4eaf0; color: #65717e; cursor: default; }
-button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid #d78b15; outline-offset: 3px; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid #d78b15; outline-offset: 3px; }
+.setup { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+.setup label { margin-top: 0; }
+.setup p { margin: .5rem 0 0; }
+select { appearance: none; background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23174f83' stroke-width='2'/%3E%3C/svg%3E") no-repeat right .8rem center; padding: .7rem 2.5rem .7rem .8rem; font: inherit; border: 1px solid #9daebb; border-radius: .3rem; min-height: 48px; }
 .record-controls { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .7rem; }
 .secondary { color: #174f83; background: #edf3f9; }
 body[data-state="recording"] #status { color: #a22333; font-weight: 650; }

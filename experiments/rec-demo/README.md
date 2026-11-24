@@ -1,28 +1,70 @@
 # Recording demo frontend
 
-This is the frontend for Sludge Bead `sludge-0z8.1`, under epic `sludge-0z8`.
+This is the frontend for Sludge Bead `sludge-0z8.2`, following the accepted
+`.1` feasibility harness under epic `sludge-0z8`.
 It is stacked on Apartmender's `codex/rec-demo` branch. Sludge remains the
 backend repository and owns the approved scope and Beads tracking. The
 recording demo's capture/transcription runs entirely in the browser and
 requires no backend calls, account or persistence.
 
-The intended public URL is **`https://thdecn.github.io/apartmender/rec-demo/`**.
-It is a target, not a verified live deployment. The page is separate from
+The public URL is **`https://thdecn.github.io/apartmender/rec-demo/`**. PR75
+published the first harness there; changes on this branch are available only
+after their own review/merge/Pages publication. The page is separate from
 Apartmender's root, login and Practice flows.
 
 ## Current slice
 
 Prepare initializes Basic Pitch 1.0.1 / TensorFlow.js 3.21.0 in an explicit
 local CPU module worker and loads the existing shared Verovio
-6.3.0-425dd7b assets. Start requests microphone permission and records until
-Stop; decoding/resampling to mono 22,050 Hz and polyphonic inference happen
-locally afterward. Results show pitch, onset/offset seconds and estimated
-strength. There is no audio upload or server fallback.
+6.3.0-425dd7b assets. Choose 2/4, 3/4 or 4/4 (default), then tap quarter-note
+beats. The initial tempo is an implementation default of 120 BPM; at least two
+taps set a tempo from the median of up to six recent intervals. A pause longer
+than four seconds starts a fresh tap series. Meter/BPM are frozen for a take.
 
-This first slice has **no tap tempo, count-in, quantization, triplet
-interpretation or score pages yet**. Those remain mandatory later children
-of the approved epic. Verovio engraves an internal synthetic rest-measure
-probe, not the captured notes. No physical-iPhone acceptance is claimed.
+Start requests microphone permission and starts timestamped mono PCM capture
+through an AudioWorklet. Once input is flowing, clicks are scheduled for one
+selected-meter bar on that same AudioContext clock, with no continuing
+metronome. The count-in endpoint is score time zero. UI timers only display
+the current beat/state; they never establish sample times or schedule clicks.
+Stop is enabled after the count-in and finalizes capture before local
+resampling/inference. Initial performance silence stays intact.
+
+Results show estimated pitch/onset/offset/strength events. **Quantization,
+triplet interpretation and score pages remain later slices.** Verovio still
+engraves an internal synthetic rest-measure probe, not the captured notes.
+There is no audio upload or server fallback.
+
+## Capture timing contract
+
+The worklet supplies each PCM packet's first absolute sample frame. Capture
+starts before the count-in; `captureFirstFrame`, `countInStartFrame`,
+`clickFrames`, `scoreOriginFrame`, `scoreOriginSeconds` and the context sample
+rate bind capture and playback to a shared reference. `captureToOriginSeconds`
+records their offset. Stop snapshots an audio-clock frame; packet delivery or
+UI callback delays do not move either boundary. The collector clips exactly to
+`[scoreOriginFrame, stopFrame)` and rejects gaps/overlaps instead of silently
+compressing time. Count-in samples are removed before resampling to mono
+22,050 Hz and passing PCM to Basic Pitch. Event seconds are relative to score
+zero, including any silence before the first played attack.
+
+An absent input block or discontinuous frame number closes the partial worklet
+packet, so resumed input retains its actual timestamp. The collector rejects
+gaps/overlaps in the performance interval visibly after Stop, including gaps
+inside a final packet with a delayed Stop. Startup gaps before score zero are
+outside the retained performance and do not invalidate it.
+
+This replaces the MP4/MediaRecorder prototype path, which lacked an exact
+encoder-to-audio-clock mapping. Report schema 2 uses `performanceDurationSeconds`,
+`captureSampleRate`, `captureChannels`, `capturedPCMBytes` and `resampleMs`;
+the nested timing object is available to the later note-to-score adapter.
+No raw PCM is exported in diagnostic JSON. PCM is kept only for the active
+take; there is no recording cap. Worklet startup/stop acknowledgement has a
+10-second failure timeout, separate from recording duration.
+
+AudioWorklet support is required and failures are explicit. Hardware and room
+input/output latency are not calibrated; reported `baseLatency`/`outputLatency`
+are observations, not assumed corrections. Acoustic click/reverb tails and
+physical count-in usability need a fresh phone check after publication.
 
 ## Build and check
 
@@ -40,6 +82,11 @@ When needed, install them from this subproject with `npx playwright install
 chromium webkit`. They use a generated Web Audio stream, real browser recording,
 real inference and Verovio WASM; they are desktop plumbing tests, not microphone,
 acoustic-piano or iPhone quality evidence.
+
+The retained `evidence/count-in-*` reports describe the initial implementation
+build `06f89f0458488f9f`. The subsequent
+`evidence/capture-gap-summary-2026-11-24.json` records the corrected build,
+processor regressions and browser interruption/repeat checks separately.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's
@@ -74,16 +121,17 @@ and publication remain separate steps. No Sludge backend deployment or Dolt
 remote sync is needed.
 
 After publication, verify the returned/deployed build at the target URL, its
-model JSON and weight shard, worker, shared Verovio runtime and notice/source
-links. Confirm the first-slice interface rather than claiming the later
-count-in/score flow exists.
+model JSON and weight shard, inference worker, capture worklet, shared Verovio
+runtime and notice/source links. Check meter/taps/one-bar clicks and the
+post-count-in result; no complete score flow is claimed.
 
 ## Owner phone check and limits
 
 On the verified public URL in iPhone Safari, keep the page visible and screen
-unlocked. Prepare engines, Start and allow the microphone, play a short
-two-handed passage with chords/repeated attacks without pedal, then Stop and
-view the events. Prepare and run a second take. Short takes are a verification
+unlocked. Select meter and tap tempo, prepare engines, Start and allow the
+microphone. Listen to one count-in bar, play after it ends, then Stop and view
+events. Try a short initial rest before the first note and confirm it remains.
+Cancel once during count-in and then make a repeat take. Short takes are a verification
 strategy; no arbitrary recording cap is imposed. No piece name/reference score
 is requested.
 
@@ -98,16 +146,17 @@ page/asset access logs are outside the audio pipeline.
 A fresh worker per take scopes/disposes Basic Pitch's temporary tensors and
 model, then terminates on success/failure/cancel. Verovio WASM is strongly
 retained during inference and its probe toolkit is destroyed. Backgrounding
-cancels visibly. Microphone tracks are released before decode. The report
+cancels visibly. Microphone tracks are released before resampling. The report
 distinguishes reused renderer initialization from current-action timing.
-Peak device memory, physical-iPhone inference time and piano accuracy remain
-unmeasured; tensor counts, optional JS heap and WASM heap visibility are not
-device peak-memory measurements.
+The prior MP4 harness has owner-supplied iPhone 15 success and repeat evidence
+retained privately in Sludge. This new worklet/count-in path has desktop
+Chromium/WebKit evidence and still needs a fresh physical-iPhone check.
+Peak device memory and piano accuracy remain unmeasured; tensor counts,
+optional JS heap and WASM heap visibility are not device peak-memory measurements.
 
 Thresholds remain onset/frame `0.25/0.25`, minimum five model frames, from the
 upstream example. Pitch-bend contours are not retained. Invalid events and
 padded tails are filtered; simultaneous pitches, different lengths and repeated
 attacks are retained. Strength is an estimate, not calibrated velocity.
-Events use decoded-audio time, not score beats. Encoder duration differed from
-wall time in synthetic tests; `.2` must establish actual capture/count-in clock
-mapping. This interface is not the completed recording-to-notation demo.
+Events now use time from the count-in endpoint, not quantized score beats.
+This interface is not the completed recording-to-notation demo.

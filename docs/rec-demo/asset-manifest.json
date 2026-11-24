@@ -1,5 +1,5 @@
 {
-  "buildId": "4560fa2f1ef0f65c",
+  "buildId": "1558feaa98006db3",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -11,30 +11,37 @@
   "assets": [
     {
       "path": "app.mjs",
-      "bytes": 7460,
-      "gzipBytes": 2732,
-      "sha256": "97a01fb01917c403ffdeb2f56130cad642a839a5b95f505d9a12580b40213415",
+      "bytes": 8258,
+      "gzipBytes": 2998,
+      "sha256": "8e4056ca92bb9f0c2054f655c2994c4b90c91e3b25a00ab8bbb10fe62bf02387",
       "runtime": true
     },
     {
       "path": "audio.mjs",
-      "bytes": 5005,
-      "gzipBytes": 1712,
-      "sha256": "c84b56d7b330232557530dbd3e6c0f1887e3e5fc01ace7c568a1b6b3b5e15dcf",
+      "bytes": 8102,
+      "gzipBytes": 2557,
+      "sha256": "609388d643ab0de96e1de0d2868eb266d7a1447f2f4dc9567d236e5b139572c6",
+      "runtime": true
+    },
+    {
+      "path": "capture-worklet.js",
+      "bytes": 1974,
+      "gzipBytes": 722,
+      "sha256": "dbc75bcc734d2d05ff8953eade53d5b85f16bc7eb88863efcfc5d3c3795aa3b5",
       "runtime": true
     },
     {
       "path": "events.mjs",
-      "bytes": 923,
-      "gzipBytes": 409,
-      "sha256": "09c8069402080921bade380f607d7f64d2b7f8cb3e0ecb522948b7a7d7179731",
+      "bytes": 929,
+      "gzipBytes": 411,
+      "sha256": "d87cde8c40cfdfdac0bf96b9d0cd9eb3df9a889d7dfa406d7d8fb6a550dc2247",
       "runtime": true
     },
     {
       "path": "index.html",
-      "bytes": 3298,
-      "gzipBytes": 1498,
-      "sha256": "d04d5bb818fe269fc077c68b98803abf017cd28ca1918bf4ea99c30dbcf15e7d",
+      "bytes": 3693,
+      "gzipBytes": 1659,
+      "sha256": "234f80b21d82cd83df1b97fe0e455025988b731e6e20713395c8a577d7be892c",
       "runtime": true
     },
     {
@@ -179,9 +186,16 @@
     },
     {
       "path": "style.css",
-      "bytes": 2249,
-      "gzipBytes": 960,
-      "sha256": "b832897c1b2f623cca1f07c1501614280bb71685d435289fe8b135526d78421d",
+      "bytes": 2804,
+      "gzipBytes": 1185,
+      "sha256": "e44984b5ab424bdfe5648ee5d50848dc9e6825a7f0154c13d1bc54a8251e0b7c",
+      "runtime": true
+    },
+    {
+      "path": "timing.mjs",
+      "bytes": 2433,
+      "gzipBytes": 978,
+      "sha256": "2396848ec54a53e5ae7613360aacccd6bcc26be1408333293045853965219f46",
       "runtime": true
     },
     {
