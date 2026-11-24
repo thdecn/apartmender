@@ -1,6 +1,7 @@
 import { decodeTeacherPractice } from "./teacher/teacher-practice.js";
 import { decodeTeacherNotes, decodeNotePublication } from "./teacher/teacher-notes.js";
 import { createRecoveryProgress } from "./recovery-progress.js?auth=operator-onboarding-v1";
+import { createFingeringAdapter } from "./fingerings.js";
 
 const authRedirectKeys = ["type", "access_token", "refresh_token", "error", "error_code"];
 const defaultStorageKey = "apartmender-auth-session";
@@ -86,7 +87,19 @@ export function createBrowserData({
     signIn,
     signOut,
     validateCurrentUser,
+    createFingerings,
   });
+
+  function createFingerings(options = {}) {
+    const view = createFingeringAdapter({ ...options, request: (name, args) => client.rpc(name, args),
+      identity: async () => {
+        const auth = await getAuthenticatedUser();
+        return auth.outcome === "authenticated" && pendingRecoveryProgress(auth.userId)
+          ? { outcome: "account_denied" } : auth;
+      } });
+    const subscription = client.auth.onAuthStateChange((_event, session) => view.authChanged(session?.user?.id ?? null));
+    return { ...view, destroy() { view.destroy(); subscription?.data?.subscription?.unsubscribe(); } };
+  }
 
   async function acceptInvitation({ handoffToLogin = false } = {}) {
     if (redirect === "none") return { outcome: "no_invitation" };
@@ -697,5 +710,6 @@ function failedAdapter(outcome, { history, location, redirect }) {
     signIn: failure,
     signOut: failure,
     validateCurrentUser: failure,
+    createFingerings: (options = {}) => createFingeringAdapter({ ...options, identity: failure, request: failure }),
   });
 }
