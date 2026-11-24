@@ -1,7 +1,9 @@
 # Recording demo frontend
 
-This is the frontend for Sludge Bead `sludge-0z8.4`, following merged
-`.1` feasibility, `.2` capture/count-in and `.3` event adapter under epic `sludge-0z8`.
+This is the frontend for Sludge Bead `sludge-0z8.6`, following merged
+`.1` feasibility, `.2` capture/count-in, `.3` event adapter and `.4` straight
+MusicXML under epic `sludge-0z8`. The owner chose the viewer before `.5` triplets;
+triplet interpretation remains mandatory and unimplemented.
 It is stacked on Apartmender's `codex/rec-demo` branch. Sludge remains the
 backend repository and owns the approved scope and Beads tracking. The
 recording demo's capture/transcription runs entirely in the browser and
@@ -31,10 +33,11 @@ resampling/inference. Initial performance silence stays intact.
 
 Results show validated estimated pitch/onset/offset/strength events, with a
 versioned engine-neutral handoff for score construction. Straight rhythms
-through sixteenths become downloadable two-staff MusicXML. **Triplet
-interpretation and on-screen score pages remain later slices.** The page's
-Verovio initialization still uses a rest-measure probe; representative generated
-scores are imported/engraved in the focused browser checks.
+through sixteenths become two-staff MusicXML displayed as complete Verovio pages,
+with previous/next navigation, Fit width and 150/200/300% zoom. The XML download
+remains available. **Triplet interpretation remains the next slice.** Verovio
+initialization still uses its rest-measure probe; the viewer subsequently loads
+the actual generated score in a separate toolkit on that same resident module.
 There is no audio upload or server fallback.
 
 ## Capture timing contract
@@ -135,7 +138,8 @@ denominator and the sixteenth quantization grid are separate concepts; no
 triplet interpretation is introduced by this internal resolution refactor.
 
 No triplet interpretation is claimed by this grid. Required bead `.5` will
-compare coherent straight/triplet groupings; `.6` owns the on-screen page host.
+compare coherent straight/triplet groupings; the viewer accepts their MusicXML
+without taking over rhythmic interpretation.
 No PDF, pedal marks or reference-score input is added.
 
 The MusicXML contains a standard tempo/metronome direction. The existing bounded
@@ -145,8 +149,63 @@ using a notation-only clone with tempo directions removed, then engrave the
 **full original XML** with pinned Verovio. They check every source attack,
 per-source tied duration, complete voice/measure fill and supported pitch/clef/
 chord structure. The standalone SVG inspection leaves the capture page's strict
-CSP; styling/pagination integration belongs to `.6`. A test harness rendering
-an SVG is not a new public score page.
+CSP. That historical standalone inspection is separate from the current
+public-page viewer checks below.
+
+## Full-score viewer
+
+`createScoreViewer(container)` in `score-viewer.mjs` owns a complete-score host.
+`render({musicXML, noteCount})` resolves to `rendered` with page count/render
+time, `empty`, `error` with a message, or `superseded`. `clear()` invalidates
+pending work, clears the image, revokes page URLs and destroys owned toolkits;
+`destroy()` also removes the host controls permanently. Voice/measure-card
+projection, score editing and PDF export are not part of this interface.
+
+The viewer uses Verovio **6.3.0-425dd7b**, Leipzig, practical A4 dimensions
+(`2100 x 2970` toolkit page units), automatic full-score layout and the engine's
+page count/per-page SVG APIs. It preserves the complete page/viewBox. Fit width
+shows the whole page; larger zoom levels scroll within a keyboard-focusable
+viewport, including the far-right/bottom margins. Navigation retains the score
+toolkit but replaces the selected page; there is no all-pages SVG cache.
+
+Each page is a local SVG Blob image. Its embedded engraving CSS/font data stay
+with that image, so staff lines, symbols and text render without copying dynamic
+SVG CSS into the document. The capture page retains `style-src 'self'` and adds
+only `blob:` to `img-src`; no inline-script/style permission or remote renderer
+is introduced. No extra font download is needed. Only static same-origin assets
+are downloaded, with local Blob image reads for displayed pages; nothing is
+uploaded. Notices/source/font links still refer to the unchanged shared
+`docs/vendor/verovio/` package and pinned manifest.
+
+`createScoreToolkit()` reuses the module initialized by `initializeVerovio()`;
+the viewer does not instantiate another WASM module or import the measure-card
+renderer. Basic Pitch's worker is terminated before full-score engraving.
+Preparing another take releases the old score toolkit, page image and any
+pending decode before loading/inference begins. The resident shared WASM module
+stays loaded across takes, as before; this is not a new phone-memory pass.
+
+The score appears above the raw event table. No detected notes gives an explicit
+empty state. Malformed/measure-less XML, failed engine initialization and image
+decode failures give a visible viewer alert and clear the prior page. Rendering
+failure leaves valid note events/MusicXML available for inspection/download.
+Failed module downloads may require a page reload because browsers can cache a
+rejected module import. A new take or page departure invalidates in-flight work;
+late image decodes cannot restore an old score. Superseded/cancelled candidates
+and displayed pages release toolkits and Blob URLs.
+
+Diagnostics retain `stopToEventsMs` through note/score construction;
+`stopToScoreMs` includes the first displayed page, and `take.display` records
+the viewer outcome, page count and first-render time. These are current-action
+timings, not total cold page-load time or peak device memory.
+
+Focused browser checks use a bounded **64-measure synthetic full piano score**
+with chords, independent bass rhythms/rests, cross-bar ties and actual 3:2 eighth
+triplet MusicXML. Both engines preserve all 64 measure-head identities across
+two pages and show both staves, embedded styles and tuplet groups. This verifies
+display of supplied tuplets, not detection of triplets from playing. Navigation,
+zoom/panning, strict CSP, empty/import/runtime/decode failures, immediate toolkit/
+URL cleanup and superseded rendering are checked. The recording/inference test
+also displays the real generated straight score and clears it before a repeat.
 
 ## Resource lifecycle
 
@@ -159,7 +218,7 @@ no upload, persistence, reference-score requirement or server fallback.
 This replaces the MP4/MediaRecorder prototype path, which lacked an exact
 encoder-to-audio-clock mapping. Report schema 2 uses `performanceDurationSeconds`,
 `captureSampleRate`, `captureChannels`, `capturedPCMBytes` and `resampleMs`;
-the nested timing object is available to the later note-to-score adapter.
+the nested timing object is used by the note-to-score adapter.
 No raw PCM is exported in diagnostic JSON. PCM is kept only for the active
 take; there is no recording cap. Worklet startup/stop acknowledgement has a
 10-second failure timeout, separate from recording duration.
@@ -194,6 +253,9 @@ The `.3` handoff and conversion/cancellation checks are summarized in
 `evidence/event-adapter-summary-2026-11-24.json` for their own build.
 The `.4` MusicXML fixtures and engraving checks have their own
 `evidence/straight-score-summary-2026-11-24.json` and synthetic XML/SVG artifacts.
+The `.6` viewer checks are recorded separately in
+`evidence/score-viewer-summary-2026-11-24.json`; earlier evidence keeps its build
+attribution. All of these are desktop synthetic evidence.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's
@@ -228,35 +290,38 @@ and publication remain separate steps. No Sludge backend deployment or Dolt
 remote sync is needed.
 
 After publication, verify the returned/deployed build at the target URL, its
-model JSON and weight shard, inference worker, capture worklet, shared Verovio
-runtime and notice/source links. Check meter/taps/one-bar clicks and the
-post-count-in result; no complete score flow is claimed.
+model JSON and weight shard, inference worker, capture worklet, viewer module,
+shared Verovio runtime and notice/source links. Check meter/taps/one-bar clicks,
+the resulting score, page navigation and zoom. Straight-only output still does
+not complete the approved demo's triplet requirement.
 
 ## Owner phone check and limits
 
 On the verified public URL in iPhone Safari, keep the page visible and screen
 unlocked. Select meter and tap tempo, prepare engines, Start and allow the
 microphone. Listen to one count-in bar, play after it ends, then Stop and view
-events. Try a short initial rest before the first note and confirm it remains.
+the score. Try page navigation/zoom and check the raw events if useful. Try a
+short initial rest before the first note and confirm it remains.
 Cancel once during count-in and then make a repeat take. Short takes are a verification
 strategy; no arbitrary recording cap is imposed. No piece name/reference score
 is requested.
 
 Expand Save device observations, enter phone model, iOS/Safari version and
 observations, then download the local JSON report. It includes note events,
-asset versions, timings and failures, but no raw audio. Sharing it is deliberate.
+generated XML, display outcomes, asset versions, timings and failures, but no
+raw audio. Sharing it is deliberate.
 Inspect requests using Safari Web Inspector where available: static same-origin
-GETs only, no performance upload/fallback. Resource entries alone do not prove
+GETs and local Blob page images only, no performance upload/fallback. Resource entries alone do not prove
 the absence of uploads; record missing inspection honestly. Normal static-host
 page/asset access logs are outside the audio pipeline.
 
 A fresh worker per take scopes/disposes Basic Pitch's temporary tensors and
 model, then terminates on success/failure/cancel. Verovio WASM is strongly
 retained during inference and its probe toolkit is destroyed. Backgrounding
-cancels visibly. Microphone tracks are released before resampling. The report
+cancels active takes visibly. Microphone tracks are released before resampling. The report
 distinguishes reused renderer initialization from current-action timing.
 The prior MP4 harness has owner-supplied iPhone 15 success and repeat evidence
-retained privately in Sludge. This new worklet/count-in path has desktop
+retained privately in Sludge. This new worklet/count-in/viewer path has desktop
 Chromium/WebKit evidence and still needs a fresh physical-iPhone check.
 Peak device memory and piano accuracy remain unmeasured; tensor counts,
 optional JS heap and WASM heap visibility are not device peak-memory measurements.

@@ -44,6 +44,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
   await page.goto('/apartmender/rec-demo/');
   for (let run = 0; run < 2; run++) {
     await page.getByRole('button', { name: 'Prepare local engines' }).click();
+    await expect(page.locator('#score-output')).toBeHidden();
+    await expect(page.locator('#score-viewer img')).toHaveCount(0);
     await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
     await page.getByRole('button', { name: 'Start', exact: true }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'countin');
@@ -55,6 +57,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     await page.getByRole('button', { name: 'Stop and transcribe' }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
     await expect(page.locator('#notes tr').first()).toBeVisible();
+    await expect(page.locator('#score-output')).toBeVisible();
+    await expect(page.locator('#score-viewer img')).toBeVisible();
     expect(await page.evaluate(() => window.testAudioContexts.every(context => context.state === 'closed'))).toBe(true);
   }
   const scoreDownloadEvent = page.waitForEvent('download');
@@ -96,6 +100,9 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     expect(take.score.rhythm).toBe('straight');
     expect(take.score.noteCount).toBe(take.transcription.notes.length);
     expect(take.score.musicXML).toContain('<score-partwise');
+    expect(take.display.outcome).toBe('rendered');
+    expect(take.display.pageCount).toBeGreaterThan(0);
+    expect(take.stopToScoreMs).toBeGreaterThanOrEqual(take.stopToEventsMs);
     expect(take.transcription.notes.every(note => Number.isFinite(note.onsetSeconds)
       && note.onsetSeconds >= 0 && note.offsetSeconds > note.onsetSeconds
       && note.offsetSeconds <= take.transcription.durationSeconds)).toBe(true);

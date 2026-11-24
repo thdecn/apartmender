@@ -1,0 +1,304 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.6",
+  "buildId": "d8a8e246370e63ec",
+  "versions": {
+    "basicPitch": "1.0.1",
+    "tensorflow": "3.21.0",
+    "verovio": "6.3.0-425dd7b"
+  },
+  "evidenceKind": "Automated desktop synthetic input at390px viewport; not physical iPhone/acoustic-piano acceptance",
+  "validation": {
+    "nodePassed": 184,
+    "nodeSkipped": 1,
+    "browserPassed": 26,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    },
+    "manifestAssetsVerified": 41
+  },
+  "viewer": {
+    "chromium": {
+      "outcome": "rendered",
+      "pageCount": 2,
+      "renderMs": 303.09999990463257,
+      "sourceMeasures": 64,
+      "pages": [
+        {
+          "headIds": [
+            "vp-m1-head",
+            "vp-m2-head",
+            "vp-m3-head",
+            "vp-m4-head",
+            "vp-m5-head",
+            "vp-m6-head",
+            "vp-m7-head",
+            "vp-m8-head",
+            "vp-m9-head",
+            "vp-m10-head",
+            "vp-m11-head",
+            "vp-m12-head",
+            "vp-m13-head",
+            "vp-m14-head",
+            "vp-m15-head",
+            "vp-m16-head",
+            "vp-m17-head",
+            "vp-m18-head",
+            "vp-m19-head",
+            "vp-m20-head",
+            "vp-m21-head",
+            "vp-m22-head",
+            "vp-m23-head",
+            "vp-m24-head",
+            "vp-m25-head",
+            "vp-m26-head",
+            "vp-m27-head",
+            "vp-m28-head",
+            "vp-m29-head",
+            "vp-m30-head",
+            "vp-m31-head",
+            "vp-m32-head",
+            "vp-m33-head",
+            "vp-m34-head",
+            "vp-m35-head"
+          ],
+          "staves": 70,
+          "tuplets": 35,
+          "svgStyles": 1,
+          "width": 106,
+          "height": 150
+        },
+        {
+          "headIds": [
+            "vp-m36-head",
+            "vp-m37-head",
+            "vp-m38-head",
+            "vp-m39-head",
+            "vp-m40-head",
+            "vp-m41-head",
+            "vp-m42-head",
+            "vp-m43-head",
+            "vp-m44-head",
+            "vp-m45-head",
+            "vp-m46-head",
+            "vp-m47-head",
+            "vp-m48-head",
+            "vp-m49-head",
+            "vp-m50-head",
+            "vp-m51-head",
+            "vp-m52-head",
+            "vp-m53-head",
+            "vp-m54-head",
+            "vp-m55-head",
+            "vp-m56-head",
+            "vp-m57-head",
+            "vp-m58-head",
+            "vp-m59-head",
+            "vp-m60-head",
+            "vp-m61-head",
+            "vp-m62-head",
+            "vp-m63-head",
+            "vp-m64-head"
+          ],
+          "staves": 58,
+          "tuplets": 29,
+          "svgStyles": 1,
+          "width": 106,
+          "height": 150
+        }
+      ],
+      "geometry": {
+        "width": 353,
+        "imageWidth": 705.625,
+        "scrollWidth": 706,
+        "scrollHeight": 998,
+        "height": 631,
+        "documentFits": true
+      },
+      "cspFailures": [],
+      "livePageURLs": 1
+    },
+    "webkit": {
+      "outcome": "rendered",
+      "pageCount": 2,
+      "renderMs": 217,
+      "sourceMeasures": 64,
+      "pages": [
+        {
+          "headIds": [
+            "vp-m1-head",
+            "vp-m2-head",
+            "vp-m3-head",
+            "vp-m4-head",
+            "vp-m5-head",
+            "vp-m6-head",
+            "vp-m7-head",
+            "vp-m8-head",
+            "vp-m9-head",
+            "vp-m10-head",
+            "vp-m11-head",
+            "vp-m12-head",
+            "vp-m13-head",
+            "vp-m14-head",
+            "vp-m15-head",
+            "vp-m16-head",
+            "vp-m17-head",
+            "vp-m18-head",
+            "vp-m19-head",
+            "vp-m20-head",
+            "vp-m21-head",
+            "vp-m22-head",
+            "vp-m23-head",
+            "vp-m24-head",
+            "vp-m25-head",
+            "vp-m26-head",
+            "vp-m27-head",
+            "vp-m28-head",
+            "vp-m29-head",
+            "vp-m30-head",
+            "vp-m31-head",
+            "vp-m32-head",
+            "vp-m33-head",
+            "vp-m34-head",
+            "vp-m35-head"
+          ],
+          "staves": 70,
+          "tuplets": 35,
+          "svgStyles": 1,
+          "width": 106,
+          "height": 150
+        },
+        {
+          "headIds": [
+            "vp-m36-head",
+            "vp-m37-head",
+            "vp-m38-head",
+            "vp-m39-head",
+            "vp-m40-head",
+            "vp-m41-head",
+            "vp-m42-head",
+            "vp-m43-head",
+            "vp-m44-head",
+            "vp-m45-head",
+            "vp-m46-head",
+            "vp-m47-head",
+            "vp-m48-head",
+            "vp-m49-head",
+            "vp-m50-head",
+            "vp-m51-head",
+            "vp-m52-head",
+            "vp-m53-head",
+            "vp-m54-head",
+            "vp-m55-head",
+            "vp-m56-head",
+            "vp-m57-head",
+            "vp-m58-head",
+            "vp-m59-head",
+            "vp-m60-head",
+            "vp-m61-head",
+            "vp-m62-head",
+            "vp-m63-head",
+            "vp-m64-head"
+          ],
+          "staves": 58,
+          "tuplets": 29,
+          "svgStyles": 1,
+          "width": 106,
+          "height": 150
+        }
+      ],
+      "geometry": {
+        "width": 353,
+        "imageWidth": 705.625,
+        "scrollWidth": 706,
+        "scrollHeight": 998,
+        "height": 631,
+        "documentFits": true
+      },
+      "cspFailures": [],
+      "livePageURLs": 1
+    }
+  },
+  "localCaptureInferenceScoreRepeat": {
+    "webkit": [
+      {
+        "number": 1,
+        "status": "complete",
+        "noteCount": 22,
+        "measures": 2,
+        "display": {
+          "outcome": "rendered",
+          "pageCount": 1,
+          "renderMs": 50
+        },
+        "stopToEventsMs": 1454,
+        "stopToScoreMs": 1505,
+        "trackedTensorsAfterCleanup": 0
+      },
+      {
+        "number": 2,
+        "status": "complete",
+        "noteCount": 22,
+        "measures": 2,
+        "display": {
+          "outcome": "rendered",
+          "pageCount": 1,
+          "renderMs": 24
+        },
+        "stopToEventsMs": 1492,
+        "stopToScoreMs": 1516,
+        "trackedTensorsAfterCleanup": 0
+      }
+    ],
+    "chromium": [
+      {
+        "number": 1,
+        "status": "complete",
+        "noteCount": 21,
+        "measures": 2,
+        "display": {
+          "outcome": "rendered",
+          "pageCount": 1,
+          "renderMs": 46.09999990463257
+        },
+        "stopToEventsMs": 2044.8999998569489,
+        "stopToScoreMs": 2092.5,
+        "trackedTensorsAfterCleanup": 0
+      },
+      {
+        "number": 2,
+        "status": "complete",
+        "noteCount": 21,
+        "measures": 2,
+        "display": {
+          "outcome": "rendered",
+          "pageCount": 1,
+          "renderMs": 18.300000190734863
+        },
+        "stopToEventsMs": 1959.3999998569489,
+        "stopToScoreMs": 1978.2999999523163,
+        "trackedTensorsAfterCleanup": 0
+      }
+    ]
+  },
+  "lifecycleChecks": [
+    "Every source measure head appears across page navigation; both staves/actual triplet notation retained",
+    "Zoom pans horizontally and vertically without page-wide overflow",
+    "Empty, malformed/measureless input, failed engine download, failed image decode all clear obsolete display",
+    "Superseded pending image cannot replace new score; toolkit destroyed and Blob URL revoked immediately on clear",
+    "One shared resident Verovio module; fresh viewer toolkit with obsolete toolkit and page release"
+  ],
+  "csp": "style-src self retained; img-src adds blob. Full SVG image retains internal CSS/font data. Inspection-only detached clone strips style nodes to prevent Chromium test-harness policy events; actual displayed image unmodified.",
+  "artifacts": {
+    "score-viewer-fit-390px.png": "74f105062448469a3b95511ffebbcead00157c0d86ba38aeb200927cb610caa3",
+    "score-viewer-zoom-390px.png": "47b9d26433971cbd4e42fef6ad13259c237524cc9f69e818c985ed7b4da5f6de"
+  },
+  "limits": [
+    "Triplet fixture verifies supplied MusicXML display only; .5 interpretation remains unimplemented",
+    "Fresh physical iPhone capture/count-in/viewer assessment remains .7",
+    "Peak device memory, acoustic latency and full cold page-load time unmeasured",
+    "Changes are not live until PR incorporation/Pages publication"
+  ]
+}
