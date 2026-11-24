@@ -14,7 +14,7 @@
     <p class="eyebrow">Piano recording demo</p>
     <h1>Play. Stop. See the notes.</h1>
     <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
-    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. Short takes are useful for trying the demo; score notation comes in a later step.</p>
+    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. Short takes are useful for trying the demo. Straight-rhythm MusicXML is available after Stop; triplets and on-screen score pages come in later steps.</p>
     <section class="controls" aria-label="Recording controls">
       <div class="setup">
         <div><label for="meter">Time signature</label><select id="meter"><option value="2">2/4</option><option value="3">3/4</option><option value="4" selected>4/4</option></select></div>
@@ -35,6 +35,8 @@
       <p id="note-summary"></p>
       <p class="muted">Times are seconds from the end of the count-in. Initial silence is preserved; beats are not yet quantized. Strength is a model estimate, not calibrated velocity.</p>
       <div class="table-scroll"><table><thead><tr><th>Pitch</th><th>Start (s)</th><th>End (s)</th><th>Strength</th></tr></thead><tbody id="notes"></tbody></table></div>
+      <p id="score-summary"></p>
+      <button id="score-download" disabled>Download straight-rhythm MusicXML</button>
     </section>
     <details>
       <summary>Save device observations</summary>

@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.4",
+  "buildId": "42c402040d4cdbc0",
+  "evidenceKind": "Automated desktop synthetic note/audio examples, not owner piece or physical iPhone evidence",
+  "validation": {
+    "nodePassed": 184,
+    "nodeSkipped": 1,
+    "browserPassed": 20,
+    "manifestAssetsVerified": 40,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    }
+  },
+  "notationValidation": "Full XML engraved in pinned Verovio; tempo directions removed ONLY from a detached clone for bounded score-index validation. Full original is retained.",
+  "standalonePreview": "Fixture SVG inspected outside capture-page CSP; public score page host remains .6.",
+  "fixtures": {
+    "webkit": [
+      {
+        "name": "independent piano voices",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 13,
+        "quantizedSourceCount": 13,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 0,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "3/4 dotted and crossing-bar chord",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 5,
+        "quantizedSourceCount": 5,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 1,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "2/4 repeated notes and conflicting accidentals",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 9,
+        "quantizedSourceCount": 9,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 1,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "silent take",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 0,
+        "quantizedSourceCount": 0,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "inactive lanes before and after polyphony",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 3,
+        "quantizedSourceCount": 3,
+        "measureCount": 3,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "tie-only lane stays active",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 2,
+        "quantizedSourceCount": 2,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 2,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      }
+    ],
+    "chromium": [
+      {
+        "name": "independent piano voices",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 13,
+        "quantizedSourceCount": 13,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 0,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "3/4 dotted and crossing-bar chord",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 5,
+        "quantizedSourceCount": 5,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 1,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "2/4 repeated notes and conflicting accidentals",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 9,
+        "quantizedSourceCount": 9,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 1,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "silent take",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 0,
+        "quantizedSourceCount": 0,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "inactive lanes before and after polyphony",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 3,
+        "quantizedSourceCount": 3,
+        "measureCount": 3,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "tie-only lane stays active",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 2,
+        "quantizedSourceCount": 2,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 2,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      }
+    ]
+  },
+  "localInferenceAndScoreRepeat": {
+    "webkit": [
+      {
+        "take": 1,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 6,
+        "tensorsAfterCleanup": 0
+      },
+      {
+        "take": 2,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 6,
+        "tensorsAfterCleanup": 0
+      }
+    ],
+    "chromium": [
+      {
+        "take": 1,
+        "status": "complete",
+        "sourceNoteEvents": 21,
+        "scoreNotes": 21,
+        "measures": 2,
+        "voices": 5,
+        "tensorsAfterCleanup": 0
+      },
+      {
+        "take": 2,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 4,
+        "tensorsAfterCleanup": 0
+      }
+    ]
+  },
+  "artifacts": {
+    "straight-score-fixture.musicxml": "5fb5facbf2749ed897f4ec656c168eb3d22f2749df916bd6e9db282ebf9f78bc",
+    "straight-score-fixture.svg": "2e275c37679d2244470823e904e1ec42c7aef9075ceb7e851a8be6f40de1e33d"
+  },
+  "limits": [
+    "Straight through sixteenths only; triplet bead .5 remains required",
+    "On-screen public score pages remain .6",
+    "Fresh physical iPhone/acoustic assessment remains .7",
+    "No calibrated dynamics or hand detection claim"
+  ],
+  "reviewFixes": {
+    "inactiveVoices": "Emit only active note/tie lanes per bar; one whole rest per silent staff. Unit repro failed before correction and passes after; XML/index and actual Verovio glyph counts verified.",
+    "resolution": "MusicXML divisions, fractions, values, alignments, beams and sixteenth ticks derive from shared resolution. Six fixtures retain same quarters/voices/types/beams in a focused internal4/12 probe; no triplet interpretation."
+  }
+}

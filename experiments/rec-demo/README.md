@@ -1,7 +1,7 @@
 # Recording demo frontend
 
-This is the frontend for Sludge Bead `sludge-0z8.3`, following the merged
-`.1` feasibility harness and `.2` capture/count-in under epic `sludge-0z8`.
+This is the frontend for Sludge Bead `sludge-0z8.4`, following merged
+`.1` feasibility, `.2` capture/count-in and `.3` event adapter under epic `sludge-0z8`.
 It is stacked on Apartmender's `codex/rec-demo` branch. Sludge remains the
 backend repository and owns the approved scope and Beads tracking. The
 recording demo's capture/transcription runs entirely in the browser and
@@ -30,9 +30,11 @@ Stop is enabled after the count-in and finalizes capture before local
 resampling/inference. Initial performance silence stays intact.
 
 Results show validated estimated pitch/onset/offset/strength events, with a
-versioned engine-neutral handoff for score construction. **Quantization,
-triplet interpretation and score pages remain later slices.** Verovio still
-engraves an internal synthetic rest-measure probe, not the captured notes.
+versioned engine-neutral handoff for score construction. Straight rhythms
+through sixteenths become downloadable two-staff MusicXML. **Triplet
+interpretation and on-screen score pages remain later slices.** The page's
+Verovio initialization still uses a rest-measure probe; representative generated
+scores are imported/engraved in the focused browser checks.
 There is no audio upload or server fallback.
 
 ## Capture timing contract
@@ -91,6 +93,63 @@ window margins in `unwrapOutput`. We append those frame/onset outputs and run
 chunks or independently decoded boundary notes. Thresholds remain 0.25 onset,
 0.25 frame and five minimum note frames. No accuracy improvement is claimed.
 
+## Straight-rhythm MusicXML
+
+`buildStraightScore(take.transcription)` returns `take.score`, containing
+`musicXML`, quantized notes, measure/voice counts and maximum onset/offset
+rounding errors. The result button downloads this XML locally. It is an interim
+straight-only score artifact, not a finished transcription demo or score editor.
+The raw event table/handoff retain their original seconds and estimated strength.
+
+Implementation defaults are deterministic and general:
+
+- One tick is a sixteenth (`divisions=4` per quarter). Onsets and offsets round
+  independently to the nearest tick from count-in zero, with half ticks rounding
+  forward and a minimum one-sixteenth duration. No first-attack alignment, tempo
+  redetection, note merging or silent deletion. Sub-grid repeated attacks can
+  coincide after rounding; they remain separate in different voices.
+- MIDI 60 and above use treble staff 1; lower pitches use bass staff 2. This is
+  a staff heuristic, not hand detection. All chromatic black keys use sharps,
+  with a neutral zero-fifths key signature; no key/piece lookup or dynamics marks.
+  Explicit sharps/naturals follow chronological staff/pitch/octave state,
+  reset each bar, and clarify simultaneous chromatic conflicts. Tied
+  continuations retain pitch without a new accidental.
+- Only equal-onset/equal-end, distinct-pitch notes on one staff form a chord.
+  Greedy nonoverlapping lanes handle independent durations, same-pitch overlaps
+  and repeated attacks. Voice identities stay fixed across bars. Only lanes
+  with notes or tied continuations in a bar are emitted, and each emitted lane
+  fills that bar with notes/rests. A completely silent staff gets one whole-bar
+  rest; inactive lanes add none beside playing lanes. Opposite stem directions
+  distinguish overlapping lanes.
+- Whole through sixteenth note types and single dots follow metric alignment.
+  Off-beat/half-bar boundaries split longer spans into tied values instead of
+  hiding beats. Beams join eighth/sixteenth values within each quarter beat;
+  secondary hooks handle mixed values. All bar-crossing spans tie each chord
+  member individually. The recording's trailing silence stays, and a final
+  partial bar is padded with rests. Reduced rational quarter units accompany
+  quantized onset/duration ticks as `{numerator, denominator}`.
+
+MusicXML divisions, rational reduction, note-value lengths, metric alignment
+and beaming derive from one tick resolution. The meter's quarter-note
+denominator and the sixteenth quantization grid are separate concepts; no
+triplet interpretation is introduced by this internal resolution refactor.
+
+No triplet interpretation is claimed by this grid. Required bead `.5` will
+compare coherent straight/triplet groupings; `.6` owns the on-screen page host.
+No PDF, pedal marks or reference-score input is added.
+
+The MusicXML contains a standard tempo/metronome direction. The existing bounded
+immutable index excludes directions, so the production demo does not feed this
+document into its measure-card path. Browser checks validate musical structure
+using a notation-only clone with tempo directions removed, then engrave the
+**full original XML** with pinned Verovio. They check every source attack,
+per-source tied duration, complete voice/measure fill and supported pitch/clef/
+chord structure. The standalone SVG inspection leaves the capture page's strict
+CSP; styling/pagination integration belongs to `.6`. A test harness rendering
+an SVG is not a new public score page.
+
+## Resource lifecycle
+
 The worker receives PCM only after capture finalizes. Its temporary tensors
 and model are disposed and it terminates on success/error/cancel; raw PCM is
 not retained in the handoff/report. Generation guards prevent a cancelled
@@ -133,6 +192,8 @@ build `06f89f0458488f9f`. The subsequent
 processor regressions and browser interruption/repeat checks separately.
 The `.3` handoff and conversion/cancellation checks are summarized in
 `evidence/event-adapter-summary-2026-11-24.json` for their own build.
+The `.4` MusicXML fixtures and engraving checks have their own
+`evidence/straight-score-summary-2026-11-24.json` and synthetic XML/SVG artifacts.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's

@@ -2,6 +2,7 @@ import { AudioCapture } from './audio.mjs';
 import { InferenceWorker, initializeVerovio } from './runtime.mjs';
 import { TapTempo } from './timing.mjs';
 import { createTranscription } from './transcription.mjs';
+import { buildStraightScore } from './score.mjs';
 
 const $ = id => document.getElementById(id);
 const report = {
@@ -40,6 +41,7 @@ function showState(next, message) {
   const frozen = ['permission', 'countin', 'recording', 'processing'].includes(next);
   $('meter').disabled = $('tap').disabled = frozen;
   $('download').disabled = !report.takes.length;
+  $('score-download').disabled = next !== 'complete' || !take?.score;
   $('progress').hidden = next !== 'processing';
 }
 
@@ -151,11 +153,13 @@ $('stop').addEventListener('click', async () => {
     worker = undefined;
     take.result = result;
     take.transcription = createTranscription(result.notes, audio.metadata);
+    take.score = buildStraightScore(take.transcription);
     take.stopToEventsMs = performance.now() - started;
     take.status = 'complete';
     take.endedAt = new Date().toISOString();
     if (performance.memory) take.chromiumJSHeapBytes = performance.memory.usedJSHeapSize;
     renderNotes(take.transcription.notes);
+    $('score-summary').textContent = `${take.score.measureCount} measures of straight-rhythm piano MusicXML prepared. Triplet interpretation and the on-screen score remain later steps.`;
     showState('complete', 'Local transcription finished. Prepare again for a repeat take.');
     diagnostics();
   } catch (error) { if (current === generation) fail(error); }
@@ -169,6 +173,19 @@ document.addEventListener('visibilitychange', () => {
 });
 window.addEventListener('pagehide', () => { worker?.destroy(); capture?.cancel().catch(() => {}); });
 
+function downloadFile(filename, content, type) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+$('score-download').addEventListener('click', () => {
+  if (state === 'complete' && take?.score) downloadFile('piano-straight.musicxml', take.score.musicXML, 'application/vnd.recordare.musicxml+xml');
+});
+
 $('download').addEventListener('click', () => {
   report.device = { model: $('device').value.trim(), osAndSafari: $('browser').value.trim(),
     observations: $('observations').value.trim() };
@@ -176,12 +193,7 @@ $('download').addEventListener('click', () => {
     name: entry.name, initiatorType: entry.initiatorType, durationMs: entry.duration,
     transferBytes: entry.transferSize, decodedBytes: entry.decodedBodySize,
   }));
-  const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `piano-feasibility-${new Date().toISOString().replaceAll(':', '-')}.json`;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadFile(`piano-feasibility-${new Date().toISOString().replaceAll(':', '-')}.json`, JSON.stringify(report, null, 2), 'application/json');
 });
 
 if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
