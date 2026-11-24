@@ -2,7 +2,6 @@ let verovioPromise;
 // Keep a strong reference while Basic Pitch runs; a destroyed probe toolkit
 // alone must not let the WASM module be collected before the coexistence check.
 let retainedVerovioModule;
-let retainedVerovioToolkit;
 
 export async function initializeVerovio() {
   const reused = Boolean(verovioPromise);
@@ -13,7 +12,6 @@ export async function initializeVerovio() {
       import('../vendor/verovio/verovio-module.mjs'), import('../vendor/verovio/verovio.mjs'),
     ]);
     const module = retainedVerovioModule = await createModule();
-    retainedVerovioToolkit = VerovioToolkit;
     const toolkit = new VerovioToolkit(module);
     try {
       const version = toolkit.getVersion();
@@ -28,11 +26,6 @@ export async function initializeVerovio() {
     } finally { toolkit.destroy(); }
   })().catch(error => { verovioPromise = undefined; retainedVerovioModule = undefined; throw error; });
   return { ...await verovioPromise, reused, thisRequestMs: performance.now() - requestStarted };
-}
-
-export async function createScoreToolkit() {
-  await initializeVerovio();
-  return new retainedVerovioToolkit(retainedVerovioModule);
 }
 
 export class InferenceWorker {

@@ -31,7 +31,7 @@ async function handler(request, response) {
     if (!file.startsWith(root + path.sep)) throw new Error('outside root');
     const bytes = await readFile(file);
     response.writeHead(200, { 'Content-Type': types[path.extname(file)] || 'application/octet-stream',
-      'Content-Length': bytes.length, 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff',
+      'Content-Length': bytes.length, 'Cache-Control': process.env.PIANO_CACHE_CONTROL || 'no-store', 'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'no-referrer', 'Permissions-Policy': 'microphone=(self)' });
     response.end(request.method === 'HEAD' ? undefined : bytes);
   } catch { response.writeHead(404); response.end('Not found'); }

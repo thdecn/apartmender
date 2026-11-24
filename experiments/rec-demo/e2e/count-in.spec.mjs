@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
+import { moduleURL } from './release.mjs';
 
 test('audio-frame origin survives delayed UI work and excludes pre-origin signal', async ({ page }, testInfo) => {
   await page.goto('/apartmender/rec-demo/');
-  await page.evaluate(() => {
+  await page.evaluate(audioURL => {
     const button = document.createElement('button');
     button.textContent = 'Run clock probe';
     button.onclick = () => {
       window.clockProbe = (async () => {
-        const { AudioCapture } = await import('./audio.mjs');
+        const { AudioCapture } = await import(audioURL);
         const capture = new AudioCapture(error => { throw new Error(error); });
         let input;
         const scheduled = [];
@@ -61,7 +62,7 @@ test('audio-frame origin survives delayed UI work and excludes pre-origin signal
       })();
     };
     document.body.append(button);
-  });
+  }, moduleURL('audio.mjs'));
   await page.getByRole('button', { name: 'Run clock probe' }).click();
   const result = await page.evaluate(() => window.clockProbe);
   expect(result.clicks).toHaveLength(3);

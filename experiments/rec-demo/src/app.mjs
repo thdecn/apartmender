@@ -16,12 +16,13 @@ const report = {
   takes: [],
 };
 let state = 'idle', generation = 0, worker, capture, take;
+const isActiveTake = phase => ['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(phase);
 const tapTempo = new TapTempo();
 let bpm = 120;
 let manifestPromise;
 function loadManifest() {
   if (!manifestPromise) {
-    manifestPromise = fetch('./asset-manifest.json').then(response => {
+    manifestPromise = fetch(new URL('./asset-manifest.json', import.meta.url)).then(response => {
       if (!response.ok) throw new Error(`Asset manifest failed (${response.status}).`);
       return response.json();
     }).catch(error => {
@@ -39,7 +40,7 @@ function showState(next, message) {
   $('prepare').disabled = !['idle', 'complete', 'error'].includes(next);
   $('start').disabled = next !== 'ready';
   $('stop').disabled = next !== 'recording';
-  $('cancel').disabled = !['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(next);
+  $('cancel').disabled = !isActiveTake(next);
   const frozen = ['permission', 'countin', 'recording', 'processing'].includes(next);
   $('meter').disabled = $('tap').disabled = frozen;
   $('download').disabled = !report.takes.length;
@@ -180,12 +181,12 @@ $('stop').addEventListener('click', async () => {
 
 $('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.'));
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden && ['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(state)) {
+  if (document.hidden && isActiveTake(state)) {
     fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.');
   }
 });
 window.addEventListener('pagehide', () => {
-  if (['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(state)) fail('The page was left. Prepare a new take when you return.');
+  if (isActiveTake(state)) fail('The page was left. Prepare a new take when you return.');
   else {
     scoreViewer.clear(); $('score-output').hidden = true;
     if (state === 'complete') showState('complete', 'The score was cleared after leaving the page. Prepare a new take.');

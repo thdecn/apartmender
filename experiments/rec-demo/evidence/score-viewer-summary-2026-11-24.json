@@ -1,7 +1,7 @@
 {
   "date": "2026-11-24",
   "bead": "sludge-0z8.6",
-  "buildId": "d8a8e246370e63ec",
+  "buildId": "f002086e6ca2618c",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -9,21 +9,26 @@
   },
   "evidenceKind": "Automated desktop synthetic input at390px viewport; not physical iPhone/acoustic-piano acceptance",
   "validation": {
-    "nodePassed": 184,
+    "nodePassed": 186,
     "nodeSkipped": 1,
-    "browserPassed": 26,
+    "browserPassed": 32,
     "catalog": {
       "pieces": 6,
       "general": 6,
       "assets": 157
     },
-    "manifestAssetsVerified": 41
+    "manifestAssetsVerified": 41,
+    "releaseManifestsVerified": {
+      "legacy": 40,
+      "current": 41,
+      "retained": 41
+    }
   },
   "viewer": {
     "chromium": {
       "outcome": "rendered",
       "pageCount": 2,
-      "renderMs": 303.09999990463257,
+      "renderMs": 295.09999990463257,
       "sourceMeasures": 64,
       "pages": [
         {
@@ -123,7 +128,7 @@
     "webkit": {
       "outcome": "rendered",
       "pageCount": 2,
-      "renderMs": 217,
+      "renderMs": 218,
       "sourceMeasures": 64,
       "pages": [
         {
@@ -231,24 +236,24 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 50
+          "renderMs": 45
         },
-        "stopToEventsMs": 1454,
-        "stopToScoreMs": 1505,
+        "stopToEventsMs": 1503,
+        "stopToScoreMs": 1549,
         "trackedTensorsAfterCleanup": 0
       },
       {
         "number": 2,
         "status": "complete",
-        "noteCount": 22,
+        "noteCount": 23,
         "measures": 2,
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
           "renderMs": 24
         },
-        "stopToEventsMs": 1492,
-        "stopToScoreMs": 1516,
+        "stopToEventsMs": 1509,
+        "stopToScoreMs": 1533,
         "trackedTensorsAfterCleanup": 0
       }
     ],
@@ -261,10 +266,10 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 46.09999990463257
+          "renderMs": 45.5
         },
-        "stopToEventsMs": 2044.8999998569489,
-        "stopToScoreMs": 2092.5,
+        "stopToEventsMs": 1953.2000000476837,
+        "stopToScoreMs": 2000.5,
         "trackedTensorsAfterCleanup": 0
       },
       {
@@ -275,10 +280,10 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 18.300000190734863
+          "renderMs": 18.40000009536743
         },
-        "stopToEventsMs": 1959.3999998569489,
-        "stopToScoreMs": 1978.2999999523163,
+        "stopToEventsMs": 2015.1999998092651,
+        "stopToScoreMs": 2034.1999998092651,
         "trackedTensorsAfterCleanup": 0
       }
     ]
@@ -292,13 +297,30 @@
   ],
   "csp": "style-src self retained; img-src adds blob. Full SVG image retains internal CSS/font data. Inspection-only detached clone strips style nodes to prevent Chromium test-harness policy events; actual displayed image unmodified.",
   "artifacts": {
-    "score-viewer-fit-390px.png": "74f105062448469a3b95511ffebbcead00157c0d86ba38aeb200927cb610caa3",
-    "score-viewer-zoom-390px.png": "47b9d26433971cbd4e42fef6ad13259c237524cc9f69e818c985ed7b4da5f6de"
+    "score-viewer-fit-390px.png": "1aeb4f24b31c4eddc670c264147cf666e7dd3c10451f4659782478fda215a312",
+    "score-viewer-zoom-390px.png": "139d3974378ec32c0ab4ebdc0ec12fd0df797b2b65f43dd93569b156d9611410"
   },
   "limits": [
     "Triplet fixture verifies supplied MusicXML display only; .5 interpretation remains unimplemented",
     "Fresh physical iPhone capture/count-in/viewer assessment remains .7",
     "Peak device memory, acoustic latency and full cold page-load time unmeasured",
     "Changes are not live until PR incorporation/Pages publication"
-  ]
+  ],
+  "cacheCompatibility": {
+    "cacheControl": "public, max-age=600",
+    "redBeforeFix": "Published legacy HTML with the unversioned new app stayed idle after Prepare.",
+    "passedIn": [
+      "chromium",
+      "webkit"
+    ],
+    "cases": [
+      "Legacy HTML and frozen graph prepare, then current HTML prepares",
+      "Current HTML never requests an old unversioned runtime",
+      "Retained release entry prepares and loads its own manifest"
+    ],
+    "currentBuild": "f002086e6ca2618c",
+    "retainedBuild": "9e870aa44340b539",
+    "legacyBuild": "42c402040d4cdbc0",
+    "immutableOutputTests": "Identical regeneration retains bytes/mtime; new release preserves prior URLs; changed or incomplete existing release is rejected without overwrite."
+  }
 }

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { moduleURL } from './release.mjs';
 
 // These checks use a generated Web Audio stream, not a real microphone or piano.
 // The browser still performs actual timestamped AudioWorklet capture/resampling,
@@ -121,8 +122,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
 
 test('44.1 and 48 kHz conversion preserve performance silence and onset time', async ({ page }) => {
   await page.goto('/apartmender/rec-demo/');
-  const results = await page.evaluate(async () => {
-    const { resamplePerformance, MODEL_SAMPLE_RATE } = await import('./transcription.mjs');
+  const results = await page.evaluate(async transcriptionURL => {
+    const { resamplePerformance, MODEL_SAMPLE_RATE } = await import(transcriptionURL);
     const output = [];
     for (const rate of [44100, 48000]) {
       const samples = new Float32Array(rate);
@@ -133,7 +134,7 @@ test('44.1 and 48 kHz conversion preserve performance silence and onset time', a
         initialSilence: converted.slice(0, Math.round(MODEL_SAMPLE_RATE * 0.2)).every(sample => Math.abs(sample) < 0.0001) });
     }
     return output;
-  });
+  }, moduleURL('transcription.mjs'));
   for (const result of results) {
     expect(result.length).toBe(result.outputRate);
     expect(result.initialSilence).toBe(true);

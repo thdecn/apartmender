@@ -261,12 +261,28 @@ Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's
 existing Pages configuration publishes `main:/docs` without a custom build.
 Rebuild and include the generated route with each demo source change. The
-builder only replaces `docs/rec-demo/`; it does not alter any other page or
-shared asset. It verifies `docs/vendor/verovio/manifest.json` and reuses those
+builder stages an immutable `docs/rec-demo/releases/<buildId>/` cohort, then
+updates only the root HTML and `release.json` pointer. It retains earlier
+cohorts and refuses to overwrite changed/incomplete output at an existing ID;
+it does not alter any other page or shared asset. It verifies `docs/vendor/verovio/manifest.json` and reuses those
 shared assets, notices, editable font and exact source archive without copies.
-The route's asset manifest records digests and estimated gzip costs, including
-the shared runtime. Runtime files and model weights are same-origin static
-downloads; notices are linked from the page.
+Each cohort owns its modules, CSS, worker/worklet, model, notices and asset
+manifest, recording digests and estimated gzip costs including the shared
+runtime. Root HTML links to that cohort; application manifest loading resolves
+relative to its own module, never the mutable pointer. Runtime files and model
+weights are same-origin static downloads; notices are linked from the page.
+
+The previously published unversioned graph (build `42c402040d4cdbc0`) stays
+frozen at the route root for cached old HTML. `legacy-index.html` preserves
+that HTML and the root `asset-manifest.json` describes that legacy graph;
+`release.json` identifies the current cohort for tooling. Old cached pages keep
+their previous behavior until the HTML refreshes. New HTML never combines a
+new viewer/app with an old unversioned runtime. Future builds must retain both
+the legacy graph and prior cohorts. No service worker or server is needed.
+Browser regressions use Pages' ten-minute cache policy and cover legacy HTML
+followed by current HTML, old unversioned runtime responses, and retained
+cohort entry URLs. The first regression failed against the mixed graph before
+this fix (Prepare could not leave idle).
 
 For local validation, run `npm run serve --prefix experiments/rec-demo` and open
 `http://127.0.0.1:4178/apartmender/rec-demo/`. The server emulates the actual
@@ -289,7 +305,8 @@ authorized committing/pushing this frontend branch and opening a PR; merging
 and publication remain separate steps. No Sludge backend deployment or Dolt
 remote sync is needed.
 
-After publication, verify the returned/deployed build at the target URL, its
+After publication, verify the root HTML links the expected cohort and its
+manifest (the root manifest intentionally describes the legacy graph). Check its
 model JSON and weight shard, inference worker, capture worklet, viewer module,
 shared Verovio runtime and notice/source links. Check meter/taps/one-bar clicks,
 the resulting score, page navigation and zoom. Straight-only output still does

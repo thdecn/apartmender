@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { writeFile } from 'node:fs/promises';
 import { viewerScore } from '../fixtures/viewer-score.mjs';
+import { moduleURL } from './release.mjs';
 
 async function probe(page) {
   await page.addInitScript(() => {
@@ -14,15 +15,15 @@ async function probe(page) {
       source: event.sourceFile, blocked: event.blockedURI, line: event.lineNumber, sample: event.sample }));
   });
   await page.goto('/apartmender/rec-demo/');
-  await page.evaluate(async () => {
-    const { createScoreViewer } = await import('./score-viewer.mjs');
+  await page.evaluate(async viewerURL => {
+    const { createScoreViewer } = await import(viewerURL);
     const { VerovioToolkit } = await import('../vendor/verovio/verovio.mjs');
     window.destroyedToolkits = 0;
     const destroy = VerovioToolkit.prototype.destroy;
     VerovioToolkit.prototype.destroy = function () { window.destroyedToolkits++; return destroy.call(this); };
     const host = document.createElement('section'); host.id = 'viewer-probe'; document.querySelector('main').append(host);
     window.viewer = createScoreViewer(host);
-  });
+  }, moduleURL('score-viewer.mjs'));
   return page.locator('#viewer-probe');
 }
 

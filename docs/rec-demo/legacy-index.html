@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <title>Piano recording demo</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body data-state="idle">
+  <main>
+    <p class="eyebrow">Piano recording demo</p>
+    <h1>Play. Stop. See the notes.</h1>
+    <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
+    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. Short takes are useful for trying the demo. Straight-rhythm MusicXML is available after Stop; triplets and on-screen score pages come in later steps.</p>
+    <section class="controls" aria-label="Recording controls">
+      <div class="setup">
+        <div><label for="meter">Time signature</label><select id="meter"><option value="2">2/4</option><option value="3">3/4</option><option value="4" selected>4/4</option></select></div>
+        <div><button id="tap">Tap tempo</button><p id="tempo" aria-live="polite">120 BPM · default quarter-note beat</p></div>
+      </div>
+      <button id="prepare">Prepare local engines</button>
+      <div class="record-controls">
+        <button id="start" disabled>Start</button>
+        <button id="stop" disabled>Stop and transcribe</button>
+      </div>
+      <p id="status" role="status" aria-live="polite">Prepare the local engines to begin.</p>
+      <progress id="progress" max="1" value="0" hidden aria-label="Local inference progress"></progress>
+      <button id="cancel" class="secondary" disabled>Cancel check</button>
+      <p id="error" role="alert" hidden></p>
+    </section>
+    <section id="results" hidden>
+      <h2>Estimated note events</h2>
+      <p id="note-summary"></p>
+      <p class="muted">Times are seconds from the end of the count-in. Initial silence is preserved; beats are not yet quantized. Strength is a model estimate, not calibrated velocity.</p>
+      <div class="table-scroll"><table><thead><tr><th>Pitch</th><th>Start (s)</th><th>End (s)</th><th>Strength</th></tr></thead><tbody id="notes"></tbody></table></div>
+      <p id="score-summary"></p>
+      <button id="score-download" disabled>Download straight-rhythm MusicXML</button>
+    </section>
+    <details>
+      <summary>Save device observations</summary>
+      <p>For the iPhone check, record these details and repeat the take once. Reports stay local until you choose to share the downloaded file.</p>
+      <label for="device">Device model</label><input id="device" placeholder="e.g. iPhone 15" autocomplete="off">
+      <label for="browser">iOS and Safari version</label><input id="browser" placeholder="From Settings / About" autocomplete="off">
+      <label for="observations">What worked, what failed, network inspection notes</label><textarea id="observations" rows="4"></textarea>
+      <button id="download" disabled>Download diagnostic report</button>
+      <p class="muted">The report includes detected notes, timings and failures, but no recorded audio. Peak device memory remains unmeasured.</p>
+    </details>
+    <details><summary>Engine diagnostics</summary><pre id="diagnostics">No check run yet.</pre></details>
+    <footer>Basic Pitch 1.0.1 · TensorFlow.js 3.21.0 (local CPU worker) · Verovio 6.3.0<br><a href="./notices/index.html">Runtime licenses and source</a> · <a href="./asset-manifest.json">Pinned asset manifest</a></footer>
+  </main>
+</body>
+</html>

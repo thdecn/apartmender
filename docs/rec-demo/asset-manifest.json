@@ -1,5 +1,5 @@
 {
-  "buildId": "d8a8e246370e63ec",
+  "buildId": "42c402040d4cdbc0",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -7,13 +7,13 @@
   },
   "verovioProvenance": "thdecn/apartmender shared docs/vendor/verovio, verified against its pinned manifest",
   "backend": "TensorFlow.js CPU in a disposable local module worker",
-  "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement.",
+  "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement. Frozen unversioned compatibility graph from merged PR79; entry snapshot is legacy-index.html. Current builds use release.json and immutable releases.",
   "assets": [
     {
       "path": "app.mjs",
-      "bytes": 10251,
-      "gzipBytes": 3505,
-      "sha256": "2d35ced904b20241b6be5ec3ef54fe60df4ccaa9d67e627616ada6813a0d6a8e",
+      "bytes": 9114,
+      "gzipBytes": 3258,
+      "sha256": "882fa72766fd9a5379b7f8d1f4e35367954080b2a2944b9285fa3df917f42b0a",
       "runtime": true
     },
     {
@@ -38,10 +38,10 @@
       "runtime": true
     },
     {
-      "path": "index.html",
-      "bytes": 4162,
-      "gzipBytes": 1828,
-      "sha256": "49e3979d33d7a6cfd7311f6c6700786067f1f8f2947dcb4ce216ade982edc717",
+      "path": "legacy-index.html",
+      "bytes": 3880,
+      "gzipBytes": 1728,
+      "sha256": "ef40d86bfb8324213b2adde3c09664bf85fd3df3f6cb87078858e80491f2aa8d",
       "runtime": true
     },
     {
@@ -179,16 +179,9 @@
     },
     {
       "path": "runtime.mjs",
-      "bytes": 3711,
-      "gzipBytes": 1441,
-      "sha256": "33c1e167ffb397574e464f0243090413db58b83f8c8909d27108063dfae07ba6",
-      "runtime": true
-    },
-    {
-      "path": "score-viewer.mjs",
-      "bytes": 7179,
-      "gzipBytes": 2377,
-      "sha256": "0c487de756b4f0b52b3577d280016c3d3a8fefc72344440ac0f14511748ad6ea",
+      "bytes": 3501,
+      "gzipBytes": 1404,
+      "sha256": "60f0144c2927fbc3f898f83df38441a26bf88363ae135c692197ef3288ab61b8",
       "runtime": true
     },
     {
@@ -200,9 +193,9 @@
     },
     {
       "path": "style.css",
-      "bytes": 3590,
-      "gzipBytes": 1353,
-      "sha256": "11e7d28e32e2c6303c5fbde960c0e6719771c8f254d7a2d834ba105f8295a44b",
+      "bytes": 2804,
+      "gzipBytes": 1185,
+      "sha256": "e44984b5ab424bdfe5648ee5d50848dc9e6825a7f0154c13d1bc54a8251e0b7c",
       "runtime": true
     },
     {
@@ -296,5 +289,6 @@
       "gzipBytes": 2646,
       "runtime": true
     }
-  ]
+  ],
+  "legacyEntry": "legacy-index.html"
 }
