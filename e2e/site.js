@@ -4,7 +4,7 @@ import { extname, resolve, sep } from "node:path";
 
 export async function serveSite({ port = 0 } = {}) {
   const root = resolve("docs");
-  const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
+  const types = { ".html": "text/html", ".js": "text/javascript", ".mjs": "text/javascript", ".css": "text/css",
     ".json": "application/json", ".png": "image/png" };
   const server = createServer(async (request, response) => {
     const pathname = new URL(request.url, "http://127.0.0.1").pathname;
