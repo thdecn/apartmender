@@ -57,6 +57,11 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     await expect(page.locator('#notes tr').first()).toBeVisible();
     expect(await page.evaluate(() => window.testAudioContexts.every(context => context.state === 'closed'))).toBe(true);
   }
+  const scoreDownloadEvent = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download straight-rhythm MusicXML' }).click();
+  const scoreDownload = await scoreDownloadEvent;
+  const scorePath = testInfo.outputPath('captured-straight.musicxml');
+  await scoreDownload.saveAs(scorePath);
   await page.getByText('Save device observations', { exact: true }).click();
   await page.getByLabel('Device model').fill('AUTOMATED DESKTOP — synthetic Web Audio stream');
   await page.getByLabel('iOS and Safari version').fill(`Playwright ${testInfo.project.name}; not physical iPhone evidence`);
@@ -88,10 +93,14 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     expect(take.transcription.tempoBPM).toBe(take.audio.timing.tempoBPM);
     expect(take.transcription.durationSeconds).toBe(take.audio.performanceDurationSeconds);
     expect(take.transcription.notes.length).toBeGreaterThan(1);
+    expect(take.score.rhythm).toBe('straight');
+    expect(take.score.noteCount).toBe(take.transcription.notes.length);
+    expect(take.score.musicXML).toContain('<score-partwise');
     expect(take.transcription.notes.every(note => Number.isFinite(note.onsetSeconds)
       && note.onsetSeconds >= 0 && note.offsetSeconds > note.onsetSeconds
       && note.offsetSeconds <= take.transcription.durationSeconds)).toBe(true);
   }
+  expect(await readFile(scorePath, 'utf8')).toBe(report.takes.at(-1).score.musicXML);
   expect(requests.every(request => new URL(request.url).origin === 'http://127.0.0.1:4178'
     && request.method === 'GET' && request.body === null)).toBe(true);
   expect(requests.some(request => request.url.endsWith('/model/model.json'))).toBe(true);

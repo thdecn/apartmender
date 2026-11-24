@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.4",
+  "buildId": "f92497a2f1a598ef",
+  "evidenceKind": "Automated desktop synthetic note/audio examples, not owner piece or physical iPhone evidence",
+  "validation": {
+    "nodePassed": 183,
+    "nodeSkipped": 1,
+    "browserPassed": 20,
+    "manifestAssetsVerified": 40,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    }
+  },
+  "notationValidation": "Full XML engraved in pinned Verovio; tempo directions removed ONLY from a detached clone for bounded score-index validation. Full original is retained.",
+  "standalonePreview": "Fixture SVG inspected outside capture-page CSP; public score page host remains .6.",
+  "fixtures": {
+    "webkit": [
+      {
+        "name": "independent piano voices",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 13,
+        "quantizedSourceCount": 13,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "3/4 dotted and crossing-bar chord",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 5,
+        "quantizedSourceCount": 5,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "2/4 repeated notes and conflicting accidentals",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 9,
+        "quantizedSourceCount": 9,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "silent take",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 0,
+        "quantizedSourceCount": 0,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      }
+    ],
+    "chromium": [
+      {
+        "name": "independent piano voices",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 13,
+        "quantizedSourceCount": 13,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "3/4 dotted and crossing-bar chord",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 5,
+        "quantizedSourceCount": 5,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "2/4 repeated notes and conflicting accidentals",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 9,
+        "quantizedSourceCount": 9,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "silent take",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 0,
+        "quantizedSourceCount": 0,
+        "measureCount": 2,
+        "pages": 1,
+        "allVoicesFilled": true,
+        "allTiedDurationsRetained": true
+      }
+    ]
+  },
+  "localInferenceAndScoreRepeat": {
+    "webkit": [
+      {
+        "take": 1,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 6,
+        "tensorsAfterCleanup": 0
+      },
+      {
+        "take": 2,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 6,
+        "tensorsAfterCleanup": 0
+      }
+    ],
+    "chromium": [
+      {
+        "take": 1,
+        "status": "complete",
+        "sourceNoteEvents": 21,
+        "scoreNotes": 21,
+        "measures": 2,
+        "voices": 5,
+        "tensorsAfterCleanup": 0
+      },
+      {
+        "take": 2,
+        "status": "complete",
+        "sourceNoteEvents": 22,
+        "scoreNotes": 22,
+        "measures": 2,
+        "voices": 4,
+        "tensorsAfterCleanup": 0
+      }
+    ]
+  },
+  "artifacts": {
+    "straight-score-fixture.musicxml": "881eab9ae02c80f47bd8cf4cd6b97a9329ecaa0c2a1030aa63a096fe87bb3f5e",
+    "straight-score-fixture.svg": "bbba6f910614499657ef9e4c569da250dbf673ee8aa45f3e8359569d52597dba"
+  },
+  "limits": [
+    "Straight through sixteenths only; triplet bead .5 remains required",
+    "On-screen public score pages remain .6",
+    "Fresh physical iPhone/acoustic assessment remains .7",
+    "No calibrated dynamics or hand detection claim"
+  ]
+}

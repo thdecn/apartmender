@@ -1,5 +1,5 @@
 {
-  "buildId": "d671aec4b4103019",
+  "buildId": "f92497a2f1a598ef",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -11,9 +11,9 @@
   "assets": [
     {
       "path": "app.mjs",
-      "bytes": 8457,
-      "gzipBytes": 3038,
-      "sha256": "609ffabba4764f2e6cd450eaa26d2eb04ae543fabb779f35e6a769662ebde37f",
+      "bytes": 9114,
+      "gzipBytes": 3258,
+      "sha256": "882fa72766fd9a5379b7f8d1f4e35367954080b2a2944b9285fa3df917f42b0a",
       "runtime": true
     },
     {
@@ -39,9 +39,9 @@
     },
     {
       "path": "index.html",
-      "bytes": 3693,
-      "gzipBytes": 1659,
-      "sha256": "234f80b21d82cd83df1b97fe0e455025988b731e6e20713395c8a577d7be892c",
+      "bytes": 3880,
+      "gzipBytes": 1728,
+      "sha256": "ef40d86bfb8324213b2adde3c09664bf85fd3df3f6cb87078858e80491f2aa8d",
       "runtime": true
     },
     {
@@ -182,6 +182,13 @@
       "bytes": 3501,
       "gzipBytes": 1404,
       "sha256": "60f0144c2927fbc3f898f83df38441a26bf88363ae135c692197ef3288ab61b8",
+      "runtime": true
+    },
+    {
+      "path": "score.mjs",
+      "bytes": 10482,
+      "gzipBytes": 3506,
+      "sha256": "2bd1b1835fa4d71d903c98b28feaaa25e5e5baf1888c459fcdf7d8738b54b723",
       "runtime": true
     },
     {
