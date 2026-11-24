@@ -98,6 +98,30 @@ test('model download failure is visible and never falls back to a service', asyn
   expect(writes).toEqual([]);
 });
 
+test('Prepare retries a failed manifest request and reuses a successful result', async ({ page }) => {
+  let requests = 0;
+  await page.route('**/asset-manifest.json', route => {
+    requests++;
+    return requests === 1 ? route.abort('failed') : route.continue();
+  });
+  await page.goto('/apartmender/rec-demo/');
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
+  await expect(page.getByRole('alert')).toBeVisible();
+  expect(requests).toBe(1);
+
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 10000 });
+  await expect(page.getByRole('alert')).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Start recording' })).toBeEnabled();
+  expect(requests).toBe(2);
+
+  await page.getByRole('button', { name: 'Cancel check' }).click();
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 10000 });
+  expect(requests).toBe(2);
+});
+
 test('permission denial and cancellation release state without displaying a stale result', async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: {

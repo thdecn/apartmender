@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-11-24T12:26:57.513Z",
+  "startedAt": "2026-11-24T12:49:00.239Z",
   "environment": {
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
     "secureContext": true,
@@ -15,19 +15,19 @@
   "takes": [
     {
       "number": 1,
-      "startedAt": "2026-11-24T12:26:57.586Z",
+      "startedAt": "2026-11-24T12:49:00.329Z",
       "status": "complete",
       "verovio": {
         "version": "6.3.0-425dd7b",
-        "initializationMs": 144,
+        "initializationMs": 153,
         "wasmHeapBytesAfterProbe": null,
         "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
         "reused": false,
-        "thisRequestMs": 144
+        "thisRequestMs": 154
       },
       "model": {
         "type": "ready",
-        "initializationMs": 10,
+        "initializationMs": 9,
         "backend": "cpu",
         "tensorflowVersion": "3.21.0",
         "modelMemory": {
@@ -54,7 +54,7 @@
           }
         ]
       },
-      "prepareWallMs": 319,
+      "prepareWallMs": 329,
       "capture": {
         "mimeType": "audio/mp4",
         "trackSettings": [
@@ -64,13 +64,13 @@
       },
       "audio": {
         "recordedBytes": 8393,
-        "captureWallMs": 2296,
+        "captureWallMs": 2305,
         "decodedSampleRate": 44100,
         "decodedChannels": 2,
         "decodedDurationSeconds": 1.8546938775510204,
         "modelSampleRate": 22050,
         "modelSamples": 40896,
-        "decodeAndResampleMs": 14
+        "decodeAndResampleMs": 7
       },
       "result": {
         "type": "result",
@@ -189,7 +189,7 @@
           "frame": 0.25,
           "minNoteLengthFrames": 5
         },
-        "inferenceMs": 1517,
+        "inferenceMs": 1481,
         "tensorMemoryBeforeCleanup": {
           "unreliable": true,
           "reasons": [
@@ -224,16 +224,16 @@
         ],
         "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
       },
-      "stopToEventsMs": 1537,
-      "endedAt": "2026-11-24T12:27:01.838Z"
+      "stopToEventsMs": 1492,
+      "endedAt": "2026-11-24T12:49:04.522Z"
     },
     {
       "number": 2,
-      "startedAt": "2026-11-24T12:27:02.133Z",
+      "startedAt": "2026-11-24T12:49:04.858Z",
       "status": "complete",
       "verovio": {
         "version": "6.3.0-425dd7b",
-        "initializationMs": 144,
+        "initializationMs": 153,
         "wasmHeapBytesAfterProbe": null,
         "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
         "reused": true,
@@ -241,7 +241,7 @@
       },
       "model": {
         "type": "ready",
-        "initializationMs": 9,
+        "initializationMs": 10,
         "backend": "cpu",
         "tensorflowVersion": "3.21.0",
         "modelMemory": {
@@ -256,7 +256,7 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 1,
+            "durationMs": 2,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
@@ -278,7 +278,7 @@
       },
       "audio": {
         "recordedBytes": 8393,
-        "captureWallMs": 2280,
+        "captureWallMs": 2295,
         "decodedSampleRate": 44100,
         "decodedChannels": 2,
         "decodedDurationSeconds": 1.8546938775510204,
@@ -403,7 +403,7 @@
           "frame": 0.25,
           "minNoteLengthFrames": 5
         },
-        "inferenceMs": 1647,
+        "inferenceMs": 1444,
         "tensorMemoryBeforeCleanup": {
           "unreliable": true,
           "reasons": [
@@ -425,7 +425,7 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 1,
+            "durationMs": 2,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
@@ -438,12 +438,12 @@
         ],
         "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
       },
-      "stopToEventsMs": 1657,
-      "endedAt": "2026-11-24T12:27:06.191Z"
+      "stopToEventsMs": 1454,
+      "endedAt": "2026-11-24T12:49:08.697Z"
     }
   ],
   "build": {
-    "buildId": "fd3035941405792c",
+    "buildId": "4560fa2f1ef0f65c",
     "versions": {
       "basicPitch": "1.0.1",
       "tensorflow": "3.21.0",
@@ -455,9 +455,9 @@
     "assets": [
       {
         "path": "app.mjs",
-        "bytes": 7301,
-        "gzipBytes": 2697,
-        "sha256": "3503bc359fcaeec45cebea5a624e50827431ae992dc02060657a6ad782f4e455",
+        "bytes": 7460,
+        "gzipBytes": 2732,
+        "sha256": "97a01fb01917c403ffdeb2f56130cad642a839a5b95f505d9a12580b40213415",
         "runtime": true
       },
       {
@@ -716,51 +716,51 @@
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/style.css",
       "initiatorType": "link",
-      "durationMs": 1,
+      "durationMs": 2,
       "transferBytes": 2549,
       "decodedBytes": 2249
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/app.mjs",
       "initiatorType": "script",
-      "durationMs": 2,
-      "transferBytes": 7601,
-      "decodedBytes": 7301
+      "durationMs": 1,
+      "transferBytes": 7760,
+      "decodedBytes": 7460
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/audio.mjs",
       "initiatorType": "script",
-      "durationMs": 3,
+      "durationMs": 2,
       "transferBytes": 5305,
       "decodedBytes": 5005
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/runtime.mjs",
       "initiatorType": "script",
-      "durationMs": 2,
+      "durationMs": 1,
       "transferBytes": 3801,
       "decodedBytes": 3501
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/asset-manifest.json",
       "initiatorType": "fetch",
-      "durationMs": 2,
+      "durationMs": 1,
       "transferBytes": 8496,
       "decodedBytes": 8196
     },
     {
-      "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio-module.mjs",
-      "initiatorType": "script",
-      "durationMs": 6,
-      "transferBytes": 7297107,
-      "decodedBytes": 7296807
-    },
-    {
       "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio.mjs",
       "initiatorType": "script",
-      "durationMs": 1,
+      "durationMs": 2,
       "transferBytes": 14778,
       "decodedBytes": 14478
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio-module.mjs",
+      "initiatorType": "script",
+      "durationMs": 5,
+      "transferBytes": 7297107,
+      "decodedBytes": 7296807
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
@@ -772,7 +772,7 @@
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
       "initiatorType": "other",
-      "durationMs": 4,
+      "durationMs": 2,
       "transferBytes": 1066529,
       "decodedBytes": 1066229
     }

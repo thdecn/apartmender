@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-11-24T12:26:44.728Z",
+  "startedAt": "2026-11-24T12:48:47.106Z",
   "environment": {
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
     "secureContext": true,
@@ -15,19 +15,19 @@
   "takes": [
     {
       "number": 1,
-      "startedAt": "2026-11-24T12:26:44.808Z",
+      "startedAt": "2026-11-24T12:48:47.170Z",
       "status": "complete",
       "verovio": {
         "version": "6.3.0-425dd7b",
-        "initializationMs": 252.39999985694885,
+        "initializationMs": 228.10000014305115,
         "wasmHeapBytesAfterProbe": null,
         "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
         "reused": false,
-        "thisRequestMs": 253.20000004768372
+        "thisRequestMs": 229.10000014305115
       },
       "model": {
         "type": "ready",
-        "initializationMs": 9.700000047683716,
+        "initializationMs": 12.200000047683716,
         "backend": "cpu",
         "tensorflowVersion": "3.21.0",
         "modelMemory": {
@@ -42,19 +42,19 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 0.8000001907348633,
+            "durationMs": 1,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
-            "durationMs": 0.5999999046325684,
+            "durationMs": 0.8999998569488525,
             "transferBytes": 742692,
             "decodedBytes": 742392
           }
         ]
       },
-      "prepareWallMs": 353.89999985694885,
+      "prepareWallMs": 361.30000019073486,
       "capture": {
         "mimeType": "audio/mp4",
         "trackSettings": [
@@ -67,13 +67,13 @@
       },
       "audio": {
         "recordedBytes": 28826,
-        "captureWallMs": 2277.9000000953674,
+        "captureWallMs": 2291,
         "decodedSampleRate": 44100,
         "decodedChannels": 2,
         "decodedDurationSeconds": 1.78,
         "modelSampleRate": 22050,
         "modelSamples": 39249,
-        "decodeAndResampleMs": 15
+        "decodeAndResampleMs": 17.799999952316284
       },
       "result": {
         "type": "result",
@@ -82,109 +82,109 @@
             "pitchMidi": 86,
             "onsetSeconds": 0,
             "offsetSeconds": 0.17414965986394557,
-            "estimatedStrength": 0.3140616059303284
+            "estimatedStrength": 0.31291036208470663
           },
           {
             "pitchMidi": 88,
             "onsetSeconds": 0,
             "offsetSeconds": 0.09287981859410431,
-            "estimatedStrength": 0.30258843675255775
+            "estimatedStrength": 0.30257338285446167
           },
           {
             "pitchMidi": 91,
             "onsetSeconds": 0,
             "offsetSeconds": 0.26702947845804986,
-            "estimatedStrength": 0.3659556780172431
+            "estimatedStrength": 0.36594131070634595
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7546485260770975,
-            "estimatedStrength": 0.6026699496433139
+            "estimatedStrength": 0.6046230061911047
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7430385487528345,
-            "estimatedStrength": 0.5969514312252165
+            "estimatedStrength": 0.6007882053889926
           },
           {
             "pitchMidi": 67,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7430385487528345,
-            "estimatedStrength": 0.5410845927775852
+            "estimatedStrength": 0.5381431764080411
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 0.011609977324263039,
-            "offsetSeconds": 0.26702947845804986,
-            "estimatedStrength": 0.35189508172598755
+            "offsetSeconds": 0.25541950113378686,
+            "estimatedStrength": 0.3561245799064636
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 1.0216780045351475,
+            "offsetSeconds": 1.6486167800453515,
+            "estimatedStrength": 0.5747933663703777
           },
           {
             "pitchMidi": 86,
             "onsetSeconds": 1.0216780045351475,
-            "offsetSeconds": 1.195827664399093,
-            "estimatedStrength": 0.3201336880524953
+            "offsetSeconds": 1.207437641723356,
+            "estimatedStrength": 0.3174615949392319
           },
           {
             "pitchMidi": 88,
             "onsetSeconds": 1.0216780045351475,
-            "offsetSeconds": 1.1029478458049886,
-            "estimatedStrength": 0.30522819076265606
+            "offsetSeconds": 1.1145578231292517,
+            "estimatedStrength": 0.2987137772142887
           },
           {
             "pitchMidi": 91,
             "onsetSeconds": 1.0216780045351475,
             "offsetSeconds": 1.2887074829931973,
-            "estimatedStrength": 0.36857959109803906
+            "estimatedStrength": 0.36888853233793506
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 1.0332879818594105,
             "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.645522767080451
+            "estimatedStrength": 0.6468812969495665
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 1.0332879818594105,
             "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.6383312400781883
-          },
-          {
-            "pitchMidi": 67,
-            "onsetSeconds": 1.0332879818594105,
-            "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.5739888728789564
+            "estimatedStrength": 0.6411435480387706
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 1.0332879818594105,
-            "offsetSeconds": 1.2770975056689342,
-            "estimatedStrength": 0.35037297010421753
+            "offsetSeconds": 1.2887074829931973,
+            "estimatedStrength": 0.3479961820624091
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.647317361831665
+            "estimatedStrength": 0.648531836271286
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.6825110524892807
+            "estimatedStrength": 0.6843391865491867
           },
           {
             "pitchMidi": 67,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.5506257861852646
+            "estimatedStrength": 0.5537454426288605
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7298866213151927,
-            "estimatedStrength": 0.33927363583019804
+            "estimatedStrength": 0.33783070955957684
           }
         ],
         "thresholds": {
@@ -192,7 +192,7 @@
           "frame": 0.25,
           "minNoteLengthFrames": 5
         },
-        "inferenceMs": 2022,
+        "inferenceMs": 2068,
         "tensorMemoryBeforeCleanup": {
           "unreliable": true,
           "reasons": [
@@ -214,30 +214,30 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 0.8000001907348633,
+            "durationMs": 1,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
-            "durationMs": 0.5999999046325684,
+            "durationMs": 0.8999998569488525,
             "transferBytes": 742692,
             "decodedBytes": 742392
           }
         ],
         "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
       },
-      "stopToEventsMs": 2055.0999999046326,
-      "endedAt": "2026-11-24T12:26:49.700Z",
-      "chromiumJSHeapBytes": 29400000
+      "stopToEventsMs": 2104,
+      "endedAt": "2026-11-24T12:48:52.101Z",
+      "chromiumJSHeapBytes": 33100000
     },
     {
       "number": 2,
-      "startedAt": "2026-11-24T12:26:49.977Z",
+      "startedAt": "2026-11-24T12:48:52.328Z",
       "status": "complete",
       "verovio": {
         "version": "6.3.0-425dd7b",
-        "initializationMs": 252.39999985694885,
+        "initializationMs": 228.10000014305115,
         "wasmHeapBytesAfterProbe": null,
         "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
         "reused": true,
@@ -245,7 +245,7 @@
       },
       "model": {
         "type": "ready",
-        "initializationMs": 8.600000143051147,
+        "initializationMs": 10,
         "backend": "cpu",
         "tensorflowVersion": "3.21.0",
         "modelMemory": {
@@ -260,19 +260,19 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 0.7999999523162842,
+            "durationMs": 0.8999998569488525,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
-            "durationMs": 0.7999999523162842,
+            "durationMs": 1.2999999523162842,
             "transferBytes": 742692,
             "decodedBytes": 742392
           }
         ]
       },
-      "prepareWallMs": 51.09999990463257,
+      "prepareWallMs": 50.60000014305115,
       "capture": {
         "mimeType": "audio/mp4",
         "trackSettings": [
@@ -285,13 +285,13 @@
       },
       "audio": {
         "recordedBytes": 28826,
-        "captureWallMs": 2284.0999999046326,
+        "captureWallMs": 2286.5999999046326,
         "decodedSampleRate": 44100,
         "decodedChannels": 2,
         "decodedDurationSeconds": 1.78,
         "modelSampleRate": 22050,
         "modelSamples": 39249,
-        "decodeAndResampleMs": 10.200000047683716
+        "decodeAndResampleMs": 9.099999904632568
       },
       "result": {
         "type": "result",
@@ -300,109 +300,109 @@
             "pitchMidi": 86,
             "onsetSeconds": 0,
             "offsetSeconds": 0.17414965986394557,
-            "estimatedStrength": 0.3143453558286031
+            "estimatedStrength": 0.3141890982786814
           },
           {
             "pitchMidi": 88,
             "onsetSeconds": 0,
             "offsetSeconds": 0.09287981859410431,
-            "estimatedStrength": 0.30255044996738434
+            "estimatedStrength": 0.3032894693315029
           },
           {
             "pitchMidi": 91,
             "onsetSeconds": 0,
             "offsetSeconds": 0.26702947845804986,
-            "estimatedStrength": 0.36652407698009326
+            "estimatedStrength": 0.36611359663631604
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7546485260770975,
-            "estimatedStrength": 0.6050970167852938
+            "estimatedStrength": 0.6026740530505776
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7430385487528345,
-            "estimatedStrength": 0.5951114765235356
+            "estimatedStrength": 0.5964375791095552
           },
           {
             "pitchMidi": 67,
             "onsetSeconds": 0.011609977324263039,
             "offsetSeconds": 0.7430385487528345,
-            "estimatedStrength": 0.5417569714879232
+            "estimatedStrength": 0.5412530941622598
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 0.011609977324263039,
-            "offsetSeconds": 0.26702947845804986,
-            "estimatedStrength": 0.34969926422292535
-          },
-          {
-            "pitchMidi": 67,
-            "onsetSeconds": 1.0216780045351475,
-            "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.5788119711257793
+            "offsetSeconds": 0.2786394557823129,
+            "estimatedStrength": 0.34699250692906586
           },
           {
             "pitchMidi": 86,
             "onsetSeconds": 1.0216780045351475,
-            "offsetSeconds": 1.207437641723356,
-            "estimatedStrength": 0.3130251783877611
+            "offsetSeconds": 1.195827664399093,
+            "estimatedStrength": 0.31915456652641294
           },
           {
             "pitchMidi": 88,
             "onsetSeconds": 1.0216780045351475,
-            "offsetSeconds": 1.1029478458049886,
-            "estimatedStrength": 0.30660336783954073
+            "offsetSeconds": 1.1145578231292517,
+            "estimatedStrength": 0.29904669523239136
           },
           {
             "pitchMidi": 91,
             "onsetSeconds": 1.0216780045351475,
             "offsetSeconds": 1.2887074829931973,
-            "estimatedStrength": 0.3669789588969687
+            "estimatedStrength": 0.36820535296979157
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 1.0332879818594105,
             "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.6458728684569305
+            "estimatedStrength": 0.6445827242338432
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 1.0332879818594105,
             "offsetSeconds": 1.6486167800453515,
-            "estimatedStrength": 0.6398531727071078
+            "estimatedStrength": 0.6417817670219349
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 1.0332879818594105,
+            "offsetSeconds": 1.6486167800453515,
+            "estimatedStrength": 0.5757136451748183
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 1.0332879818594105,
             "offsetSeconds": 1.2887074829931973,
-            "estimatedStrength": 0.3514051952145316
+            "estimatedStrength": 0.3464648669416254
           },
           {
             "pitchMidi": 60,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.6488510608673096
+            "estimatedStrength": 0.6489694118499756
           },
           {
             "pitchMidi": 64,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.6859464794397354
+            "estimatedStrength": 0.6863354176282883
           },
           {
             "pitchMidi": 67,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7647165532879818,
-            "estimatedStrength": 0.5544244885444641
+            "estimatedStrength": 0.5547399550676346
           },
           {
             "pitchMidi": 72,
             "onsetSeconds": 1.6486167800453515,
             "offsetSeconds": 1.7298866213151927,
-            "estimatedStrength": 0.339298461164747
+            "estimatedStrength": 0.33935894284929546
           }
         ],
         "thresholds": {
@@ -410,7 +410,7 @@
           "frame": 0.25,
           "minNoteLengthFrames": 5
         },
-        "inferenceMs": 1965.0999999046326,
+        "inferenceMs": 1990.7000000476837,
         "tensorMemoryBeforeCleanup": {
           "unreliable": true,
           "reasons": [
@@ -432,26 +432,26 @@
         "resources": [
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
-            "durationMs": 0.7999999523162842,
+            "durationMs": 0.8999998569488525,
             "transferBytes": 174837,
             "decodedBytes": 174537
           },
           {
             "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
-            "durationMs": 0.7999999523162842,
+            "durationMs": 1.2999999523162842,
             "transferBytes": 742692,
             "decodedBytes": 742392
           }
         ],
         "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
       },
-      "stopToEventsMs": 1989.8999998569489,
-      "endedAt": "2026-11-24T12:26:54.369Z",
-      "chromiumJSHeapBytes": 29400000
+      "stopToEventsMs": 2012.1000001430511,
+      "endedAt": "2026-11-24T12:48:56.744Z",
+      "chromiumJSHeapBytes": 33100000
     }
   ],
   "build": {
-    "buildId": "fd3035941405792c",
+    "buildId": "4560fa2f1ef0f65c",
     "versions": {
       "basicPitch": "1.0.1",
       "tensorflow": "3.21.0",
@@ -463,9 +463,9 @@
     "assets": [
       {
         "path": "app.mjs",
-        "bytes": 7301,
-        "gzipBytes": 2697,
-        "sha256": "3503bc359fcaeec45cebea5a624e50827431ae992dc02060657a6ad782f4e455",
+        "bytes": 7460,
+        "gzipBytes": 2732,
+        "sha256": "97a01fb01917c403ffdeb2f56130cad642a839a5b95f505d9a12580b40213415",
         "runtime": true
       },
       {
@@ -724,63 +724,63 @@
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/style.css",
       "initiatorType": "link",
-      "durationMs": 5,
+      "durationMs": 3.0999999046325684,
       "transferBytes": 2549,
       "decodedBytes": 2249
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/app.mjs",
       "initiatorType": "script",
-      "durationMs": 3,
-      "transferBytes": 7601,
-      "decodedBytes": 7301
+      "durationMs": 1.9000000953674316,
+      "transferBytes": 7760,
+      "decodedBytes": 7460
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/audio.mjs",
       "initiatorType": "script",
-      "durationMs": 1.5,
+      "durationMs": 1.4000000953674316,
       "transferBytes": 5305,
       "decodedBytes": 5005
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/runtime.mjs",
       "initiatorType": "script",
-      "durationMs": 1.8999998569488525,
+      "durationMs": 1.6000001430511475,
       "transferBytes": 3801,
       "decodedBytes": 3501
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/asset-manifest.json",
       "initiatorType": "fetch",
-      "durationMs": 1.2000000476837158,
+      "durationMs": 1.1999998092651367,
       "transferBytes": 8496,
       "decodedBytes": 8196
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio-module.mjs",
       "initiatorType": "script",
-      "durationMs": 23.799999952316284,
+      "durationMs": 15.099999904632568,
       "transferBytes": 7297107,
       "decodedBytes": 7296807
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio.mjs",
       "initiatorType": "script",
-      "durationMs": 1.8000001907348633,
+      "durationMs": 1.2000000476837158,
       "transferBytes": 14778,
       "decodedBytes": 14478
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
       "initiatorType": "other",
-      "durationMs": -34.90000009536743,
+      "durationMs": -36.799999952316284,
       "transferBytes": 1066529,
       "decodedBytes": 1066229
     },
     {
       "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
       "initiatorType": "other",
-      "durationMs": -2.3999998569488525,
+      "durationMs": -1.3999998569488525,
       "transferBytes": 1066529,
       "decodedBytes": 1066229
     }

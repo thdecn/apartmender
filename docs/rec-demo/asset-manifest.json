@@ -1,5 +1,5 @@
 {
-  "buildId": "fd3035941405792c",
+  "buildId": "4560fa2f1ef0f65c",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -11,9 +11,9 @@
   "assets": [
     {
       "path": "app.mjs",
-      "bytes": 7301,
-      "gzipBytes": 2697,
-      "sha256": "3503bc359fcaeec45cebea5a624e50827431ae992dc02060657a6ad782f4e455",
+      "bytes": 7460,
+      "gzipBytes": 2732,
+      "sha256": "97a01fb01917c403ffdeb2f56130cad642a839a5b95f505d9a12580b40213415",
       "runtime": true
     },
     {

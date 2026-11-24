@@ -11,11 +11,19 @@ const report = {
   takes: [],
 };
 let state = 'idle', generation = 0, worker, capture, take;
-const manifestPromise = fetch('./asset-manifest.json').then(response => {
-  if (!response.ok) throw new Error(`Asset manifest failed (${response.status}).`);
-  return response.json();
-});
-manifestPromise.catch(() => {});
+let manifestPromise;
+function loadManifest() {
+  if (!manifestPromise) {
+    manifestPromise = fetch('./asset-manifest.json').then(response => {
+      if (!response.ok) throw new Error(`Asset manifest failed (${response.status}).`);
+      return response.json();
+    }).catch(error => {
+      manifestPromise = undefined;
+      throw error;
+    });
+  }
+  return manifestPromise;
+}
 
 function showState(next, message) {
   state = next;
@@ -78,7 +86,7 @@ $('prepare').addEventListener('click', async () => {
   showState('preparing', 'Loading local engines. The first download may take a moment.');
   const started = performance.now();
   try {
-    report.build = await manifestPromise;
+    report.build = await loadManifest();
     const verovio = await initializeVerovio();
     if (current !== generation) return;
     take.verovio = verovio;
