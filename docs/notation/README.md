@@ -12,6 +12,10 @@ index without changing the source or its identities.
 The [standalone Verovio renderer](score-renderer.md) engraves these cards with
 individual note selection and in-memory overrides; it is not wired to routes yet.
 
+The [fixed-edition catalogue descriptor](edition-descriptor.md) pins source,
+index, runtime and projection settings as one independently versioned notation
+representation while preserving the legacy image declarations.
+
 ## Interface and identity
 
 ```js

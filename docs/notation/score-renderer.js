@@ -3,6 +3,10 @@ import { compactPreview } from './score-preview.js';
 const VERSION = '6.3.0-425dd7b';
 const NS = 'http://www.w3.org/2000/svg';
 const check = (value, message) => { if (!value) throw Error(message); };
+export const CARD_ENGRAVING_OPTIONS = Object.freeze({ pageWidth: 1450, pageHeight: 650, scale: 50, font: 'Leipzig', spacingStaff: 12,
+  spacingBraceGroup: 12, spacingLinear: 0.15, spacingNonLinear: 0.8, breaks: 'encoded',
+  adjustPageHeight: true, condense: 'none', minLastJustification: 0, header: 'none', footer: 'none',
+  svgViewBox: true, svgHtml5: false, mnumInterval: 0 });
 let enginePromise;
 async function engine() {
   if (!enginePromise) enginePromise = Promise.all([
@@ -58,10 +62,7 @@ function workingCopy(score, card, overrides) {
 
 function engrave(toolkit, xml) {
   check(toolkit.getVersion() === VERSION, 'Unexpected Verovio version');
-  toolkit.setOptions({ pageWidth: 1450, pageHeight: 650, scale: 50, font: 'Leipzig', spacingStaff: 12,
-    spacingBraceGroup: 12, spacingLinear: 0.15, spacingNonLinear: 0.8, breaks: 'encoded',
-    adjustPageHeight: true, condense: 'none', minLastJustification: 0, header: 'none', footer: 'none',
-    svgViewBox: true, svgHtml5: false, mnumInterval: 0 });
+  toolkit.setOptions(CARD_ENGRAVING_OPTIONS);
   check(toolkit.loadData(xml), `MusicXML import failed: ${toolkit.getLog()}`);
   check(toolkit.getPageCount() === 1, 'Score card does not fit a single page');
   return { svg: toolkit.renderToSVG(1), mei: new DOMParser().parseFromString(toolkit.getMEI(), 'application/xml') };

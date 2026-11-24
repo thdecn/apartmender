@@ -19,6 +19,9 @@ export function validateCatalog(catalog, { knownSlugs } = {}) {
     require(['supported', 'retired'].includes(piece.status), `invalid retirement state for ${piece.id}`);
     require(typeof piece.assetsAvailable === 'boolean' && (piece.status === 'retired' || piece.assetsAvailable), `supported Piece needs assets: ${piece.id}`);
     require(typeof piece.version === 'string' && /^sha256:[a-f0-9]{64}$/.test(piece.version), `invalid version for ${piece.id}`);
+    if (piece.notation) require(/^sha256:[a-f0-9]{64}$/.test(piece.notation.editionId)
+      && digest(piece.notation.manifestSha256) && digest(piece.notation.descriptor?.sha256)
+      && piece.notation.version === `sha256:${piece.notation.descriptor.sha256}`, `invalid notation version for ${piece.id}`);
     require(Array.isArray(piece.cards) && piece.cards.length > 0 && new Set(piece.cards).size === piece.cards.length, `invalid ordered cards for ${piece.id}`);
     require(Array.isArray(piece.cardAssets) && piece.cardAssets.length === piece.cards.length, `incomplete asset declarations for ${piece.id}`);
     for (const [index, card] of piece.cards.entries()) {

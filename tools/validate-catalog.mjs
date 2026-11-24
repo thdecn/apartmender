@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { validateCatalog, generalPracticePieces } from '../docs/piece-catalog.js';
+import { validateNotationFiles } from './notation-edition.mjs';
 
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 export const pieceVersion = piece => `sha256:${sha256(JSON.stringify({ id: piece.id, label: piece.label,
@@ -21,9 +22,15 @@ export async function validateCatalogFiles(root = resolve(projectRoot, 'docs'), 
   const ids = new Set(catalog.map(piece => piece.id));
   if (!Array.isArray(previousCatalog) || previousCatalog.some(piece => !ids.has(piece.id)))
     throw Error('Do not delete a permanent Piece slug; retain retired metadata');
+  for (const old of previousCatalog.filter(p => p.notation)) {
+    const current = catalog.find(p => p.id === old.id)?.notation;
+    if (!current || current.editionId !== old.notation.editionId || current.manifestSha256 !== old.notation.manifestSha256)
+      throw Error('Replacement notation edition requires a new permanent Piece identity');
+  }
   let assets = 0, metadataOnly = 0;
   for (const piece of catalog) {
     if (piece.version !== pieceVersion(piece)) throw Error(`Inconsistent complete version: ${piece.id}`);
+    if (piece.notation) await validateNotationFiles(piece, { root });
     if (!piece.assetsAvailable) { metadataOnly++; continue; }
     for (const asset of piece.cardAssets) {
       let bytes;
