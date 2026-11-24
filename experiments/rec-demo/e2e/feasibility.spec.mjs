@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 // These checks use a generated Web Audio stream, not a real microphone or piano.
-// The browser still performs actual MediaRecorder encoding, decoding/resampling,
+// The browser still performs actual timestamped AudioWorklet capture/resampling,
 // real Basic Pitch inference and real Verovio WASM initialization.
 async function syntheticMicrophone(page) {
   await page.addInitScript(() => {
@@ -12,7 +12,7 @@ async function syntheticMicrophone(page) {
       await context.resume();
       window.testAudioContexts.push(context);
       const destination = context.createMediaStreamDestination();
-      for (const start of [0.08, 1.1]) {
+      for (const start of [0.08, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6]) {
         for (const frequency of [261.6256, 329.6276, 391.9954]) {
           for (let partial = 1; partial <= 4; partial++) {
             const oscillator = context.createOscillator();
@@ -45,7 +45,11 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
   for (let run = 0; run < 2; run++) {
     await page.getByRole('button', { name: 'Prepare local engines' }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
-    await page.getByRole('button', { name: 'Start recording' }).click();
+    await page.getByRole('button', { name: 'Start', exact: true }).click();
+    await expect(page.locator('body')).toHaveAttribute('data-state', 'countin');
+    await expect(page.locator('#meter')).toBeDisabled();
+    await expect(page.locator('#tap')).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Stop and transcribe' })).toBeDisabled();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'recording');
     await page.waitForTimeout(2250); // Actual recorded sound must elapse.
     await page.getByRole('button', { name: 'Stop and transcribe' }).click();
@@ -68,8 +72,12 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     expect(take.verovio.version).toMatch(/^6\.3\.0/);
     expect(take.verovio.reused).toBe(take.number === 2);
     expect(take.model.backend).toBe('cpu');
-    expect(take.audio.decodedDurationSeconds).toBeGreaterThan(1.5);
+    expect(take.audio.performanceDurationSeconds).toBeGreaterThan(1.5);
     expect(take.audio.modelSampleRate).toBe(22050);
+    expect(take.audio.timing.meter).toEqual({ beats: 4, beatType: 4 });
+    expect(take.audio.timing.tempoBPM).toBe(120);
+    expect(take.audio.timing.clickFrames).toHaveLength(4);
+    expect(take.audio.timing.scoreOriginFrame).toBe(take.audio.timing.countInStartFrame + 2 * take.audio.captureSampleRate);
     expect(take.result.notes.length).toBeGreaterThan(1);
     expect(take.result.notes.some((note, i, all) => all.slice(i + 1).some(other =>
       other.pitchMidi !== note.pitchMidi && other.onsetSeconds < note.offsetSeconds && other.offsetSeconds > note.onsetSeconds))).toBe(true);
@@ -94,7 +102,7 @@ test('model download failure is visible and never falls back to a service', asyn
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
   await expect(page.getByRole('alert')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Start recording' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Start', exact: true })).toBeDisabled();
   expect(writes).toEqual([]);
 });
 
@@ -113,7 +121,7 @@ test('Prepare retries a failed manifest request and reuses a successful result',
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 10000 });
   await expect(page.getByRole('alert')).toBeHidden();
-  await expect(page.getByRole('button', { name: 'Start recording' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Start', exact: true })).toBeEnabled();
   expect(requests).toBe(2);
 
   await page.getByRole('button', { name: 'Cancel check' }).click();
@@ -131,7 +139,7 @@ test('permission denial and cancellation release state without displaying a stal
   await page.goto('/apartmender/rec-demo/');
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
-  await page.getByRole('button', { name: 'Start recording' }).click();
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Test permission denied');
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');

@@ -4,21 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
-  <title>Piano recording · local feasibility check</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <title>Piano recording demo</title>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.mjs"></script>
 </head>
 <body data-state="idle">
   <main>
-    <p class="eyebrow">Piano recording demo · first feasibility check</p>
+    <p class="eyebrow">Piano recording demo</p>
     <h1>Play. Stop. See the notes.</h1>
     <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
-    <p class="muted">For this first check, try a short take with a few chords and repeated notes. Count-in, rhythm notation and score pages come in later steps.</p>
+    <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. Short takes are useful for trying the demo; score notation comes in a later step.</p>
     <section class="controls" aria-label="Recording controls">
+      <div class="setup">
+        <div><label for="meter">Time signature</label><select id="meter"><option value="2">2/4</option><option value="3">3/4</option><option value="4" selected>4/4</option></select></div>
+        <div><button id="tap">Tap tempo</button><p id="tempo" aria-live="polite">120 BPM · default quarter-note beat</p></div>
+      </div>
       <button id="prepare">Prepare local engines</button>
       <div class="record-controls">
-        <button id="start" disabled>Start recording</button>
+        <button id="start" disabled>Start</button>
         <button id="stop" disabled>Stop and transcribe</button>
       </div>
       <p id="status" role="status" aria-live="polite">Prepare the local engines to begin.</p>
@@ -29,7 +33,7 @@
     <section id="results" hidden>
       <h2>Estimated note events</h2>
       <p id="note-summary"></p>
-      <p class="muted">Times are seconds from the captured audio, not quantized beats. Strength is a model estimate, not calibrated velocity.</p>
+      <p class="muted">Times are seconds from the end of the count-in. Initial silence is preserved; beats are not yet quantized. Strength is a model estimate, not calibrated velocity.</p>
       <div class="table-scroll"><table><thead><tr><th>Pitch</th><th>Start (s)</th><th>End (s)</th><th>Strength</th></tr></thead><tbody id="notes"></tbody></table></div>
     </section>
     <details>

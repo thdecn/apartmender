@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 2,
+  "startedAt": "2026-11-24T14:14:38.216Z",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "secureContext": true,
+    "url": "http://127.0.0.1:4178/apartmender/rec-demo/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "devicePeakMemory": "Unmeasured. Tensor bytes, WASM heap and optional Chromium JS heap are not peak device memory.",
+  "networkVerification": "Pending external request inspection; resource timings alone cannot prove absence of uploads.",
+  "takes": [
+    {
+      "number": 1,
+      "startedAt": "2026-11-24T14:14:38.254Z",
+      "status": "complete",
+      "verovio": {
+        "version": "6.3.0-425dd7b",
+        "initializationMs": 206,
+        "wasmHeapBytesAfterProbe": null,
+        "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
+        "reused": false,
+        "thisRequestMs": 206.90000009536743
+      },
+      "model": {
+        "type": "ready",
+        "initializationMs": 8.5,
+        "backend": "cpu",
+        "tensorflowVersion": "3.21.0",
+        "modelMemory": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 245,
+          "numDataBuffers": 245,
+          "numBytes": 742392
+        },
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
+            "durationMs": 0.7999999523162842,
+            "transferBytes": 174837,
+            "decodedBytes": 174537
+          },
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
+            "durationMs": 0.8000001907348633,
+            "transferBytes": 742692,
+            "decodedBytes": 742392
+          }
+        ]
+      },
+      "prepareWallMs": 344.2999999523163,
+      "capture": {
+        "format": "timestamped mono float32 PCM",
+        "trackSettings": [
+          {
+            "sampleRate": 44100,
+            "channelCount": 2
+          }
+        ],
+        "audioContextSampleRate": 44100,
+        "timing": {
+          "meter": {
+            "beats": 4,
+            "beatType": 4
+          },
+          "tempoBPM": 120,
+          "sampleRate": 44100,
+          "countInStartFrame": 7383,
+          "scoreOriginFrame": 95583,
+          "scoreOriginSeconds": 2.1674149659863944,
+          "clickFrames": [
+            7383,
+            29433,
+            51483,
+            73533
+          ],
+          "captureFirstFrame": 768,
+          "captureStartSeconds": 0.017414965986394557,
+          "inputChannels": 2,
+          "clock": "AudioContext sample frames",
+          "baseLatencySeconds": 0.005804988662131519,
+          "outputLatencySeconds": 0,
+          "latencyCaveat": "Hardware/acoustic input-output latency is not calibrated.",
+          "captureToOriginSeconds": 2.15
+        }
+      },
+      "audio": {
+        "captureSampleRate": 44100,
+        "captureChannels": 1,
+        "performanceDurationSeconds": 2.453333333333333,
+        "capturedPCMBytes": 432768,
+        "timing": {
+          "meter": {
+            "beats": 4,
+            "beatType": 4
+          },
+          "tempoBPM": 120,
+          "sampleRate": 44100,
+          "countInStartFrame": 7383,
+          "scoreOriginFrame": 95583,
+          "scoreOriginSeconds": 2.1674149659863944,
+          "clickFrames": [
+            7383,
+            29433,
+            51483,
+            73533
+          ],
+          "captureFirstFrame": 768,
+          "captureStartSeconds": 0.017414965986394557,
+          "inputChannels": 2,
+          "clock": "AudioContext sample frames",
+          "baseLatencySeconds": 0.005804988662131519,
+          "outputLatencySeconds": 0,
+          "latencyCaveat": "Hardware/acoustic input-output latency is not calibrated.",
+          "captureToOriginSeconds": 2.15,
+          "stopFrame": 203775,
+          "discardedCountInFrames": 94815
+        },
+        "modelSampleRate": 22050,
+        "modelSamples": 54096,
+        "resampleMs": 1.7999999523162842
+      },
+      "result": {
+        "type": "result",
+        "notes": [
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.7894784580498866,
+            "estimatedStrength": 0.5886592748574913
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.26702947845804986,
+            "estimatedStrength": 0.3197681935209977
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.1509297052154195,
+            "estimatedStrength": 0.3074214624034034
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.3250793650793651,
+            "estimatedStrength": 0.3629707147677739
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.8010884353741496,
+            "estimatedStrength": 0.6390570988878608
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.7894784580498866,
+            "estimatedStrength": 0.616111424707231
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.29024943310657597,
+            "estimatedStrength": 0.3670590564608574
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 1.1261678004535147,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.6399894198684981
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.6169293127022684
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.5910045597702265
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.3931972789115645,
+            "estimatedStrength": 0.3591541548569997
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.3815873015873017,
+            "estimatedStrength": 0.3129072293639183
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.242267573696145,
+            "estimatedStrength": 0.3118729256093502
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.4164172335600906,
+            "estimatedStrength": 0.3648431793503139
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.7457720359166463
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.392939229024943,
+            "estimatedStrength": 0.33575621247291565
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.346499319727891,
+            "estimatedStrength": 0.31448697712686324
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.4045492063492064,
+            "estimatedStrength": 0.4013178987162454
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.7533121534756252
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.6686461376292365
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.40405587213379995
+          }
+        ],
+        "thresholds": {
+          "onset": 0.25,
+          "frame": 0.25,
+          "minNoteLengthFrames": 5
+        },
+        "inferenceMs": 1943.7999999523163,
+        "tensorMemoryBeforeCleanup": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 273,
+          "numDataBuffers": 266,
+          "numBytes": 3982936
+        },
+        "tensorMemoryAfterCleanup": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        },
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
+            "durationMs": 0.7999999523162842,
+            "transferBytes": 174837,
+            "decodedBytes": 174537
+          },
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
+            "durationMs": 0.8000001907348633,
+            "transferBytes": 742692,
+            "decodedBytes": 742392
+          }
+        ],
+        "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
+      },
+      "stopToEventsMs": 1960.5,
+      "endedAt": "2026-11-24T14:14:45.265Z",
+      "chromiumJSHeapBytes": 35100000
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-11-24T14:14:45.634Z",
+      "status": "complete",
+      "verovio": {
+        "version": "6.3.0-425dd7b",
+        "initializationMs": 206,
+        "wasmHeapBytesAfterProbe": null,
+        "lifecycle": "Toolkit destroyed after probe; initialized WASM module remains resident during inference.",
+        "reused": true,
+        "thisRequestMs": 0.09999990463256836
+      },
+      "model": {
+        "type": "ready",
+        "initializationMs": 10.099999904632568,
+        "backend": "cpu",
+        "tensorflowVersion": "3.21.0",
+        "modelMemory": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 245,
+          "numDataBuffers": 245,
+          "numBytes": 742392
+        },
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
+            "durationMs": 0.7999999523162842,
+            "transferBytes": 174837,
+            "decodedBytes": 174537
+          },
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
+            "durationMs": 1,
+            "transferBytes": 742692,
+            "decodedBytes": 742392
+          }
+        ]
+      },
+      "prepareWallMs": 52.299999952316284,
+      "capture": {
+        "format": "timestamped mono float32 PCM",
+        "trackSettings": [
+          {
+            "sampleRate": 44100,
+            "channelCount": 2
+          }
+        ],
+        "audioContextSampleRate": 44100,
+        "timing": {
+          "meter": {
+            "beats": 4,
+            "beatType": 4
+          },
+          "tempoBPM": 120,
+          "sampleRate": 44100,
+          "countInStartFrame": 7383,
+          "scoreOriginFrame": 95583,
+          "scoreOriginSeconds": 2.1674149659863944,
+          "clickFrames": [
+            7383,
+            29433,
+            51483,
+            73533
+          ],
+          "captureFirstFrame": 768,
+          "captureStartSeconds": 0.017414965986394557,
+          "inputChannels": 2,
+          "clock": "AudioContext sample frames",
+          "baseLatencySeconds": 0.005804988662131519,
+          "outputLatencySeconds": 0,
+          "latencyCaveat": "Hardware/acoustic input-output latency is not calibrated.",
+          "captureToOriginSeconds": 2.15
+        }
+      },
+      "audio": {
+        "captureSampleRate": 44100,
+        "captureChannels": 1,
+        "performanceDurationSeconds": 2.4475510204081634,
+        "capturedPCMBytes": 431748,
+        "timing": {
+          "meter": {
+            "beats": 4,
+            "beatType": 4
+          },
+          "tempoBPM": 120,
+          "sampleRate": 44100,
+          "countInStartFrame": 7383,
+          "scoreOriginFrame": 95583,
+          "scoreOriginSeconds": 2.1674149659863944,
+          "clickFrames": [
+            7383,
+            29433,
+            51483,
+            73533
+          ],
+          "captureFirstFrame": 768,
+          "captureStartSeconds": 0.017414965986394557,
+          "inputChannels": 2,
+          "clock": "AudioContext sample frames",
+          "baseLatencySeconds": 0.005804988662131519,
+          "outputLatencySeconds": 0,
+          "latencyCaveat": "Hardware/acoustic input-output latency is not calibrated.",
+          "captureToOriginSeconds": 2.15,
+          "stopFrame": 203520,
+          "discardedCountInFrames": 94815
+        },
+        "modelSampleRate": 22050,
+        "modelSamples": 53969,
+        "resampleMs": 0.9000000953674316
+      },
+      "result": {
+        "type": "result",
+        "notes": [
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.7894784580498866,
+            "estimatedStrength": 0.5886579249054193
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.26702947845804986,
+            "estimatedStrength": 0.31976928836420965
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.1509297052154195,
+            "estimatedStrength": 0.30741508801778156
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 0.046439909297052155,
+            "offsetSeconds": 0.3250793650793651,
+            "estimatedStrength": 0.36297056327263516
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.8010884353741496,
+            "estimatedStrength": 0.639057888649404
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.7894784580498866,
+            "estimatedStrength": 0.616109526819653
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 0.058049886621315196,
+            "offsetSeconds": 0.29024943310657597,
+            "estimatedStrength": 0.36706090718507767
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 1.1261678004535147,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.6399891222968246
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.6169298407621682
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.8924263038548752,
+            "estimatedStrength": 0.5910032270476222
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.3931972789115645,
+            "estimatedStrength": 0.3591456881591252
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.3815873015873017,
+            "estimatedStrength": 0.3129204884171486
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.242267573696145,
+            "estimatedStrength": 0.31186482310295105
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 1.1493877551020408,
+            "offsetSeconds": 1.4164172335600906,
+            "estimatedStrength": 0.3648410271043363
+          },
+          {
+            "pitchMidi": 60,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.7459095358848572
+          },
+          {
+            "pitchMidi": 86,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.3813292517006803,
+            "estimatedStrength": 0.33903541415929794
+          },
+          {
+            "pitchMidi": 88,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.346499319727891,
+            "estimatedStrength": 0.31438623865445453
+          },
+          {
+            "pitchMidi": 91,
+            "onsetSeconds": 2.2420095238095237,
+            "offsetSeconds": 2.4045492063492064,
+            "estimatedStrength": 0.398161843419075
+          },
+          {
+            "pitchMidi": 64,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.7447073629924229
+          },
+          {
+            "pitchMidi": 67,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.6787645880665097
+          },
+          {
+            "pitchMidi": 72,
+            "onsetSeconds": 2.253619501133787,
+            "offsetSeconds": 2.4161591836734693,
+            "estimatedStrength": 0.3997452812535422
+          }
+        ],
+        "thresholds": {
+          "onset": 0.25,
+          "frame": 0.25,
+          "minNoteLengthFrames": 5
+        },
+        "inferenceMs": 1959.0999999046326,
+        "tensorMemoryBeforeCleanup": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 273,
+          "numDataBuffers": 266,
+          "numBytes": 3981920
+        },
+        "tensorMemoryAfterCleanup": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        },
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/model.json",
+            "durationMs": 0.7999999523162842,
+            "transferBytes": 174837,
+            "decodedBytes": 174537
+          },
+          {
+            "name": "http://127.0.0.1:4178/apartmender/rec-demo/model/group1-shard1of1.bin",
+            "durationMs": 1,
+            "transferBytes": 742692,
+            "decodedBytes": 742392
+          }
+        ],
+        "memoryCaveat": "Tensor accounting is not resident or peak device memory; worker terminates after this result."
+      },
+      "stopToEventsMs": 1976.5,
+      "endedAt": "2026-11-24T14:14:52.344Z",
+      "chromiumJSHeapBytes": 35100000
+    }
+  ],
+  "build": {
+    "buildId": "06f89f0458488f9f",
+    "versions": {
+      "basicPitch": "1.0.1",
+      "tensorflow": "3.21.0",
+      "verovio": "6.3.0-425dd7b"
+    },
+    "verovioProvenance": "thdecn/apartmender shared docs/vendor/verovio, verified against its pinned manifest",
+    "backend": "TensorFlow.js CPU in a disposable local module worker",
+    "notes": "Gzip values are build estimates, not measured transfers. No peak device-memory measurement.",
+    "assets": [
+      {
+        "path": "app.mjs",
+        "bytes": 8258,
+        "gzipBytes": 2998,
+        "sha256": "8e4056ca92bb9f0c2054f655c2994c4b90c91e3b25a00ab8bbb10fe62bf02387",
+        "runtime": true
+      },
+      {
+        "path": "audio.mjs",
+        "bytes": 8102,
+        "gzipBytes": 2557,
+        "sha256": "609388d643ab0de96e1de0d2868eb266d7a1447f2f4dc9567d236e5b139572c6",
+        "runtime": true
+      },
+      {
+        "path": "capture-worklet.js",
+        "bytes": 1692,
+        "gzipBytes": 644,
+        "sha256": "ca7842743de6445da994b07a04b6775dad145480fae79facfd19a82477eba449",
+        "runtime": true
+      },
+      {
+        "path": "events.mjs",
+        "bytes": 929,
+        "gzipBytes": 411,
+        "sha256": "d87cde8c40cfdfdac0bf96b9d0cd9eb3df9a889d7dfa406d7d8fb6a550dc2247",
+        "runtime": true
+      },
+      {
+        "path": "index.html",
+        "bytes": 3693,
+        "gzipBytes": 1659,
+        "sha256": "234f80b21d82cd83df1b97fe0e455025988b731e6e20713395c8a577d7be892c",
+        "runtime": true
+      },
+      {
+        "path": "inference-worker.js",
+        "bytes": 1066229,
+        "gzipBytes": 270144,
+        "sha256": "b1702cff8327ddc5eb73f1ab5885ff981dc454e7a1bbb376cff0121cd07813a3",
+        "runtime": true
+      },
+      {
+        "path": "inference-worker.js.LEGAL.txt",
+        "bytes": 74554,
+        "gzipBytes": 7388,
+        "sha256": "962317dde29e752033a1d98f1e58aea7d62009fba34358d6277a35bbf9b42e6e",
+        "runtime": false
+      },
+      {
+        "path": "model/group1-shard1of1.bin",
+        "bytes": 742392,
+        "gzipBytes": 427533,
+        "sha256": "b142a95737a52e1e412d5f92e73d8bb80dfe8d04941acc0702f11f4524fb377c",
+        "runtime": true
+      },
+      {
+        "path": "model/model.json",
+        "bytes": 174537,
+        "gzipBytes": 8685,
+        "sha256": "1ed1aaee3409ec1dc098c8b01f430c0911f6fe9412e7af8086750f9e8f302f68",
+        "runtime": true
+      },
+      {
+        "path": "notices/@spotify__basic-pitch/LICENSE",
+        "bytes": 11357,
+        "gzipBytes": 3966,
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-backend-cpu/SOURCE-NOTICES.txt",
+        "bytes": 3554,
+        "gzipBytes": 479,
+        "sha256": "86bcec9986426db32d479c0b4d7bfc829f7bd2d79862f9e0fdb0dfb672ce9687",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-backend-webgl/SOURCE-NOTICES.txt",
+        "bytes": 5666,
+        "gzipBytes": 510,
+        "sha256": "ac4c0e0b875d7c38f5376752ddb815a95dd1d87ab22acd65dc75c867df80f897",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-converter/SOURCE-NOTICES.txt",
+        "bytes": 4265,
+        "gzipBytes": 480,
+        "sha256": "0895b3d41428b4cbd36e45d143c3244b233cdc59b4d8a9570f04a6e05614883b",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-core/SOURCE-NOTICES.txt",
+        "bytes": 7079,
+        "gzipBytes": 536,
+        "sha256": "691a10c1c17e5b766f617664eb8e7cdae7bd03402282e71486e5597327697aab",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-data/SOURCE-NOTICES.txt",
+        "bytes": 2156,
+        "gzipBytes": 458,
+        "sha256": "74f01674bb03dde1b89643221bacaa9c0dce562227f7f6721e9520b8de73ad85",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs-layers/SOURCE-NOTICES.txt",
+        "bytes": 2165,
+        "gzipBytes": 532,
+        "sha256": "3cda11b79de7a1ad5188525cb9ff5b49a9582ab6546302e712b6ce36b5e3e421",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tensorflow__tfjs/SOURCE-NOTICES.txt",
+        "bytes": 742,
+        "gzipBytes": 429,
+        "sha256": "a253a578b2c0e552b3c991b55c75fd087e5976b0c2693ffa11b54acd5bac9e6e",
+        "runtime": false
+      },
+      {
+        "path": "notices/@tonejs__midi/LICENSE.md",
+        "bytes": 1107,
+        "gzipBytes": 680,
+        "sha256": "6debbf1ddd278dcf5d8e7b6c42c7a827cb944943401fc37ee017e172bbccbaea",
+        "runtime": false
+      },
+      {
+        "path": "notices/array-flatten/LICENSE",
+        "bytes": 1103,
+        "gzipBytes": 669,
+        "sha256": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+        "runtime": false
+      },
+      {
+        "path": "notices/index.html",
+        "bytes": 2474,
+        "gzipBytes": 789,
+        "sha256": "886b9af66a93f299203b4ad2373c0eeea0890bc2f803b234080ff9029a63f909",
+        "runtime": false
+      },
+      {
+        "path": "notices/licenses.json",
+        "bytes": 2068,
+        "gzipBytes": 374,
+        "sha256": "30bb976b46c3b214da9cc818089d20d8b504de5892d144586dd18d5048419015",
+        "runtime": false
+      },
+      {
+        "path": "notices/long/LICENSE",
+        "bytes": 11560,
+        "gzipBytes": 3981,
+        "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+        "runtime": false
+      },
+      {
+        "path": "notices/midi-file/LICENSE.md",
+        "bytes": 1112,
+        "gzipBytes": 684,
+        "sha256": "fd9d36e800b506237769b003ca988319db06f585a9ebe27eb739a34f1be30d5f",
+        "runtime": false
+      },
+      {
+        "path": "notices/seedrandom/SOURCE-NOTICES.txt",
+        "bytes": 1057,
+        "gzipBytes": 640,
+        "sha256": "35239de2e7f05b0ae7dd0f521f21cfb4045898973091b9331e1a044a3cf01e3b",
+        "runtime": false
+      },
+      {
+        "path": "runtime.mjs",
+        "bytes": 3501,
+        "gzipBytes": 1404,
+        "sha256": "60f0144c2927fbc3f898f83df38441a26bf88363ae135c692197ef3288ab61b8",
+        "runtime": true
+      },
+      {
+        "path": "style.css",
+        "bytes": 2804,
+        "gzipBytes": 1185,
+        "sha256": "e44984b5ab424bdfe5648ee5d50848dc9e6825a7f0154c13d1bc54a8251e0b7c",
+        "runtime": true
+      },
+      {
+        "path": "timing.mjs",
+        "bytes": 2433,
+        "gzipBytes": 978,
+        "sha256": "2396848ec54a53e5ae7613360aacccd6bcc26be1408333293045853965219f46",
+        "runtime": true
+      },
+      {
+        "path": "../vendor/verovio/COPYING",
+        "bytes": 35148,
+        "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
+        "gzipBytes": 12124,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/COPYING.LESSER",
+        "bytes": 7651,
+        "sha256": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b",
+        "gzipBytes": 2634,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/GPL-2.0.txt",
+        "bytes": 17984,
+        "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+        "gzipBytes": 6802,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/Liberation-LICENSE.txt",
+        "bytes": 4012,
+        "sha256": "c40dd6adebad817defd68c7edad151d9c13d2ac3b4e1790ce2b727b024438b6d",
+        "gzipBytes": 1704,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/Liberation-NOTICE.txt",
+        "bytes": 270,
+        "sha256": "b7f93b403c46c96f8efef3816fd724d2c9b29d7491460a18d02b23156a8fb965",
+        "gzipBytes": 200,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/LiberationSerif-1.04.ttf",
+        "bytes": 145320,
+        "sha256": "dc9356d2bb8406add421d9f98e3dbbf2b6e369f12e047e9fd89d87f66d59c705",
+        "gzipBytes": 92685,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/LiberationSerif-1.04.woff2",
+        "bytes": 76444,
+        "sha256": "4053734bfb32c1c92366b12fdc119b243533502f973d37a8848bf8378af66c56",
+        "gzipBytes": 76487,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/NOTICES.md",
+        "bytes": 37058,
+        "sha256": "30ebf0236496a1269e0056c26df3d23087f47e75ed7170ae49e5335c4ebc8612",
+        "gzipBytes": 10019,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/verovio-6.3.0-source.tar.gz",
+        "bytes": 6327135,
+        "sha256": "095a561e9bd26c97787ad49e01009576d1ca234feae3995948c5aede97a40598",
+        "gzipBytes": 6316036,
+        "runtime": false
+      },
+      {
+        "path": "../vendor/verovio/verovio-module.mjs",
+        "bytes": 7296807,
+        "sha256": "cd7c77d0738e9359b9f77956ae398556bf9949f35e4c5b3471ab3198fd660431",
+        "gzipBytes": 2335636,
+        "runtime": true
+      },
+      {
+        "path": "../vendor/verovio/verovio.mjs",
+        "bytes": 14478,
+        "sha256": "3db61c94295aeb4983baff06b5e03b2fc0e397fa405fa2461f81427954ec874b",
+        "gzipBytes": 2646,
+        "runtime": true
+      }
+    ]
+  },
+  "device": {
+    "model": "AUTOMATED DESKTOP \u2014 synthetic Web Audio stream",
+    "osAndSafari": "Playwright chromium; not physical iPhone evidence",
+    "observations": ""
+  },
+  "pageResources": [
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/style.css",
+      "initiatorType": "link",
+      "durationMs": 2.5,
+      "transferBytes": 3104,
+      "decodedBytes": 2804
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/app.mjs",
+      "initiatorType": "script",
+      "durationMs": 2.4000000953674316,
+      "transferBytes": 8558,
+      "decodedBytes": 8258
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/audio.mjs",
+      "initiatorType": "script",
+      "durationMs": 1.9000000953674316,
+      "transferBytes": 8402,
+      "decodedBytes": 8102
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/timing.mjs",
+      "initiatorType": "script",
+      "durationMs": 2.9000000953674316,
+      "transferBytes": 2733,
+      "decodedBytes": 2433
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/runtime.mjs",
+      "initiatorType": "script",
+      "durationMs": 3.700000047683716,
+      "transferBytes": 3801,
+      "decodedBytes": 3501
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/asset-manifest.json",
+      "initiatorType": "fetch",
+      "durationMs": 0.8999998569488525,
+      "transferBytes": 8889,
+      "decodedBytes": 8589
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio.mjs",
+      "initiatorType": "script",
+      "durationMs": 1.2999999523162842,
+      "transferBytes": 14778,
+      "decodedBytes": 14478
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/vendor/verovio/verovio-module.mjs",
+      "initiatorType": "script",
+      "durationMs": 15,
+      "transferBytes": 7297107,
+      "decodedBytes": 7296807
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
+      "initiatorType": "other",
+      "durationMs": -34.799999952316284,
+      "transferBytes": 1066529,
+      "decodedBytes": 1066229
+    },
+    {
+      "name": "http://127.0.0.1:4178/apartmender/rec-demo/inference-worker.js",
+      "initiatorType": "other",
+      "durationMs": -2,
+      "transferBytes": 1066529,
+      "decodedBytes": 1066229
+    }
+  ]
+}

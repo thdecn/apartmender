@@ -30,7 +30,7 @@ catalogue/asset changes for deployment, run `npm run validate:catalog -- --basel
 
 The separate [recording demo frontend](experiments/rec-demo/README.md) is prepared
 at `docs/rec-demo/` for the intended `/apartmender/rec-demo/` Pages path. It currently
-provides microphone capture and local note-event transcription feasibility;
+provides meter/tap-tempo setup, a timed count-in and local note-event transcription;
 the page is not published until its additive frontend changes reach the Pages
 source. Sludge retains the specification and Beads implementation tracking.
 

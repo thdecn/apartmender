@@ -1,9 +1,10 @@
 import { AudioCapture } from './audio.mjs';
 import { InferenceWorker, initializeVerovio } from './runtime.mjs';
+import { TapTempo } from './timing.mjs';
 
 const $ = id => document.getElementById(id);
 const report = {
-  schemaVersion: 1, startedAt: new Date().toISOString(),
+  schemaVersion: 2, startedAt: new Date().toISOString(),
   environment: { userAgent: navigator.userAgent, secureContext: window.isSecureContext,
     url: location.origin + location.pathname, viewport: { width: innerWidth, height: innerHeight } },
   devicePeakMemory: 'Unmeasured. Tensor bytes, WASM heap and optional Chromium JS heap are not peak device memory.',
@@ -11,6 +12,8 @@ const report = {
   takes: [],
 };
 let state = 'idle', generation = 0, worker, capture, take;
+const tapTempo = new TapTempo();
+let bpm = 120;
 let manifestPromise;
 function loadManifest() {
   if (!manifestPromise) {
@@ -32,10 +35,18 @@ function showState(next, message) {
   $('prepare').disabled = !['idle', 'complete', 'error'].includes(next);
   $('start').disabled = next !== 'ready';
   $('stop').disabled = next !== 'recording';
-  $('cancel').disabled = !['preparing', 'ready', 'permission', 'recording', 'processing'].includes(next);
+  $('cancel').disabled = !['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(next);
+  const frozen = ['permission', 'countin', 'recording', 'processing'].includes(next);
+  $('meter').disabled = $('tap').disabled = frozen;
   $('download').disabled = !report.takes.length;
   $('progress').hidden = next !== 'processing';
 }
+
+$('tap').addEventListener('click', () => {
+  const tapped = tapTempo.tap(performance.now());
+  if (tapped !== null) bpm = tapped;
+  $('tempo').textContent = tapped === null ? `Tap again · current tempo ${bpm} BPM` : `${bpm} BPM · quarter-note beat`;
+});
 
 function renderNotes(notes) {
   $('notes').replaceChildren();
@@ -105,11 +116,16 @@ $('start').addEventListener('click', async () => {
   showState('permission', 'Requesting microphone access…');
   capture = new AudioCapture(fail);
   try {
-    const metadata = await capture.start();
+    const activeCapture = capture;
+    const metadata = await activeCapture.start({ beats: Number($('meter').value), bpm });
     if (current !== generation) return;
     take.capture = metadata;
-    take.status = 'recording';
-    showState('recording', 'Recording. Play two hands without pedal, then press Stop.');
+    activeCapture.watchClock(({ phase, beat }) => {
+      if (current !== generation) return;
+      take.status = phase;
+      showState(phase, phase === 'recording' ? 'Play now. Press Stop when finished.'
+        : beat ? `Count-in: ${beat} of ${metadata.timing.meter.beats}.` : 'Count-in about to start.');
+    });
   } catch (error) { if (current === generation) fail(error); }
 });
 
@@ -117,7 +133,7 @@ $('stop').addEventListener('click', async () => {
   const current = generation;
   const started = performance.now();
   const activeCapture = capture;
-  showState('processing', 'Microphone stopped. Decoding audio locally…');
+  showState('processing', 'Stopping capture and preparing performance audio locally…');
   try {
     const audio = await activeCapture.stop();
     if (current !== generation) return;
@@ -144,7 +160,7 @@ $('stop').addEventListener('click', async () => {
 
 $('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.'));
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden && ['preparing', 'ready', 'permission', 'recording', 'processing'].includes(state)) {
+  if (document.hidden && ['preparing', 'ready', 'permission', 'countin', 'recording', 'processing'].includes(state)) {
     fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.');
   }
 });

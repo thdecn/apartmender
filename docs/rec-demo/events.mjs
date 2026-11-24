@@ -1,5 +1,5 @@
-// Feasibility events remain relative to the decoded take, not a musical grid.
-// The later adapter will use the count-in origin supplied by the demo shell.
+// Capture trims PCM to the count-in endpoint before inference, so event seconds
+// retain that origin and initial silence. Musical-grid construction comes later.
 export function noteEvents(notes, durationSeconds) {
   return notes.filter(note => Number.isInteger(note.pitchMidi) && note.pitchMidi >= 21 && note.pitchMidi <= 108
     && Number.isFinite(note.startTimeSeconds) && Number.isFinite(note.durationSeconds)

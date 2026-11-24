@@ -1,112 +1,151 @@
+import { countInTiming, performancePCM } from './timing.mjs';
 export const MODEL_SAMPLE_RATE = 22050;
 
-export async function toModelAudio(buffer) {
-  if (!buffer.length) throw new Error('The recording contains no decoded audio.');
-  const outputLength = Math.ceil(buffer.duration * MODEL_SAMPLE_RATE);
-  const offline = new OfflineAudioContext(1, outputLength, MODEL_SAMPLE_RATE);
+async function toModelAudio(samples, sampleRate) {
+  const offline = new OfflineAudioContext(1, Math.ceil(samples.length * MODEL_SAMPLE_RATE / sampleRate), MODEL_SAMPLE_RATE);
+  const buffer = offline.createBuffer(1, samples.length, sampleRate);
+  buffer.copyToChannel(samples, 0);
   const source = offline.createBufferSource();
   source.buffer = buffer;
   source.connect(offline.destination);
   source.start();
-  const mono = await offline.startRendering();
-  return mono.getChannelData(0).slice();
+  return (await offline.startRendering()).getChannelData(0).slice();
 }
 
-// A fresh capture owns its recorder, tracks and decoding context. Permission
-// requests cannot be cancelled, so late streams are stopped before use.
 export class AudioCapture {
   constructor(onInterrupted) {
     this.onInterrupted = onInterrupted;
     this.cancelled = false;
     this.finishing = false;
-    this.chunks = [];
+    this.packets = [];
+    this.clicks = [];
   }
 
-  async start() {
-    if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
-      throw new Error('Microphone capture needs HTTPS (or localhost on this computer).');
-    }
-    if (!window.MediaRecorder) throw new Error('This browser has no MediaRecorder audio capture.');
+  async start({ beats, bpm }) {
+    if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) throw new Error('Microphone capture needs HTTPS (or localhost).');
     try {
       this.context = new AudioContext();
-      // Called immediately from the Start gesture, before the permission await.
+      // Activate on the Start gesture before microphone permission is awaited.
       await this.context.resume();
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        audio: { channelCount: { ideal: 1 }, echoCancellation: false,
-          noiseSuppression: false, autoGainControl: false },
-      });
-      if (this.cancelled) throw new Error('Recording was cancelled during microphone permission.');
-      this.settings = this.stream.getAudioTracks().map(track => {
+      this.stream = await navigator.mediaDevices.getUserMedia({ audio: {
+        channelCount: { ideal: 1 }, echoCancellation: false, noiseSuppression: false, autoGainControl: false,
+      } });
+      if (this.cancelled) throw new Error('Recording cancelled during microphone permission.');
+      if (!this.context.audioWorklet) throw new Error('This browser needs AudioWorklet support for timed piano capture.');
+      await this.context.audioWorklet.addModule(new URL('./capture-worklet.js', import.meta.url));
+      if (this.cancelled) throw new Error('Recording cancelled during audio setup.');
+      const settings = this.stream.getAudioTracks().map(track => {
         const { sampleRate, channelCount, echoCancellation, noiseSuppression, autoGainControl } = track.getSettings();
         track.addEventListener('ended', () => {
           if (!this.finishing && !this.cancelled) this.onInterrupted('Microphone capture was interrupted. Please try a new take.');
         });
         return { sampleRate, channelCount, echoCancellation, noiseSuppression, autoGainControl };
       });
-      const mimeType = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus']
-        .find(type => MediaRecorder.isTypeSupported(type));
-      this.recorder = new MediaRecorder(this.stream, mimeType ? { mimeType } : undefined);
-      this.stopped = new Promise((resolve, reject) => {
-        this.recorder.addEventListener('dataavailable', event => {
-          if (event.data.size) this.chunks.push(event.data);
-        });
-        this.recorder.addEventListener('stop', resolve, { once: true });
-        this.recorder.addEventListener('error', event => {
-          const error = event.error || new Error('The audio recorder failed.');
-          reject(error);
-          if (!this.finishing && !this.cancelled) this.onInterrupted(error.message);
-        }, { once: true });
-      });
-      // Keep an unsolicited recorder error from becoming an unhandled rejection.
-      this.stopped.catch(() => {});
-      this.recorder.start();
-      this.startedAt = performance.now();
-      return { mimeType: this.recorder.mimeType, trackSettings: this.settings,
-        audioContextSampleRate: this.context.sampleRate };
-    } catch (error) {
-      await this.cancel();
-      throw error;
-    }
+      this.node = new AudioWorkletNode(this.context, 'piano-capture');
+      this.node.onprocessorerror = () => {
+        const error = new Error('The timed audio capture processor failed. Please try a new take.');
+        this.rejectReady?.(error);
+        this.rejectStop?.(error);
+        if (!this.finishing && !this.cancelled) this.onInterrupted(error.message);
+      };
+      const ready = new Promise((resolve, reject) => { this.resolveReady = resolve; this.rejectReady = reject; });
+      this.node.port.onmessage = ({ data }) => {
+        if (this.cancelled) return;
+        if (data.type === 'ready') this.resolveReady(data);
+        else if (data.type === 'samples') this.packets.push(data);
+        else if (data.type === 'stopped') this.resolveStop?.();
+      };
+      this.source = this.context.createMediaStreamSource(this.stream);
+      this.mute = this.context.createGain();
+      this.mute.gain.value = 0;
+      this.source.connect(this.node).connect(this.mute).connect(this.context.destination);
+      this.startupTimeout = setTimeout(() => this.rejectReady(new Error('Microphone audio did not start. Please try again.')), 10000);
+      const first = await ready;
+      clearTimeout(this.startupTimeout);
+      if (this.cancelled) throw new Error('Recording cancelled during audio setup.');
+      this.timing = { ...countInTiming(this.context.currentTime, this.context.sampleRate, beats, bpm),
+        captureFirstFrame: first.frame, captureStartSeconds: first.frame / this.context.sampleRate,
+        inputChannels: first.channels, clock: 'AudioContext sample frames',
+        baseLatencySeconds: this.context.baseLatency ?? null, outputLatencySeconds: this.context.outputLatency ?? null,
+        latencyCaveat: 'Hardware/acoustic input-output latency is not calibrated.' };
+      this.timing.captureToOriginSeconds = (this.timing.scoreOriginFrame - first.frame) / this.context.sampleRate;
+      for (const [index, frame] of this.timing.clickFrames.entries()) {
+        const at = frame / this.context.sampleRate;
+        const duration = Math.min(0.04, 30 / bpm);
+        const oscillator = this.context.createOscillator(), gain = this.context.createGain();
+        oscillator.frequency.value = index === 0 ? 1200 : 900;
+        gain.gain.setValueAtTime(0.18, at);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + duration * 0.875);
+        oscillator.connect(gain).connect(this.context.destination);
+        oscillator.start(at);
+        oscillator.stop(at + duration);
+        this.clicks.push(oscillator);
+      }
+      this.context.onstatechange = () => {
+        if (!this.finishing && !this.cancelled && this.context.state !== 'running') this.onInterrupted('Audio was interrupted. Keep this page open and try a new take.');
+      };
+      return { format: 'timestamped mono float32 PCM', trackSettings: settings,
+        audioContextSampleRate: this.context.sampleRate, timing: this.timing };
+    } catch (error) { await this.cancel(); throw error; }
+  }
+
+  watchClock(onChange) {
+    let last;
+    const update = () => {
+      const now = this.context.currentTime;
+      const phase = now >= this.timing.scoreOriginSeconds ? 'recording' : 'countin';
+      const beat = Math.max(0, Math.min(this.timing.meter.beats, Math.floor((now - this.timing.countInStartFrame / this.context.sampleRate) * this.timing.tempoBPM / 60) + 1));
+      const key = `${phase}:${beat}`;
+      if (key !== last) { last = key; onChange({ phase, beat }); }
+      if (phase === 'recording') clearInterval(this.clockTimer);
+    };
+    this.clockTimer = setInterval(update, 25);
+    update();
   }
 
   async stop() {
-    if (this.cancelled || this.recorder?.state !== 'recording') throw new Error('No active recording to stop.');
+    if (this.cancelled || !this.timing || this.context.currentTime <= this.timing.scoreOriginSeconds) throw new Error('Wait for the count-in to finish.');
     this.finishing = true;
-    const stoppedAt = performance.now();
-    this.recorder.stop();
+    clearInterval(this.clockTimer);
+    const stopFrame = Math.floor(this.context.currentTime * this.context.sampleRate);
     try {
-      await this.stopped;
-      this.releaseTracks();
-      const blob = new Blob(this.chunks, { type: this.recorder.mimeType });
-      this.chunks = [];
-      if (!blob.size) throw new Error('The microphone produced an empty recording.');
-      const decodingStarted = performance.now();
-      const decoded = await this.context.decodeAudioData(await blob.arrayBuffer());
-      const metadata = { recordedBytes: blob.size, captureWallMs: stoppedAt - this.startedAt,
-        decodedSampleRate: decoded.sampleRate, decodedChannels: decoded.numberOfChannels,
-        decodedDurationSeconds: decoded.duration };
-      const pcm = await toModelAudio(decoded);
+      const stopped = new Promise((resolve, reject) => { this.resolveStop = resolve; this.rejectStop = reject; });
+      this.stopTimeout = setTimeout(() => this.rejectStop(new Error('Audio capture did not finish. Please try again.')), 10000);
+      this.node.port.postMessage({ type: 'stop', frame: stopFrame });
+      await stopped;
+      clearTimeout(this.stopTimeout);
+      this.releaseAudio();
+      const samples = performancePCM(this.packets, this.timing.scoreOriginFrame, stopFrame);
+      this.packets = [];
+      const started = performance.now();
+      const pcm = await toModelAudio(samples, this.context.sampleRate);
       if (this.cancelled) throw new Error('Recording conversion was cancelled.');
-      return { pcm, metadata: { ...metadata, modelSampleRate: MODEL_SAMPLE_RATE,
-        modelSamples: pcm.length, decodeAndResampleMs: performance.now() - decodingStarted } };
-    } finally {
-      this.chunks = [];
-      this.releaseTracks();
-      await this.closeContext();
-    }
+      return { pcm, metadata: { captureSampleRate: this.context.sampleRate, captureChannels: 1,
+        performanceDurationSeconds: samples.length / this.context.sampleRate, capturedPCMBytes: samples.byteLength,
+        timing: { ...this.timing, stopFrame, discardedCountInFrames: this.timing.scoreOriginFrame - this.timing.captureFirstFrame },
+        modelSampleRate: MODEL_SAMPLE_RATE, modelSamples: pcm.length, resampleMs: performance.now() - started } };
+    } finally { await this.cancel(); }
   }
 
-  releaseTracks() { this.stream?.getTracks().forEach(track => track.stop()); }
-
-  async closeContext() {
-    if (this.context && this.context.state !== 'closed') await this.context.close();
+  releaseAudio() {
+    this.stream?.getTracks().forEach(track => track.stop());
+    this.source?.disconnect();
+    this.node?.disconnect();
+    this.mute?.disconnect();
+    this.node?.port.close();
+    for (const click of this.clicks) { try { click.stop(); } catch {} click.disconnect(); }
+    this.clicks = [];
   }
 
   async cancel() {
     this.cancelled = true;
-    if (this.recorder && this.recorder.state !== 'inactive') this.recorder.stop();
-    this.releaseTracks();
-    await this.closeContext();
-    this.chunks = [];
+    clearTimeout(this.startupTimeout);
+    clearTimeout(this.stopTimeout);
+    clearInterval(this.clockTimer);
+    this.rejectReady?.(new Error('Recording cancelled.'));
+    this.rejectStop?.(new Error('Recording cancelled.'));
+    this.releaseAudio();
+    this.packets = [];
+    if (this.context && this.context.state !== 'closed') await this.context.close();
   }
 }
