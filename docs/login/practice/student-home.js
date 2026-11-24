@@ -22,7 +22,7 @@ export function buildStudentHome(student, catalog) {
     seenSlugs.add(slug);
 
     const piece = catalogBySlug.get(slug);
-    if (typeof piece?.label === "string" && Array.isArray(piece.cards) && piece.cards.length > 0) {
+    if (piece?.assetsAvailable !== false && typeof piece?.label === "string" && Array.isArray(piece.cards) && piece.cards.length > 0) {
       pieces.push(piece);
     } else {
       unavailable += 1;
@@ -38,7 +38,7 @@ export function buildAssignmentHome(assignments, catalog) {
   let unavailable = 0;
   for (const assignment of assignments) {
     const piece = bySlug.get(assignment.slug);
-    if (piece?.version && Array.isArray(piece.cards) && piece.cards.length > 0) {
+    if (piece?.assetsAvailable !== false && piece?.version && Array.isArray(piece.cards) && piece.cards.length > 0) {
       pieces.push({ ...piece, assignmentId: assignment.assignmentId });
     } else {
       unavailable += 1;

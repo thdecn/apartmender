@@ -12,6 +12,43 @@
       "06-m3-plus-m4-onsets.png",
       "07-m2-plus-m3-onsets.png",
       "08-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/czerny-op-821-no-2/01-m8.png",
+        "sha256": "a7e03f2086b0050e07684866c54b6275da4faf08306c61f019584f0056d7d366"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/02-m7-plus-m8-onsets.png",
+        "sha256": "ff4c5216c6f382de54c70cf60e23d932d8902ca8e68c66a7d1824dc05a531490"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/03-m6-plus-m7-onsets.png",
+        "sha256": "378fd3dcee541b66fcd09aca7358995bf000224f8292cacce3683bab4ada0e23"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/04-m5-plus-m6-onsets.png",
+        "sha256": "5631563443be4ed431f4a3f99c0c8805e86c64a0b1743c4265a1ef5b24616789"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/05-m4-plus-m5-onsets.png",
+        "sha256": "3b9ccd658ebccf2019ba6444e818981e91b547c361012056e3c5a379043627a5"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/06-m3-plus-m4-onsets.png",
+        "sha256": "20f9ced3e21f71d547a5e1c5100fb20b8975e4cad05301ac268ecf6d996cab8f"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/07-m2-plus-m3-onsets.png",
+        "sha256": "01a2dbc5646b59f7ebaf4e82a2fa3025e32c74f667e5e1ab26899b7346a184bc"
+      },
+      {
+        "path": "cards/czerny-op-821-no-2/08-m1-plus-m2-onsets.png",
+        "sha256": "162b9609b0d02eafb5e54c319694575d2bdec50cc8da8b2b12fd3b00f5f3aaf0"
+      }
     ]
   },
   {
@@ -52,6 +89,143 @@
       "31-m3-plus-m4-onsets.png",
       "32-m2-plus-m3-onsets.png",
       "33-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/01-m33.png",
+        "sha256": "a1ed07393fd33d4e77b91f67bc18e3b0d6a6e215a82ec0dae2c0748e5cbabbaa"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/02-m32-plus-m33-onsets.png",
+        "sha256": "5d2d6bc7237896cb8ac0e8aa283f91c5cf9af791fb7ad51bb8b3c277cc0480b8"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/03-m31-plus-m32-onsets.png",
+        "sha256": "8158d57ccb6eb0dd11c8773689db1bb407ebb075c9c6a81a095d44391d287e58"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/04-m30-plus-m31-onsets.png",
+        "sha256": "eccd158b53cb1ad4f0ab5eff77c3791f991d468be947de6a7a3e79dc092d2222"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/05-m29-plus-m30-onsets.png",
+        "sha256": "1c0bf5473e7470caffa8389570e9154bdb4a1a649e67778b71e8f04e7684ff03"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/06-m28-plus-m29-onsets.png",
+        "sha256": "ef63d0a72d988d11bace2e3971f57278501c4ca83c915bbe792c2b5c9b09eb3c"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/07-m27-plus-m28-onsets.png",
+        "sha256": "64fd230ef97fb8e094085c69721466c20434923c6d842ab4dd2434daab91eafd"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/08-m26-plus-m27-onsets.png",
+        "sha256": "f2723de1b38f061bb5768e21f4b38464408b99f99710b1c954bfc1fd68a34481"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/09-m25-plus-m26-onsets.png",
+        "sha256": "4c854a5b6db0b049d91a8a782d87946043cd7bc3b517fbcea022ba6873ca829d"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/10-m24-plus-m25-onsets.png",
+        "sha256": "de19fe633a54fb2a683ddd3bff4a0a6a601888bfb30b507e9a6e540ba72698a0"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/11-m23-plus-m24-onsets.png",
+        "sha256": "583e3d45e6e3c1be94c4382ccb8231571614186a0326bfca89312588cc3b5eae"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/12-m22-plus-m23-onsets.png",
+        "sha256": "21fdd1853175610ad74216e18808012d78091446c84d89b0f70124d1247b65b0"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/13-m21-plus-m22-onsets.png",
+        "sha256": "c2925a71900b1042a51c20e9c852077f173c19f6b05e639981a680f5ab825c8e"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/14-m20-plus-m21-onsets.png",
+        "sha256": "93a77a92d3af7cfcc0621b001fb2a6060c87a9cfc90fed5f67d13d6bff6eed10"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/15-m19-plus-m20-onsets.png",
+        "sha256": "cf3a85e56c06e33bc72c669f92de228e3d768ecc20cad8855e707c6b70426b07"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/16-m18-plus-m19-onsets.png",
+        "sha256": "073d70e7b95ab5adec22090f255e5b192a66fb3bff91f0240493c063359825c9"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/17-m17-plus-m18-onsets.png",
+        "sha256": "f403a805bf78115c96eab606e2ea41aad181e513f08ca2b47bab8ced18d8c2fe"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/18-m16-plus-m17-onsets.png",
+        "sha256": "b933b1d37e22397830d7987df32ce44ee87b7295114187091da0c8719c357ccc"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/19-m15-plus-m16-onsets.png",
+        "sha256": "ce54a57ef44bae379e9cf58fc1737c5b40268f8246b1a1cab5da21057024fab2"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/20-m14-plus-m15-onsets.png",
+        "sha256": "86fd4434863f2dd544ce664476ba07647033ad9a1fa2317250d05b496a239688"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/21-m13-plus-m14-onsets.png",
+        "sha256": "a1e6a7a10339d4c06b958ac35a7719b5bfc660cc1b7acbcc4c32c334dd5f5abb"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/22-m12-plus-m13-onsets.png",
+        "sha256": "97e771089c8b661d0c248c3e002fe543df65676ce2c99ad6a2fca77aa08c1900"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/23-m11-plus-m12-onsets.png",
+        "sha256": "608b39a2f62f9586c0e141a2f4a9b6bf7f5f840f58caafb95f284fac753ca7c0"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/24-m10-plus-m11-onsets.png",
+        "sha256": "8a0dd5bdd6ed33ad70f74ea6d724576aa362859471ae156444836b561a7c3b76"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/25-m9-plus-m10-onsets.png",
+        "sha256": "ce12df78ce2ee53ec322acd0e91c2b720f339b36833eb526bef0d3334e32ddf9"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/26-m8-plus-m9-onsets.png",
+        "sha256": "ffd2da7a9b17d863a53a74b30c54223d440a21372a9b682649bcd5eb8c74ad1c"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/27-m7-plus-m8-onsets.png",
+        "sha256": "536ab4757fb273654e9a87b10864317bc9fefe02f57b17160cc41b7901626343"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/28-m6-plus-m7-onsets.png",
+        "sha256": "d2cd12daa27ec2017a9857bbb3c2398a4777060b64c818b70f227045f700e940"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/29-m5-plus-m6-onsets.png",
+        "sha256": "5f004f6652fd912183f7c70a1175ce49344a72dc8ba76df10b2b55c73a5225a9"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/30-m4-plus-m5-onsets.png",
+        "sha256": "2b7c75a9dc01c72950b6132f79154e53e0dd84e961457ec0cfda7a62fa4f3e69"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/31-m3-plus-m4-onsets.png",
+        "sha256": "75320cf73d3460a2d1225844266f8c9fab1c7a29b0920448b1d2dc7f60ec282b"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/32-m2-plus-m3-onsets.png",
+        "sha256": "0274e9e9bb136a71a1a9f691bf1b14ce0f22cf58df19e06584784d6ce2401848"
+      },
+      {
+        "path": "cards/burgmuller-op-100-no-2-arabesque/33-m1-plus-m2-onsets.png",
+        "sha256": "ca591e7bcb6d6cf50eccf4f22643dcbfbae3c43401e0faaeeebf91f1112c061c"
+      }
     ]
   },
   {
@@ -94,6 +268,151 @@
       "33-m3-plus-m4-onsets.png",
       "34-m2-plus-m3-onsets.png",
       "35-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/bach-bwv-846-prelude-1/01-m35.png",
+        "sha256": "d625a45aaef16755d5d982cf4f58d0ffa584bd4101eaa49dd7a295226f450c8d"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/02-m34-plus-m35-onsets.png",
+        "sha256": "21542be5fef7f22031dd08ff77469cfa6948fbcd929c302d09ecb4d961015bb9"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/03-m33-plus-m34-onsets.png",
+        "sha256": "12e2a1620cf23aab025b8142bc6fa25ef1a66f022aa1926e72cadc2741f6eeb5"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/04-m32-plus-m33-onsets.png",
+        "sha256": "c160f18b6482d5475a40f5be9acc9983fd1817ebf5eb49bca4d3e389512ffd73"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/05-m31-plus-m32-onsets.png",
+        "sha256": "82d9dfc35ccf202e4421f13fe0c227d5baa50525f1720b554504daec89a56ad5"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/06-m30-plus-m31-onsets.png",
+        "sha256": "cb5ec215b0ed3dfcf6c20ab29ba63591a1c9315231d24bf884d28fd2abd20faa"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/07-m29-plus-m30-onsets.png",
+        "sha256": "fd3b84fb7e7faf692066e2e4baac6b8cdf450bbda5ef8909e9ec50589acfc961"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/08-m28-plus-m29-onsets.png",
+        "sha256": "7647728093a6c34099f0419bd8145e5727b97e184ff2464b48de13ede2ff4cd2"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/09-m27-plus-m28-onsets.png",
+        "sha256": "50aaa608e1c59334af0b30a887f5fc80415b73ed95eeefbb57ea6fe36eb4abbb"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/10-m26-plus-m27-onsets.png",
+        "sha256": "81c4c7538fc3738ebe3e791d27dae25219d3edf43a0f1e9ff2a5e88b003d2fb3"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/11-m25-plus-m26-onsets.png",
+        "sha256": "50681221ba0bf1a2d4a4df5f09057c4ac2c07e41052a6e24d42220f5b67d0a1c"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/12-m24-plus-m25-onsets.png",
+        "sha256": "ebff113b38d18456f5a5a450c38675ce1bd0c9b97057b03443688d1b4446eed0"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/13-m23-plus-m24-onsets.png",
+        "sha256": "43396d6357d215e3073c426e89a9ab303c9d818fb02703603e9e9c4569981fbc"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/14-m22-plus-m23-onsets.png",
+        "sha256": "b9d828bb84191963924630e17d5ff55818022197f54fcd62ac6f306614ee161a"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/15-m21-plus-m22-onsets.png",
+        "sha256": "6204733e71427184947d1e96b7ec0d48b636b0371c457b25c18b93cc66cfce70"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/16-m20-plus-m21-onsets.png",
+        "sha256": "20a7f85f5eb33900c86661c07461f38c7ffec132fc1def2a9ca47b962f37d1e7"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/17-m19-plus-m20-onsets.png",
+        "sha256": "a05ac4b6307b0dee23d5cb814c26acff9039a6a12cb1132f454818e4367b0033"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/18-m18-plus-m19-onsets.png",
+        "sha256": "da07b638f5824e0bff40f6e0367b34826b6a7d22b7727d10e5fd5b8020b17e5a"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/19-m17-plus-m18-onsets.png",
+        "sha256": "ce0b8c38cc868b8717afa4f76561563c5d5c61c6b91de0be780f3f955a27a6c3"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/20-m16-plus-m17-onsets.png",
+        "sha256": "d512aae9f486863e9ee6d336c9792a9c41fff82c251b38fb822caca58ff5898b"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/21-m15-plus-m16-onsets.png",
+        "sha256": "e766ebd3dd0ac128fe0950fb962824fcfeeeaf118b6295eae3923c2c0294d7b8"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/22-m14-plus-m15-onsets.png",
+        "sha256": "a69f4451ef929319219cbb4b05c3f63a72f9ebf303c091dc26414cbac5afef38"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/23-m13-plus-m14-onsets.png",
+        "sha256": "d8dca9e9095bec2e6a1db5e6e6878d4c0cb3ffe4e7bc8e5e7fceef43d4f58218"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/24-m12-plus-m13-onsets.png",
+        "sha256": "f4dcf63c83daf0cb04a03509acccf0bae4c7f70caa85ac361b3adc7785943e36"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/25-m11-plus-m12-onsets.png",
+        "sha256": "aa3ad4b3402a09618014a9eab7f2e7140794af34f1bd1aeae3431fd2c6f00ff1"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/26-m10-plus-m11-onsets.png",
+        "sha256": "08ef8933b7d8d59bea6c0d145a6d5c74de70297954bc870a6ed2ed7b41722e6e"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/27-m9-plus-m10-onsets.png",
+        "sha256": "ee53849251255218dd2f0bc52819a1b62cb7ac32da003bfd36c61561569b503d"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/28-m8-plus-m9-onsets.png",
+        "sha256": "ac8a2678c1e964938a3e12f0175c7bf3d1f8126c135ab8b45c4cbc43fe548096"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/29-m7-plus-m8-onsets.png",
+        "sha256": "23095b8c5b95c71f8b228ddfdd76cb634e050dc9f943ce691f7e09019c5c42a4"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/30-m6-plus-m7-onsets.png",
+        "sha256": "b9faea0244fbbdb087aeac6af5a2865a8906e6a8f94962f3f4f529c8663764db"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/31-m5-plus-m6-onsets.png",
+        "sha256": "06bccf6d1f700e58a5d4e248436e58b02900bea43cfaa59934eecf835a35475f"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/32-m4-plus-m5-onsets.png",
+        "sha256": "48f46ddc18583f643ab6518b59e8c7cb150aa17b3b28bd98ff61f8e0751848f2"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/33-m3-plus-m4-onsets.png",
+        "sha256": "4fc46997ee513f47c02dfb28e70255bb03d40a8599383ba577f6b14e6274575b"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/34-m2-plus-m3-onsets.png",
+        "sha256": "3ee765817f481492924ee8c4e545a61be2cddb150196e975cb463f842eaffe82"
+      },
+      {
+        "path": "cards/bach-bwv-846-prelude-1/35-m1-plus-m2-onsets.png",
+        "sha256": "b75f41ce5880a2613958bc8eed6687f5445f58beb4687019b8f97f3eb4010787"
+      }
     ]
   },
   {
@@ -135,6 +454,147 @@
       "32-m3-plus-m4-onsets.png",
       "33-m2-plus-m3-onsets.png",
       "34-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/01-m34.png",
+        "sha256": "f2112b214b843243fb66e6599c2ec01eaf8dedda75ad713309205e8883a7986f"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/02-m33-plus-m34-onsets.png",
+        "sha256": "b01ce84a7544cb52b53f292e8e46cceb8b34dd7d61f8b336f53f1855fd5180c1"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/03-m32-plus-m33-onsets.png",
+        "sha256": "e92fc08f855b49490135d5e1d1455f65e28a8c763429cb4b487322ef3f6bad54"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/04-m31-plus-m32-onsets.png",
+        "sha256": "add36def1c4f02ddacb8f585e6cb444878ef8e5864b2fac0d92ec850c3ff87b0"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/05-m30-plus-m31-onsets.png",
+        "sha256": "29853c407afa06c2e11ef2268cf41d036c08b125bca41213bbdf3b76adbc865d"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/06-m29-plus-m30-onsets.png",
+        "sha256": "23a25e2340b6ffb9ef39119ccbe939b95f453b53e208dd5ca9f2e1f41ef20856"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/07-m28-plus-m29-onsets.png",
+        "sha256": "8963cfc04080f2e21e651606800050d77635bb402478689164245008627a96a8"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/08-m27-plus-m28-onsets.png",
+        "sha256": "0e4b6dadb0ea804fa7c6e5da280a1d827a4a692f1739b343457a1dd7bb849894"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/09-m26-plus-m27-onsets.png",
+        "sha256": "dc95218432824c6d81992d15810d52ba92fa8ecf4ab6d4f2b74161865553ad96"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/10-m25-plus-m26-onsets.png",
+        "sha256": "4b106da56cb2090de9745d44f1051c45d64d435910388b632294bc8af9b9745e"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/11-m24-plus-m25-onsets.png",
+        "sha256": "1ae642059f1754ca75a384c5dfc166ec10a97e1ce5d9b4c6e8b18c0ef36f310e"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/12-m23-plus-m24-onsets.png",
+        "sha256": "5254e0d5909a35b9977c21b9a019e1e6409928b66140bc81ff86113e275e2311"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/13-m22-plus-m23-onsets.png",
+        "sha256": "36484c47a644339c000101e5179d81960aed1066019d27972fb64de5dba9603e"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/14-m21-plus-m22-onsets.png",
+        "sha256": "fb32427ae61eb2e0bfcd650cbdfdd051c70ef98ef7437810dabe1c2bd2e118ce"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/15-m20-plus-m21-onsets.png",
+        "sha256": "3ebdbc82c8b862161d71c48d131a81ae1c78ed06dee0f9630e374d1dbf301521"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/16-m19-plus-m20-onsets.png",
+        "sha256": "627ab04432420b2359e7d39af3f5fbe24ed600ac0f41c5ba9e67ddbd9ef25fa3"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/17-m18-plus-m19-onsets.png",
+        "sha256": "6d457aeb5ad5dcc59b8452466ad32f9a5900c0063629698ba26784a9904997ec"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/18-m17-plus-m18-onsets.png",
+        "sha256": "888bf5e29c0b60597e5bbea13f11e6cc9407a05814281835ea5901bd50cdd3e8"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/19-m16-plus-m17-onsets.png",
+        "sha256": "48e0e9abf347ebeacdea9495fcc17406d73ded2ce8251cf8a1777ce2815a9fc5"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/20-m15-plus-m16-onsets.png",
+        "sha256": "cc4d53fa0032140e2d0b595ce60e0de5a483cfa1d8971d77bc12e4f76dc769a3"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/21-m14-plus-m15-onsets.png",
+        "sha256": "4fe06b6c00c2ca40b3f99011316f82f33cc7e0b699dc7ea1d6f0b66b0d375113"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/22-m13-plus-m14-onsets.png",
+        "sha256": "ac95e1ed8659841cf1d330fb4024ba0d7d0d28a67c4398eae794b719df2e78f8"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/23-m12-plus-m13-onsets.png",
+        "sha256": "0c0d11bcda79618a9807df2994783247f8d376d67ab7208c3ad524bfe90525a4"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/24-m11-plus-m12-onsets.png",
+        "sha256": "6b2baaf71bbbc6a464297617f4869c6fb982ccb0fd95e8c9fe1868b7ed546213"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/25-m10-plus-m11-onsets.png",
+        "sha256": "28849b97f30fcce89a7a7fdbd57ba2a31c32d1747a826ec0506b1e780cb516f5"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/26-m9-plus-m10-onsets.png",
+        "sha256": "a998526dc7e7e6fc6bd36848fcb0fc2dde05e8b71f125f1da87d47300fa25368"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/27-m8-plus-m9-onsets.png",
+        "sha256": "241d912d818e86f90a8572a948d5cf6866f7a0bf9db8ae2bf1480b8c9c3ca8b0"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/28-m7-plus-m8-onsets.png",
+        "sha256": "25b755a4a8733480e5acb0b4b7c7c073cac30896d2553c5ef8ab7fa380b403f1"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/29-m6-plus-m7-onsets.png",
+        "sha256": "5b916084a965c7cbef0bfeed068381fcab5e132243e78e7e579877bbc612dd84"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/30-m5-plus-m6-onsets.png",
+        "sha256": "95ef8fc5083a3d86c8e090bc5485f67422a661ce64b3b0d89ff9bd74ad22a65a"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/31-m4-plus-m5-onsets.png",
+        "sha256": "b88346d8a613987a808242d83494a688681d704e2d819d9dd6203044f6f81b29"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/32-m3-plus-m4-onsets.png",
+        "sha256": "e441197cd3c59433574027363486393cce86860fcee4004b8227ad032f26b77b"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/33-m2-plus-m3-onsets.png",
+        "sha256": "e2224fad2b777d74404b661b4c0dbaeda84985ad3434d94c0b0b08b922db821c"
+      },
+      {
+        "path": "cards/bach-bwv-779-invention-no-8/34-m1-plus-m2-onsets.png",
+        "sha256": "7af6f8326f7e34353a3f8371ea7353dd7e1685ea14766afd0792f502f8dbd085"
+      }
     ]
   },
   {
@@ -164,6 +624,99 @@
       "20-m3-plus-m4-onsets.png",
       "21-m2-plus-m3-onsets.png",
       "22-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/01-m22.png",
+        "sha256": "ddd1d859c1c208f28c5994779413b77b0ab6c73bc1e2a166299353a89b1d2153"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/02-m21-plus-m22-onsets.png",
+        "sha256": "51a442908b3753deaeadb21d6aca59ae898b21e3b0e485bff1a287f73bee7ca1"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/03-m20-plus-m21-onsets.png",
+        "sha256": "ff683d6441211653b9b7fa82fb56028a0d83c213ace6930bea14c5b9d2f9087b"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/04-m19-plus-m20-onsets.png",
+        "sha256": "2831e1a94a190e00fa43faa6892d4b087652974882317715d4e5f5c58dd4559f"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/05-m18-plus-m19-onsets.png",
+        "sha256": "4ad2ed7239ba748961f9e04e7aa80ae7c841e0bff609a1426db5542782fee292"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/06-m17-plus-m18-onsets.png",
+        "sha256": "3aaf6f4f54c1c7a3049a20d90412a969ff9857ddab73d29625405a21837bf2e2"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/07-m16-plus-m17-onsets.png",
+        "sha256": "0a0b6928cf1a1ef98d99e546d8b43a8adab8a95632bee0edb1c8545f2f85661c"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/08-m15-plus-m16-onsets.png",
+        "sha256": "e121695987a3fefda66ad09714d6091a8ed4c0e68527acbe52193af30152edcb"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/09-m14-plus-m15-onsets.png",
+        "sha256": "7ea782c641a427f1db65a2d23faf189f7118d39341155e57a6845945abe71ac5"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/10-m13-plus-m14-onsets.png",
+        "sha256": "c7cf39ba19c20bf9c29b8cdc7b1ea55be4e69400727d528d8068e2e751156fee"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/11-m12-plus-m13-onsets.png",
+        "sha256": "27ce52903350c3111892a92513d09e062b48a585dd2e182c4acf8d445cf37cf1"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/12-m11-plus-m12-onsets.png",
+        "sha256": "3eb689d74dcf75c2c40a0527c18de662a7a2377f9a3f66bb301d89ab94d67955"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/13-m10-plus-m11-onsets.png",
+        "sha256": "059f3f9aceba37e2b4cbb70a033d8dd63f2fe692ce848c4ed69b43e4f9237ab5"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/14-m9-plus-m10-onsets.png",
+        "sha256": "79f81137c839f4656db8f62e44acb4cdcedc7fb06388a69a44e8149757986dfe"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/15-m8-plus-m9-onsets.png",
+        "sha256": "e29ad2b02dc9064634a585021058422482c28a4115dc1bb0fb627c58679b79b0"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/16-m7-plus-m8-onsets.png",
+        "sha256": "b6f67123b83c34d9a0dd5800745cb61b1557b3637b6784814149fea89ce34c66"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/17-m6-plus-m7-onsets.png",
+        "sha256": "efe2a759fafef080f4f46e86cc901fc38398643cf9762201ce4cc7a98068960e"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/18-m5-plus-m6-onsets.png",
+        "sha256": "289f14cbfa037963e5c497fe51682daf9c21840073b196c90cffd8ef1ed5e4ab"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/19-m4-plus-m5-onsets.png",
+        "sha256": "89b995912e904bf1c7c2af483f2e38b08f9e322b6dd6eb721e8045dc1d2db2ec"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/20-m3-plus-m4-onsets.png",
+        "sha256": "7fc27c2265aa97425141e8cd602220147ff5e9795cf87e03adc2a0a199cbbe4c"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/21-m2-plus-m3-onsets.png",
+        "sha256": "2f49603cf3cd6195db093d129fdd594f057ba870d919db8506a7cc4e6aa72694"
+      },
+      {
+        "path": "cards/bach-bwv-772-invention-no-1/22-m1-plus-m2-onsets.png",
+        "sha256": "3546c9128138f50116138bd0c5c914b58f091baf3d10c8c1741e7c27f9e90cce"
+      }
     ]
   },
   {
@@ -196,6 +749,111 @@
       "23-m3-plus-m4-onsets.png",
       "24-m2-plus-m3-onsets.png",
       "25-m1-plus-m2-onsets.png"
+    ],
+    "catalogVersion": 1,
+    "status": "supported",
+    "assetsAvailable": true,
+    "cardAssets": [
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/01-m25.png",
+        "sha256": "a0d02f55c974ac4c18063534f4e4607c6ea97ff1a6abf509f161f82ae29222be"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/02-m24-plus-m25-onsets.png",
+        "sha256": "66478415412173f7a4808f71c0819da2ad4e5a62e759cd0592a831366cf30166"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/03-m23-plus-m24-onsets.png",
+        "sha256": "8bb4eebf8c170e53616780559942feac57d87f489104f9b7ddd28573ea622b06"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/04-m22-plus-m23-onsets.png",
+        "sha256": "0e74da759c3599265b3e3ca3afc6b373e7d4151196baf0b9c0b11081085936e8"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/05-m21-plus-m22-onsets.png",
+        "sha256": "b419123776cc0db8f90d9c0f800d6db44dab3322851aeb2ea689a4abc7e15fbc"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/06-m20-plus-m21-onsets.png",
+        "sha256": "91f845807243f3f1ba452fe6a95e4007e2d9e2b2d0557f25406d8b92e5e59262"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/07-m19-plus-m20-onsets.png",
+        "sha256": "78c23ae65a9583e0d57726c464b5631842a509bb9a86096279d21f171b6685f9"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/08-m18-plus-m19-onsets.png",
+        "sha256": "51894e9b3132b82ac2631185e578cdd99ef28a010efd61d77af21f8276e3a0f7"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/09-m17-plus-m18-onsets.png",
+        "sha256": "4a93a302723201b5af27d47e82f4195b05cf00ed6c3fc385c758076a7685f8d8"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/10-m16-plus-m17-onsets.png",
+        "sha256": "b6cfacb3ca54a1f3e854a3dc2b38621bddba82a5c175cae3991b28b2d9f3b33b"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/11-m15-plus-m16-onsets.png",
+        "sha256": "367c86f128ac76e9b58e0c148db16d5490d507ca4f40f3d4c5163ac92c164452"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/12-m14-plus-m15-onsets.png",
+        "sha256": "7d6f7e6793a727da9be1def15066ca319ea3d92ac2414fcc580d5bf931820d51"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/13-m13-plus-m14-onsets.png",
+        "sha256": "89f1998d51cef978efbea34a5f71834794541ae865bbd3045c693a79ddd6ef7b"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/14-m12-plus-m13-onsets.png",
+        "sha256": "7736d47b02b631c7f4a23334d02701954e9f84fbce012415a8a144477cb6ba99"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/15-m11-plus-m12-onsets.png",
+        "sha256": "773940bc925cfe4a894faa3a4d04e5b91786471f45dc1cc1badfdc7ab326792e"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/16-m10-plus-m11-onsets.png",
+        "sha256": "8f43b819efbacd200dc8473bf9a4b330a99c78a30de37c8d5ba81cac9e625ca6"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/17-m9-plus-m10-onsets.png",
+        "sha256": "6cf40e47cffc17543c7adc59eae3730a89541539d8a625880223fca2843687ab"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/18-m8-plus-m9-onsets.png",
+        "sha256": "7f348046ac17b72663838353333a87ed1fef78e8bd334eb250fe955a8e29b53e"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/19-m7-plus-m8-onsets.png",
+        "sha256": "c4ffd3ef9326a17d87a6455cf68982ff340dfb05bcfda620b362e4bce51bbc0d"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/20-m6-plus-m7-onsets.png",
+        "sha256": "f6711e72bd33e00f4e6cfe1c9630f022b51d348e878ae76533cf5a3546750e3b"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/21-m5-plus-m6-onsets.png",
+        "sha256": "04f7ab05cd98fa2ba3ca66c55c0eda39e16f92450db320086741a1d8ff4f7621"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/22-m4-plus-m5-onsets.png",
+        "sha256": "b81e00827b4a0df754c8ed134fc78125f9cb1c42af39be28e5d7ade4ade81a09"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/23-m3-plus-m4-onsets.png",
+        "sha256": "5416a2c0f7dacc290d6b8305c14de693950f7b261af6bc37b7dc8bee1ed49f07"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/24-m2-plus-m3-onsets.png",
+        "sha256": "370154956c64f802e3e793fe488128047e3c5a9d919f7748a1e153c0f34361fc"
+      },
+      {
+        "path": "cards/bach-bwv-784-invention-no-13/25-m1-plus-m2-onsets.png",
+        "sha256": "01aa80ff538e8b08e5c105648398c52113c51da7041e2d62f77b4b82366ae189"
+      }
     ]
   }
 ]

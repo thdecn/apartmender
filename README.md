@@ -24,6 +24,10 @@ A phone landscape practice UI lives in `docs/` and is published with GitHub Page
 
 https://thdecn.github.io/apartmender/
 
+The shared [Piece Catalog and independent General Practice Collection](docs/piece-catalog.md)
+retain permanent slugs, complete versions and public assets. Before merging
+catalogue/asset changes for deployment, run `npm run validate:catalog -- --baseline origin/main`.
+
 ## Tests
 
 Run the JavaScript tests with Node.js:
