@@ -77,6 +77,8 @@ Sludge is Apartmender's V1 Supabase backend and owns the browser-facing Auth
 and student-data contract consumed here.
 
 Authenticated pages use the browser data module in `docs/login/browser-data.js`.
+Its separate [private fingering transport](docs/login/fingerings.md) supports
+scoped Student/Teacher views and safe retry; editor/route integration is separate.
 Page code receives normalized outcomes from that module and does not construct
 Supabase requests or handle session tokens.
 

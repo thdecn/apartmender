@@ -5,7 +5,9 @@ authenticated Student Practice and current/historical title joins. This is
 the additive #23 contract. The original array and `id`, `label`, `cards` and
 `version` fields remain compatible with existing PNG clients. No Piece source,
 card image, Assignment, private fingering or Practice history is duplicated.
-Renderer edition descriptors are a separate extension in #60 / Sludge `.13`.
+The [notation descriptor extension](notation/edition-descriptor.md), #60 /
+Sludge `.13`, adds one separately versioned renderer representation without
+changing the legacy PNG version or activating its routes.
 
 ## Records and complete versions
 

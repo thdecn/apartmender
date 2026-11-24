@@ -595,7 +595,16 @@
         "path": "cards/bach-bwv-779-invention-no-8/34-m1-plus-m2-onsets.png",
         "sha256": "7af6f8326f7e34353a3f8371ea7353dd7e1685ea14766afd0792f502f8dbd085"
       }
-    ]
+    ],
+    "notation": {
+      "editionId": "sha256:2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49",
+      "manifestSha256": "85f4e0bbdc778d67d316949b695dc0a3717d7d4d54c17a6ca9d09ce54ff6a057",
+      "version": "sha256:e75a926983e73a2120b22bb519d098b63b49f603565741e263f3a4dcf336b2ba",
+      "descriptor": {
+        "url": "notation/editions/bach-bwv-779-invention-no-8.v1.json",
+        "sha256": "e75a926983e73a2120b22bb519d098b63b49f603565741e263f3a4dcf336b2ba"
+      }
+    }
   },
   {
     "id": "bach-bwv-772-invention-no-1",

@@ -1,0 +1,244 @@
+{
+  "descriptorVersion": 1,
+  "slug": "bach-bwv-779-invention-no-8",
+  "title": "Bach Inv. No. 8",
+  "editionId": "sha256:2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49",
+  "score": {
+    "url": "scores/bach-bwv-779-invention-no-8/score.musicxml",
+    "sha256": "2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49"
+  },
+  "manifest": {
+    "url": "scores/bach-bwv-779-invention-no-8/score-index.json",
+    "sha256": "85f4e0bbdc778d67d316949b695dc0a3717d7d4d54c17a6ca9d09ce54ff6a057"
+  },
+  "renderer": {
+    "name": "verovio",
+    "version": "6.3.0",
+    "assetsManifestUrl": "vendor/verovio/manifest.json",
+    "assetsManifestSha256": "4dee62d52fcefe3132feb919a299d0c4f9ab734b5179fef98bb19c56347bf1b3"
+  },
+  "indexVersion": 1,
+  "projectionVersion": 1,
+  "preview": "downbeat-attacks",
+  "engraving": {
+    "pageWidth": 1450,
+    "pageHeight": 650,
+    "scale": 50,
+    "font": "Leipzig",
+    "spacingStaff": 12,
+    "spacingBraceGroup": 12,
+    "spacingLinear": 0.15,
+    "spacingNonLinear": 0.8,
+    "breaks": "encoded",
+    "adjustPageHeight": true,
+    "condense": "none",
+    "minLastJustification": 0,
+    "header": "none",
+    "footer": "none",
+    "svgViewBox": true,
+    "svgHtml5": false,
+    "mnumInterval": 0
+  },
+  "cards": [
+    {
+      "cardId": "m000034",
+      "measureId": "m000034",
+      "previewMeasureId": null
+    },
+    {
+      "cardId": "m000033",
+      "measureId": "m000033",
+      "previewMeasureId": "m000034"
+    },
+    {
+      "cardId": "m000032",
+      "measureId": "m000032",
+      "previewMeasureId": "m000033"
+    },
+    {
+      "cardId": "m000031",
+      "measureId": "m000031",
+      "previewMeasureId": "m000032"
+    },
+    {
+      "cardId": "m000030",
+      "measureId": "m000030",
+      "previewMeasureId": "m000031"
+    },
+    {
+      "cardId": "m000029",
+      "measureId": "m000029",
+      "previewMeasureId": "m000030"
+    },
+    {
+      "cardId": "m000028",
+      "measureId": "m000028",
+      "previewMeasureId": "m000029"
+    },
+    {
+      "cardId": "m000027",
+      "measureId": "m000027",
+      "previewMeasureId": "m000028"
+    },
+    {
+      "cardId": "m000026",
+      "measureId": "m000026",
+      "previewMeasureId": "m000027"
+    },
+    {
+      "cardId": "m000025",
+      "measureId": "m000025",
+      "previewMeasureId": "m000026"
+    },
+    {
+      "cardId": "m000024",
+      "measureId": "m000024",
+      "previewMeasureId": "m000025"
+    },
+    {
+      "cardId": "m000023",
+      "measureId": "m000023",
+      "previewMeasureId": "m000024"
+    },
+    {
+      "cardId": "m000022",
+      "measureId": "m000022",
+      "previewMeasureId": "m000023"
+    },
+    {
+      "cardId": "m000021",
+      "measureId": "m000021",
+      "previewMeasureId": "m000022"
+    },
+    {
+      "cardId": "m000020",
+      "measureId": "m000020",
+      "previewMeasureId": "m000021"
+    },
+    {
+      "cardId": "m000019",
+      "measureId": "m000019",
+      "previewMeasureId": "m000020"
+    },
+    {
+      "cardId": "m000018",
+      "measureId": "m000018",
+      "previewMeasureId": "m000019"
+    },
+    {
+      "cardId": "m000017",
+      "measureId": "m000017",
+      "previewMeasureId": "m000018"
+    },
+    {
+      "cardId": "m000016",
+      "measureId": "m000016",
+      "previewMeasureId": "m000017"
+    },
+    {
+      "cardId": "m000015",
+      "measureId": "m000015",
+      "previewMeasureId": "m000016"
+    },
+    {
+      "cardId": "m000014",
+      "measureId": "m000014",
+      "previewMeasureId": "m000015"
+    },
+    {
+      "cardId": "m000013",
+      "measureId": "m000013",
+      "previewMeasureId": "m000014"
+    },
+    {
+      "cardId": "m000012",
+      "measureId": "m000012",
+      "previewMeasureId": "m000013"
+    },
+    {
+      "cardId": "m000011",
+      "measureId": "m000011",
+      "previewMeasureId": "m000012"
+    },
+    {
+      "cardId": "m000010",
+      "measureId": "m000010",
+      "previewMeasureId": "m000011"
+    },
+    {
+      "cardId": "m000009",
+      "measureId": "m000009",
+      "previewMeasureId": "m000010"
+    },
+    {
+      "cardId": "m000008",
+      "measureId": "m000008",
+      "previewMeasureId": "m000009"
+    },
+    {
+      "cardId": "m000007",
+      "measureId": "m000007",
+      "previewMeasureId": "m000008"
+    },
+    {
+      "cardId": "m000006",
+      "measureId": "m000006",
+      "previewMeasureId": "m000007"
+    },
+    {
+      "cardId": "m000005",
+      "measureId": "m000005",
+      "previewMeasureId": "m000006"
+    },
+    {
+      "cardId": "m000004",
+      "measureId": "m000004",
+      "previewMeasureId": "m000005"
+    },
+    {
+      "cardId": "m000003",
+      "measureId": "m000003",
+      "previewMeasureId": "m000004"
+    },
+    {
+      "cardId": "m000002",
+      "measureId": "m000002",
+      "previewMeasureId": "m000003"
+    },
+    {
+      "cardId": "m000001",
+      "measureId": "m000001",
+      "previewMeasureId": "m000002"
+    }
+  ],
+  "assets": [
+    {
+      "url": "notation/score-index.js",
+      "sha256": "251783e3a296288ddb5df78b53201f87a351e49e3c75aa77eadfa0e7c87b9ba6"
+    },
+    {
+      "url": "notation/measure-card.js",
+      "sha256": "349dce07022a53b8075047349934d9692788c046f3eaff32cb7c2068e257e585"
+    },
+    {
+      "url": "notation/score-renderer.js",
+      "sha256": "8c29d3d370d0ae9989d6b2cd3442f31e3a001760a9eba203b5c7cbd69674159e"
+    },
+    {
+      "url": "notation/score-preview.js",
+      "sha256": "c24e491bfa33ee0c9bfd4d0194ed6abed8a55685918d624669be33d0a8fcfbd7"
+    },
+    {
+      "url": "notation/score-renderer.css",
+      "sha256": "67f6a6d8a987f72ec233e640076a431c748d7c3fd342cd5e1728b40be88148cc"
+    },
+    {
+      "url": "notation/edition-descriptor.js",
+      "sha256": "7cf16a4c8f7682df295c32dc4fb829e1610f5330f706a0f6728782792b032789"
+    }
+  ],
+  "provenance": {
+    "url": "scores/bach-bwv-779-invention-no-8/provenance.json",
+    "sha256": "1c8ca3be4b6fd220c7c4a0859e2ce708ca7da208163c6938a8dee250d1cf2c04"
+  }
+}
