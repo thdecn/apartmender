@@ -2,6 +2,7 @@ import * as tf from '@tensorflow/tfjs';
 import { BasicPitch } from '@spotify/basic-pitch/esm/inference.js';
 import { outputToNotesPoly, noteFramesToTime } from '@spotify/basic-pitch/esm/toMidi.js';
 import { noteEvents } from './events.mjs';
+import { MODEL_SAMPLE_RATE } from './transcription.mjs';
 
 let model;
 const thresholds = { onset: 0.25, frame: 0.25, minNoteLengthFrames: 5 };
@@ -37,7 +38,7 @@ self.onmessage = async ({ data }) => {
           // Contours are intentionally not retained: no piano pitch-bend output.
         }, progress => self.postMessage({ type: 'progress', progress }));
         notes = noteEvents(noteFramesToTime(outputToNotesPoly(frames, onsets,
-          thresholds.onset, thresholds.frame, thresholds.minNoteLengthFrames)), pcm.length / 22050);
+          thresholds.onset, thresholds.frame, thresholds.minNoteLengthFrames)), pcm.length / MODEL_SAMPLE_RATE);
         beforeCleanup = tf.memory();
       } finally {
         tf.engine().endScope();

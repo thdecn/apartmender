@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.3",
+  "buildId": "d671aec4b4103019",
+  "evidenceKind": "Automated desktop synthetic Web Audio; not physical iPhone or acoustic piano evidence",
+  "validation": {
+    "nodePassed": 179,
+    "nodeSkipped": 1,
+    "browserPassed": 18,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    },
+    "manifestAssetsVerified": 39
+  },
+  "adapterChecks": [
+    "Saved meter, quarter BPM, capture rate and count-in origin validated without re-estimation",
+    "Chords, independent overlaps and repeated same-pitch attacks remain separate",
+    "Invalid and outside-performance events filtered; fractional resampling padding clipped to captured duration",
+    "Real OfflineAudioContext conversion at44.1/48kHz preserves initial0.25s silence/onset",
+    "Cancelled worker queued result/progress cannot replace a newly prepared take",
+    "Real local inference repeat runs use same-origin GETs only and tensors clear"
+  ],
+  "repeatCapture": {
+    "webkit": {
+      "reportSHA256": "6b39a90c24ededbb5e4a69015043f19aaf94e3549ba0b557667c38f13ab9ddd3",
+      "startedAt": "2026-11-24T15:33:39.390Z",
+      "takes": [
+        {
+          "number": 1,
+          "status": "complete",
+          "durationSeconds": 2.473673469387755,
+          "timeOrigin": "count-in-end",
+          "scoreOriginFrame": 95071,
+          "noteCount": 21,
+          "polyphonicOverlap": true,
+          "stopToEventsMs": 1634,
+          "tensorsAfterCleanup": 0
+        },
+        {
+          "number": 2,
+          "status": "complete",
+          "durationSeconds": 2.4794784580498868,
+          "timeOrigin": "count-in-end",
+          "scoreOriginFrame": 94943,
+          "noteCount": 22,
+          "polyphonicOverlap": true,
+          "stopToEventsMs": 1460,
+          "tensorsAfterCleanup": 0
+        }
+      ]
+    },
+    "chromium": {
+      "reportSHA256": "51580b1214fd874262936056b012382e487593f289137240c9ab362c31b864b0",
+      "startedAt": "2026-11-24T15:33:08.212Z",
+      "takes": [
+        {
+          "number": 1,
+          "status": "complete",
+          "durationSeconds": 2.464965986394558,
+          "timeOrigin": "count-in-end",
+          "scoreOriginFrame": 95583,
+          "noteCount": 21,
+          "polyphonicOverlap": true,
+          "stopToEventsMs": 1960.7000000476837,
+          "tensorsAfterCleanup": 0
+        },
+        {
+          "number": 2,
+          "status": "complete",
+          "durationSeconds": 2.4301360544217685,
+          "timeOrigin": "count-in-end",
+          "scoreOriginFrame": 95583,
+          "noteCount": 21,
+          "polyphonicOverlap": true,
+          "stopToEventsMs": 1991.0999999046326,
+          "tensorsAfterCleanup": 0
+        }
+      ]
+    }
+  },
+  "limits": [
+    "No fresh physical iPhone capture/count-in pass",
+    "No new transcription accuracy assessment",
+    "No straight/triplet quantization or score pages in this slice",
+    "Peak device memory and hardware/acoustic latency unmeasured"
+  ]
+}

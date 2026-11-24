@@ -82,6 +82,15 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     expect(take.result.notes.some((note, i, all) => all.slice(i + 1).some(other =>
       other.pitchMidi !== note.pitchMidi && other.onsetSeconds < note.offsetSeconds && other.offsetSeconds > note.onsetSeconds))).toBe(true);
     expect(take.result.tensorMemoryAfterCleanup.numTensors).toBe(0);
+    expect(take.transcription.timeOrigin).toBe('count-in-end');
+    expect(take.transcription.capture.scoreOriginFrame).toBe(take.audio.timing.scoreOriginFrame);
+    expect(take.transcription.meter).toEqual(take.audio.timing.meter);
+    expect(take.transcription.tempoBPM).toBe(take.audio.timing.tempoBPM);
+    expect(take.transcription.durationSeconds).toBe(take.audio.performanceDurationSeconds);
+    expect(take.transcription.notes.length).toBeGreaterThan(1);
+    expect(take.transcription.notes.every(note => Number.isFinite(note.onsetSeconds)
+      && note.onsetSeconds >= 0 && note.offsetSeconds > note.onsetSeconds
+      && note.offsetSeconds <= take.transcription.durationSeconds)).toBe(true);
   }
   expect(requests.every(request => new URL(request.url).origin === 'http://127.0.0.1:4178'
     && request.method === 'GET' && request.body === null)).toBe(true);
@@ -92,6 +101,66 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('result-390px.png'), fullPage: true });
   await testInfo.attach('request-audit', { body: JSON.stringify(requests, null, 2), contentType: 'application/json' });
+});
+
+test('44.1 and 48 kHz conversion preserve performance silence and onset time', async ({ page }) => {
+  await page.goto('/apartmender/rec-demo/');
+  const results = await page.evaluate(async () => {
+    const { resamplePerformance, MODEL_SAMPLE_RATE } = await import('./transcription.mjs');
+    const output = [];
+    for (const rate of [44100, 48000]) {
+      const samples = new Float32Array(rate);
+      for (let i = Math.round(rate * 0.25); i < rate * 0.5; i++) samples[i] = 0.2 * Math.sin(2 * Math.PI * 440 * i / rate);
+      const converted = await resamplePerformance(samples, rate);
+      output.push({ rate, length: converted.length, outputRate: MODEL_SAMPLE_RATE,
+        firstSignalSeconds: converted.findIndex(sample => Math.abs(sample) > 0.01) / MODEL_SAMPLE_RATE,
+        initialSilence: converted.slice(0, Math.round(MODEL_SAMPLE_RATE * 0.2)).every(sample => Math.abs(sample) < 0.0001) });
+    }
+    return output;
+  });
+  for (const result of results) {
+    expect(result.length).toBe(result.outputRate);
+    expect(result.initialSilence).toBe(true);
+    expect(result.firstSignalSeconds).toBeGreaterThan(0.245);
+    expect(result.firstSignalSeconds).toBeLessThan(0.255);
+  }
+});
+
+test('cancelled inference cannot display its queued result or progress over a new take', async ({ page }) => {
+  await syntheticMicrophone(page);
+  await page.addInitScript(() => {
+    const NativeWorker = window.Worker;
+    window.Worker = class extends NativeWorker {
+      set onmessage(handler) {
+        super.onmessage = event => {
+          if (event.data.type !== 'result') { handler(event); return; }
+          window.queuedInferenceResult = true;
+          // Deliberately deliver callbacks even after terminate to exercise
+          // the app's generation guard rather than relying on Worker cleanup.
+          window.deliverStaleInference = () => {
+            handler({ data: { type: 'progress', progress: 0.99 } });
+            handler(event);
+          };
+        };
+      }
+    };
+  });
+  await page.goto('/apartmender/rec-demo/');
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'recording');
+  await page.waitForTimeout(1200);
+  await page.getByRole('button', { name: 'Stop and transcribe' }).click();
+  await page.waitForFunction(() => window.queuedInferenceResult);
+  await page.getByRole('button', { name: 'Cancel check' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await page.evaluate(() => window.deliverStaleInference());
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await expect(page.locator('#status')).toContainText('Local engines ready');
+  await expect(page.locator('#results')).toBeHidden();
 });
 
 test('model download failure is visible and never falls back to a service', async ({ page, context }) => {

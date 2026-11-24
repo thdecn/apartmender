@@ -1,5 +1,5 @@
 {
-  "buildId": "1558feaa98006db3",
+  "buildId": "d671aec4b4103019",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -11,16 +11,16 @@
   "assets": [
     {
       "path": "app.mjs",
-      "bytes": 8258,
-      "gzipBytes": 2998,
-      "sha256": "8e4056ca92bb9f0c2054f655c2994c4b90c91e3b25a00ab8bbb10fe62bf02387",
+      "bytes": 8457,
+      "gzipBytes": 3038,
+      "sha256": "609ffabba4764f2e6cd450eaa26d2eb04ae543fabb779f35e6a769662ebde37f",
       "runtime": true
     },
     {
       "path": "audio.mjs",
-      "bytes": 8102,
-      "gzipBytes": 2557,
-      "sha256": "609388d643ab0de96e1de0d2868eb266d7a1447f2f4dc9567d236e5b139572c6",
+      "bytes": 7663,
+      "gzipBytes": 2412,
+      "sha256": "6631b6a1577af6575825622a80feaa29f0fb12c854d38c5410a589f9b9bdfaec",
       "runtime": true
     },
     {
@@ -32,9 +32,9 @@
     },
     {
       "path": "events.mjs",
-      "bytes": 929,
-      "gzipBytes": 411,
-      "sha256": "d87cde8c40cfdfdac0bf96b9d0cd9eb3df9a889d7dfa406d7d8fb6a550dc2247",
+      "bytes": 1490,
+      "gzipBytes": 548,
+      "sha256": "c7dcdfae9dd51670a53ef8d3871dfbc0893c94c9c10e18ecb8f35f344c0b0b6d",
       "runtime": true
     },
     {
@@ -46,9 +46,9 @@
     },
     {
       "path": "inference-worker.js",
-      "bytes": 1066229,
-      "gzipBytes": 270144,
-      "sha256": "b1702cff8327ddc5eb73f1ab5885ff981dc454e7a1bbb376cff0121cd07813a3",
+      "bytes": 1066628,
+      "gzipBytes": 270249,
+      "sha256": "5ba1032d5355248135c2d86b366c691d39b5b99165988760f9f18663a777bd74",
       "runtime": true
     },
     {
@@ -196,6 +196,13 @@
       "bytes": 2433,
       "gzipBytes": 978,
       "sha256": "2396848ec54a53e5ae7613360aacccd6bcc26be1408333293045853965219f46",
+      "runtime": true
+    },
+    {
+      "path": "transcription.mjs",
+      "bytes": 2924,
+      "gzipBytes": 1121,
+      "sha256": "44e41bf2077d5e573fb8870d248339edc4ec70e58910e1e220894401f238e621",
       "runtime": true
     },
     {

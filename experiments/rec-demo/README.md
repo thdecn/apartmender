@@ -1,7 +1,7 @@
 # Recording demo frontend
 
-This is the frontend for Sludge Bead `sludge-0z8.2`, following the accepted
-`.1` feasibility harness under epic `sludge-0z8`.
+This is the frontend for Sludge Bead `sludge-0z8.3`, following the merged
+`.1` feasibility harness and `.2` capture/count-in under epic `sludge-0z8`.
 It is stacked on Apartmender's `codex/rec-demo` branch. Sludge remains the
 backend repository and owns the approved scope and Beads tracking. The
 recording demo's capture/transcription runs entirely in the browser and
@@ -29,7 +29,8 @@ the current beat/state; they never establish sample times or schedule clicks.
 Stop is enabled after the count-in and finalizes capture before local
 resampling/inference. Initial performance silence stays intact.
 
-Results show estimated pitch/onset/offset/strength events. **Quantization,
+Results show validated estimated pitch/onset/offset/strength events, with a
+versioned engine-neutral handoff for score construction. **Quantization,
 triplet interpretation and score pages remain later slices.** Verovio still
 engraves an internal synthetic rest-measure probe, not the captured notes.
 There is no audio upload or server fallback.
@@ -52,6 +53,49 @@ packet, so resumed input retains its actual timestamp. The collector rejects
 gaps/overlaps in the performance interval visibly after Stop, including gaps
 inside a final packet with a delayed Stop. Startup gaps before score zero are
 outside the retained performance and do not invalidate it.
+
+## Note-event handoff
+
+`transcription.mjs` exports `createTranscription(notes, audioMetadata)`. The
+page invokes it after Stop, resampling and local inference; results and the
+diagnostic report use `take.transcription`. It contains no engine-specific
+classes or tensors. Existing model diagnostics remain in `take.result`.
+
+| Field | Meaning |
+| --- | --- |
+| `schemaVersion` | Handoff contract version, initially `1` |
+| `timeUnit`, `timeOrigin` | `seconds`, `count-in-end`; initial silence is retained |
+| `durationSeconds` | Exact `(stopFrame - scoreOriginFrame) / captureSampleRate` |
+| `meter`, `tempoBPM` | Saved meter and tapped quarter-note BPM; no tempo detection |
+| `capture` | Sample rate, first frame, score-origin frame, Stop frame and capture-to-origin seconds |
+| `notes` | Sorted independent events: `pitchMidi`, `onsetSeconds`, `offsetSeconds`, optional `estimatedStrength` |
+
+MIDI pitch is an integer from 21 through 108. Onset/offset are finite seconds
+relative to the saved count-in endpoint, never to the first detected attack.
+Estimated strength is a finite model estimate when present; missing strength
+is displayed as a dash. It is not calibrated MIDI velocity or dynamics.
+The adapter rejects inconsistent timing/sample-conversion metadata rather
+than guessing an origin. Invalid note events are filtered; negative onsets
+and padded ends are clipped to the exact performance interval, and events
+outside it or with nonpositive duration are dropped. Chords, unequal overlapping
+durations and repeated same-pitch attacks are kept separately; there is no
+deduplication, duration equalization, musical-grid snapping or piece tuning.
+
+`resamplePerformance` converts already-trimmed mono float32 PCM to 22,050 Hz
+with OfflineAudioContext, preserving the first sample's origin and silence.
+The output length is the ceiling of the exact rate conversion; event clipping
+uses the original capture duration rather than that fractional-sample padding.
+Basic Pitch 1.0.1 performs its own overlapping-window inference and removes
+window margins in `unwrapOutput`. We append those frame/onset outputs and run
+`outputToNotesPoly` once over the combined sequence, adding no application
+chunks or independently decoded boundary notes. Thresholds remain 0.25 onset,
+0.25 frame and five minimum note frames. No accuracy improvement is claimed.
+
+The worker receives PCM only after capture finalizes. Its temporary tensors
+and model are disposed and it terminates on success/error/cancel; raw PCM is
+not retained in the handoff/report. Generation guards prevent a cancelled
+take's queued result or progress from replacing a new take. The handoff adds
+no upload, persistence, reference-score requirement or server fallback.
 
 This replaces the MP4/MediaRecorder prototype path, which lacked an exact
 encoder-to-audio-clock mapping. Report schema 2 uses `performanceDurationSeconds`,
@@ -87,6 +131,8 @@ The retained `evidence/count-in-*` reports describe the initial implementation
 build `06f89f0458488f9f`. The subsequent
 `evidence/capture-gap-summary-2026-11-24.json` records the corrected build,
 processor regressions and browser interruption/repeat checks separately.
+The `.3` handoff and conversion/cancellation checks are summarized in
+`evidence/event-adapter-summary-2026-11-24.json` for their own build.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's
