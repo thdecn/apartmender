@@ -30,4 +30,3 @@ export async function syntheticMicrophone(page) {
     Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia } });
   });
 }
-
