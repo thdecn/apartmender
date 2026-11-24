@@ -104,6 +104,41 @@ test('permission/lifecycle denial clears private data and remains distinct from 
   assert.deepEqual(adapter.snapshot(),{outcome:'not_loaded'});
 });
 
+for(const denial of [{error:{code:'42501'},status:403},{error:{code:'PGRST301'},status:401}]){
+  test(`definitive denial ${denial.status} clears a Teacher view despite subsequent Auth unavailability`,async()=>{
+    let authUnavailable=false;const events=[];
+    const {adapter,calls}=setup((name)=>{
+      if(name==='teacher_student_piece_fingerings_v1')return wire(read([row(a,'1')],'1'));
+      authUnavailable=true;return denial;
+    },{identity:async()=>authUnavailable?{outcome:'auth_unavailable'}:{outcome:'authenticated',userId:teacher},onChange:s=>events.push(s)});
+    await adapter.open({...input,role:'teacher',studentId:student});
+    assert.equal(adapter.snapshot().overrides.length,1);
+    assert.equal((await adapter.save(a,{kind:'suppress'})).outcome,'fingering_access_denied');
+    assert.deepEqual(adapter.snapshot(),{outcome:'not_loaded'});
+    await tick();assert.deepEqual(events.at(-1),{outcome:'not_loaded'});
+    assert.equal(calls.length,2); // No reconciliation read may hide definitive denial.
+  });
+}
+
+test('a late denial from an older view cannot clear the newly opened scope',async()=>{
+  let release;
+  const {adapter}=setup((name)=>name==='student_piece_fingerings_v1'?wire(read([row(b,'2')],'2'))
+    :new Promise(done=>{release=done;}));
+  await adapter.open(input);const old=adapter.save(a,{kind:'suppress'});await tick();
+  await adapter.open(input);release({error:{code:'42501'},status:403});
+  assert.equal((await old).outcome,'superseded');
+  assert.deepEqual(adapter.snapshot().overrides,[row(b,'2')]);
+});
+
+test('foreign rows without measure IDs fail as unavailable rather than empty successful reads',async()=>{
+  for(const record of [{noteId:'foreign-note',kind:'suppress',revision:'1'},
+    {kind:'suppress',revision:'1'},{...row(a,'1'),measureId:undefined}]){
+    const {adapter}=setup(()=>wire(read([record],'1')));
+    assert.equal((await adapter.open(input)).outcome,'fingering_unavailable');
+    assert.deepEqual(adapter.snapshot(),{outcome:'not_loaded'});
+  }
+});
+
 test('navigation and actual identity switches reject late private replies',async()=>{
   let release, wait=false;const view=setup(()=>wait?new Promise(done=>{release=done;}):wire(read([row(a,'1')],'1')));
   await view.adapter.open(input);wait=true;const old=view.adapter.open(input);await tick();view.adapter.clear();

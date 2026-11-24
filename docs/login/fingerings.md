@@ -36,6 +36,10 @@ originals as if an unsuccessful latest-data read had returned an empty scope.
 Expected JSON rejections retain their contract outcome; permission/eligibility
 errors normalize to `fingering_access_denied`, while transport, timeout and
 unrecognized responses normalize to `fingering_unavailable`.
+Definitive RPC permission denial clears the matching view before any subsequent
+Auth lookup, so an Auth outage cannot mask revoked access. Epoch checks still
+discard denials from an older view. Response rows require explicit note membership
+and a matching measure; malformed rows cannot become successful empty reads.
 
 Saves create a UUID once per intent. A pending/failed intent remains separate
 from the confirmed per-note state. A timeout/lost acknowledgement is unsaved;

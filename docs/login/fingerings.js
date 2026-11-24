@@ -32,7 +32,7 @@ function decode(data, scope, intent) {
   if (data.studentId !== scope.studentId || data.assignmentId !== scope.assignmentId || data.slug !== scope.slug
     || data.editionId !== scope.editionId || !(data.studentName === null || typeof data.studentName === 'string')
     || !revision(data.snapshotRevision)) return null;
-  const validRow = row => row && scope.notes.get(row.noteId) === row.measureId
+  const validRow = row => row && scope.notes.has(row.noteId) && scope.notes.get(row.noteId) === row.measureId
     && revision(row.revision) && BigInt(row.revision) > 0n && BigInt(row.revision) <= BigInt(data.snapshotRevision)
     && (row.kind === 'suppress' || (row.kind === 'set' && ['L','R'].includes(row.hand)
       && Number.isInteger(row.finger) && row.finger >= 1 && row.finger <= 5));
@@ -95,10 +95,12 @@ export function createFingeringAdapter({ identity, request, newRequestId = () =>
     let response;
     try { response = await bounded(() => request(rpc[scopeAtStart.role][intent ? 'save' : 'read'], args)); }
     catch { response = null; }
-    const after = await authenticate(expectedEpoch); if (after) return after;
+    // A denial is authoritative for this view even if a later Auth lookup fails.
+    if (epoch !== expectedEpoch) return { outcome: 'superseded' };
     if (response?.error?.code === '42501' || response?.status === 401) {
       clear(); return { outcome: 'fingering_access_denied' };
     }
+    const after = await authenticate(expectedEpoch); if (after) return after;
     if (response?.error?.code === '22P02') return { outcome: 'invalid_request' };
     if (!response || response.error) return unavailable();
     return decode(response.data, scopeAtStart, intent) ?? unavailable();
