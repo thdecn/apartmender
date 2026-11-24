@@ -47,6 +47,12 @@ compressing time. Count-in samples are removed before resampling to mono
 22,050 Hz and passing PCM to Basic Pitch. Event seconds are relative to score
 zero, including any silence before the first played attack.
 
+An absent input block or discontinuous frame number closes the partial worklet
+packet, so resumed input retains its actual timestamp. The collector rejects
+gaps/overlaps in the performance interval visibly after Stop, including gaps
+inside a final packet with a delayed Stop. Startup gaps before score zero are
+outside the retained performance and do not invalidate it.
+
 This replaces the MP4/MediaRecorder prototype path, which lacked an exact
 encoder-to-audio-clock mapping. Report schema 2 uses `performanceDurationSeconds`,
 `captureSampleRate`, `captureChannels`, `capturedPCMBytes` and `resampleMs`;
@@ -76,6 +82,11 @@ When needed, install them from this subproject with `npx playwright install
 chromium webkit`. They use a generated Web Audio stream, real browser recording,
 real inference and Verovio WASM; they are desktop plumbing tests, not microphone,
 acoustic-piano or iPhone quality evidence.
+
+The retained `evidence/count-in-*` reports describe the initial implementation
+build `06f89f0458488f9f`. The subsequent
+`evidence/capture-gap-summary-2026-11-24.json` records the corrected build,
+processor regressions and browser interruption/repeat checks separately.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's

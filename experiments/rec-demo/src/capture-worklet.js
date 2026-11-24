@@ -9,6 +9,7 @@ class PianoCaptureProcessor extends AudioWorkletProcessor {
     this.done = false;
     this.port.onmessage = ({ data }) => {
       if (data.type === 'stop') {
+        if (this.done) return;
         this.stopFrame = data.frame;
         if (this.nextFrame !== null && this.nextFrame >= this.stopFrame) this.finish();
       }
@@ -28,8 +29,11 @@ class PianoCaptureProcessor extends AudioWorkletProcessor {
   }
   process(inputs) {
     if (this.done) return false;
+    if (currentFrame >= this.stopFrame) { this.finish(); return false; }
     const channels = inputs[0];
-    if (!channels?.length) return true;
+    if (!channels?.length) { this.flush(); return true; }
+    // A partial packet must never relabel resumed input as continuous audio.
+    if (this.nextFrame !== null && currentFrame !== this.nextFrame) this.flush();
     if (this.nextFrame === null) this.port.postMessage({ type: 'ready', frame: currentFrame, channels: channels.length });
     const length = channels[0].length;
     for (let i = 0; i < length && currentFrame + i < this.stopFrame; i++) {

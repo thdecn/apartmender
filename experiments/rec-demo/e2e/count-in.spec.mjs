@@ -114,12 +114,18 @@ test('a failed capture worklet load is visible and releases the microphone', asy
   await expect(page.getByRole('button', { name: 'Prepare local engines' })).toBeEnabled();
 });
 
-test('meter and tapped tempo are frozen during count-in; cancellation stops the take', async ({ page }) => {
+test('meter and tempo freeze; cancellation and missing input stop the take', async ({ page }) => {
   await page.addInitScript(() => {
     const NativeContext = window.AudioContext;
     let context;
     window.AudioContext = class extends NativeContext {
       constructor(...args) { super(...args); context = this; }
+      createMediaStreamSource(stream) {
+        window.captureSource = super.createMediaStreamSource(stream);
+        const connect = window.captureSource.connect.bind(window.captureSource);
+        window.captureSource.connect = destination => { window.captureSink = destination; return connect(destination); };
+        return window.captureSource;
+      }
     };
     Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: {
       getUserMedia: async () => {
@@ -128,6 +134,7 @@ test('meter and tapped tempo are frozen during count-in; cancellation stops the 
         gain.gain.value = 0;
         source.connect(gain).connect(destination);
         source.start();
+        window.capturedTracks = destination.stream.getTracks();
         return destination.stream;
       },
     } });
@@ -153,5 +160,19 @@ test('meter and tapped tempo are frozen during count-in; cancellation stops the 
   await expect(page.getByLabel('Time signature')).toBeEnabled();
   await page.waitForTimeout(1200);
   await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
+  await expect(page.locator('#results')).toBeHidden();
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'recording');
+  // Real worklet receives an empty input after its source is disconnected.
+  await page.evaluate(() => window.captureSource.disconnect());
+  await page.waitForTimeout(150);
+  await page.evaluate(() => window.captureSource.connect(window.captureSink));
+  await page.waitForTimeout(150);
+  await page.getByRole('button', { name: 'Stop and transcribe' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
+  await expect(page.getByRole('alert')).toContainText('missing or overlapping samples');
+  expect(await page.evaluate(() => window.capturedTracks.every(track => track.readyState === 'ended'))).toBe(true);
   await expect(page.locator('#results')).toBeHidden();
 });

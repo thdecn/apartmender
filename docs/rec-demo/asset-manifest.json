@@ -1,5 +1,5 @@
 {
-  "buildId": "06f89f0458488f9f",
+  "buildId": "1558feaa98006db3",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -25,9 +25,9 @@
     },
     {
       "path": "capture-worklet.js",
-      "bytes": 1692,
-      "gzipBytes": 644,
-      "sha256": "ca7842743de6445da994b07a04b6775dad145480fae79facfd19a82477eba449",
+      "bytes": 1974,
+      "gzipBytes": 722,
+      "sha256": "dbc75bcc734d2d05ff8953eade53d5b85f16bc7eb88863efcfc5d3c3795aa3b5",
       "runtime": true
     },
     {
