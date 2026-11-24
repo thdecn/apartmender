@@ -78,4 +78,3 @@ test('static validation detects missing/changed bytes, stale versions, historica
     piece.cardAssets.reverse();piece.version='sha256:'+'0'.repeat(64);await save();await assert.rejects(validateCatalogFiles(root),/complete version/);
   } finally { await rm(root,{recursive:true,force:true}); }
 });
-
