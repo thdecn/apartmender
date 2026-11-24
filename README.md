@@ -28,6 +28,12 @@ The shared [Piece Catalog and independent General Practice Collection](docs/piec
 retain permanent slugs, complete versions and public assets. Before merging
 catalogue/asset changes for deployment, run `npm run validate:catalog -- --baseline origin/main`.
 
+The separate [recording demo frontend](experiments/rec-demo/README.md) is prepared
+at `docs/rec-demo/` for the intended `/apartmender/rec-demo/` Pages path. It currently
+provides microphone capture and local note-event transcription feasibility;
+the page is not published until its additive frontend changes reach the Pages
+source. Sludge retains the specification and Beads implementation tracking.
+
 ## Tests
 
 Run the JavaScript tests with Node.js:

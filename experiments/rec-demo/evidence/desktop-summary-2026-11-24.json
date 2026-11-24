@@ -1,0 +1,55 @@
+{
+  "buildId": "4560fa2f1ef0f65c",
+  "physicalIPhoneTested": false,
+  "intendedURL": "https://thdecn.github.io/apartmender/rec-demo/",
+  "publicHTTPStatusAtCheck": 404,
+  "sourceBranch": "codex/rec-demo",
+  "pagesSource": "main:/docs",
+  "unitTests": {
+    "passed": 136,
+    "skipped": 1
+  },
+  "browserChecksPassed": 8,
+  "sharedVerovioUnmodified": true,
+  "runtimeBytes": 9316879,
+  "runtimeGzipEstimateBytes": 3053359,
+  "runs": [
+    {
+      "browser": "chromium",
+      "take": 1,
+      "prepareWallMs": 361.30000019073486,
+      "inferenceMs": 2068,
+      "stopToEventsMs": 2104,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "chromium",
+      "take": 2,
+      "prepareWallMs": 50.60000014305115,
+      "inferenceMs": 1990.7000000476837,
+      "stopToEventsMs": 2012.1000001430511,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 1,
+      "prepareWallMs": 329,
+      "inferenceMs": 1481,
+      "stopToEventsMs": 1492,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 2,
+      "prepareWallMs": 40,
+      "inferenceMs": 1444,
+      "stopToEventsMs": 1454,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    }
+  ],
+  "manifestRetryRegression": "Failed against original build: second Prepare stayed in error. Fixed build passes first failure, successful retry and successful-result reuse in Chromium/WebKit."
+}

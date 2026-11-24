@@ -1,0 +1,5 @@
+# Preserve significant whitespace inside generated dependency template strings
+# and the exact upstream license/notice bytes. Authored demo source stays checked.
+docs/rec-demo/** linguist-generated=true
+docs/rec-demo/inference-worker.js -whitespace
+docs/rec-demo/notices/** -whitespace
