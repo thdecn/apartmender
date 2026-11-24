@@ -37,9 +37,9 @@ test('Magenta checkpoint runs locally in a disposable CPU worker under the page 
 import { readFile } from 'node:fs/promises';
 import { syntheticMicrophone } from './synthetic-microphone.mjs';
 
-async function recordComparison(page) {
+async function recordTake(page, mode = 'both') {
   await page.goto('/apartmender/rec-demo/');
-  await page.getByLabel('Transcription engine').selectOption('both');
+  await page.getByLabel('Transcription engine').selectOption(mode);
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
   await expect(page.getByLabel('Transcription engine')).toBeDisabled();
@@ -71,7 +71,7 @@ test('one captured take compares both real engines with independently selectable
       }
     };
   });
-  await syntheticMicrophone(page); await recordComparison(page);
+  await syntheticMicrophone(page); await recordTake(page);
   await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
   await expect(page.locator('#engine-outcomes')).toContainText('Spotify Basic Pitch:');
   await expect(page.locator('#engine-outcomes')).toContainText('Magenta Onsets and Frames:');
@@ -130,7 +130,7 @@ test('one captured take compares both real engines with independently selectable
 test('a Magenta download failure preserves the Basic Pitch result and a repeat take can retry', async ({ page }, testInfo) => {
   await syntheticMicrophone(page);
   await page.route('**/magenta-onsets-frames-uni-q2/weights_manifest.json', route => route.abort());
-  await recordComparison(page);
+  await recordTake(page);
   await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
   await expect(page.locator('#status')).toContainText('One engine failed');
   await expect(page.locator('#engine-outcomes')).toContainText('Magenta Onsets and Frames: failed');
@@ -155,7 +155,7 @@ test('cancelling while Magenta loads releases its worker and cannot overwrite a 
   await page.route('**/magenta-onsets-frames-uni-q2/weights_manifest.json', async route => {
     requested(); await held; await route.continue().catch(() => {});
   });
-  await recordComparison(page); await loading;
+  await recordTake(page); await loading;
   await page.getByRole('button', { name: 'Cancel check' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
   await expect(page.locator('#score-viewer img')).toHaveCount(0);
@@ -213,4 +213,53 @@ test('a preparation failure is attributed to the engine and a fresh Prepare retr
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
   await page.getByRole('button', { name: 'Cancel check' }).click();
+});
+
+
+test('completion guidance follows the selected display after another engine renders successfully', async ({ page }) => {
+  await page.addInitScript(() => {
+    const decode = HTMLImageElement.prototype.decode; let failNext = true;
+    HTMLImageElement.prototype.decode = function () {
+      if (failNext) { failNext = false; return Promise.reject(new Error('Synthetic first-score decode failure')); }
+      return decode.call(this);
+    };
+  });
+  await syntheticMicrophone(page); await recordTake(page);
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
+  await expect(page.locator('#status')).toContainText('selected score could not be displayed');
+  await page.getByLabel('View result').selectOption('magenta');
+  await expect(page.locator('#score-viewer img')).toBeVisible();
+  await expect(page.locator('#status')).toContainText('Both engines finished');
+  await expect(page.locator('#status')).not.toContainText('could not be displayed');
+});
+
+test('single-engine empty and failed displays give actionable completion guidance', async ({ page }) => {
+  await page.addInitScript(() => {
+    const NativeWorker = window.Worker;
+    window.emptyInference = true;
+    window.Worker = class extends NativeWorker {
+      set onmessage(handler) {
+        super.onmessage = event => {
+          if (event.data.type === 'result' && window.emptyInference) event = { data: { ...event.data, notes: [] } };
+          handler(event);
+        };
+      }
+    };
+    HTMLImageElement.prototype.decode = () => Promise.reject(new Error('Synthetic score decode failure'));
+  });
+  await syntheticMicrophone(page); await recordTake(page, 'basic-pitch');
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
+  await expect(page.locator('#status')).toContainText('No notes detected');
+  await expect(page.locator('#status')).not.toContainText('View the score');
+  await page.evaluate(() => { window.emptyInference = false; });
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'recording');
+  await page.waitForTimeout(1100);
+  await page.getByRole('button', { name: 'Stop and transcribe' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
+  await expect(page.locator('#status')).toContainText('selected score could not be displayed');
+  await expect(page.locator('#status')).toContainText('Download its MusicXML or prepare');
+  await expect(page.locator('#status')).not.toContainText('another engine');
 });

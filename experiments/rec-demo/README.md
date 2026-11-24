@@ -67,7 +67,8 @@ The host drops its canonical reference before the final pass. Magenta
 receives a 16,000-Hz Web Audio resampling of that same buffer, preserving time
 zero and initial silence. No re-recording, first-attack realignment, content
 lookup or reference piece is used. Diagnostics record the canonical PCM SHA-256,
-length and origin for each engine, alongside its actual model input rate/length.
+length and origin for each engine, alongside its actual model input rate/length. The host uses the same named
+model/capture sample rates for resampling and these diagnostics.
 Raw PCM is neither persisted nor exported.
 
 The Magenta worker uses the library's `melSpectrogram`/`powerToDb` preprocessing
@@ -96,7 +97,10 @@ labelled notes and score; the MusicXML filename includes the engine. A failed
 engine remains visible in the comparison list/report and leaves the other's
 result available. A new take, backgrounding or cancellation invalidates late
 results and releases old workers/viewer resources. Retrying Prepare starts
-fresh engine state. Engine entries exist before model preparation; setup
+fresh engine state. Completion guidance follows the selected display outcome,
+including empty/import/decode errors, and offers another result only when one
+exists. Switching to a successful score replaces earlier error guidance.
+Engine entries exist before model preparation; setup
 failures carry an engine-specific error/end time. Cancel, backgrounding and page
 departure mark active engine entries `cancelled` with the reason/end time while
 completed results keep their terminal state and data.

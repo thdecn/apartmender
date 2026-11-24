@@ -1,9 +1,10 @@
 import { AudioCapture } from './audio.mjs';
 import { InferenceWorker, initializeVerovio } from './runtime.mjs';
 import { TapTempo } from './timing.mjs';
-import { createTranscription, resamplePerformance } from './transcription.mjs';
+import { createTranscription, resamplePerformance, MODEL_SAMPLE_RATE } from './transcription.mjs';
 import { buildStraightScore } from './score.mjs';
 import { createScoreViewer } from './score-viewer.mjs';
+import { MAGENTA_AUDIO } from './magenta-input.mjs';
 
 const $ = id => document.getElementById(id);
 const scoreViewer = createScoreViewer($('score-viewer'));
@@ -179,6 +180,18 @@ function comparisonSummary() {
   $('result-engine').disabled = $('result-engine').options.length < 2;
 }
 
+function completionMessage() {
+  const results = Object.values(take.engineResults), selected = take.engineResults[take.selectedEngine];
+  const alternatives = results.some(result => result !== selected && result.status === 'complete');
+  if (selected?.display?.outcome === 'error') return 'Transcription finished, but the selected score could not be displayed. '
+    + (alternatives ? 'Choose another engine result or download its MusicXML.' : 'Download its MusicXML or prepare a new take.');
+  if (selected?.display?.outcome === 'empty') return 'No notes detected by the selected engine. '
+    + (alternatives ? 'Choose another engine result or prepare a new take.' : 'Prepare a new take to try again.');
+  if (results.some(result => result.status === 'error')) return 'One engine failed; the selected result is available below. Prepare again to retry.';
+  return take.engineMode === 'both' ? 'Both engines finished. Switch View result to compare the same take.'
+    : 'Local transcription finished. View the score or prepare a new take.';
+}
+
 async function selectResult(id) {
   const owner = take, result = owner.engineResults[id];
   if (result?.status !== 'complete') return;
@@ -197,7 +210,8 @@ async function selectResult(id) {
   if (current !== generation || request !== selection || owner !== take) return;
   result.display = display;
   if (owner.transcription === result.transcription) owner.display = display;
-  $('score-download').disabled = state !== 'complete';
+  if (state === 'complete') showState('complete', completionMessage());
+  else $('score-download').disabled = true;
   diagnostics();
 }
 $('result-engine').addEventListener('change', () => { void selectResult($('result-engine').value); });
@@ -212,7 +226,7 @@ $('stop').addEventListener('click', async () => {
     const hash = await crypto.subtle.digest('SHA-256', audio.pcm);
     if (current !== generation) return;
     take.input = { sha256: [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join(''),
-      sampleRate: 22050, samples: audio.pcm.length, timeOrigin: 'count-in-end' };
+      sampleRate: MODEL_SAMPLE_RATE, samples: audio.pcm.length, timeOrigin: 'count-in-end' };
     const engines = engineIds(take.engineMode);
     for (const id of engines) {
       if (current !== generation) return;
@@ -228,11 +242,12 @@ $('stop').addEventListener('click', async () => {
           entry.model = await activeWorker.initialize();
         } else entry.model = take.model;
         if (current !== generation) return;
-        const pcm = id === 'magenta' ? await resamplePerformance(audio.pcm, 22050, 16000)
+        const modelSampleRate = id === 'magenta' ? MAGENTA_AUDIO.sampleRate : MODEL_SAMPLE_RATE;
+        const pcm = id === 'magenta' ? await resamplePerformance(audio.pcm, MODEL_SAMPLE_RATE, modelSampleRate)
           : engines.length > 1 ? audio.pcm.slice() : audio.pcm;
         if (current !== generation) return;
         if (id === engines.at(-1)) audio.pcm = null; // No later pass needs the canonical buffer.
-        entry.modelInput = { sampleRate: id === 'magenta' ? 16000 : 22050, samples: pcm.length };
+        entry.modelInput = { sampleRate: modelSampleRate, samples: pcm.length };
         entry.result = await activeWorker.infer(pcm, progress => {
           if (current !== generation) return;
           $('progress').value = progress;
@@ -262,9 +277,7 @@ $('stop').addEventListener('click', async () => {
     if (!Object.values(take.engineResults).some(result => result.status === 'complete')) throw new Error(Object.entries(take.engineResults).map(([id, result]) => `${engineNames[id]}: ${result.error}`).join(' · '));
     take.status = 'complete'; take.endedAt = new Date().toISOString();
     if (performance.memory) take.chromiumJSHeapBytes = performance.memory.usedJSHeapSize;
-    const partial = Object.values(take.engineResults).some(result => result.status === 'error');
-    showState('complete', take.display?.outcome === 'error' ? 'Transcription finished, but this score could not be displayed. Download its MusicXML or view the other result.' : partial ? 'One engine failed; the other result is available below. Prepare again to retry.'
-      : take.engineMode === 'both' ? 'Both engines finished. Switch View result to compare the same take.' : 'Local transcription finished. View the score or prepare a new take.');
+    showState('complete', completionMessage());
     diagnostics();
   } catch (error) { if (current === generation) fail(error); }
 });

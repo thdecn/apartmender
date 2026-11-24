@@ -1,7 +1,7 @@
 {
   "date": "2026-11-24",
   "bead": "sludge-0z8.8",
-  "buildId": "5bff06bc9ad83571",
+  "buildId": "de6289ebc7fcd3e1",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -14,7 +14,7 @@
   "validation": {
     "nodePassed": 189,
     "nodeSkipped": 1,
-    "browserPassed": 44,
+    "browserPassed": 48,
     "catalog": {
       "pieces": 6,
       "general": 6,
@@ -22,12 +22,25 @@
     },
     "manifestAssetsVerified": 74,
     "deterministicRebuild": true,
-    "basicPitchWorkerAndModelUnchanged": true
+    "basicPitchWorkerAndModelUnchanged": true,
+    "browserRuns": [
+      {
+        "buildId": "de6289ebc7fcd3e1",
+        "passed": 46,
+        "scope": "All browser checks except the boundary matrix"
+      },
+      {
+        "buildId": "de6289ebc7fcd3e1",
+        "passed": 2,
+        "scope": "Boundary endpoints and adjacent lengths in Chromium/WebKit"
+      }
+    ],
+    "currentAndRetainedManifestEntriesVerified": 384
   },
   "engines": {
     "chromium": {
       "canonicalInput": {
-        "sha256": "fcf35a5d133b4cc35206c378cd578e4e6b7fb1fca40919124f29b9ad369dd3ca",
+        "sha256": "e42867a0240dd093d3ae1e794a2f939d54891dbb32d2ba68c141410be95beb9f",
         "sampleRate": 22050,
         "samples": 27985,
         "timeOrigin": "count-in-end"
@@ -37,71 +50,71 @@
       "results": {
         "basic-pitch": {
           "status": "complete",
-          "notes": 14,
+          "notes": 13,
           "modelInput": {
             "sampleRate": 22050,
             "samples": 27985
           },
           "modelSetupPhase": "prepare",
-          "initializationMs": 9.399999856948853,
-          "inferenceMs": 1061.5,
-          "processingWallMs": 1063.0999999046326,
+          "initializationMs": 8.600000143051147,
+          "inferenceMs": 1034.0999999046326,
+          "processingWallMs": 1035.6999998092651,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 30.90000009536743
+            "renderMs": 29.200000047683716
           }
         },
         "magenta": {
           "status": "complete",
-          "notes": 11,
+          "notes": 12,
           "modelInput": {
             "sampleRate": 16000,
             "samples": 20307
           },
           "modelSetupPhase": "after-stop",
-          "initializationMs": 596,
-          "inferenceMs": 3628.9000000953674,
-          "processingWallMs": 4255,
+          "initializationMs": 572.5,
+          "inferenceMs": 3597.699999809265,
+          "processingWallMs": 4200.900000095367,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 19.90000009536743
+            "renderMs": 22.700000047683716
           }
         }
       }
     },
     "webkit": {
       "canonicalInput": {
-        "sha256": "d26b372726ade6dc6ed9421eeeec8fa9b3a48eb4a5ee0c8951db639e6e2b2ea3",
+        "sha256": "e564fdfeabeebf05480e76ee1f7e41be658ced5adaab92293ff1b4c8fb247f8b",
         "sampleRate": 22050,
-        "samples": 28689,
+        "samples": 28753,
         "timeOrigin": "count-in-end"
       },
-      "captureDurationSeconds": 1.3010657596371882,
+      "captureDurationSeconds": 1.303968253968254,
       "selectedEngineInReport": "magenta",
       "results": {
         "basic-pitch": {
           "status": "complete",
-          "notes": 16,
+          "notes": 15,
           "modelInput": {
             "sampleRate": 22050,
-            "samples": 28689
+            "samples": 28753
           },
           "modelSetupPhase": "prepare",
-          "initializationMs": 9,
-          "inferenceMs": 885,
-          "processingWallMs": 888,
+          "initializationMs": 7,
+          "inferenceMs": 836,
+          "processingWallMs": 839,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 38
+            "renderMs": 34
           }
         },
         "magenta": {
@@ -109,12 +122,12 @@
           "notes": 11,
           "modelInput": {
             "sampleRate": 16000,
-            "samples": 20818
+            "samples": 20864
           },
           "modelSetupPhase": "after-stop",
-          "initializationMs": 520,
-          "inferenceMs": 7658,
-          "processingWallMs": 8202,
+          "initializationMs": 565,
+          "inferenceMs": 7520,
+          "processingWallMs": 8107,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
@@ -142,7 +155,7 @@
     "Available publicly only after owner incorporates the PR into Pages"
   ],
   "artifacts": {
-    "engine-comparison-390px.png": "165fcc1c3e41e498340601f117895d953c6d8b3d3e88344d024b2aa70891d428"
+    "engine-comparison-390px.png": "77a826afd8502d74385fd5f6cf7fe24240e84a607351ccf46acd7fce140ef74f"
   },
   "reviewCorrections": {
     "baselineHead": "f3f3b91ab19d300fed705747e6bcbbef094f0147",
@@ -181,13 +194,13 @@
           "status": "error",
           "modelSetupPhase": "prepare",
           "error": "TypeError: Failed to fetch",
-          "endedAt": "2026-11-24T21:20:33.197Z"
+          "endedAt": "2026-11-24T21:29:27.859Z"
         },
         "cancelledMagenta": {
           "status": "cancelled",
           "modelSetupPhase": "after-stop",
           "error": "Check cancelled. Microphone and inference worker released.",
-          "endedAt": "2026-11-24T21:19:50.571Z"
+          "endedAt": "2026-11-24T21:29:26.968Z"
         },
         "preservedBasicPitchStatus": "complete"
       },
@@ -196,16 +209,23 @@
           "status": "error",
           "modelSetupPhase": "prepare",
           "error": "TypeError: Load failed",
-          "endedAt": "2026-11-24T21:23:10.870Z"
+          "endedAt": "2026-11-24T21:30:54.616Z"
         },
         "cancelledMagenta": {
           "status": "cancelled",
           "modelSetupPhase": "after-stop",
           "error": "Check cancelled. Microphone and inference worker released.",
-          "endedAt": "2026-11-24T21:21:40.957Z"
+          "endedAt": "2026-11-24T21:30:53.704Z"
         },
         "preservedBasicPitchStatus": "complete"
       }
-    }
+    },
+    "completionGuidanceChecks": [
+      "Switching from failed first display to rendered Magenta refreshes completion text",
+      "Single-engine empty result requests another take, not viewing a score",
+      "Single-engine decode error offers XML/retry without nonexistent alternative",
+      "Resampling/input metadata use shared named capture/model sample rates"
+    ],
+    "finalBoundaryWorkerSHA256": "384694e19983ecdbabfb88df0b457d9ec1091775dbc726bf8c49a73b2d2e6d4c"
   }
 }
