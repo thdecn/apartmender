@@ -1,10 +1,10 @@
 {
   "date": "2026-11-24",
   "bead": "sludge-0z8.4",
-  "buildId": "f92497a2f1a598ef",
+  "buildId": "42c402040d4cdbc0",
   "evidenceKind": "Automated desktop synthetic note/audio examples, not owner piece or physical iPhone evidence",
   "validation": {
-    "nodePassed": 183,
+    "nodePassed": 184,
     "nodeSkipped": 1,
     "browserPassed": 20,
     "manifestAssetsVerified": 40,
@@ -25,7 +25,9 @@
         "quantizedSourceCount": 13,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 0,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -35,7 +37,9 @@
         "quantizedSourceCount": 5,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 1,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -45,7 +49,9 @@
         "quantizedSourceCount": 9,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 1,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -55,7 +61,33 @@
         "quantizedSourceCount": 0,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 4,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "inactive lanes before and after polyphony",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 3,
+        "quantizedSourceCount": 3,
+        "measureCount": 3,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "tie-only lane stays active",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 2,
+        "quantizedSourceCount": 2,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 2,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       }
     ],
@@ -67,7 +99,9 @@
         "quantizedSourceCount": 13,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 0,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -77,7 +111,9 @@
         "quantizedSourceCount": 5,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 1,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -87,7 +123,9 @@
         "quantizedSourceCount": 9,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 1,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       },
       {
@@ -97,7 +135,33 @@
         "quantizedSourceCount": 0,
         "measureCount": 2,
         "pages": 1,
+        "visibleFullMeasureRests": 4,
         "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "inactive lanes before and after polyphony",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 3,
+        "quantizedSourceCount": 3,
+        "measureCount": 3,
+        "pages": 1,
+        "visibleFullMeasureRests": 4,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
+        "allTiedDurationsRetained": true
+      },
+      {
+        "name": "tie-only lane stays active",
+        "verovioVersion": "6.3.0-425dd7b",
+        "attackCount": 2,
+        "quantizedSourceCount": 2,
+        "measureCount": 2,
+        "pages": 1,
+        "visibleFullMeasureRests": 2,
+        "allVoicesFilled": true,
+        "inactiveLaneRestsAbsent": true,
         "allTiedDurationsRetained": true
       }
     ]
@@ -145,13 +209,17 @@
     ]
   },
   "artifacts": {
-    "straight-score-fixture.musicxml": "881eab9ae02c80f47bd8cf4cd6b97a9329ecaa0c2a1030aa63a096fe87bb3f5e",
-    "straight-score-fixture.svg": "bbba6f910614499657ef9e4c569da250dbf673ee8aa45f3e8359569d52597dba"
+    "straight-score-fixture.musicxml": "5fb5facbf2749ed897f4ec656c168eb3d22f2749df916bd6e9db282ebf9f78bc",
+    "straight-score-fixture.svg": "2e275c37679d2244470823e904e1ec42c7aef9075ceb7e851a8be6f40de1e33d"
   },
   "limits": [
     "Straight through sixteenths only; triplet bead .5 remains required",
     "On-screen public score pages remain .6",
     "Fresh physical iPhone/acoustic assessment remains .7",
     "No calibrated dynamics or hand detection claim"
-  ]
+  ],
+  "reviewFixes": {
+    "inactiveVoices": "Emit only active note/tie lanes per bar; one whole rest per silent staff. Unit repro failed before correction and passes after; XML/index and actual Verovio glyph counts verified.",
+    "resolution": "MusicXML divisions, fractions, values, alignments, beams and sixteenth ticks derive from shared resolution. Six fixtures retain same quarters/voices/types/beams in a focused internal4/12 probe; no triplet interpretation."
+  }
 }

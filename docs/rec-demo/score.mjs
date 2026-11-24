@@ -1,16 +1,22 @@
 const DIVISIONS = 4;
-const VALUES = [[16, 'whole'], [12, 'half', true], [8, 'half'], [6, 'quarter', true],
-  [4, 'quarter'], [3, 'eighth', true], [2, 'eighth'], [1, '16th']];
+const QUARTER_BEAT_TYPE = 4;
+const SIXTEENTH_QUARTERS = 1 / 4;
+const SIXTEENTH_TICKS = DIVISIONS * SIXTEENTH_QUARTERS;
+const VALUES = [[4, 'whole'], [3, 'half', true], [2, 'half'], [1.5, 'quarter', true],
+  [1, 'quarter'], [0.75, 'eighth', true], [0.5, 'eighth'], [SIXTEENTH_QUARTERS, '16th']]
+  .map(([quarters, type, dotted = false]) => ({ ticks: quarters * DIVISIONS, type, dotted,
+    alignment: (dotted ? quarters / 1.5 * 2 : quarters) * DIVISIONS }));
 const SPELLING = [['C', 0], ['C', 1], ['D', 0], ['D', 1], ['E', 0], ['F', 0],
   ['F', 1], ['G', 0], ['G', 1], ['A', 0], ['A', 1], ['B', 0]];
 const fraction = ticks => {
-  const divisor = ticks % 4 === 0 ? 4 : ticks % 2 === 0 ? 2 : 1;
-  return { numerator: ticks / divisor, denominator: 4 / divisor };
+  let divisor = ticks, remainder = DIVISIONS;
+  while (remainder) [divisor, remainder] = [remainder, divisor % remainder];
+  return { numerator: ticks / divisor, denominator: DIVISIONS / divisor };
 };
 
 function quantize(take) {
   if (take?.schemaVersion !== 1 || take.timeOrigin !== 'count-in-end' || take.timeUnit !== 'seconds'
-    || ![2, 3, 4].includes(take.meter?.beats) || take.meter.beatType !== 4
+    || ![2, 3, 4].includes(take.meter?.beats) || take.meter.beatType !== QUARTER_BEAT_TYPE
     || !Number.isFinite(take.tempoBPM) || take.tempoBPM <= 0
     || !Number.isFinite(take.durationSeconds) || take.durationSeconds <= 0 || !Array.isArray(take.notes)) {
     throw new Error('Invalid transcription for straight-rhythm score construction.');
@@ -22,8 +28,8 @@ function quantize(take) {
       || note.onsetSeconds < 0 || note.offsetSeconds <= note.onsetSeconds || note.offsetSeconds > take.durationSeconds) {
       throw new Error('Invalid note event for score construction.');
     }
-    const start = Math.round(note.onsetSeconds * ticksPerSecond);
-    const end = Math.max(start + 1, Math.round(note.offsetSeconds * ticksPerSecond));
+    const start = Math.round(note.onsetSeconds * ticksPerSecond / SIXTEENTH_TICKS) * SIXTEENTH_TICKS;
+    const end = Math.max(start + SIXTEENTH_TICKS, Math.round(note.offsetSeconds * ticksPerSecond / SIXTEENTH_TICKS) * SIXTEENTH_TICKS);
     if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end)) throw new Error('Score timing exceeds safe integer precision.');
     return { id: index + 1, pitchMidi: note.pitchMidi, start, end, staff: note.pitchMidi >= 60 ? 1 : 2,
       onsetQuarters: fraction(start), durationQuarters: fraction(end - start) };
@@ -63,30 +69,39 @@ function splitSpan(start, end, measureTicks) {
     const remaining = Math.min(end - start, measureTicks - inBar);
     // Longer/dotted values begin on their metric boundary; off-beat spans
     // split and tie instead of obscuring the following beat or half-bar.
-    const value = VALUES.find(([ticks, , dotted]) => ticks <= remaining
-      && (inBar === 0 || (ticks <= 4 ? inBar % (dotted ? 4 : ticks) === 0
-        : inBar % (dotted ? ticks / 1.5 * 2 : ticks) === 0)));
-    parts.push({ start, duration: value[0], type: value[1], dotted: Boolean(value[2]) });
-    start += value[0];
+    const value = VALUES.find(value => value.ticks <= remaining && inBar % value.alignment === 0);
+    parts.push({ start, duration: value.ticks, type: value.type, dotted: value.dotted });
+    start += value.ticks;
   }
   return parts;
 }
 
 function beamVoice(segments) {
-  const short = segment => segment.notes && segment.duration <= 3;
+  const short = segment => segment.notes && segment.duration < DIVISIONS;
   for (let i = 0; i < segments.length; i++) {
     const segment = segments[i];
     if (!short(segment)) continue;
     const adjacent = other => other && short(other)
-      && Math.floor(other.start / 4) === Math.floor(segment.start / 4);
+      && Math.floor(other.start / DIVISIONS) === Math.floor(segment.start / DIVISIONS);
     const before = adjacent(segments[i - 1]), after = adjacent(segments[i + 1]);
     if (!before && !after) continue;
     segment.beams = [{ number: 1, value: before ? (after ? 'continue' : 'end') : 'begin' }];
-    if (segment.duration === 1) {
-      const left = before && segments[i - 1].duration === 1, right = after && segments[i + 1].duration === 1;
+    if (segment.duration === SIXTEENTH_TICKS) {
+      const left = before && segments[i - 1].duration === SIXTEENTH_TICKS, right = after && segments[i + 1].duration === SIXTEENTH_TICKS;
       segment.beams.push({ number: 2, value: left ? (right ? 'continue' : 'end') : right ? 'begin' : after ? 'forward hook' : 'backward hook' });
     }
   }
+}
+
+function measureVoices(voices, start, end) {
+  return [1, 2].flatMap(staff => {
+    const lanes = voices.filter(voice => voice.staff === staff);
+    const active = lanes.map(voice => ({ ...voice, groups: voice.groups.filter(group => group.start < end && group.end > start) }))
+      .filter(voice => voice.groups.length);
+    // Keep stable voice numbers and tie continuations, but no inactive lane's
+    // full-bar rest beside another lane's notes. A silent staff needs one rest.
+    return active.length ? active : [{ ...lanes[0], groups: [] }];
+  });
 }
 
 function pitch(note) {
@@ -133,16 +148,17 @@ function noteXML(segment, voice, accidentals) {
 export function buildStraightScore(take) {
   const { notes, ticksPerSecond } = quantize(take), voices = voicesFor(notes);
   const measureTicks = take.meter.beats * DIVISIONS;
-  const end = notes.reduce((end, note) => Math.max(end, note.end), Math.max(1, Math.round(take.durationSeconds * ticksPerSecond)));
+  const end = notes.reduce((end, note) => Math.max(end, note.end), Math.max(SIXTEENTH_TICKS,
+    Math.round(take.durationSeconds * ticksPerSecond / SIXTEENTH_TICKS) * SIXTEENTH_TICKS));
   const measureCount = Math.ceil(end / measureTicks);
   if (!Number.isSafeInteger(end) || !Number.isSafeInteger(measureCount)) throw new Error('Score timing exceeds safe integer precision.');
   const measures = [];
   for (let m = 0; m < measureCount; m++) {
     const start = m * measureTicks, end = start + measureTicks;
-    const current = voices.map(voice => {
+    const current = measureVoices(voices, start, end).map(voice => {
       const segments = [];
       let cursor = start;
-      for (const group of voice.groups.filter(group => group.start < end && group.end > start)) {
+      for (const group of voice.groups) {
         const from = Math.max(start, group.start), to = Math.min(end, group.end);
         segments.push(...splitSpan(cursor, from, measureTicks));
         segments.push(...splitSpan(from, to, measureTicks).map(segment => ({ ...segment, notes: group.notes })));
@@ -154,7 +170,7 @@ export function buildStraightScore(take) {
       return { ...voice, segments };
     });
     const accidentals = accidentalMap(current);
-    const attributes = m ? '' : `<attributes><divisions>4</divisions><key><fifths>0</fifths></key><time><beats>${take.meter.beats}</beats><beat-type>4</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes>`;
+    const attributes = m ? '' : `<attributes><divisions>${DIVISIONS}</divisions><key><fifths>0</fifths></key><time><beats>${take.meter.beats}</beats><beat-type>${take.meter.beatType}</beat-type></time><staves>2</staves><clef number="1"><sign>G</sign><line>2</line></clef><clef number="2"><sign>F</sign><line>4</line></clef></attributes>`;
     const tempo = m ? '' : `<direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${take.tempoBPM}</per-minute></metronome></direction-type><staff>1</staff><sound tempo="${take.tempoBPM}"/></direction>`;
     measures.push(`<measure number="${m + 1}">${attributes}${tempo}${current.map((voice, index) =>
       `${index ? `<backup><duration>${measureTicks}</duration></backup>` : ''}${voice.segments.map(segment => noteXML(segment, voice, accidentals)).join('')}`).join('')}</measure>`);
@@ -162,7 +178,7 @@ export function buildStraightScore(take) {
   const musicXML = `<?xml version="1.0" encoding="UTF-8"?><score-partwise version="4.0"><part-list><score-part id="P1"><part-name>Piano</part-name></score-part></part-list><part id="P1">${measures.join('')}</part></score-partwise>`;
   return { schemaVersion: 1, rhythm: 'straight', divisions: DIVISIONS, meter: { ...take.meter }, tempoBPM: take.tempoBPM,
     measureCount, voiceCount: voices.length, noteCount: notes.length, notes, musicXML,
-    quantization: { gridQuarterNotes: { numerator: 1, denominator: 4 }, policy: 'Nearest sixteenth from count-in zero; minimum one tick; final measure padded with rests.',
+    quantization: { gridQuarterNotes: fraction(SIXTEENTH_TICKS), policy: 'Nearest sixteenth from count-in zero; minimum one sixteenth; final measure padded with rests.',
       maxOnsetErrorSeconds: notes.reduce((max, note) => Math.max(max, Math.abs(note.start / ticksPerSecond - take.notes[note.id - 1].onsetSeconds)), 0),
       maxOffsetErrorSeconds: notes.reduce((max, note) => Math.max(max, Math.abs(note.end / ticksPerSecond - take.notes[note.id - 1].offsetSeconds)), 0) } };
 }

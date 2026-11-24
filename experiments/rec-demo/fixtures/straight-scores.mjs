@@ -21,4 +21,10 @@ export const straightExamples = [
     [60, 4, 6], [61, 4, 6], [60, 6, 8], [61, 8, 10],
   ], { beats: 2, durationTicks: 11 }) },
   { name: 'silent take', take: takeFromTicks([], { beats: 3, durationTicks: 13 }) },
+  { name: 'inactive lanes before and after polyphony', take: takeFromTicks([
+    [60, 0, 16], [60, 16, 20], [64, 16, 24],
+  ], { durationTicks: 48 }) },
+  { name: 'tie-only lane stays active', take: takeFromTicks([
+    [60, 0, 20], [64, 0, 4],
+  ], { durationTicks: 32 }) },
 ];

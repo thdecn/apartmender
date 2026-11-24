@@ -48,3 +48,19 @@ test('invalid events and missing origin metadata fail instead of silently droppi
   assert.throws(() => buildStraightScore({ ...take, notes: [{ ...take.notes[0], pitchMidi: 999 }] }), /Invalid note/);
   assert.throws(() => buildStraightScore({ ...take, notes: [{ ...take.notes[0], offsetSeconds: Infinity }] }), /Invalid note/);
 });
+
+test('inactive lanes add no rest to a playing staff and silent staves keep exactly one', () => {
+  const score = buildStraightScore(straightExamples[4].take);
+  const measures = [...score.musicXML.matchAll(/<measure\b[^>]*>([\s\S]*?)<\/measure>/g)].map(match => match[1]);
+  const fullRestStaves = xml => [...xml.matchAll(/<note><rest measure="yes"\/>[\s\S]*?<staff>(\d)<\/staff><\/note>/g)].map(match => Number(match[1]));
+  assert.deepEqual(fullRestStaves(measures[0]), [2]);
+  assert.deepEqual(fullRestStaves(measures[1]), [2]);
+  assert.deepEqual(fullRestStaves(measures[2]), [1, 2]);
+  assert.equal(score.noteCount, 3);
+  assert.equal(score.notes[1].voice, 2);
+  assert.equal(score.notes[2].voice, 1);
+  const tied = buildStraightScore(straightExamples[5].take);
+  const continuationBar = tied.musicXML.match(/<measure number="2">([\s\S]*?)<\/measure>/)[1];
+  assert.deepEqual(fullRestStaves(continuationBar), [2]);
+  assert.match(continuationBar, /<tie type="stop"\/>/);
+});

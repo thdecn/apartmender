@@ -105,7 +105,7 @@ Implementation defaults are deterministic and general:
 
 - One tick is a sixteenth (`divisions=4` per quarter). Onsets and offsets round
   independently to the nearest tick from count-in zero, with half ticks rounding
-  forward and a minimum one-tick duration. No first-attack alignment, tempo
+  forward and a minimum one-sixteenth duration. No first-attack alignment, tempo
   redetection, note merging or silent deletion. Sub-grid repeated attacks can
   coincide after rounding; they remain separate in different voices.
 - MIDI 60 and above use treble staff 1; lower pitches use bass staff 2. This is
@@ -116,9 +116,11 @@ Implementation defaults are deterministic and general:
   continuations retain pitch without a new accidental.
 - Only equal-onset/equal-end, distinct-pitch notes on one staff form a chord.
   Greedy nonoverlapping lanes handle independent durations, same-pitch overlaps
-  and repeated attacks. Voice identities stay fixed across bars. Each voice
-  fills every measure with notes/rests, with full-measure rests on empty spans;
-  opposite stem directions distinguish overlapping lanes.
+  and repeated attacks. Voice identities stay fixed across bars. Only lanes
+  with notes or tied continuations in a bar are emitted, and each emitted lane
+  fills that bar with notes/rests. A completely silent staff gets one whole-bar
+  rest; inactive lanes add none beside playing lanes. Opposite stem directions
+  distinguish overlapping lanes.
 - Whole through sixteenth note types and single dots follow metric alignment.
   Off-beat/half-bar boundaries split longer spans into tied values instead of
   hiding beats. Beams join eighth/sixteenth values within each quarter beat;
@@ -126,6 +128,11 @@ Implementation defaults are deterministic and general:
   member individually. The recording's trailing silence stays, and a final
   partial bar is padded with rests. Reduced rational quarter units accompany
   quantized onset/duration ticks as `{numerator, denominator}`.
+
+MusicXML divisions, rational reduction, note-value lengths, metric alignment
+and beaming derive from one tick resolution. The meter's quarter-note
+denominator and the sixteenth quantization grid are separate concepts; no
+triplet interpretation is introduced by this internal resolution refactor.
 
 No triplet interpretation is claimed by this grid. Required bead `.5` will
 compare coherent straight/triplet groupings; `.6` owns the on-screen page host.
