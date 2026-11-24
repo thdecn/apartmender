@@ -111,16 +111,17 @@ export function createScoreRenderer(container, { onSelect = () => {} } = {}) {
   const status = document.createElement('p'), viewport = document.createElement('div');
   status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
   viewport.className = 'score-viewport'; container.replaceChildren(status, viewport);
-  let generation = 0, destroyed = false, current = null;
+  let generation = 0, selectionRevision = 0, destroyed = false, current = null;
   function select(id, focus = false) {
     check(current && (id === null || current.binding.targets.has(id)), 'Note is outside the displayed score');
+    selectionRevision++;
     current.selectedNoteId = id; current.binding.highlight(id);
     if (focus && id) current.binding.targets.get(id).focus({ preventScroll: true });
   }
   return {
     select,
     async render({ score, card, overrides = {}, selectedNoteId, signal } = {}) {
-      const request = ++generation;
+      const request = ++generation, selectionRevisionAtStart = selectionRevision;
       const stale = () => destroyed || request !== generation;
       let stage, toolkit;
       const cancelled = () => {
@@ -151,7 +152,9 @@ export function createScoreRenderer(container, { onSelect = () => {} } = {}) {
         if (card.previewMeasureId) compactPreview(svg);
         const context = `${card.slug}|${card.editionId}|${card.currentMeasureId}`;
         const same = current?.context === context;
-        const selected = selectedNoteId === undefined ? (same ? current.selectedNoteId : null) : selectedNoteId;
+        // A selection captured by the host cannot replace a later user action.
+        const retainSelection = same && (selectedNoteId === undefined || selectionRevision !== selectionRevisionAtStart);
+        const selected = retainSelection ? current.selectedNoteId : (selectedNoteId ?? null);
         const focused = same && viewport.contains(document.activeElement);
         if (viewport.contains(document.activeElement)) document.activeElement.blur();
         current = { context, binding, selectedNoteId: selected };

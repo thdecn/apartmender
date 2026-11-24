@@ -53,6 +53,9 @@ moves focus. Selected heads are dark orange with an SVG frame, while keyboard
 focus uses a distinct dashed frame. Native outlines/tap highlights are disabled
 only for these targets. Successful re-engraving transfers existing note focus
 within the same card and removes the old SVG, rather than retaining old frames.
+If the user selects another note while re-engraving waits, that newer selection
+wins over the host's earlier `selectedNoteId` snapshot. Explicit selection still
+applies when no later selection has been made.
 
 ## Render lifecycle and failures
 

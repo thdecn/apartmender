@@ -108,6 +108,34 @@ test('preview edits follow canonical identity into current measure and repeated 
   expect(result).toEqual({preview:'L4',current:'L4',focusCount:1,selected:'m000034-n000002',staging:0});
 });
 
+test('newer user selection wins over an explicit selection captured by pending reengraving', async ({ page }) => {
+  await page.evaluate(async()=>{
+    await render(); renderer.select('m000034-n000001',true);
+    let release, waiting;
+    const ready=new Promise(done=>{release=done;});
+    window.fontWait=new Promise(done=>{waiting=done;});
+    Object.defineProperty(document.fonts,'ready',{configurable:true,get(){waiting();return ready;}});
+    window.releaseFonts=release;
+    window.pendingRender=render('m000034',{
+      selectedNoteId:'m000034-n000001',
+      overrides:{'m000034-n000001':{kind:'set',hand:'R',finger:3}},
+    });
+  });
+  await page.evaluate(()=>fontWait);
+  const newer=page.locator('.score-viewport [data-note-id="m000034-n000002"]');
+  await newer.tap();
+  await expect(newer).toHaveAttribute('aria-pressed','true');
+  const result=await page.evaluate(async()=>{releaseFonts();return pendingRender;});
+  expect(result).toMatchObject({outcome:'rendered',selectedNoteId:'m000034-n000002'});
+  await expect(newer).toHaveAttribute('aria-pressed','true'); await expect(newer).toBeFocused();
+  await expect(page.locator('.score-viewport [data-note-id="m000034-n000001"]')).toHaveAttribute('aria-pressed','false');
+  await expect(page.locator('.score-viewport [data-fingering-for="m000034-n000001"]')).toHaveText('3');
+  expect(await page.evaluate(()=>selected)).toEqual(['m000034-n000002']);
+  // An explicit selection still applies when no newer selection was made.
+  const explicit=await page.evaluate(()=>render('m000034',{selectedNoteId:'m000034-n000003'}));
+  expect(explicit).toMatchObject({outcome:'rendered',selectedNoteId:'m000034-n000003'});
+});
+
 test('compact previews preserve current musical ink and two staff-spaces after visible ink at desktop and phone widths', async ({ page }) => {
   await page.evaluate(() => render('m000033',{overrides:{'m000034-n000003':{kind:'set',hand:'L',finger:5}}}));
   const geometry = () => page.evaluate(() => {
