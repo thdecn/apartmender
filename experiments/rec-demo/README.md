@@ -1,8 +1,8 @@
 # Recording demo frontend
 
-This is the frontend for Sludge Bead `sludge-0z8.6`, following merged
-`.1` feasibility, `.2` capture/count-in, `.3` event adapter and `.4` straight
-MusicXML under epic `sludge-0z8`. The owner chose the viewer before `.5` triplets;
+This is the frontend for Sludge Bead `sludge-0z8.8` (same-take engine comparison),
+following merged `.1` feasibility, `.2` capture/count-in, `.3` event adapter,
+`.4` straight MusicXML and `.6` full-score viewer under epic `sludge-0z8`. The owner chose the viewer before `.5` triplets;
 triplet interpretation remains mandatory and unimplemented.
 It is stacked on Apartmender's `codex/rec-demo` branch. Sludge remains the
 backend repository and owns the approved scope and Beads tracking. The
@@ -16,7 +16,7 @@ Apartmender's root, login and Practice flows.
 
 ## Current slice
 
-Prepare initializes Basic Pitch 1.0.1 / TensorFlow.js 3.21.0 in an explicit
+By default, Prepare initializes Basic Pitch 1.0.1 / TensorFlow.js 3.21.0 in an explicit
 local CPU module worker and loads the existing shared Verovio
 6.3.0-425dd7b assets. Choose 2/4, 3/4 or 4/4 (default), then tap quarter-note
 beats. The initial tempo is an implementation default of 120 BPM; at least two
@@ -39,6 +39,72 @@ remains available. **Triplet interpretation remains the next slice.** Verovio
 initialization still uses its rest-measure probe; the viewer subsequently loads
 the actual generated score in a separate toolkit on that same resident module.
 There is no audio upload or server fallback.
+
+## Same-recording engine comparison
+
+Choose **Spotify Basic Pitch** (the unchanged default), **Magenta Onsets and
+Frames**, or **Compare both on the same recording** before Prepare. The choice
+is frozen through preparation/capture/inference. In comparison mode, Prepare
+loads Basic Pitch; after Stop, Basic Pitch finishes and its worker terminates
+before Magenta loads in a new worker. The first result is available while the
+second runs. No two inference models coexist. Verovio's shared module remains
+resident; the existing viewer owns only the selected result's toolkit/page.
+
+Magenta is pinned to `@magenta/music` **1.23.1**, its separate TensorFlow.js
+**2.8.6**, and the official **onsets_frames_uni_q2** checkpoint (two-byte
+quantized unidirectional weights). The checkpoint is 31,280,427 bytes including
+its weights manifest, before the small provenance/license files. It is checked
+in under `docs/vendor/magenta-onsets-frames-uni-q2/`, hash-verified by the
+builder and served from that same origin. Original shards are unmodified.
+The runtime bundle is separate, so Basic-Pitch-only runs do not load Magenta.
+First Magenta initialization may require downloading these assets; the UI says
+so before recording. No phone performance or accuracy improvement is claimed.
+
+One take retains one canonical mono 22,050-Hz PCM buffer only until the requested
+engines finish or cancellation unwinds. Basic Pitch receives a copy; Magenta
+receives a 16,000-Hz Web Audio resampling of that same buffer, preserving time
+zero and initial silence. No re-recording, first-attack realignment, content
+lookup or reference piece is used. Diagnostics record the canonical PCM SHA-256,
+length and origin for each engine, alongside its actual model input rate/length.
+Raw PCM is neither persisted nor exported.
+
+The Magenta worker uses the library's `melSpectrogram`/`powerToDb` preprocessing
+(2048 FFT, 512 hop, 229 mel bins, 30-Hz minimum) and
+`OnsetsAndFrames.transcribeFromMelSpec`. Onset/frame thresholds stay at the
+library defaults of 0.5; chunk length 64 and one convolution batch at a time
+are memory-oriented defaults. The library carries recurrent state through its
+chunks; application code does not decode separate audio chunks or merge notes.
+The worker compatibility module supplies worker globals and excludes unused
+AudioBuffer/Node resampling dependencies; a build transform uses the CommonJS
+FFT constructor's default import. Neural-network computation, weights and
+spectrogram math remain unchanged. Takes shorter than half an FFT window get
+trailing zero padding for preprocessing; events are still clipped to the exact
+original duration. AudioBuffer transcription APIs are not used
+in this worker. CPU inference keeps the page responsive and cancel terminates
+the worker; progress for Magenta is a stage indication, not a measured percent.
+
+Both engines produce the same normalized event handoff and use the exact same
+straight-rhythm MusicXML builder and Verovio viewer. Magenta's predicted MIDI
+velocity is not comparable with Basic Pitch confidence, so its strength column
+is blank. No calibrated dynamics claim is added. **View result** switches the
+labelled notes and score; the MusicXML filename includes the engine. A failed
+engine remains visible in the comparison list/report and leaves the other's
+result available. A new take, backgrounding or cancellation invalidates late
+results and releases old workers/viewer resources. Retrying Prepare starts
+fresh engine state.
+
+Report schema **3** adds `engineMode`, `engineResults`, `selectedEngine` and
+`input`. Each engine records initialization and its setup phase (Prepare or after Stop),
+inference time, processing wall
+time (initialization/conversion/inference/score construction for that pass),
+normalized notes, score, errors and display result when selected. Comparison
+runs sequentially; `stopToEventsMs` includes waiting for the earlier engine.
+The comparison list shows inference and model-setup times separately: Basic
+Pitch setup occurs before capture in comparison mode, while Magenta setup
+occurs after Stop. The old top-level result/score fields mirror the first successful engine for
+report compatibility (keeping its event/score timings coherent), and `stopToScoreMs` is the first automatically displayed result.
+Switching later records rendering duration, not an artificial new processing
+latency. Tensor cleanup counts remain observations, not peak device memory.
 
 ## Capture timing contract
 
@@ -216,7 +282,7 @@ take's queued result or progress from replacing a new take. The handoff adds
 no upload, persistence, reference-score requirement or server fallback.
 
 This replaces the MP4/MediaRecorder prototype path, which lacked an exact
-encoder-to-audio-clock mapping. Report schema 2 uses `performanceDurationSeconds`,
+encoder-to-audio-clock mapping. Report schema 2 introduced (and schema 3 retains) `performanceDurationSeconds`,
 `captureSampleRate`, `captureChannels`, `capturedPCMBytes` and `resampleMs`;
 the nested timing object is used by the note-to-score adapter.
 No raw PCM is exported in diagnostic JSON. PCM is kept only for the active
@@ -255,7 +321,9 @@ The `.4` MusicXML fixtures and engraving checks have their own
 `evidence/straight-score-summary-2026-11-24.json` and synthetic XML/SVG artifacts.
 The `.6` viewer checks are recorded separately in
 `evidence/score-viewer-summary-2026-11-24.json`; earlier evidence keeps its build
-attribution. All of these are desktop synthetic evidence.
+attribution. Same-take engine comparison, partial failure, cancellation and
+input equality checks are recorded in `evidence/engine-comparison-summary-2026-11-24.json`
+with a 390px screenshot. All of these are desktop synthetic evidence.
 
 Authored source, build tooling and its dependency lockfile live here. The
 generated **`docs/rec-demo/` is deliberately tracked**, because Apartmender's
@@ -306,6 +374,11 @@ Apartmender's Pages source before that address can be reported live. The owner
 authorized committing/pushing this frontend branch and opening a PR; merging
 and publication remain separate steps. No Sludge backend deployment or Dolt
 remote sync is needed.
+
+After publication, choose Compare both, record once and switch View result.
+Judge extra/missing notes and durations on the same take. Try a repeat and
+cancel once during Magenta loading/inference. Save the schema-3 diagnostic
+report with device observations; no recording/reference score is requested.
 
 After publication, verify the root HTML links the expected cohort and its
 manifest (the root manifest intentionally describes the legacy graph). Check its

@@ -16,6 +16,8 @@
     <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
     <p class="muted">Choose the meter, tap your tempo, then Start. Listen to one bar of count-in and begin playing when it ends. After Stop, view the piano score and turn or zoom its pages. This version uses straight rhythms; triplet interpretation comes next.</p>
     <section class="controls" aria-label="Recording controls">
+      <label for="engine-mode">Transcription engine</label><select id="engine-mode"><option value="basic-pitch">Spotify Basic Pitch</option><option value="magenta">Magenta Onsets and Frames</option><option value="both">Compare both on the same recording</option></select>
+      <p class="muted">Comparison runs sequentially on one take. Magenta downloads about 31 MB of model weights and may take longer; keep this page open. When comparing, Magenta loads after Stop.</p>
       <div class="setup">
         <div><label for="meter">Time signature</label><select id="meter"><option value="2">2/4</option><option value="3">3/4</option><option value="4" selected>4/4</option></select></div>
         <div><button id="tap">Tap tempo</button><p id="tempo" aria-live="polite">120 BPM · default quarter-note beat</p></div>
@@ -30,6 +32,7 @@
       <button id="cancel" class="secondary" disabled>Cancel check</button>
       <p id="error" role="alert" hidden></p>
     </section>
+    <section id="engine-comparison" hidden aria-label="Engine comparison"><h2>Engine results</h2><p id="comparison-summary" role="status"></p><ul id="engine-outcomes"></ul><label for="result-engine">View result</label><select id="result-engine"></select></section>
     <section id="score-output" hidden aria-label="Piano score">
       <h2>Piano score</h2>
       <p class="muted">Straight rhythms through sixteenths. Triplet interpretation is still pending. Zoom in and scroll the page for a closer view.</p>
@@ -53,7 +56,7 @@
       <p class="muted">The report includes detected notes, timings and failures, but no recorded audio. Peak device memory remains unmeasured.</p>
     </details>
     <details><summary>Engine diagnostics</summary><pre id="diagnostics">No check run yet.</pre></details>
-    <footer>Basic Pitch 1.0.1 · TensorFlow.js 3.21.0 (local CPU worker) · Verovio 6.3.0<br><a href="./notices/index.html">Runtime licenses and source</a> · <a href="./asset-manifest.json">Pinned asset manifest</a></footer>
+    <footer>Basic Pitch 1.0.1 · Magenta 1.23.1 (Onsets and Frames, quantized checkpoint) · local CPU workers · Verovio 6.3.0<br><a href="./notices/index.html">Runtime licenses and source</a> · <a href="./asset-manifest.json">Pinned asset manifest</a></footer>
   </main>
 </body>
 </html>

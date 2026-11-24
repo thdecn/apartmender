@@ -9,6 +9,7 @@
     "test:browser": "playwright test"
   },
   "dependencies": {
+    "@magenta/music": "1.23.1",
     "@spotify/basic-pitch": "1.0.1",
     "@tensorflow/tfjs": "3.21.0"
   },

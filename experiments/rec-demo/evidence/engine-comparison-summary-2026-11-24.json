@@ -1,0 +1,147 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.8",
+  "buildId": "27b6071b66b303d0",
+  "versions": {
+    "basicPitch": "1.0.1",
+    "tensorflow": "3.21.0",
+    "magenta": "1.23.1",
+    "magentaTensorflow": "2.8.6",
+    "magentaCheckpoint": "onsets_frames_uni_q2",
+    "verovio": "6.3.0-425dd7b"
+  },
+  "evidenceKind": "Automated desktop synthetic Web Audio; not physical iPhone or acoustic piano quality evidence",
+  "validation": {
+    "nodePassed": 187,
+    "nodeSkipped": 1,
+    "browserPassed": 40,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    },
+    "manifestAssetsVerified": 73,
+    "deterministicRebuild": true,
+    "basicPitchWorkerAndModelUnchanged": true
+  },
+  "engines": {
+    "chromium": {
+      "canonicalInput": {
+        "sha256": "d2aca96e8ed92c4122db8a3f670339523e4203913a631f4ab5211ccb6e14b091",
+        "sampleRate": 22050,
+        "samples": 26641,
+        "timeOrigin": "count-in-end"
+      },
+      "captureDurationSeconds": 1.208185941043084,
+      "selectedEngineInReport": "magenta",
+      "results": {
+        "basic-pitch": {
+          "status": "complete",
+          "notes": 7,
+          "modelInput": {
+            "sampleRate": 22050,
+            "samples": 26641
+          },
+          "modelSetupPhase": "prepare",
+          "initializationMs": 8.700000047683716,
+          "inferenceMs": 1068.6000001430511,
+          "processingWallMs": 1070.5,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 32.60000014305115
+          }
+        },
+        "magenta": {
+          "status": "complete",
+          "notes": 10,
+          "modelInput": {
+            "sampleRate": 16000,
+            "samples": 19332
+          },
+          "modelSetupPhase": "after-stop",
+          "initializationMs": 595.7999999523163,
+          "inferenceMs": 3573.2000000476837,
+          "processingWallMs": 4198.199999809265,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 23.200000047683716
+          }
+        }
+      }
+    },
+    "webkit": {
+      "canonicalInput": {
+        "sha256": "581a1a12ee54011d40bb247477b7dc5ff4e46c8da24115ef0c5d6ec6dfc5a7a8",
+        "sampleRate": 22050,
+        "samples": 28689,
+        "timeOrigin": "count-in-end"
+      },
+      "captureDurationSeconds": 1.3010657596371882,
+      "selectedEngineInReport": "magenta",
+      "results": {
+        "basic-pitch": {
+          "status": "complete",
+          "notes": 16,
+          "modelInput": {
+            "sampleRate": 22050,
+            "samples": 28689
+          },
+          "modelSetupPhase": "prepare",
+          "initializationMs": 9,
+          "inferenceMs": 865,
+          "processingWallMs": 867,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 36
+          }
+        },
+        "magenta": {
+          "status": "complete",
+          "notes": 11,
+          "modelInput": {
+            "sampleRate": 16000,
+            "samples": 20818
+          },
+          "modelSetupPhase": "after-stop",
+          "initializationMs": 521,
+          "inferenceMs": 7923,
+          "processingWallMs": 8468,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 29
+          }
+        }
+      }
+    }
+  },
+  "checks": [
+    "One microphone request; Basic Pitch and Magenta input hash/origin match the canonical take",
+    "Actual Magenta PCM equals 16kHz resampling of the Basic Pitch PCM within1e-6",
+    "Same normalized timing/straight score/Verovio path; selected Magenta XML download matches its score",
+    "Both engine event results and tracked-tensor cleanup to zero; tiny silent input succeeds",
+    "Magenta download failure preserves Basic Pitch result; repeat Prepare retries",
+    "Cancel while second model loads then new take: no stale result/score resurrection",
+    "Static same-origin GET-only request audit; cached legacy/current/retained graphs and existing timing/viewer regressions pass"
+  ],
+  "limits": [
+    "No physical iPhone/peak-memory/acoustic quality pass",
+    "31,280,427-byte official quantized Magenta checkpoint; setup and inference timed separately",
+    "Triplet interpretation .5 still pending",
+    "Available publicly only after owner incorporates the PR into Pages"
+  ],
+  "artifacts": {
+    "engine-comparison-390px.png": "4f7a64192f825d77d75ed6410cad2e28100b381c4656b942d9e47f036d207290"
+  }
+}

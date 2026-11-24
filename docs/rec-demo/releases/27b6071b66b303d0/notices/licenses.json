@@ -1,0 +1,258 @@
+[
+  {
+    "name": "@magenta/music",
+    "version": "1.23.1",
+    "license": "Apache-2.0",
+    "files": [
+      "@magenta__music@1.23.1/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/aspromise",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__aspromise@1.1.2/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/base64",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__base64@1.1.2/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/eventemitter",
+    "version": "1.1.1",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__eventemitter@1.1.1/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/float",
+    "version": "1.0.2",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__float@1.0.2/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/inquire",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__inquire@1.1.2/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/pool",
+    "version": "1.1.0",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__pool@1.1.0/LICENSE"
+    ]
+  },
+  {
+    "name": "@protobufjs/utf8",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "files": [
+      "@protobufjs__utf8@1.1.2/LICENSE"
+    ]
+  },
+  {
+    "name": "@spotify/basic-pitch",
+    "version": "1.0.1",
+    "license": "Apache-2.0",
+    "files": [
+      "@spotify__basic-pitch@1.0.1/LICENSE"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-cpu",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-cpu@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-cpu",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-cpu@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-webgl",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-webgl@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-backend-webgl",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-backend-webgl@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-converter",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-converter@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-converter",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-converter@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-core",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-core@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-core",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-core@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-data",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-data@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-data",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs-data@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-layers",
+    "version": "2.8.6",
+    "license": "Apache-2.0 AND MIT",
+    "files": [
+      "@tensorflow__tfjs-layers@2.8.6/LICENSE"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs-layers",
+    "version": "3.21.0",
+    "license": "Apache-2.0 AND MIT",
+    "files": [
+      "@tensorflow__tfjs-layers@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs",
+    "version": "2.8.6",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs@2.8.6/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tensorflow/tfjs",
+    "version": "3.21.0",
+    "license": "Apache-2.0",
+    "files": [
+      "@tensorflow__tfjs@3.21.0/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "@tonejs/midi",
+    "version": "2.0.28",
+    "license": "MIT",
+    "files": [
+      "@tonejs__midi@2.0.28/LICENSE.md"
+    ]
+  },
+  {
+    "name": "array-flatten",
+    "version": "3.0.0",
+    "license": "MIT",
+    "files": [
+      "array-flatten@3.0.0/LICENSE"
+    ]
+  },
+  {
+    "name": "fft.js",
+    "version": "4.0.4",
+    "license": "MIT",
+    "files": [
+      "fft.js@4.0.4/README.md"
+    ]
+  },
+  {
+    "name": "long",
+    "version": "4.0.0",
+    "license": "Apache-2.0",
+    "files": [
+      "long@4.0.0/LICENSE"
+    ]
+  },
+  {
+    "name": "midi-file",
+    "version": "1.2.4",
+    "license": "MIT",
+    "files": [
+      "midi-file@1.2.4/LICENSE.md"
+    ]
+  },
+  {
+    "name": "protobufjs",
+    "version": "6.11.6",
+    "license": "BSD-3-Clause",
+    "files": [
+      "protobufjs@6.11.6/LICENSE"
+    ]
+  },
+  {
+    "name": "seedrandom",
+    "version": "2.4.3",
+    "license": "MIT",
+    "files": [
+      "seedrandom@2.4.3/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "seedrandom",
+    "version": "2.4.4",
+    "license": "MIT",
+    "files": [
+      "seedrandom@2.4.4/SOURCE-NOTICES.txt"
+    ]
+  },
+  {
+    "name": "seedrandom",
+    "version": "3.0.5",
+    "license": "MIT",
+    "files": [
+      "seedrandom@3.0.5/SOURCE-NOTICES.txt"
+    ]
+  }
+]

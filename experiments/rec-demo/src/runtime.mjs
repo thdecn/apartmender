@@ -36,8 +36,9 @@ export async function createScoreToolkit() {
 }
 
 export class InferenceWorker {
-  constructor() {
-    this.worker = new Worker(new URL('./inference-worker.js', import.meta.url), { type: 'module' });
+  constructor(engine = 'basic-pitch') {
+    this.engine = engine;
+    this.worker = new Worker(new URL(engine === 'magenta' ? './magenta-worker.js' : './inference-worker.js', import.meta.url), { type: 'module' });
     this.worker.addEventListener('error', event => this.reject?.(new Error(event.message || 'Local inference worker failed.')));
     this.worker.addEventListener('messageerror', () => this.reject?.(new Error('Local worker message could not be decoded.')));
     this.worker.onmessage = ({ data }) => {
@@ -56,7 +57,8 @@ export class InferenceWorker {
   }
 
   initialize() {
-    return this.request({ type: 'initialize', modelURL: new URL('./model/model.json', import.meta.url).href });
+    return this.request({ type: 'initialize', modelURL: new URL(this.engine === 'magenta'
+      ? '../vendor/magenta-onsets-frames-uni-q2' : './model/model.json', import.meta.url).href });
   }
 
   infer(pcm, onProgress) {
