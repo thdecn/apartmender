@@ -5,23 +5,13 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
-import { retainRelease } from './release-output.mjs';
+import { listFiles, retainRelease } from './release-output.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const publicRoot = path.resolve(root, '../../docs/rec-demo');
 const vendor = path.resolve(root, '../../docs/vendor/verovio');
 const digest = data => createHash('sha256').update(data).digest('hex');
 const readJSON = async file => JSON.parse(await readFile(file, 'utf8'));
-async function files(directory) {
-  const result = [];
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    const full = path.join(directory, entry.name);
-    if (entry.isDirectory()) result.push(...await files(full));
-    else if (entry.isFile()) result.push(full);
-  }
-  return result.sort();
-}
-
 // Check the reused Apartmender asset package before distributing any files.
 const verovio = await readJSON(path.join(vendor, 'manifest.json'));
 for (const file of verovio.files) {
@@ -37,7 +27,7 @@ for (const asset of legacy.assets) {
   if (data.length !== asset.bytes || digest(data) !== asset.sha256) throw new Error(`Legacy asset drift: ${asset.path}`);
 }
 const buildHash = createHash('sha256');
-for (const file of [...await files(path.join(root, 'src')), path.join(root, 'package-lock.json'), path.join(root, 'tools/build.mjs'),
+for (const file of [...await listFiles(path.join(root, 'src')), path.join(root, 'package-lock.json'), path.join(root, 'tools/build.mjs'),
   path.join(root, 'tools/release-output.mjs'), path.join(vendor, 'manifest.json')]) {
   buildHash.update(path.relative(root, file)).update(await readFile(file));
 }
@@ -104,7 +94,7 @@ try {
   await writeFile(noticePath, (await readFile(noticePath, 'utf8'))
     .replaceAll('href="../"', 'href="../../../"').replaceAll('../../vendor/verovio/', '../../../../vendor/verovio/'));
   const assets = [];
-  for (const file of await files(out)) {
+  for (const file of await listFiles(out)) {
     const bytes = await readFile(file);
     const relative = path.relative(out, file).split(path.sep).join('/');
     const runtime = !relative.startsWith('notices/') && !relative.endsWith('.LEGAL.txt');

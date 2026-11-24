@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import fs, { mkdtemp, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { syncBuiltinESMExports } from 'node:module';
 import { retainRelease } from '../tools/release-output.mjs';
 
 test('rebuilding an identical release keeps its files and publishing another preserves old URLs', async () => {
@@ -33,5 +34,25 @@ test('a changed or incomplete immutable cohort fails without overwriting publish
     await writeFile(path.join(staging, 'runtime.mjs'), 'new export');
     await assert.rejects(retainRelease(staging, output), /file set changed/);
     assert.equal(await readFile(path.join(output, 'app.mjs'), 'utf8'), 'original');
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('a failed first copy leaves no final cohort and a normal retry succeeds', async context => {
+  const root = await mkdtemp(path.join(tmpdir(), 'release-test-'));
+  try {
+    const staging = path.join(root, 'staging'), output = path.join(root, 'output');
+    await mkdir(staging); await writeFile(path.join(staging, 'app.mjs'), 'complete');
+    const copy = context.mock.method(fs, 'cp', async (source, destination) => {
+      await mkdir(destination, { recursive: true });
+      await writeFile(path.join(destination, 'app.mjs'), 'partial');
+      throw new Error('Injected copy failure');
+    });
+    syncBuiltinESMExports();
+    try { await assert.rejects(retainRelease(staging, output), /Injected copy failure/); }
+    finally { copy.mock.restore(); syncBuiltinESMExports(); }
+    await assert.rejects(stat(output), { code: 'ENOENT' });
+    assert.deepEqual(await readdir(root), ['staging']);
+    await retainRelease(staging, output);
+    assert.equal(await readFile(path.join(output, 'app.mjs'), 'utf8'), 'complete');
   } finally { await rm(root, { recursive: true, force: true }); }
 });

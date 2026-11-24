@@ -263,7 +263,9 @@ existing Pages configuration publishes `main:/docs` without a custom build.
 Rebuild and include the generated route with each demo source change. The
 builder stages an immutable `docs/rec-demo/releases/<buildId>/` cohort, then
 updates only the root HTML and `release.json` pointer. It retains earlier
-cohorts and refuses to overwrite changed/incomplete output at an existing ID;
+cohorts and refuses to overwrite changed/incomplete output at an existing ID.
+A new cohort is copied to a temporary sibling and atomically renamed only
+after the copy completes, so an interrupted first copy does not reserve its URL;
 it does not alter any other page or shared asset. It verifies `docs/vendor/verovio/manifest.json` and reuses those
 shared assets, notices, editable font and exact source archive without copies.
 Each cohort owns its modules, CSS, worker/worklet, model, notices and asset

@@ -1,7 +1,7 @@
 {
   "date": "2026-11-24",
   "bead": "sludge-0z8.6",
-  "buildId": "f002086e6ca2618c",
+  "buildId": "c34cf73b6818d417",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -9,7 +9,7 @@
   },
   "evidenceKind": "Automated desktop synthetic input at390px viewport; not physical iPhone/acoustic-piano acceptance",
   "validation": {
-    "nodePassed": 186,
+    "nodePassed": 187,
     "nodeSkipped": 1,
     "browserPassed": 32,
     "catalog": {
@@ -21,14 +21,17 @@
     "releaseManifestsVerified": {
       "legacy": 40,
       "current": 41,
-      "retained": 41
+      "retained": {
+        "9e870aa44340b539": 41,
+        "f002086e6ca2618c": 41
+      }
     }
   },
   "viewer": {
     "chromium": {
       "outcome": "rendered",
       "pageCount": 2,
-      "renderMs": 295.09999990463257,
+      "renderMs": 300.2999999523163,
       "sourceMeasures": 64,
       "pages": [
         {
@@ -128,7 +131,7 @@
     "webkit": {
       "outcome": "rendered",
       "pageCount": 2,
-      "renderMs": 218,
+      "renderMs": 214,
       "sourceMeasures": 64,
       "pages": [
         {
@@ -236,24 +239,24 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 45
+          "renderMs": 46
         },
-        "stopToEventsMs": 1503,
-        "stopToScoreMs": 1549,
+        "stopToEventsMs": 1618,
+        "stopToScoreMs": 1665,
         "trackedTensorsAfterCleanup": 0
       },
       {
         "number": 2,
         "status": "complete",
-        "noteCount": 23,
+        "noteCount": 22,
         "measures": 2,
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 24
+          "renderMs": 23
         },
-        "stopToEventsMs": 1509,
-        "stopToScoreMs": 1533,
+        "stopToEventsMs": 1414,
+        "stopToScoreMs": 1438,
         "trackedTensorsAfterCleanup": 0
       }
     ],
@@ -266,10 +269,10 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 45.5
+          "renderMs": 42.10000014305115
         },
-        "stopToEventsMs": 1953.2000000476837,
-        "stopToScoreMs": 2000.5,
+        "stopToEventsMs": 1947.1000001430511,
+        "stopToScoreMs": 1990.6000001430511,
         "trackedTensorsAfterCleanup": 0
       },
       {
@@ -280,10 +283,10 @@
         "display": {
           "outcome": "rendered",
           "pageCount": 1,
-          "renderMs": 18.40000009536743
+          "renderMs": 18.59999990463257
         },
-        "stopToEventsMs": 2015.1999998092651,
-        "stopToScoreMs": 2034.1999998092651,
+        "stopToEventsMs": 1948,
+        "stopToScoreMs": 1967.0999999046326,
         "trackedTensorsAfterCleanup": 0
       }
     ]
@@ -318,9 +321,9 @@
       "Current HTML never requests an old unversioned runtime",
       "Retained release entry prepares and loads its own manifest"
     ],
-    "currentBuild": "f002086e6ca2618c",
+    "currentBuild": "c34cf73b6818d417",
     "retainedBuild": "9e870aa44340b539",
     "legacyBuild": "42c402040d4cdbc0",
-    "immutableOutputTests": "Identical regeneration retains bytes/mtime; new release preserves prior URLs; changed or incomplete existing release is rejected without overwrite."
+    "immutableOutputTests": "Identical regeneration retains bytes/mtime; new release preserves prior URLs; changed or incomplete existing release is rejected without overwrite. Injected first-copy failure leaves no final cohort or temporary sibling; retry succeeds. This regression failed before the atomic rename fix."
   }
 }
