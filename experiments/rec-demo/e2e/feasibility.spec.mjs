@@ -12,6 +12,14 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
   page.on('pageerror', error => errors.push(error.message));
   await syntheticMicrophone(page);
   await page.goto('/apartmender/rec-demo/');
+  await page.evaluate(async audioURL => {
+    const { AudioCapture } = await import(audioURL), stop = AudioCapture.prototype.stop;
+    AudioCapture.prototype.stop = async function () {
+      const audio = await stop.call(this);
+      window.canonicalPCM = audio.pcm; window.capturedAudio = audio;
+      return audio;
+    };
+  }, moduleURL('audio.mjs'));
   for (let run = 0; run < 2; run++) {
     await page.getByRole('button', { name: 'Prepare local engines' }).click();
     await expect(page.locator('#score-output')).toBeHidden();
@@ -26,6 +34,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     await page.waitForTimeout(2250); // Actual recorded sound must elapse.
     await page.getByRole('button', { name: 'Stop and transcribe' }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
+    expect(await page.evaluate(() => window.canonicalPCM.byteLength)).toBe(0);
+    expect(await page.evaluate(() => window.capturedAudio.pcm)).toBeNull();
     await expect(page.locator('#notes tr').first()).toBeVisible();
     await expect(page.locator('#score-output')).toBeVisible();
     await expect(page.locator('#score-viewer img')).toBeVisible();

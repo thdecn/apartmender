@@ -2,6 +2,7 @@ import * as tf from '@magenta/music/node_modules/@tensorflow/tfjs';
 import { OnsetsAndFrames } from '@magenta/music/esm/transcription/model.js';
 import { melSpectrogram, powerToDb } from '@magenta/music/esm/core/audio_utils.js';
 import { normalizeNoteEvents } from './events.mjs';
+import { MAGENTA_AUDIO, padMagentaInput } from './magenta-input.mjs';
 
 let model;
 const resources = () => performance.getEntriesByType('resource').map(entry => ({
@@ -12,7 +13,7 @@ self.onmessage = async ({ data }) => {
     if (data.type === 'initialize') {
       const started = performance.now();
       await tf.setBackend('cpu'); await tf.ready();
-      model = new OnsetsAndFrames(data.modelURL, 64);
+      model = new OnsetsAndFrames(data.modelURL, MAGENTA_AUDIO.chunkLength);
       await model.initialize();
       self.postMessage({ type: 'ready', initializationMs: performance.now() - started,
         backend: tf.getBackend(), tensorflowVersion: tf.version.tfjs, modelMemory: tf.memory(), resources: resources() });
@@ -23,19 +24,17 @@ self.onmessage = async ({ data }) => {
       let notes, beforeCleanup;
       try {
         self.postMessage({ type: 'progress', progress: 0.05 });
-        // Reflect padding in upstream FFT needs at least half a window. Append
-        // silence for tiny takes without moving zero; clip output to real PCM.
-        const input = pcm.length < 1024 ? new Float32Array(1024) : pcm;
-        if (input !== pcm) input.set(pcm);
-        const spec = powerToDb(melSpectrogram(input, { sampleRate: 16000, hopLength: 512, nMels: 229, nFft: 2048, fMin: 30 }));
+        const input = padMagentaInput(pcm);
+        const { sampleRate, hopLength, nFft } = MAGENTA_AUDIO;
+        const spec = powerToDb(melSpectrogram(input, { sampleRate, hopLength, nFft, nMels: 229, fMin: 30 }));
         self.postMessage({ type: 'progress', progress: 0.15 });
         const sequence = await model.transcribeFromMelSpec(spec.map(row => Array.from(row)), 1);
         notes = normalizeNoteEvents(sequence.notes.map(note => ({ pitchMidi: note.pitch,
-          onsetSeconds: note.startTime, offsetSeconds: note.endTime })), pcm.length / 16000);
+          onsetSeconds: note.startTime, offsetSeconds: note.endTime })), pcm.length / MAGENTA_AUDIO.sampleRate);
         beforeCleanup = tf.memory();
       } finally { tf.engine().endScope(); model.dispose(); model = null; }
       self.postMessage({ type: 'result', notes, inferenceMs: performance.now() - started,
-        thresholds: { onset: 0.5, frame: 0.5, chunkLength: 64, parallelBatches: 1 },
+        thresholds: { onset: 0.5, frame: 0.5, chunkLength: MAGENTA_AUDIO.chunkLength, parallelBatches: 1 },
         tensorMemoryBeforeCleanup: beforeCleanup, tensorMemoryAfterCleanup: tf.memory(), resources: resources(),
         memoryCaveat: 'Tensor accounting is not peak device memory; worker terminates after this result.' });
     }

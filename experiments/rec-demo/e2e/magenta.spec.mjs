@@ -147,7 +147,7 @@ test('a Magenta download failure preserves the Basic Pitch result and a repeat t
   await page.getByRole('button', { name: 'Cancel check' }).click();
 });
 
-test('cancelling while Magenta loads releases its worker and cannot overwrite a new take', async ({ page }) => {
+test('cancelling while Magenta loads releases its worker and cannot overwrite a new take', async ({ page }, testInfo) => {
   await syntheticMicrophone(page);
   let requested, release;
   const loading = new Promise(resolve => { requested = resolve; });
@@ -159,6 +159,13 @@ test('cancelling while Magenta loads releases its worker and cannot overwrite a 
   await page.getByRole('button', { name: 'Cancel check' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
   await expect(page.locator('#score-viewer img')).toHaveCount(0);
+  const report = await reportDownload(page, testInfo, 'cancelled-comparison-report.json');
+  const engines = report.takes[0].engineResults;
+  expect(engines['basic-pitch'].status).toBe('complete');
+  expect(engines['basic-pitch'].transcription.notes.length).toBeGreaterThan(0);
+  expect(engines.magenta.status).toBe('cancelled');
+  expect(engines.magenta.error).toContain('cancelled');
+  expect(Date.parse(engines.magenta.endedAt)).toBeGreaterThan(0);
   await page.getByLabel('Transcription engine').selectOption('basic-pitch');
   await page.getByRole('button', { name: 'Prepare local engines' }).click();
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
@@ -166,4 +173,44 @@ test('cancelling while Magenta loads releases its worker and cannot overwrite a 
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
   await expect(page.locator('#engine-comparison')).toBeHidden();
   await expect(page.locator('#score-output')).toBeHidden();
+});
+
+test('Magenta transcribes both batching-gap endpoints and their adjacent lengths', async ({ page }, testInfo) => {
+  await page.goto('/apartmender/rec-demo/');
+  const results = await page.evaluate(async runtimeURL => {
+    const { InferenceWorker } = await import(runtimeURL);
+    const output = [];
+    for (const samples of [34303, 34304, 35327, 35328]) {
+      const worker = new InferenceWorker('magenta');
+      try {
+        await worker.initialize();
+        const pcm = Float32Array.from({ length: samples }, (_, i) => i < 3200 ? 0 :
+          [261.6256, 329.6276, 391.9954].reduce((sum, f) => sum + Math.sin(2 * Math.PI * f * i / 16000) * 0.08, 0));
+        output.push({ samples, result: await worker.infer(pcm) });
+      } finally { worker.destroy(); }
+    }
+    return output;
+  }, moduleURL('runtime.mjs'));
+  for (const { samples, result } of results) {
+    expect(result.notes.length).toBeGreaterThan(0);
+    expect(result.notes.every(note => note.onsetSeconds >= 0 && note.offsetSeconds <= samples / 16000)).toBe(true);
+    expect(result.tensorMemoryAfterCleanup.numTensors).toBe(0);
+  }
+  await testInfo.attach('magenta-batching-boundaries', { body: JSON.stringify(results), contentType: 'application/json' });
+});
+
+test('a preparation failure is attributed to the engine and a fresh Prepare retries', async ({ page }, testInfo) => {
+  await page.route('**/model/model.json', route => route.abort());
+  await page.goto('/apartmender/rec-demo/');
+  await page.getByLabel('Transcription engine').selectOption('both');
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'error');
+  const report = await reportDownload(page, testInfo, 'prepare-failure-report.json');
+  const basic = report.takes[0].engineResults['basic-pitch'];
+  expect(basic.status).toBe('error'); expect(basic.error).toBeTruthy();
+  expect(basic.modelSetupPhase).toBe('prepare'); expect(Date.parse(basic.endedAt)).toBeGreaterThan(0);
+  await page.unroute('**/model/model.json');
+  await page.getByRole('button', { name: 'Prepare local engines' }).click();
+  await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
+  await page.getByRole('button', { name: 'Cancel check' }).click();
 });

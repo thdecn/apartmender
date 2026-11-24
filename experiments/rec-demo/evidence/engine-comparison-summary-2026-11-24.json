@@ -1,7 +1,7 @@
 {
   "date": "2026-11-24",
   "bead": "sludge-0z8.8",
-  "buildId": "27b6071b66b303d0",
+  "buildId": "5bff06bc9ad83571",
   "versions": {
     "basicPitch": "1.0.1",
     "tensorflow": "3.21.0",
@@ -12,72 +12,72 @@
   },
   "evidenceKind": "Automated desktop synthetic Web Audio; not physical iPhone or acoustic piano quality evidence",
   "validation": {
-    "nodePassed": 187,
+    "nodePassed": 189,
     "nodeSkipped": 1,
-    "browserPassed": 40,
+    "browserPassed": 44,
     "catalog": {
       "pieces": 6,
       "general": 6,
       "assets": 157
     },
-    "manifestAssetsVerified": 73,
+    "manifestAssetsVerified": 74,
     "deterministicRebuild": true,
     "basicPitchWorkerAndModelUnchanged": true
   },
   "engines": {
     "chromium": {
       "canonicalInput": {
-        "sha256": "d2aca96e8ed92c4122db8a3f670339523e4203913a631f4ab5211ccb6e14b091",
+        "sha256": "fcf35a5d133b4cc35206c378cd578e4e6b7fb1fca40919124f29b9ad369dd3ca",
         "sampleRate": 22050,
-        "samples": 26641,
+        "samples": 27985,
         "timeOrigin": "count-in-end"
       },
-      "captureDurationSeconds": 1.208185941043084,
+      "captureDurationSeconds": 1.2691383219954648,
       "selectedEngineInReport": "magenta",
       "results": {
         "basic-pitch": {
           "status": "complete",
-          "notes": 7,
+          "notes": 14,
           "modelInput": {
             "sampleRate": 22050,
-            "samples": 26641
+            "samples": 27985
           },
           "modelSetupPhase": "prepare",
-          "initializationMs": 8.700000047683716,
-          "inferenceMs": 1068.6000001430511,
-          "processingWallMs": 1070.5,
+          "initializationMs": 9.399999856948853,
+          "inferenceMs": 1061.5,
+          "processingWallMs": 1063.0999999046326,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 32.60000014305115
+            "renderMs": 30.90000009536743
           }
         },
         "magenta": {
           "status": "complete",
-          "notes": 10,
+          "notes": 11,
           "modelInput": {
             "sampleRate": 16000,
-            "samples": 19332
+            "samples": 20307
           },
           "modelSetupPhase": "after-stop",
-          "initializationMs": 595.7999999523163,
-          "inferenceMs": 3573.2000000476837,
-          "processingWallMs": 4198.199999809265,
+          "initializationMs": 596,
+          "inferenceMs": 3628.9000000953674,
+          "processingWallMs": 4255,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 23.200000047683716
+            "renderMs": 19.90000009536743
           }
         }
       }
     },
     "webkit": {
       "canonicalInput": {
-        "sha256": "581a1a12ee54011d40bb247477b7dc5ff4e46c8da24115ef0c5d6ec6dfc5a7a8",
+        "sha256": "d26b372726ade6dc6ed9421eeeec8fa9b3a48eb4a5ee0c8951db639e6e2b2ea3",
         "sampleRate": 22050,
         "samples": 28689,
         "timeOrigin": "count-in-end"
@@ -94,14 +94,14 @@
           },
           "modelSetupPhase": "prepare",
           "initializationMs": 9,
-          "inferenceMs": 865,
-          "processingWallMs": 867,
+          "inferenceMs": 885,
+          "processingWallMs": 888,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 36
+            "renderMs": 38
           }
         },
         "magenta": {
@@ -112,15 +112,15 @@
             "samples": 20818
           },
           "modelSetupPhase": "after-stop",
-          "initializationMs": 521,
-          "inferenceMs": 7923,
-          "processingWallMs": 8468,
+          "initializationMs": 520,
+          "inferenceMs": 7658,
+          "processingWallMs": 8202,
           "trackedTensorsAfterCleanup": 0,
           "scoreMeasures": 1,
           "display": {
             "outcome": "rendered",
             "pageCount": 1,
-            "renderMs": 29
+            "renderMs": 28
           }
         }
       }
@@ -142,6 +142,70 @@
     "Available publicly only after owner incorporates the PR into Pages"
   ],
   "artifacts": {
-    "engine-comparison-390px.png": "4f7a64192f825d77d75ed6410cad2e28100b381c4656b942d9e47f036d207290"
+    "engine-comparison-390px.png": "165fcc1c3e41e498340601f117895d953c6d8b3d3e88344d024b2aa70891d428"
+  },
+  "reviewCorrections": {
+    "baselineHead": "f3f3b91ab19d300fed705747e6bcbbef094f0147",
+    "redRegressions": [
+      "Original Basic Pitch-only PCM remained attached and retained",
+      "Magenta batching gap produced unequal-batch tensor error",
+      "Basic Pitch preparation failure omitted per-engine entry"
+    ],
+    "boundarySamplesAt16000Hz": [
+      34303,
+      34304,
+      35327,
+      35328
+    ],
+    "boundaryBrowsersPassed": [
+      "chromium",
+      "webkit"
+    ],
+    "boundaryAssertions": [
+      "Nonempty note events",
+      "Every note ends at or before original PCM duration",
+      "Zero tracked tensors after cleanup"
+    ],
+    "unitChecks": [
+      "Batch-gap padding preserves every original sample and appends only zeros",
+      "Tiny FFT padding; unchanged lengths return the original array"
+    ],
+    "ownershipChecks": [
+      "Basic Pitch-only original PCM detached by transfer for both repeat takes",
+      "Host canonical reference null before final pass",
+      "Comparison input equality/origin/hash checks unchanged"
+    ],
+    "terminalStateChecks": {
+      "chromium": {
+        "setupFailure": {
+          "status": "error",
+          "modelSetupPhase": "prepare",
+          "error": "TypeError: Failed to fetch",
+          "endedAt": "2026-11-24T21:20:33.197Z"
+        },
+        "cancelledMagenta": {
+          "status": "cancelled",
+          "modelSetupPhase": "after-stop",
+          "error": "Check cancelled. Microphone and inference worker released.",
+          "endedAt": "2026-11-24T21:19:50.571Z"
+        },
+        "preservedBasicPitchStatus": "complete"
+      },
+      "webkit": {
+        "setupFailure": {
+          "status": "error",
+          "modelSetupPhase": "prepare",
+          "error": "TypeError: Load failed",
+          "endedAt": "2026-11-24T21:23:10.870Z"
+        },
+        "cancelledMagenta": {
+          "status": "cancelled",
+          "modelSetupPhase": "after-stop",
+          "error": "Check cancelled. Microphone and inference worker released.",
+          "endedAt": "2026-11-24T21:21:40.957Z"
+        },
+        "preservedBasicPitchStatus": "complete"
+      }
+    }
   }
 }

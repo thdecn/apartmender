@@ -83,7 +83,7 @@ function diagnostics() {
     devicePeakMemory: report.devicePeakMemory }, null, 2);
 }
 
-function fail(error) {
+function fail(error, engineStatus = 'error') {
   ++generation; ++selection;
   worker?.destroy();
   worker = undefined;
@@ -92,7 +92,13 @@ function fail(error) {
   scoreViewer.clear(); $('score-output').hidden = true;
   $('engine-comparison').hidden = true;
   const message = error instanceof Error ? error.message : String(error);
-  if (take) { take.status = 'error'; take.error = message; take.endedAt = new Date().toISOString(); }
+  if (take) {
+    take.status = 'error'; take.error = message; take.endedAt = new Date().toISOString();
+    for (const entry of Object.values(take.engineResults)) {
+      if (!isActiveTake(entry.status)) continue;
+      entry.status = engineStatus; entry.error = message; entry.endedAt = take.endedAt;
+    }
+  }
   $('error').textContent = message;
   $('error').hidden = false;
   showState('error', 'The local check stopped. You can prepare a new take.');
@@ -116,9 +122,12 @@ $('prepare').addEventListener('click', async () => {
     const verovio = await initializeVerovio();
     if (current !== generation) return;
     take.verovio = verovio;
-    worker = new InferenceWorker(engineIds(take.engineMode)[0]);
-    take.model = await worker.initialize();
+    const id = engineIds(take.engineMode)[0];
+    const entry = take.engineResults[id] = { status: 'preparing', modelSetupPhase: 'prepare' };
+    const activeWorker = worker = new InferenceWorker(id);
+    const model = await activeWorker.initialize();
     if (current !== generation) return;
+    take.model = entry.model = model; entry.status = 'ready';
     take.prepareWallMs = performance.now() - started;
     take.status = 'ready';
     showState('ready', take.engineMode === 'both'
@@ -204,9 +213,11 @@ $('stop').addEventListener('click', async () => {
     if (current !== generation) return;
     take.input = { sha256: [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join(''),
       sampleRate: 22050, samples: audio.pcm.length, timeOrigin: 'count-in-end' };
-    for (const id of engineIds(take.engineMode)) {
+    const engines = engineIds(take.engineMode);
+    for (const id of engines) {
       if (current !== generation) return;
-      const engineStarted = performance.now(), entry = take.engineResults[id] = { status: 'processing', input: take.input };
+      const engineStarted = performance.now(), entry = take.engineResults[id] ??= {};
+      entry.status = 'processing'; entry.input = take.input;
       comparisonSummary();
       let activeWorker = worker;
       entry.modelSetupPhase = activeWorker ? 'prepare' : 'after-stop';
@@ -217,8 +228,10 @@ $('stop').addEventListener('click', async () => {
           entry.model = await activeWorker.initialize();
         } else entry.model = take.model;
         if (current !== generation) return;
-        const pcm = id === 'magenta' ? await resamplePerformance(audio.pcm, 22050, 16000) : audio.pcm.slice();
+        const pcm = id === 'magenta' ? await resamplePerformance(audio.pcm, 22050, 16000)
+          : engines.length > 1 ? audio.pcm.slice() : audio.pcm;
         if (current !== generation) return;
+        if (id === engines.at(-1)) audio.pcm = null; // No later pass needs the canonical buffer.
         entry.modelInput = { sampleRate: id === 'magenta' ? 16000 : 22050, samples: pcm.length };
         entry.result = await activeWorker.infer(pcm, progress => {
           if (current !== generation) return;
@@ -232,6 +245,7 @@ $('stop').addEventListener('click', async () => {
         entry.score = buildStraightScore(entry.transcription);
         entry.stopToEventsMs = performance.now() - started;
         entry.eventsWallMs = performance.now() - engineStarted; entry.status = 'complete';
+        entry.endedAt = new Date().toISOString();
         comparisonSummary();
         if (!take.selectedEngine) {
           await selectResult(id);
@@ -240,7 +254,7 @@ $('stop').addEventListener('click', async () => {
         }
       } catch (error) {
         if (current !== generation) return;
-        entry.status = 'error'; entry.error = error.message ?? String(error);
+        entry.status = 'error'; entry.error = error.message ?? String(error); entry.endedAt = new Date().toISOString();
         comparisonSummary();
       } finally { activeWorker?.destroy(); if (worker === activeWorker) worker = undefined; }
     }
@@ -255,14 +269,14 @@ $('stop').addEventListener('click', async () => {
   } catch (error) { if (current === generation) fail(error); }
 });
 
-$('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.'));
+$('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.', 'cancelled'));
 document.addEventListener('visibilitychange', () => {
   if (document.hidden && isActiveTake(state)) {
-    fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.');
+    fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.', 'cancelled');
   }
 });
 window.addEventListener('pagehide', () => {
-  if (isActiveTake(state)) fail('The page was left. Prepare a new take when you return.');
+  if (isActiveTake(state)) fail('The page was left. Prepare a new take when you return.', 'cancelled');
   else {
     scoreViewer.clear(); $('score-output').hidden = true;
     if (state === 'complete') showState('complete', 'The score was cleared after leaving the page. Prepare a new take.');

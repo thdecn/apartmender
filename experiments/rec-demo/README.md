@@ -61,7 +61,9 @@ First Magenta initialization may require downloading these assets; the UI says
 so before recording. No phone performance or accuracy improvement is claimed.
 
 One take retains one canonical mono 22,050-Hz PCM buffer only until the requested
-engines finish or cancellation unwinds. Basic Pitch receives a copy; Magenta
+engines finish or cancellation unwinds. Basic Pitch receives a copy only in
+comparison mode; Basic-Pitch-only mode transfers the original buffer directly.
+The host drops its canonical reference before the final pass. Magenta
 receives a 16,000-Hz Web Audio resampling of that same buffer, preserving time
 zero and initial silence. No re-recording, first-attack realignment, content
 lookup or reference piece is used. Diagnostics record the canonical PCM SHA-256,
@@ -78,8 +80,11 @@ The worker compatibility module supplies worker globals and excludes unused
 AudioBuffer/Node resampling dependencies; a build transform uses the CommonJS
 FFT constructor's default import. Neural-network computation, weights and
 spectrogram math remain unchanged. Takes shorter than half an FFT window get
-trailing zero padding for preprocessing; events are still clipped to the exact
-original duration. AudioBuffer transcription APIs are not used
+trailing zero padding for preprocessing. Pinned Magenta batching also requires
+70 context frames when splitting a 64-frame chunk: 68/69-frame inputs otherwise
+produce unequal batches. The adapter pads only that gap with trailing silence
+(to 35,328 samples), leaving ordinary lengths untouched. No first-attack shift
+or duration cap is introduced; events are clipped to the original PCM duration. AudioBuffer transcription APIs are not used
 in this worker. CPU inference keeps the page responsive and cancel terminates
 the worker; progress for Magenta is a stage indication, not a measured percent.
 
@@ -91,7 +96,10 @@ labelled notes and score; the MusicXML filename includes the engine. A failed
 engine remains visible in the comparison list/report and leaves the other's
 result available. A new take, backgrounding or cancellation invalidates late
 results and releases old workers/viewer resources. Retrying Prepare starts
-fresh engine state.
+fresh engine state. Engine entries exist before model preparation; setup
+failures carry an engine-specific error/end time. Cancel, backgrounding and page
+departure mark active engine entries `cancelled` with the reason/end time while
+completed results keep their terminal state and data.
 
 Report schema **3** adds `engineMode`, `engineResults`, `selectedEngine` and
 `input`. Each engine records initialization and its setup phase (Prepare or after Stop),
