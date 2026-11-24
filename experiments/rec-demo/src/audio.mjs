@@ -1,16 +1,5 @@
 import { countInTiming, performancePCM } from './timing.mjs';
-export const MODEL_SAMPLE_RATE = 22050;
-
-async function toModelAudio(samples, sampleRate) {
-  const offline = new OfflineAudioContext(1, Math.ceil(samples.length * MODEL_SAMPLE_RATE / sampleRate), MODEL_SAMPLE_RATE);
-  const buffer = offline.createBuffer(1, samples.length, sampleRate);
-  buffer.copyToChannel(samples, 0);
-  const source = offline.createBufferSource();
-  source.buffer = buffer;
-  source.connect(offline.destination);
-  source.start();
-  return (await offline.startRendering()).getChannelData(0).slice();
-}
+import { MODEL_SAMPLE_RATE, resamplePerformance } from './transcription.mjs';
 
 export class AudioCapture {
   constructor(onInterrupted) {
@@ -118,7 +107,7 @@ export class AudioCapture {
       const samples = performancePCM(this.packets, this.timing.scoreOriginFrame, stopFrame);
       this.packets = [];
       const started = performance.now();
-      const pcm = await toModelAudio(samples, this.context.sampleRate);
+      const pcm = await resamplePerformance(samples, this.context.sampleRate);
       if (this.cancelled) throw new Error('Recording conversion was cancelled.');
       return { pcm, metadata: { captureSampleRate: this.context.sampleRate, captureChannels: 1,
         performanceDurationSeconds: samples.length / this.context.sampleRate, capturedPCMBytes: samples.byteLength,

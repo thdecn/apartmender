@@ -1,6 +1,7 @@
 import { AudioCapture } from './audio.mjs';
 import { InferenceWorker, initializeVerovio } from './runtime.mjs';
 import { TapTempo } from './timing.mjs';
+import { createTranscription } from './transcription.mjs';
 
 const $ = id => document.getElementById(id);
 const report = {
@@ -54,7 +55,7 @@ function renderNotes(notes) {
     const row = document.createElement('tr');
     const name = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'][note.pitchMidi % 12];
     for (const value of [`${name}${Math.floor(note.pitchMidi / 12) - 1} (${note.pitchMidi})`,
-      note.onsetSeconds.toFixed(3), note.offsetSeconds.toFixed(3), note.estimatedStrength.toFixed(3)]) {
+      note.onsetSeconds.toFixed(3), note.offsetSeconds.toFixed(3), note.estimatedStrength?.toFixed(3) ?? '—']) {
       const cell = document.createElement('td');
       cell.textContent = value;
       row.append(cell);
@@ -141,6 +142,7 @@ $('stop').addEventListener('click', async () => {
     take.audio = audio.metadata;
     take.status = 'processing';
     const result = await worker.infer(audio.pcm, progress => {
+      if (current !== generation) return;
       $('progress').value = progress;
       $('status').textContent = `Transcribing on this device: ${Math.round(progress * 100)}%. You can cancel.`;
     });
@@ -148,11 +150,12 @@ $('stop').addEventListener('click', async () => {
     worker.destroy();
     worker = undefined;
     take.result = result;
+    take.transcription = createTranscription(result.notes, audio.metadata);
     take.stopToEventsMs = performance.now() - started;
     take.status = 'complete';
     take.endedAt = new Date().toISOString();
     if (performance.memory) take.chromiumJSHeapBytes = performance.memory.usedJSHeapSize;
-    renderNotes(result.notes);
+    renderNotes(take.transcription.notes);
     showState('complete', 'Local transcription finished. Prepare again for a repeat take.');
     diagnostics();
   } catch (error) { if (current === generation) fail(error); }
