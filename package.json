@@ -4,6 +4,9 @@
   "type": "module",
   "scripts": {
     "validate:catalog": "node tools/validate-catalog.mjs",
+    "rec-demo:build": "npm --prefix experiments/rec-demo run build",
+    "rec-demo:test": "npm --prefix experiments/rec-demo test",
+    "rec-demo:test:browser": "npm --prefix experiments/rec-demo run test:browser",
     "test": "node --test",
     "test:browser": "playwright test e2e/practice-local.spec.js --workers=1",
     "test:teacher": "playwright test e2e/teacher.spec.js e2e/teacher-notes.spec.js --workers=1",

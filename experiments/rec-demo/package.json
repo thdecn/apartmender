@@ -1,0 +1,19 @@
+{
+  "name": "apartmender-rec-demo-feasibility",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "serve": "node tools/serve.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@spotify/basic-pitch": "1.0.1",
+    "@tensorflow/tfjs": "3.21.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "esbuild": "0.28.2"
+  }
+}

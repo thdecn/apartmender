@@ -1,0 +1,54 @@
+{
+  "buildId": "fd3035941405792c",
+  "physicalIPhoneTested": false,
+  "intendedURL": "https://thdecn.github.io/apartmender/rec-demo/",
+  "publicHTTPStatusAtCheck": 404,
+  "sourceBranch": "codex/rec-demo",
+  "pagesSource": "main:/docs",
+  "unitTests": {
+    "passed": 123,
+    "skipped": 1
+  },
+  "browserChecksPassed": 6,
+  "sharedVerovioUnmodified": true,
+  "runtimeBytes": 9316720,
+  "runtimeGzipEstimateBytes": 3053324,
+  "runs": [
+    {
+      "browser": "chromium",
+      "take": 1,
+      "prepareWallMs": 353.89999985694885,
+      "inferenceMs": 2022,
+      "stopToEventsMs": 2055.0999999046326,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "chromium",
+      "take": 2,
+      "prepareWallMs": 51.09999990463257,
+      "inferenceMs": 1965.0999999046326,
+      "stopToEventsMs": 1989.8999998569489,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 1,
+      "prepareWallMs": 319,
+      "inferenceMs": 1517,
+      "stopToEventsMs": 1537,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    },
+    {
+      "browser": "webkit",
+      "take": 2,
+      "prepareWallMs": 40,
+      "inferenceMs": 1647,
+      "stopToEventsMs": 1657,
+      "eventCount": 18,
+      "tensorsAfterCleanup": 0
+    }
+  ]
+}

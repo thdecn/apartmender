@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Piano recording · local feasibility check</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body data-state="idle">
+  <main>
+    <p class="eyebrow">Piano recording demo · first feasibility check</p>
+    <h1>Play. Stop. See the notes.</h1>
+    <p>Record acoustic piano with both hands, without pedal. Audio and transcription stay on this device. Only static engines and model files are downloaded.</p>
+    <p class="muted">For this first check, try a short take with a few chords and repeated notes. Count-in, rhythm notation and score pages come in later steps.</p>
+    <section class="controls" aria-label="Recording controls">
+      <button id="prepare">Prepare local engines</button>
+      <div class="record-controls">
+        <button id="start" disabled>Start recording</button>
+        <button id="stop" disabled>Stop and transcribe</button>
+      </div>
+      <p id="status" role="status" aria-live="polite">Prepare the local engines to begin.</p>
+      <progress id="progress" max="1" value="0" hidden aria-label="Local inference progress"></progress>
+      <button id="cancel" class="secondary" disabled>Cancel check</button>
+      <p id="error" role="alert" hidden></p>
+    </section>
+    <section id="results" hidden>
+      <h2>Estimated note events</h2>
+      <p id="note-summary"></p>
+      <p class="muted">Times are seconds from the captured audio, not quantized beats. Strength is a model estimate, not calibrated velocity.</p>
+      <div class="table-scroll"><table><thead><tr><th>Pitch</th><th>Start (s)</th><th>End (s)</th><th>Strength</th></tr></thead><tbody id="notes"></tbody></table></div>
+    </section>
+    <details>
+      <summary>Save device observations</summary>
+      <p>For the iPhone check, record these details and repeat the take once. Reports stay local until you choose to share the downloaded file.</p>
+      <label for="device">Device model</label><input id="device" placeholder="e.g. iPhone 15" autocomplete="off">
+      <label for="browser">iOS and Safari version</label><input id="browser" placeholder="From Settings / About" autocomplete="off">
+      <label for="observations">What worked, what failed, network inspection notes</label><textarea id="observations" rows="4"></textarea>
+      <button id="download" disabled>Download diagnostic report</button>
+      <p class="muted">The report includes detected notes, timings and failures, but no recorded audio. Peak device memory remains unmeasured.</p>
+    </details>
+    <details><summary>Engine diagnostics</summary><pre id="diagnostics">No check run yet.</pre></details>
+    <footer>Basic Pitch 1.0.1 · TensorFlow.js 3.21.0 (local CPU worker) · Verovio 6.3.0<br><a href="./notices/index.html">Runtime licenses and source</a> · <a href="./asset-manifest.json">Pinned asset manifest</a></footer>
+  </main>
+</body>
+</html>

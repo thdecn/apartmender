@@ -1,0 +1,164 @@
+import { AudioCapture } from './audio.mjs';
+import { InferenceWorker, initializeVerovio } from './runtime.mjs';
+
+const $ = id => document.getElementById(id);
+const report = {
+  schemaVersion: 1, startedAt: new Date().toISOString(),
+  environment: { userAgent: navigator.userAgent, secureContext: window.isSecureContext,
+    url: location.origin + location.pathname, viewport: { width: innerWidth, height: innerHeight } },
+  devicePeakMemory: 'Unmeasured. Tensor bytes, WASM heap and optional Chromium JS heap are not peak device memory.',
+  networkVerification: 'Pending external request inspection; resource timings alone cannot prove absence of uploads.',
+  takes: [],
+};
+let state = 'idle', generation = 0, worker, capture, take;
+const manifestPromise = fetch('./asset-manifest.json').then(response => {
+  if (!response.ok) throw new Error(`Asset manifest failed (${response.status}).`);
+  return response.json();
+});
+manifestPromise.catch(() => {});
+
+function showState(next, message) {
+  state = next;
+  document.body.dataset.state = next;
+  $('status').textContent = message;
+  $('prepare').disabled = !['idle', 'complete', 'error'].includes(next);
+  $('start').disabled = next !== 'ready';
+  $('stop').disabled = next !== 'recording';
+  $('cancel').disabled = !['preparing', 'ready', 'permission', 'recording', 'processing'].includes(next);
+  $('download').disabled = !report.takes.length;
+  $('progress').hidden = next !== 'processing';
+}
+
+function renderNotes(notes) {
+  $('notes').replaceChildren();
+  for (const note of notes.slice(0, 60)) {
+    const row = document.createElement('tr');
+    const name = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'][note.pitchMidi % 12];
+    for (const value of [`${name}${Math.floor(note.pitchMidi / 12) - 1} (${note.pitchMidi})`,
+      note.onsetSeconds.toFixed(3), note.offsetSeconds.toFixed(3), note.estimatedStrength.toFixed(3)]) {
+      const cell = document.createElement('td');
+      cell.textContent = value;
+      row.append(cell);
+    }
+    $('notes').append(row);
+  }
+  $('results').hidden = false;
+  $('note-summary').textContent = notes.length
+    ? `${notes.length} estimated notes. First ${Math.min(60, notes.length)} shown; the report includes all events.`
+    : 'No notes detected. This can reflect capture level, the model or the thresholds; try a new take.';
+}
+
+function diagnostics() {
+  $('diagnostics').textContent = JSON.stringify({ build: report.build?.buildId,
+    versions: report.build?.versions, currentTake: take,
+    devicePeakMemory: report.devicePeakMemory }, null, 2);
+}
+
+function fail(error) {
+  ++generation;
+  worker?.destroy();
+  worker = undefined;
+  capture?.cancel().catch(() => {});
+  capture = undefined;
+  const message = error instanceof Error ? error.message : String(error);
+  if (take) { take.status = 'error'; take.error = message; take.endedAt = new Date().toISOString(); }
+  $('error').textContent = message;
+  $('error').hidden = false;
+  showState('error', 'The local check stopped. You can prepare a new take.');
+  diagnostics();
+}
+
+$('prepare').addEventListener('click', async () => {
+  const current = ++generation;
+  take = { number: report.takes.length + 1, startedAt: new Date().toISOString(), status: 'preparing' };
+  report.takes.push(take);
+  $('results').hidden = true;
+  $('error').hidden = true;
+  $('progress').value = 0;
+  showState('preparing', 'Loading local engines. The first download may take a moment.');
+  const started = performance.now();
+  try {
+    report.build = await manifestPromise;
+    const verovio = await initializeVerovio();
+    if (current !== generation) return;
+    take.verovio = verovio;
+    worker = new InferenceWorker();
+    take.model = await worker.initialize();
+    if (current !== generation) return;
+    take.prepareWallMs = performance.now() - started;
+    take.status = 'ready';
+    showState('ready', 'Local engines ready. Start recording when you are ready to play.');
+    diagnostics();
+  } catch (error) { if (current === generation) fail(error); }
+});
+
+$('start').addEventListener('click', async () => {
+  const current = generation;
+  showState('permission', 'Requesting microphone access…');
+  capture = new AudioCapture(fail);
+  try {
+    const metadata = await capture.start();
+    if (current !== generation) return;
+    take.capture = metadata;
+    take.status = 'recording';
+    showState('recording', 'Recording. Play two hands without pedal, then press Stop.');
+  } catch (error) { if (current === generation) fail(error); }
+});
+
+$('stop').addEventListener('click', async () => {
+  const current = generation;
+  const started = performance.now();
+  const activeCapture = capture;
+  showState('processing', 'Microphone stopped. Decoding audio locally…');
+  try {
+    const audio = await activeCapture.stop();
+    if (current !== generation) return;
+    capture = undefined;
+    take.audio = audio.metadata;
+    take.status = 'processing';
+    const result = await worker.infer(audio.pcm, progress => {
+      $('progress').value = progress;
+      $('status').textContent = `Transcribing on this device: ${Math.round(progress * 100)}%. You can cancel.`;
+    });
+    if (current !== generation) return;
+    worker.destroy();
+    worker = undefined;
+    take.result = result;
+    take.stopToEventsMs = performance.now() - started;
+    take.status = 'complete';
+    take.endedAt = new Date().toISOString();
+    if (performance.memory) take.chromiumJSHeapBytes = performance.memory.usedJSHeapSize;
+    renderNotes(result.notes);
+    showState('complete', 'Local transcription finished. Prepare again for a repeat take.');
+    diagnostics();
+  } catch (error) { if (current === generation) fail(error); }
+});
+
+$('cancel').addEventListener('click', () => fail('Check cancelled. Microphone and inference worker released.'));
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && ['preparing', 'ready', 'permission', 'recording', 'processing'].includes(state)) {
+    fail('Safari was backgrounded or the screen was locked. Keep this page open and try a new take.');
+  }
+});
+window.addEventListener('pagehide', () => { worker?.destroy(); capture?.cancel().catch(() => {}); });
+
+$('download').addEventListener('click', () => {
+  report.device = { model: $('device').value.trim(), osAndSafari: $('browser').value.trim(),
+    observations: $('observations').value.trim() };
+  report.pageResources = performance.getEntriesByType('resource').map(entry => ({
+    name: entry.name, initiatorType: entry.initiatorType, durationMs: entry.duration,
+    transferBytes: entry.transferSize, decodedBytes: entry.decodedBodySize,
+  }));
+  const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `piano-feasibility-${new Date().toISOString().replaceAll(':', '-')}.json`;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
+  $('error').hidden = false;
+  $('error').textContent = 'Open this page over HTTPS to record on a phone. A plain HTTP LAN address cannot access the microphone.';
+  $('prepare').disabled = true;
+} else showState('idle', 'Prepare the local engines to begin.');
