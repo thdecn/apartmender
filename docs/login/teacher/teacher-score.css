@@ -1,0 +1,11 @@
+.teacher-score { box-sizing: border-box; width: 100vw; max-width: none; height: 100vh; height: 100dvh; max-height: none; margin: 0; padding: 12px; border: 0; background: #faf8f2; color: #171411; }
+.teacher-score[open] { display: grid; grid-template-rows: auto minmax(0,1fr) auto auto; gap: 6px; }
+.teacher-score header, .teacher-score footer { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.teacher-score h2, .teacher-score p { margin: 0; font-size: 14px; }
+.teacher-score-area { min-height: 0; min-width: 0; }
+.teacher-score-pages { height: 100%; }
+.teacher-score .fingering-controls { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.teacher-score button { min-height: 32px; min-width: 32px; color: #171411; background: white; border: 1px solid #645d50; border-radius: 4px; padding: 4px 8px; }
+.teacher-score button[aria-pressed="true"] { background: #ffe0bf; border-color: #a54208; }
+.teacher-score button:disabled { opacity: .5; }
+.teacher-score [hidden] { display: none; }

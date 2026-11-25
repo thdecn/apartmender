@@ -49,7 +49,7 @@ This is the reusable presentation mode for the existing Teacher integration
 in #65; it does not independently activate a route, load private state, create
 Practice Sessions or change Student timing. #65 supplies the unmistakably
 named authorized Student/Piece context, verified module loading, bounded
-page-scoped fingering reads and persisted editor. This implementation starts
+fingering reads refreshed on page open and persisted editor. This implementation starts
 from main and uses none of the unmerged Student PR's code.
 
 Served Chromium checks use the exact pinned full Bach score and WASM engine

@@ -144,6 +144,10 @@ export function createFingeringAdapter({ identity, request, newRequestId = () =>
   }
   return {
     snapshot, clear,
+    async refresh() {
+      if (closed || !loaded || !scope) return unavailable();
+      return readLatest(epoch);
+    },
     destroy() { closed = true; clear(); },
     authChanged(userId) { if (!userId || (actor && userId.toLowerCase() !== actor)) clear(); },
     async open(input) {

@@ -2,6 +2,7 @@ import { browserData } from "../supabase.js?auth=operator-onboarding-v1";
 import { teacherRows } from "./teacher-model.js";
 import { isUuid } from "./teacher-practice.js";
 import { createTeacherDetail } from "./teacher-detail.js";
+import { createTeacherScore } from './teacher-score.js';
 
 const status = document.querySelector("#teacher-status");
 const content = document.querySelector("#teacher-content");
@@ -15,6 +16,7 @@ const loginUrl = new URL("../", import.meta.url);
 let requestNumber = 0;
 let userId = null;
 let leaving = false;
+const scoreView = detail ? createTeacherScore({data:browserData,studentId}) : null;
 const detailView = detail ? createTeacherDetail({ data: browserData, studentId, onDenied() {
   requestNumber += 1; clearView(true); status.textContent = "This Student view is unavailable to this account.";
 }, onSessionUnavailable() {
@@ -22,6 +24,7 @@ const detailView = detail ? createTeacherDetail({ data: browserData, studentId, 
 } }) : null;
 
 function clearView(forget = false) {
+  scoreView?.clear();
   content.hidden = true;
   table.replaceChildren();
   heading.textContent = detail ? "Student detail" : "Teacher dashboard";
@@ -91,6 +94,7 @@ async function load() {
   if (detail) heading.textContent = result.students[0].name?.trim() || "Student detail";
   render(teacherRows(result.students, catalog));
   content.hidden = false;
+  if (detail) scoreView.show(result.students[0],catalog);
   status.textContent = "Last completed week. Baselines include eligible earlier weeks.";
 }
 

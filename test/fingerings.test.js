@@ -70,6 +70,26 @@ test('unknown write outcome rereads confirmed values but retains an unsaved immu
   const mutations=calls.filter(c=>c.name==='student_save_piece_fingering_v1');assert.deepEqual(mutations[0].args,mutations[1].args);
 });
 
+test('page refresh keeps an uncertain retry key while incorporating newer committed values',async()=>{
+  let state=read(),attempts=0;
+  const {adapter,calls}=setup((name,args)=>{
+    if(name==='student_piece_fingerings_v1')return wire(state);
+    if(++attempts===1)throw Error('Unknown outcome');
+    return wire(saved(args,row(a,'2','suppress'),'2','already_saved','1'));
+  });
+  await adapter.open(input);await adapter.save(a,{kind:'set',hand:'R',finger:3});
+  const draft=adapter.snapshot().drafts[0];state=read([row(a,'2','suppress')],'2');
+  const refreshed=await adapter.refresh();assert.deepEqual(refreshed.drafts,[draft]);assert.equal(refreshed.overrides[0].kind,'suppress');
+  await adapter.retry(a);const writes=calls.filter(c=>c.name.includes('save'));assert.deepEqual(writes[1],writes[0]);
+  assert.equal(adapter.snapshot().drafts.length,0);assert.equal(adapter.snapshot().overrides[0].revision,'2');
+});
+
+test('a refresh denied after relationship loss clears private state and pending retry data',async()=>{
+  let denied=false;const {adapter}=setup(()=>denied?{error:{code:'42501'},status:403}:wire(read([row(a,'1')],'1')));
+  await adapter.open(input);denied=true;assert.equal((await adapter.refresh()).outcome,'fingering_access_denied');
+  assert.deepEqual(adapter.snapshot(),{outcome:'not_loaded'});assert.equal((await adapter.refresh()).outcome,'fingering_unavailable');
+});
+
 test('overlapping same-note replies cannot replace a newer authoritative suppression',async()=>{
   const waiting=[];const {adapter}=setup((name,args)=>name==='student_piece_fingerings_v1'?wire(read()):new Promise(done=>waiting.push({args,done})));
   await adapter.open(input);const first=adapter.save(a,{kind:'set',hand:'R',finger:3}),second=adapter.save(a,{kind:'suppress'});await tick();
