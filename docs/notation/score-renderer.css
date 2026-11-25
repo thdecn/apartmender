@@ -15,7 +15,7 @@
 .score-pages-toolbar button, .score-pages-toolbar select { font: inherit; min-height: 36px; }
 .score-pages > [role] { margin: 0; }
 .score-pages > [role]:empty { display: none; }
-.score-pages-viewport { overflow: auto; min-width: 0; min-height: 0; background: #faf8f2; }
+.score-pages-viewport { grid-row: 3; overflow: auto; min-width: 0; min-height: 0; background: #faf8f2; }
 .score-pages-viewport > svg { display: block; max-width: none; }
 .score-pages [data-note-targets] > rect { fill: transparent; stroke: transparent; pointer-events: all; cursor: pointer; outline: none; }
 .score-pages [data-note-targets] > rect[aria-pressed="true"] { stroke: #a54208; stroke-width: 1.5; vector-effect: non-scaling-stroke; }

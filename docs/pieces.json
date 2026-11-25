@@ -599,10 +599,10 @@
     "notation": {
       "editionId": "sha256:2d9973db07428c5390ea4f8c2c1518f29834022db5d788682f37d8fcf3765b49",
       "manifestSha256": "85f4e0bbdc778d67d316949b695dc0a3717d7d4d54c17a6ca9d09ce54ff6a057",
-      "version": "sha256:f17cff479187df2e216bf797d125e25123acdf8ad42416c17f34a4a2909b6f92",
+      "version": "sha256:e4ddca7dc9f53806e46fc16f6c9327e3e37434229869c1a10985b22bd1edf92a",
       "descriptor": {
         "url": "notation/editions/bach-bwv-779-invention-no-8.v1.json",
-        "sha256": "f17cff479187df2e216bf797d125e25123acdf8ad42416c17f34a4a2909b6f92"
+        "sha256": "e4ddca7dc9f53806e46fc16f6c9327e3e37434229869c1a10985b22bd1edf92a"
       }
     }
   },

@@ -57,6 +57,24 @@ test('selected independent chord member remains highlighted on its new page afte
   await page.screenshot({path:'/private/tmp/apt-64-phone-pages.png'});
 });
 
+test('height-only growth fills available content and automatically repaginates with selection retained',async({page})=>{
+  expect((await rendered(page)).outcome).toBe('pages');
+  const id='m000034-n000002';await page.evaluate(id=>pages.select(id),id);
+  await expect(page.locator('#pages > [role="status"]')).toBeEmpty();
+  const before={height:await page.locator('.score-pages-viewport').evaluate(n=>n.clientHeight),
+    pageCount:await page.evaluate(()=>pages.snapshot().pageCount)};
+  await page.locator('#pages').evaluate(n=>{n.style.height='1000px';});
+  await expect.poll(()=>page.locator('.score-pages-viewport').evaluate(n=>n.clientHeight)).toBeGreaterThan(before.height+300);
+  await expect.poll(()=>page.evaluate(()=>pages.snapshot().pageCount)).toBeLessThan(before.pageCount);
+  await expect(page.locator('#pages')).toHaveAttribute('aria-busy','false');
+  const grown=await page.evaluate(()=>pages.snapshot());expect(grown.selectedNoteId).toBe(id);expect(grown.page).toBe(grown.notePages[id]);
+  const bottomGap=await page.locator('#pages').evaluate(n=>n.getBoundingClientRect().bottom-n.querySelector('.score-pages-viewport').getBoundingClientRect().bottom);
+  expect(Math.abs(bottomGap)).toBeLessThan(1);
+  await page.locator('#pages').evaluate(n=>{n.style.height='650px';});
+  await expect.poll(()=>page.evaluate(()=>pages.snapshot().pageCount)).toBe(before.pageCount);
+  await expect(page.locator(`.score-pages-viewport [data-note-id="${id}"]`)).toHaveAttribute('aria-pressed','true');
+});
+
 test('full-score overrides reengrave the same selected chord member and keep the immutable source unchanged',async({page})=>{
   const result=await page.evaluate(async()=>{
     const original=new XMLSerializer().serializeToString(score.createDocument()),id='m000034-n000002';
