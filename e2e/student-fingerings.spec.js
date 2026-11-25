@@ -83,7 +83,9 @@ test('all real assigned cards traverse backward; Teacher changes refresh and pre
   await advance(page);await saved(page);
   await hit(page,2).click();await page.getByRole('button',{name:'Left hand',exact:true}).click();await page.getByRole('button',{name:'5',exact:true}).click();await saved(page);
   await expect(page.locator('[data-fingering-for="m000034-n000002"]')).toHaveText('L5');
-  await page.getByRole('button',{name:'Previous playable measure',exact:true}).click();await saved(page);
+  const frame=await page.locator('.card-frame').boundingBox();
+  await page.mouse.move(frame.x+110,frame.y+12);await page.mouse.down();await page.mouse.move(frame.x+20,frame.y+12);await page.mouse.up();
+  await expect(page.locator('#card-meta')).toContainText('1 / 34');await saved(page);
   await expect(page.locator('[data-fingering-for="m000034-n000002"]')).toHaveText('L5');
   revision++;values.set('m000034-n000002',{noteId:'m000034-n000002',measureId:'m000034',kind:'set',hand:'R',finger:3,revision:String(revision)});
   await page.getByRole('button',{name:'Reload fingerings',exact:true}).click();await saved(page);

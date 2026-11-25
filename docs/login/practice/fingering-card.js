@@ -44,8 +44,9 @@ export function createFingeringCard({ browserData, loadEdition = loadNotationEdi
   reload.addEventListener('click', () => { if (active) void show(active); });
   controls.prepend(noteLabel); controls.append(retry); footer.append(status,reload); panel.append(scoreArea,controls,footer);
   // Note clicks must reach the renderer instead of starting the host's swipe capture.
-  panel.addEventListener('pointerdown', event => event.stopPropagation());
-  panel.addEventListener('pointerup', event => event.stopPropagation());
+  for (const type of ['pointerdown','pointerup']) panel.addEventListener(type, event => {
+    if (event.target.closest('[data-note-id],button,select,label')) event.stopPropagation();
+  });
   function reset(keepEdition = false) {
     generation++; controller?.abort(); renderer?.destroy(); renderer = null;
     view?.destroy(); view = null;
