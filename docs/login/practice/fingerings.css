@@ -1,0 +1,13 @@
+.card-frame > img[hidden] { display: none; }
+.fingering-card { height: 100%; display: grid; grid-template-rows: minmax(0,1fr) auto auto; gap: 3px; color: #171411; overflow: auto; }
+.fingering-card > div:first-child { min-height: 0; overflow: auto; }
+.fingering-card .score-renderer, .fingering-card .score-viewport { height: 100%; }
+.fingering-card .score-renderer .score-viewport > svg { width: 100%; height: 100%; }
+.fingering-card p { margin: 0; font-size: 12px; }
+.fingering-controls { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.fingering-footer { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.fingering-controls[hidden] { display: none; }
+.fingering-controls span { font-size: 11px; }
+.fingering-card button { min-height: 30px; min-width: 30px; border: 1px solid #645d50; border-radius: 4px; background: #fff; color: #171411; padding: 3px 7px; }
+.fingering-card button[aria-pressed="true"] { background: #ffe0bf; border-color: #a54208; }
+.fingering-card button:disabled { opacity: .5; }
