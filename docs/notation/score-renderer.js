@@ -179,3 +179,131 @@ export function createScoreRenderer(container, { onSelect = () => {} } = {}) {
     },
   };
 }
+
+// Full-score presentation for the Teacher host (#64). No Auth or Practice state.
+// Reuse this module's pinned engine, throwaway fingering projection and hit binding.
+export function createScorePages(container, { onSelect = () => {}, onChange = () => {} } = {}) {
+  container.classList.add('score-pages');
+  const toolbar = document.createElement('div'), viewport = document.createElement('div'), status = document.createElement('p');
+  const previous = document.createElement('button'), next = document.createElement('button'), position = document.createElement('span');
+  const label = document.createElement('label'), sizeInput = document.createElement('select');
+  toolbar.className = 'score-pages-toolbar'; viewport.className = 'score-pages-viewport';
+  status.setAttribute('role','status'); status.setAttribute('aria-live','polite');
+  previous.type = next.type = 'button'; previous.textContent = 'Previous page'; next.textContent = 'Next page';
+  previous.disabled = next.disabled = true; position.setAttribute('aria-live','polite');
+  label.textContent = 'Notation size ';
+  for (const [value,text] of [[40,'Small'],[50,'Medium'],[60,'Large'],[70,'Extra large']]) {
+    const option = document.createElement('option'); option.value = value; option.textContent = text; sizeInput.append(option);
+  }
+  label.append(sizeInput); toolbar.append(previous,position,next,label); container.replaceChildren(toolbar,status,viewport);
+  let generation = 0, selectionRevision = 0, destroyed = false, current = null, input = null, size = 50, selected = null, resizeTimer;
+  sizeInput.value = String(size);
+  const snapshot = () => current ? {outcome:'pages',page:current.page,pageCount:current.pages.length,size,selectedNoteId:selected,
+    measurePages:Object.fromEntries(current.measurePages),notePages:Object.fromEntries(current.notePages)} : {outcome:'not_loaded'};
+  function revealSelection() {
+    const target = current?.binding.targets.get(selected);
+    if (!target) return;
+    const box = target.getBoundingClientRect(), area = viewport.getBoundingClientRect();
+    viewport.scrollTop += box.bottom > area.bottom ? box.bottom-area.bottom+8 : box.top < area.top ? box.top-area.top-8 : 0;
+    viewport.scrollLeft += box.right > area.right ? box.right-area.right+8 : box.left < area.left ? box.left-area.left-8 : 0;
+  }
+  function showPage(page, focus = false) {
+    check(current && page >= 1 && page <= current.pages.length, 'Page outside the score');
+    const svg = current.pages[page-1].cloneNode(true);
+    const ids = current.ids.filter(id => current.notePages.get(id) === page);
+    viewport.replaceChildren(svg);
+    const binding = bindNotes(svg,current.mei,ids,current.model,id => { select(id); onSelect(id); });
+    current.binding = binding; current.page = page; binding.highlight(selected);
+    if (focus && selected) binding.targets.get(selected)?.focus({preventScroll:true});
+    previous.disabled = page === 1; next.disabled = page === current.pages.length;
+    position.textContent = `${page} / ${current.pages.length}`;
+    viewport.scrollTop = viewport.scrollLeft = 0;
+    const overflow = svg.getBoundingClientRect().height > viewport.clientHeight + 1 || svg.getBoundingClientRect().width > viewport.clientWidth + 1;
+    status.textContent = overflow ? 'This screen is smaller than a readable piano system. Scroll the score, reduce notation size, or rotate your device.' : '';
+    revealSelection();
+    onChange(snapshot());
+  }
+  function select(id, focus = false) {
+    check(current && (id === null || current.notePages.has(id)), 'Note outside the score');
+    selectionRevision++; selected = id;
+    if (id && current.notePages.get(id) !== current.page) showPage(current.notePages.get(id),focus);
+    else { current.binding.highlight(id); if (focus && id) current.binding.targets.get(id)?.focus({preventScroll:true}); revealSelection(); onChange(snapshot()); }
+  }
+  async function render(options = input) {
+    const request = ++generation, revisionAtStart = selectionRevision;
+    if (destroyed) return {outcome:'cancelled'};
+    input = options; let toolkit;
+    try {
+      container.setAttribute('aria-busy','true'); status.textContent = 'Laying out score…';
+      const {score,overrides = {},selectedNoteId} = options;
+      const context = `${score.index.slug}|${score.index.editionId}`;
+      const same = current?.context === context;
+      const width = Math.floor(viewport.clientWidth), height = Math.floor(viewport.clientHeight);
+      check(width > 0 && height > 0, 'Score area has no usable size');
+      const card = {slug:score.index.slug,editionId:score.index.editionId,document:score.createDocument(),
+        currentNoteIds:score.index.measures.flatMap(m => m.notes.map(n => n.noteId)),previewNoteIds:[]};
+      const working = workingCopy(score,card,overrides);
+      check(selectedNoteId == null || working.ids.includes(selectedNoteId), 'Selected note outside the score');
+      const {module,VerovioToolkit} = await engine();
+      if (destroyed || request !== generation) return {outcome:'superseded'};
+      toolkit = new VerovioToolkit(module); check(toolkit.getVersion() === VERSION, 'Unexpected Verovio version');
+      toolkit.setOptions({...CARD_ENGRAVING_OPTIONS,breaks:'auto',adjustPageHeight:false,
+        pageWidth:Math.max(600,Math.floor(width*100/size)),pageHeight:Math.max(600,Math.floor(height*100/size)),scale:size,
+        pageMarginTop:25,pageMarginBottom:25,pageMarginLeft:25,pageMarginRight:25,spacingSystem:8});
+      check(toolkit.loadData(working.xml), `Score import failed: ${toolkit.getLog()}`);
+      const count = toolkit.getPageCount(); check(count > 0 && count <= score.index.measures.length, 'Invalid page count');
+      const pages = [], notePages = new Map(), measurePages = new Map(), measureIds = score.index.measures.map(m => m.measureId);
+      for (let page = 1; page <= count; page++) {
+        const doc = new DOMParser().parseFromString(toolkit.renderToSVG(page),'image/svg+xml'), svg = doc.documentElement;
+        check(svg.localName === 'svg' && !doc.querySelector('parsererror'), 'Malformed score page');
+        svg.setAttribute('role','group'); svg.setAttribute('aria-label',`Piano score page ${page}`);
+        // Keep engraving scale; an undersized screen scrolls instead of shrinking notes.
+        const box = svg.viewBox.baseVal;
+        svg.style.width = `${box.width}px`; svg.style.height = `${box.height}px`;
+        for (const node of svg.querySelectorAll('g.measure')) {
+          check(measureIds.includes(node.id) && !measurePages.has(node.id), 'Missing/duplicate measure mapping'); measurePages.set(node.id,page);
+        }
+        for (const node of svg.querySelectorAll('g.note')) if (node.querySelector('.notehead')) {
+          check(working.model.has(node.id) && !notePages.has(node.id), 'Missing/duplicate note mapping'); notePages.set(node.id,page);
+        }
+        pages.push(svg);
+      }
+      check(JSON.stringify([...measurePages.keys()]) === JSON.stringify(measureIds)
+        && notePages.size === working.ids.length, 'Incomplete full-score pagination');
+      const mei = new DOMParser().parseFromString(toolkit.getMEI(),'application/xml');
+      toolkit.destroy(); toolkit = null; await document.fonts.ready;
+      if (destroyed || request !== generation) return {outcome:'superseded'};
+      const anchor = same && [...current.measurePages].find(([,page]) => page === current.page)?.[0];
+      selected = same && (selectedNoteId === undefined || selectionRevision !== revisionAtStart) ? selected : selectedNoteId ?? null;
+      const focused = viewport.contains(document.activeElement);
+      current = {context,pages,notePages,measurePages,mei,ids:working.ids,model:working.model,page:1};
+      showPage(selected ? notePages.get(selected) : measurePages.get(anchor) ?? 1,focused);
+      status.setAttribute('role','status'); return snapshot();
+    } catch (error) {
+      if (destroyed || request !== generation) return {outcome:'superseded'};
+      status.setAttribute('role','alert'); status.textContent = `Unable to lay out score. ${current ? 'Previous pages remain shown. ' : ''}${error.message}`;
+      return {outcome:'error',error};
+    } finally { toolkit?.destroy(); if (request === generation) container.setAttribute('aria-busy','false'); }
+  }
+  function setSize(value) {
+    check([40,50,60,70].includes(value), 'Unsupported notation size'); size = value; sizeInput.value = String(value);
+    return input ? render({...input,selectedNoteId:undefined}) : Promise.resolve(snapshot());
+  }
+  previous.addEventListener('click',() => { if (current?.page > 1) showPage(current.page-1); });
+  next.addEventListener('click',() => { if (current?.page < current?.pages.length) showPage(current.page+1); });
+  sizeInput.addEventListener('change',() => { void setSize(Number(sizeInput.value)); });
+  let dimensions = '';
+  const observer = new ResizeObserver(() => {
+    const nextDimensions = `${viewport.clientWidth}|${viewport.clientHeight}`;
+    if (dimensions === nextDimensions) return;
+    dimensions = nextDimensions; clearTimeout(resizeTimer);
+    if (input) resizeTimer = setTimeout(() => { void render({...input,selectedNoteId:undefined}); },100);
+  });
+  observer.observe(viewport);
+  return {render,select,setSize,snapshot,
+    previous() { if (current?.page > 1) showPage(current.page-1); return snapshot(); },
+    next() { if (current?.page < current?.pages.length) showPage(current.page+1); return snapshot(); },
+    destroy() { destroyed = true; generation++; observer.disconnect(); clearTimeout(resizeTimer); current = input = null; selected = null;
+      container.replaceChildren(); container.removeAttribute('aria-busy'); },
+  };
+}

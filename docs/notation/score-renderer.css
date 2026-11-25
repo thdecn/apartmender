@@ -10,3 +10,13 @@
 }
 .score-renderer [data-note-targets] > rect[aria-pressed="true"] { stroke: #a54208 !important; }
 .score-renderer [data-note-targets] > rect:focus-visible { stroke: #005a9c !important; stroke-dasharray: 3 2; }
+.score-pages { display: grid; grid-template-rows: auto auto minmax(0,1fr); height: 100%; min-width: 0; min-height: 0; color: #171411; }
+.score-pages-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 8px; }
+.score-pages-toolbar button, .score-pages-toolbar select { font: inherit; min-height: 36px; }
+.score-pages > [role] { margin: 0; }
+.score-pages > [role]:empty { display: none; }
+.score-pages-viewport { overflow: auto; min-width: 0; min-height: 0; background: #faf8f2; }
+.score-pages-viewport > svg { display: block; max-width: none; }
+.score-pages [data-note-targets] > rect { fill: transparent; stroke: transparent; pointer-events: all; cursor: pointer; outline: none; }
+.score-pages [data-note-targets] > rect[aria-pressed="true"] { stroke: #a54208; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.score-pages [data-note-targets] > rect:focus-visible { stroke: #005a9c; stroke-dasharray: 3 2; }
