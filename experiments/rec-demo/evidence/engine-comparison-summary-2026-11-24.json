@@ -1,0 +1,231 @@
+{
+  "date": "2026-11-24",
+  "bead": "sludge-0z8.8",
+  "buildId": "de6289ebc7fcd3e1",
+  "versions": {
+    "basicPitch": "1.0.1",
+    "tensorflow": "3.21.0",
+    "magenta": "1.23.1",
+    "magentaTensorflow": "2.8.6",
+    "magentaCheckpoint": "onsets_frames_uni_q2",
+    "verovio": "6.3.0-425dd7b"
+  },
+  "evidenceKind": "Automated desktop synthetic Web Audio; not physical iPhone or acoustic piano quality evidence",
+  "validation": {
+    "nodePassed": 189,
+    "nodeSkipped": 1,
+    "browserPassed": 48,
+    "catalog": {
+      "pieces": 6,
+      "general": 6,
+      "assets": 157
+    },
+    "manifestAssetsVerified": 74,
+    "deterministicRebuild": true,
+    "basicPitchWorkerAndModelUnchanged": true,
+    "browserRuns": [
+      {
+        "buildId": "de6289ebc7fcd3e1",
+        "passed": 46,
+        "scope": "All browser checks except the boundary matrix"
+      },
+      {
+        "buildId": "de6289ebc7fcd3e1",
+        "passed": 2,
+        "scope": "Boundary endpoints and adjacent lengths in Chromium/WebKit"
+      }
+    ],
+    "currentAndRetainedManifestEntriesVerified": 384
+  },
+  "engines": {
+    "chromium": {
+      "canonicalInput": {
+        "sha256": "e42867a0240dd093d3ae1e794a2f939d54891dbb32d2ba68c141410be95beb9f",
+        "sampleRate": 22050,
+        "samples": 27985,
+        "timeOrigin": "count-in-end"
+      },
+      "captureDurationSeconds": 1.2691383219954648,
+      "selectedEngineInReport": "magenta",
+      "results": {
+        "basic-pitch": {
+          "status": "complete",
+          "notes": 13,
+          "modelInput": {
+            "sampleRate": 22050,
+            "samples": 27985
+          },
+          "modelSetupPhase": "prepare",
+          "initializationMs": 8.600000143051147,
+          "inferenceMs": 1034.0999999046326,
+          "processingWallMs": 1035.6999998092651,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 29.200000047683716
+          }
+        },
+        "magenta": {
+          "status": "complete",
+          "notes": 12,
+          "modelInput": {
+            "sampleRate": 16000,
+            "samples": 20307
+          },
+          "modelSetupPhase": "after-stop",
+          "initializationMs": 572.5,
+          "inferenceMs": 3597.699999809265,
+          "processingWallMs": 4200.900000095367,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 22.700000047683716
+          }
+        }
+      }
+    },
+    "webkit": {
+      "canonicalInput": {
+        "sha256": "e564fdfeabeebf05480e76ee1f7e41be658ced5adaab92293ff1b4c8fb247f8b",
+        "sampleRate": 22050,
+        "samples": 28753,
+        "timeOrigin": "count-in-end"
+      },
+      "captureDurationSeconds": 1.303968253968254,
+      "selectedEngineInReport": "magenta",
+      "results": {
+        "basic-pitch": {
+          "status": "complete",
+          "notes": 15,
+          "modelInput": {
+            "sampleRate": 22050,
+            "samples": 28753
+          },
+          "modelSetupPhase": "prepare",
+          "initializationMs": 7,
+          "inferenceMs": 836,
+          "processingWallMs": 839,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 34
+          }
+        },
+        "magenta": {
+          "status": "complete",
+          "notes": 11,
+          "modelInput": {
+            "sampleRate": 16000,
+            "samples": 20864
+          },
+          "modelSetupPhase": "after-stop",
+          "initializationMs": 565,
+          "inferenceMs": 7520,
+          "processingWallMs": 8107,
+          "trackedTensorsAfterCleanup": 0,
+          "scoreMeasures": 1,
+          "display": {
+            "outcome": "rendered",
+            "pageCount": 1,
+            "renderMs": 28
+          }
+        }
+      }
+    }
+  },
+  "checks": [
+    "One microphone request; Basic Pitch and Magenta input hash/origin match the canonical take",
+    "Actual Magenta PCM equals 16kHz resampling of the Basic Pitch PCM within1e-6",
+    "Same normalized timing/straight score/Verovio path; selected Magenta XML download matches its score",
+    "Both engine event results and tracked-tensor cleanup to zero; tiny silent input succeeds",
+    "Magenta download failure preserves Basic Pitch result; repeat Prepare retries",
+    "Cancel while second model loads then new take: no stale result/score resurrection",
+    "Static same-origin GET-only request audit; cached legacy/current/retained graphs and existing timing/viewer regressions pass"
+  ],
+  "limits": [
+    "No physical iPhone/peak-memory/acoustic quality pass",
+    "31,280,427-byte official quantized Magenta checkpoint; setup and inference timed separately",
+    "Triplet interpretation .5 still pending",
+    "Available publicly only after owner incorporates the PR into Pages"
+  ],
+  "artifacts": {
+    "engine-comparison-390px.png": "77a826afd8502d74385fd5f6cf7fe24240e84a607351ccf46acd7fce140ef74f"
+  },
+  "reviewCorrections": {
+    "baselineHead": "f3f3b91ab19d300fed705747e6bcbbef094f0147",
+    "redRegressions": [
+      "Original Basic Pitch-only PCM remained attached and retained",
+      "Magenta batching gap produced unequal-batch tensor error",
+      "Basic Pitch preparation failure omitted per-engine entry"
+    ],
+    "boundarySamplesAt16000Hz": [
+      34303,
+      34304,
+      35327,
+      35328
+    ],
+    "boundaryBrowsersPassed": [
+      "chromium",
+      "webkit"
+    ],
+    "boundaryAssertions": [
+      "Nonempty note events",
+      "Every note ends at or before original PCM duration",
+      "Zero tracked tensors after cleanup"
+    ],
+    "unitChecks": [
+      "Batch-gap padding preserves every original sample and appends only zeros",
+      "Tiny FFT padding; unchanged lengths return the original array"
+    ],
+    "ownershipChecks": [
+      "Basic Pitch-only original PCM detached by transfer for both repeat takes",
+      "Host canonical reference null before final pass",
+      "Comparison input equality/origin/hash checks unchanged"
+    ],
+    "terminalStateChecks": {
+      "chromium": {
+        "setupFailure": {
+          "status": "error",
+          "modelSetupPhase": "prepare",
+          "error": "TypeError: Failed to fetch",
+          "endedAt": "2026-11-24T21:29:27.859Z"
+        },
+        "cancelledMagenta": {
+          "status": "cancelled",
+          "modelSetupPhase": "after-stop",
+          "error": "Check cancelled. Microphone and inference worker released.",
+          "endedAt": "2026-11-24T21:29:26.968Z"
+        },
+        "preservedBasicPitchStatus": "complete"
+      },
+      "webkit": {
+        "setupFailure": {
+          "status": "error",
+          "modelSetupPhase": "prepare",
+          "error": "TypeError: Load failed",
+          "endedAt": "2026-11-24T21:30:54.616Z"
+        },
+        "cancelledMagenta": {
+          "status": "cancelled",
+          "modelSetupPhase": "after-stop",
+          "error": "Check cancelled. Microphone and inference worker released.",
+          "endedAt": "2026-11-24T21:30:53.704Z"
+        },
+        "preservedBasicPitchStatus": "complete"
+      }
+    },
+    "completionGuidanceChecks": [
+      "Switching from failed first display to rendered Magenta refreshes completion text",
+      "Single-engine empty result requests another take, not viewing a score",
+      "Single-engine decode error offers XML/retry without nonexistent alternative",
+      "Resampling/input metadata use shared named capture/model sample rates"
+    ],
+    "finalBoundaryWorkerSHA256": "384694e19983ecdbabfb88df0b457d9ec1091775dbc726bf8c49a73b2d2e6d4c"
+  }
+}

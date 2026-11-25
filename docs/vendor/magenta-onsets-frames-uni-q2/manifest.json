@@ -1,0 +1,84 @@
+{
+  "checkpoint": "onsets_frames_uni_q2",
+  "upstream": "https://storage.googleapis.com/magentadata/js/checkpoints/transcription/onsets_frames_uni_q2",
+  "magentaVersion": "1.23.1",
+  "files": [
+    {
+      "path": "weights_manifest.json",
+      "bytes": 9931,
+      "sha256": "7656592e977f99ca8de03e1d91cb100b42a9b598875343b2fcf86eb62255390d",
+      "runtime": true,
+      "gzipBytes": 1896
+    },
+    {
+      "path": "group1-shard1of8",
+      "bytes": 4194304,
+      "sha256": "7e26ded84bc87b3f34d75fde9bac8e62ea469d533f307efb95017b0d45cf3cc8",
+      "runtime": true,
+      "gzipBytes": 3402345
+    },
+    {
+      "path": "group1-shard2of8",
+      "bytes": 4194304,
+      "sha256": "9934593a148f2de5ecec0ddb3cf2b2a4d3303abc3d6af796394d31c17b3e2285",
+      "runtime": true,
+      "gzipBytes": 3464099
+    },
+    {
+      "path": "group1-shard3of8",
+      "bytes": 4194304,
+      "sha256": "12b9c6787fbda683caaa2554d6ffa86c7c80bf6757848388a6f7b5c523418b5c",
+      "runtime": true,
+      "gzipBytes": 3701376
+    },
+    {
+      "path": "group1-shard4of8",
+      "bytes": 4194304,
+      "sha256": "aa664ffa5e20e98d54da64904a5f342f2f08f302a5ef9ca09ff0d4e5e16b2a60",
+      "runtime": true,
+      "gzipBytes": 3934110
+    },
+    {
+      "path": "group1-shard5of8",
+      "bytes": 4194304,
+      "sha256": "1394ef32def6948cca76afbe54138da08e41378238deb55ed5c1dbb315b35ba2",
+      "runtime": true,
+      "gzipBytes": 3826294
+    },
+    {
+      "path": "group1-shard6of8",
+      "bytes": 4194304,
+      "sha256": "7da43588869fb8451e5f37a8c0af8b8bf9fd1eb9727cb9f63629d0c5e7abcae3",
+      "runtime": true,
+      "gzipBytes": 3798968
+    },
+    {
+      "path": "group1-shard7of8",
+      "bytes": 4194304,
+      "sha256": "e3697dbabfa4d192ad7c9972b0e09c32bf113555827185d26e742efd259c98e6",
+      "runtime": true,
+      "gzipBytes": 3873875
+    },
+    {
+      "path": "group1-shard8of8",
+      "bytes": 1910368,
+      "sha256": "622862e17a90e8edc090554594ee0b67032ec0da22c05c87281d9af951db6d04",
+      "runtime": true,
+      "gzipBytes": 1770970
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11410,
+      "sha256": "8e4e2fda4e9654695dee6f4932e7f3265ea707bdc07505704e5497c534863995",
+      "runtime": false,
+      "gzipBytes": 4002
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1060,
+      "sha256": "c6ca8048739ca79b4e7f9e4c8b6fe01c93dc4903d7f880d8d5224c861002460a",
+      "runtime": false,
+      "gzipBytes": 613
+    }
+  ]
+}

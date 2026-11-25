@@ -4,11 +4,11 @@ export const MODEL_SAMPLE_RATE = 22050;
 
 // PCM has already been trimmed on the capture clock. Resampling must not
 // normalize its first attack to zero or remove initial performance silence.
-export async function resamplePerformance(samples, sampleRate) {
+export async function resamplePerformance(samples, sampleRate, targetRate = MODEL_SAMPLE_RATE) {
   if (!(samples instanceof Float32Array) || !samples.length || !Number.isInteger(sampleRate) || sampleRate <= 0) {
     throw new Error('Invalid captured PCM.');
   }
-  const offline = new OfflineAudioContext(1, Math.ceil(samples.length * MODEL_SAMPLE_RATE / sampleRate), MODEL_SAMPLE_RATE);
+  const offline = new OfflineAudioContext(1, Math.ceil(samples.length * targetRate / sampleRate), targetRate);
   const buffer = offline.createBuffer(1, samples.length, sampleRate);
   buffer.copyToChannel(samples, 0);
   const source = offline.createBufferSource();

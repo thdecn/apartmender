@@ -1,48 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { moduleURL } from './release.mjs';
+import { syntheticMicrophone } from './synthetic-microphone.mjs';
 
 // These checks use a generated Web Audio stream, not a real microphone or piano.
 // The browser still performs actual timestamped AudioWorklet capture/resampling,
 // real Basic Pitch inference and real Verovio WASM initialization.
-async function syntheticMicrophone(page) {
-  await page.addInitScript(() => {
-    window.testAudioContexts = [];
-    const getUserMedia = async () => {
-      const context = new AudioContext();
-      await context.resume();
-      window.testAudioContexts.push(context);
-      const destination = context.createMediaStreamDestination();
-      for (const start of [0.08, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6]) {
-        for (const frequency of [261.6256, 329.6276, 391.9954]) {
-          for (let partial = 1; partial <= 4; partial++) {
-            const oscillator = context.createOscillator();
-            const gain = context.createGain();
-            oscillator.frequency.value = frequency * partial;
-            gain.gain.setValueAtTime(0, context.currentTime + start);
-            gain.gain.linearRampToValueAtTime(0.09 / partial, context.currentTime + start + 0.01);
-            gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + start + 0.75);
-            oscillator.connect(gain).connect(destination);
-            oscillator.start(context.currentTime + start);
-            oscillator.stop(context.currentTime + start + 0.8);
-          }
-        }
-      }
-      const track = destination.stream.getAudioTracks()[0];
-      const stop = track.stop.bind(track);
-      track.stop = () => { stop(); if (context.state !== 'closed') void context.close(); };
-      return destination.stream;
-    };
-    Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: { getUserMedia } });
-  });
-}
-
 test('two takes use real browser audio, local inference and Verovio; no outbound writes', async ({ page, context }, testInfo) => {
   const requests = [], errors = [];
   context.on('request', request => requests.push({ url: request.url(), method: request.method(), body: request.postData() }));
   page.on('pageerror', error => errors.push(error.message));
   await syntheticMicrophone(page);
   await page.goto('/apartmender/rec-demo/');
+  await page.evaluate(async audioURL => {
+    const { AudioCapture } = await import(audioURL), stop = AudioCapture.prototype.stop;
+    AudioCapture.prototype.stop = async function () {
+      const audio = await stop.call(this);
+      window.canonicalPCM = audio.pcm; window.capturedAudio = audio;
+      return audio;
+    };
+  }, moduleURL('audio.mjs'));
   for (let run = 0; run < 2; run++) {
     await page.getByRole('button', { name: 'Prepare local engines' }).click();
     await expect(page.locator('#score-output')).toBeHidden();
@@ -57,6 +34,8 @@ test('two takes use real browser audio, local inference and Verovio; no outbound
     await page.waitForTimeout(2250); // Actual recorded sound must elapse.
     await page.getByRole('button', { name: 'Stop and transcribe' }).click();
     await expect(page.locator('body')).toHaveAttribute('data-state', 'complete');
+    expect(await page.evaluate(() => window.canonicalPCM.byteLength)).toBe(0);
+    expect(await page.evaluate(() => window.capturedAudio.pcm)).toBeNull();
     await expect(page.locator('#notes tr').first()).toBeVisible();
     await expect(page.locator('#score-output')).toBeVisible();
     await expect(page.locator('#score-viewer img')).toBeVisible();
@@ -125,13 +104,15 @@ test('44.1 and 48 kHz conversion preserve performance silence and onset time', a
   const results = await page.evaluate(async transcriptionURL => {
     const { resamplePerformance, MODEL_SAMPLE_RATE } = await import(transcriptionURL);
     const output = [];
-    for (const rate of [44100, 48000]) {
+    for (const rate of [22050, 44100, 48000]) {
+      for (const target of [MODEL_SAMPLE_RATE, 16000]) {
       const samples = new Float32Array(rate);
       for (let i = Math.round(rate * 0.25); i < rate * 0.5; i++) samples[i] = 0.2 * Math.sin(2 * Math.PI * 440 * i / rate);
-      const converted = await resamplePerformance(samples, rate);
-      output.push({ rate, length: converted.length, outputRate: MODEL_SAMPLE_RATE,
-        firstSignalSeconds: converted.findIndex(sample => Math.abs(sample) > 0.01) / MODEL_SAMPLE_RATE,
-        initialSilence: converted.slice(0, Math.round(MODEL_SAMPLE_RATE * 0.2)).every(sample => Math.abs(sample) < 0.0001) });
+      const converted = await resamplePerformance(samples, rate, target);
+      output.push({ rate, length: converted.length, outputRate: target,
+        firstSignalSeconds: converted.findIndex(sample => Math.abs(sample) > 0.01) / target,
+        initialSilence: converted.slice(0, Math.round(target * 0.2)).every(sample => Math.abs(sample) < 0.0001) });
+    }
     }
     return output;
   }, moduleURL('transcription.mjs'));
@@ -176,7 +157,7 @@ test('cancelled inference cannot display its queued result or progress over a ne
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
   await page.evaluate(() => window.deliverStaleInference());
   await expect(page.locator('body')).toHaveAttribute('data-state', 'ready');
-  await expect(page.locator('#status')).toContainText('Local engines ready');
+  await expect(page.locator('#status')).toContainText('ready. Start recording');
   await expect(page.locator('#results')).toBeHidden();
 });
 
