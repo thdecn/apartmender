@@ -59,6 +59,13 @@ application root locally and does not introduce a `/general/` route or move Logi
 See [the shared-host audit](docs/public-practice-regression.md) for scope and
 the distinction between automated checks and physical-device evidence.
 
+Public Bach Practice uses the verified fixed-edition renderer with original
+fingerings only; the accepted source contains no explicit fingering numbers.
+Other Pieces retain PNG cards. The same gate also traverses all 34 Bach cards,
+checks private-state isolation, explicit failure/retry/legacy choices and the
+public pilot switch. See [public notation](docs/notation/public-practice.md)
+for the presentation boundary and rollback instructions.
+
 The opt-in Practice integration test uses a disposable, freshly reset local
 Sludge Supabase database with the `student_practice_generation_v1` migration.
 It creates a local Student, verifies Assignment and generation reads, uploads

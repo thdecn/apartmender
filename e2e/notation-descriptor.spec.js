@@ -36,7 +36,10 @@ test('served public descriptor binds independently parsed immutable score, rever
   expect(requests.some(url=>/supabase|\/login\/|\/auth\/|\/rpc\//.test(url))).toBe(false);
 });
 
-test('root remains on the compatible PNG route after additive descriptor publication',async({page})=>{
+test('disabling the public pilot keeps the root on compatible PNG cards without loading notation',async({page})=>{
+  await page.route('**/notation/public-score-pilot.js',async route=>{
+    const response=await route.fetch();await route.fulfill({response,body:(await response.text()).replace('enabled: true','enabled: false')});
+  });
   await page.route(/https:\/\/fonts\./,r=>r.abort());await page.setViewportSize({width:844,height:390});
   const requests=[];page.on('request',r=>requests.push(r.url()));
   await page.goto(site.origin+'/');await page.getByRole('button',{name:'Bach Inv. No. 8',exact:true}).click();

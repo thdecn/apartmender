@@ -2,12 +2,14 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 
-export async function serveSite({ port = 0 } = {}) {
+export async function serveSite({ port = 0, basePath = "" } = {}) {
   const root = resolve("docs");
   const types = { ".html": "text/html", ".js": "text/javascript", ".mjs": "text/javascript", ".css": "text/css",
     ".json": "application/json", ".png": "image/png" };
   const server = createServer(async (request, response) => {
-    const pathname = new URL(request.url, "http://127.0.0.1").pathname;
+    const requested = new URL(request.url, "http://127.0.0.1").pathname;
+    if (basePath && !requested.startsWith(`${basePath}/`)) { response.writeHead(404).end(); return; }
+    const pathname = requested.slice(basePath.length);
     const path = resolve(root, `.${pathname}`, pathname.endsWith("/") ? "index.html" : "");
     if (!path.startsWith(`${root}${sep}`)) { response.writeHead(403).end(); return; }
     try {

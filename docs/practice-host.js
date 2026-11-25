@@ -231,6 +231,8 @@ function showCard() {
   const file = state.currentCard;
   const custom = cardPresentation?.supports(activePiece);
   cardImageEl.hidden = Boolean(custom);
+  // Cached base CSS can override the native hidden attribute for card images.
+  cardImageEl.style.display = custom ? 'none' : '';
   if (custom) {
     cardImageEl.removeAttribute('src');
     void cardPresentation.show({piece:activePiece,cardIndex:state.currentCardIndex,container:cardFrameEl});
