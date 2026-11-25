@@ -94,7 +94,7 @@ async function load() {
   if (detail) heading.textContent = result.students[0].name?.trim() || "Student detail";
   render(teacherRows(result.students, catalog));
   content.hidden = false;
-  if (detail) scoreView.show(result.students[0],catalog);
+  if (detail) scoreView.show(result.students[0],catalog,userId);
   status.textContent = "Last completed week. Baselines include eligible earlier weeks.";
 }
 

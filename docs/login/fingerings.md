@@ -22,6 +22,20 @@ const save = await view.save('m000034-n000002', {kind:'set', hand:'L', finger:4}
 // view.clear() discards the open private scope; view.destroy() ends its lifetime.
 ```
 
+The optional `expectedActorId` restricts the view to an already verified Auth
+UUID; it never supplies RPC authorization. Teacher hosts use it to observe
+identity loss before public assets finish loading. `onChange(state, reason)`
+marks scope construction as `opening`, Auth/permission invalidation as
+`access_changed`, and ordinary clear/destroy as `context_closed`. Existing
+single-argument callbacks remain supported. Invalidation must clear the host
+even when its first private read has not completed.
+
+`refresh()` rereads the current scope without discarding pending operations
+or retry keys. A failed refresh retains cached adapter state, so the host must
+keep its page-read failure/visibility guard until a read succeeds. A later
+save acknowledgement or cached snapshot does not establish that the page's
+latest read succeeded.
+
 `index` must be the validated immutable score index from the bound descriptor.
 One view opens one Student/Assignment/edition and 1–64 distinct measures, with
 at most 4,096 pitched notes. Larger Teacher pages must split bounded read scopes.

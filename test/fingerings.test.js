@@ -24,6 +24,18 @@ function setup(handler,options={}){
   return {adapter,calls,switchUser:id=>{userId=id;}};
 }
 
+test('opening and access invalidation notifications are distinct without changing snapshot shape',async()=>{
+  const notices=[];const {adapter}=setup(()=>wire(read()),{onChange:(snapshot,reason)=>notices.push({snapshot,reason})});
+  await adapter.open(input);await tick();assert.ok(notices.some(n=>n.reason==='opening'));
+  adapter.authChanged(null);await tick();assert.deepEqual(notices.at(-1),{snapshot:{outcome:'not_loaded'},reason:'access_changed'});
+});
+
+test('expected actor restricts identity before a scope opens without authorizing any request',async()=>{
+  const notices=[];const {adapter,calls}=setup(()=>wire(read()),{expectedActorId:teacher,onChange:(snapshot,reason)=>notices.push({snapshot,reason})});
+  adapter.authChanged(student);await tick();assert.equal(notices.at(-1).reason,'access_changed');
+  assert.equal((await adapter.open(input)).outcome,'fingering_access_denied');assert.deepEqual(calls,[]);
+});
+
 test('own Student read has no target selector and Teacher read uses the exact public RPC/context',async()=>{
   const own=setup(()=>wire(read()));assert.equal((await own.adapter.open(input)).outcome,'fingerings');
   assert.deepEqual(own.calls[0],{name:'student_piece_fingerings_v1',args:{requested_slug:index.slug,requested_edition_id:edition,requested_measure_ids:[measure]}});

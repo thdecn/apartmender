@@ -39,6 +39,14 @@ engraving/editor state. A delayed close event cannot close a newly reopened
 dialog. Public edition assets may remain in memory; private fingerings do not
 persist in browser storage.
 
+The identity observer is installed before public score loading and bound to
+the Teacher UUID already verified by the route. Construction's initial clear
+is distinguished from subsequent Auth/permission invalidation. Invalidations
+clear the opening view immediately, including during the first private read.
+A separate page-read guard survives failed reads: delayed save notifications
+can update cached revisions but cannot reveal the score, clear the read error,
+or re-enable editing until a fresh read succeeds.
+
 Teacher browsing/editing does not mount the Practice host, create Session
 markers/events, advance progression, alter timing or publish Teacher notes.
 The Student editor continues to use its existing Practice lifecycle. Both
