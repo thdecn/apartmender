@@ -53,20 +53,21 @@ function decode(data, scope, intent) {
 }
 
 // A single open Student/edition/page view. Drafts and retry keys live only here.
-export function createFingeringAdapter({ identity, request, newRequestId = () => crypto.randomUUID(), timeoutMs = 15000, onChange = () => {} }) {
+export function createFingeringAdapter({ identity, request, expectedActorId, newRequestId = () => crypto.randomUUID(), timeoutMs = 15000, onChange = () => {} }) {
   let epoch = 0, closed = false, scope = null, loaded = false, actor = null, snapshotRevision = '0', studentName = null;
   const confirmed = new Map(), drafts = new Map();
-  const notify = () => queueMicrotask(() => onChange(snapshot()));
+  const matchesActor = id => expectedActorId === undefined || (isUuid(expectedActorId) && expectedActorId.toLowerCase() === id);
+  const notify = reason => queueMicrotask(() => onChange(snapshot(),reason));
   async function bounded(work) {
     let timer;
     try { return await Promise.race([Promise.resolve().then(work), new Promise((_, reject) => {
       timer = setTimeout(() => reject(Error('Fingering request timed out')), timeoutMs);
     })]); } finally { clearTimeout(timer); }
   }
-  function clear() {
+  function clear(reason = 'context_closed') {
     epoch++; scope = null; loaded = false; actor = null; snapshotRevision = '0'; studentName = null;
     confirmed.clear(); drafts.clear();
-    notify();
+    notify(reason);
   }
   function snapshot() {
     if (!loaded) return { outcome: 'not_loaded' };
@@ -80,8 +81,8 @@ export function createFingeringAdapter({ identity, request, newRequestId = () =>
     try { auth = await bounded(identity); } catch { return epoch === expectedEpoch ? unavailable() : {outcome:'superseded'}; }
     if (epoch !== expectedEpoch) return { outcome: 'superseded' };
     if (auth.outcome !== 'authenticated' && !['unauthenticated','account_denied','password_completion_required'].includes(auth.outcome)) return unavailable();
-    if (auth.outcome !== 'authenticated' || !isUuid(auth.userId) || (actor && actor !== auth.userId.toLowerCase())) {
-      clear(); return { outcome: 'fingering_access_denied' };
+    if (auth.outcome !== 'authenticated' || !isUuid(auth.userId) || !matchesActor(auth.userId.toLowerCase()) || (actor && actor !== auth.userId.toLowerCase())) {
+      clear('access_changed'); return { outcome: 'fingering_access_denied' };
     }
     actor = auth.userId.toLowerCase(); return null;
   }
@@ -98,7 +99,7 @@ export function createFingeringAdapter({ identity, request, newRequestId = () =>
     // A denial is authoritative for this view even if a later Auth lookup fails.
     if (epoch !== expectedEpoch) return { outcome: 'superseded' };
     if (response?.error?.code === '42501' || response?.status === 401) {
-      clear(); return { outcome: 'fingering_access_denied' };
+      clear('access_changed'); return { outcome: 'fingering_access_denied' };
     }
     const after = await authenticate(expectedEpoch); if (after) return after;
     if (response?.error?.code === '22P02') return { outcome: 'invalid_request' };
@@ -144,11 +145,15 @@ export function createFingeringAdapter({ identity, request, newRequestId = () =>
   }
   return {
     snapshot, clear,
+    async refresh() {
+      if (closed || !loaded || !scope) return unavailable();
+      return readLatest(epoch);
+    },
     destroy() { closed = true; clear(); },
-    authChanged(userId) { if (!userId || (actor && userId.toLowerCase() !== actor)) clear(); },
+    authChanged(userId) { if (!userId || !matchesActor(userId.toLowerCase()) || (actor && userId.toLowerCase() !== actor)) clear('access_changed'); },
     async open(input) {
       if (closed) return unavailable();
-      clear(); const expectedEpoch = epoch;
+      clear('opening'); const expectedEpoch = epoch;
       const authError = await authenticate(expectedEpoch); if (authError) return authError;
       try { scope = contextFor(input, actor); } catch { scope = null; }
       if (!scope) return { outcome: 'invalid_request' };

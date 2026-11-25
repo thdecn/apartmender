@@ -49,9 +49,9 @@ export async function loadNotationEdition(piece, { signal } = {}) {
     verifyNotationDescriptor(piece, descriptor, index, manifest);
     const { indexScore } = await import(moduleUrl('notation/score-index.js'));
     const { projectMeasureCard } = await import(moduleUrl('notation/measure-card.js'));
-    const { createScoreRenderer } = await import(moduleUrl('notation/score-renderer.js'));
+    const { createScoreRenderer, createScorePages } = await import(moduleUrl('notation/score-renderer.js'));
     const score = await indexScore(bytes.get(descriptor.score.url), { slug: piece.id, editionId: descriptor.editionId, inventory: index });
-    return { score, descriptor, version: pointer.version, projectMeasureCard, createScoreRenderer,
+    return { score, descriptor, version: pointer.version, projectMeasureCard, createScoreRenderer, createScorePages,
       css: decode(bytes.get('notation/score-renderer.css')), release };
   } catch (error) { release(); throw error; }
 }

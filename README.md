@@ -78,7 +78,10 @@ and student-data contract consumed here.
 
 Authenticated pages use the browser data module in `docs/login/browser-data.js`.
 Its separate [private fingering transport](docs/login/fingerings.md) supports
-scoped Student/Teacher views and safe retry; editor/route integration is separate.
+scoped Student/Teacher views and safe retry. The
+[Student Practice editor](docs/login/practice/student-fingerings.md) and
+[Teacher Student/Piece editor](docs/login/teacher/teacher-fingerings.md)
+share its note controls and persisted fingering boundary.
 Page code receives normalized outcomes from that module and does not construct
 Supabase requests or handle session tokens.
 
