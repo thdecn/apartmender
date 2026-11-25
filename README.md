@@ -42,6 +42,23 @@ Run the JavaScript tests with Node.js:
 npm test
 ```
 
+Public Practice has a separate served-browser gate with no backend or accounts:
+
+```sh
+npm ci
+npx playwright install chromium webkit
+npm run test:public -- --browser=chromium
+npm run test:public -- --browser=webkit
+```
+
+It drives the actual public entrypoint, catalogue and PNG cards through Normal
+and Hard completion, browsing/Resume, visibility and portrait timing, discard
+on Home/completion/reload/close, and browser haptic/wake-lock boundaries.
+The owner retained General Practice at `/apartmender/`; this gate serves that
+application root locally and does not introduce a `/general/` route or move Login.
+See [the shared-host audit](docs/public-practice-regression.md) for scope and
+the distinction between automated checks and physical-device evidence.
+
 The opt-in Practice integration test uses a disposable, freshly reset local
 Sludge Supabase database with the `student_practice_generation_v1` migration.
 It creates a local Student, verifies Assignment and generation reads, uploads
