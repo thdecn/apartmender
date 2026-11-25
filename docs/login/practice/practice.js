@@ -6,6 +6,7 @@ import { createSessionRecorder } from "./session-recorder.js";
 import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
 import { safeLocalStorage, summarySnapshot } from "./weekly-summary-cache.js";
+import { createFingeringCard } from './fingering-card.js';
 
 // A 401 is this tab's session state; it must not stop another tab with valid Auth.
 const SHARED_ACCESS_BLOCKS = new Set([
@@ -33,8 +34,10 @@ async function initialize() {
   let accessBlocked = false;
   let practiceHost;
   let currentUserId = null;
+  const fingeringCard = createFingeringCard({ browserData });
   function blockPracticeAccess() {
     accessBlocked = true;
+    fingeringCard.clear();
     summarySnapshot(safeLocalStorage(), currentUserId, null);
     piecesSection.hidden = true;
     modePicker.hidden = true;
@@ -54,6 +57,7 @@ async function initialize() {
     event.preventDefault();
     if (leaving) return;
     leaving = true;
+    fingeringCard.clear();
     logout.setAttribute("aria-disabled", "true");
     commentsSection.hidden = true;
     piecesSection.hidden = true;
@@ -258,7 +262,7 @@ async function initialize() {
     initialGeneration: generationRead.credentialGeneration,
     durable: !memoryOnly,
   });
-  practiceHost = mountPractice({ pieces: home.pieces, lifecycle: {
+  practiceHost = mountPractice({ pieces: home.pieces, presentation: fingeringCard, lifecycle: {
     open: async (piece) => {
       if (accessBlocked) return false;
       const authority = await authorizeStart(piece.assignmentId);
@@ -280,7 +284,7 @@ async function initialize() {
       if (accessBlocked) return false;
       const opened = await recorder.open({
         assignmentId: piece.assignmentId,
-        pieceVersion: piece.version,
+        pieceVersion: fingeringCard.supports(piece) ? piece.notation?.version ?? piece.version : piece.version,
         credentialGeneration: authority.credentialGeneration,
       });
       if (!opened) pieceStatus.textContent = "Practice is already open in another tab or unavailable here.";

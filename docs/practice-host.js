@@ -43,6 +43,7 @@ let timerInterval = null;
 let wakeLock = null;
 let lifecycle = null;
 let opening = false;
+let cardPresentation = null;
 
 function readPracticeMode() {
   try {
@@ -228,8 +229,16 @@ function showCard() {
   if (!activePiece || !practiceFlow) return;
   const state = practiceFlow.snapshot();
   const file = state.currentCard;
-  cardImageEl.src = new URL(`./cards/${activePiece.id}/${file}`, import.meta.url).href;
-  cardImageEl.alt = `${activePiece.label} card ${state.currentCardIndex + 1}`;
+  const custom = cardPresentation?.supports(activePiece);
+  cardImageEl.hidden = Boolean(custom);
+  if (custom) {
+    cardImageEl.removeAttribute('src');
+    void cardPresentation.show({piece:activePiece,cardIndex:state.currentCardIndex,container:cardFrameEl});
+  } else {
+    cardPresentation?.clear();
+    cardImageEl.src = new URL(`./cards/${activePiece.id}/${file}`, import.meta.url).href;
+    cardImageEl.alt = `${activePiece.label} card ${state.currentCardIndex + 1}`;
+  }
   updateControls();
 }
 
@@ -285,6 +294,7 @@ async function goHome({ finalized = false } = {}) {
   }
   resetPracticeTimer();
   activePiece = null;
+  cardPresentation?.clear();
   swipeStart = null;
   screenTouchStart = null;
   lastScreenTapAt = 0;
@@ -425,9 +435,10 @@ window.addEventListener("pagehide", () => {
   void lifecycle?.pause?.(currentElapsedPracticeMs());
 });
 
-export function mountPractice({ pieces: availablePieces, lifecycle: visitLifecycle = null }) {
+export function mountPractice({ pieces: availablePieces, lifecycle: visitLifecycle = null, presentation = null }) {
   pieces = availablePieces;
   lifecycle = visitLifecycle;
+  cardPresentation = presentation;
   renderHome();
   renderPracticeMode();
   updateRotateHint();
