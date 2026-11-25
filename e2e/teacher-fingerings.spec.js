@@ -108,6 +108,43 @@ test('an identity change immediately clears the private Teacher engraving and ed
   await expect(dialog(page).getByRole('button',{name:'Remove number',exact:true})).toBeDisabled();
 });
 
+for(const action of ['switch identity','sign out'])test(`${action} during a held page refresh immediately clears private state`,async({page})=>{
+  await open(page);await lastPage(page);await hit(page,2).click();await dialog(page).getByRole('button',{name:'5',exact:true}).click();await saved(page);
+  await expect(dialog(page).locator('[data-fingering-for="m000034-n000002"]')).toHaveText('5');
+  let release,started,heldRequest;const waiting=new Promise(resolve=>{started=resolve;});
+  await page.route('**/fingering-rpc/teacher_student_piece_fingerings_v1',async route=>{heldRequest=route.request();started();await new Promise(resolve=>{release=resolve;});await route.fallback();});
+  await dialog(page).getByLabel('Notation size').selectOption('60');await waiting;
+  await page.evaluate(action=>{
+    teacherTest.userId=action==='sign out'?null:'c1000000-0000-4000-8000-000000000009';
+    teacherTest.authEventCallback(teacherTest.userId?'SIGNED_IN':'SIGNED_OUT',teacherTest.userId?{user:{id:teacherTest.userId}}:null);
+  },action);
+  try{
+    // Invalidation must clear even before the old RPC finishes.
+    await expect(dialog(page).locator('svg')).toHaveCount(0);
+    await expect(dialog(page).locator('h2')).toHaveText('Score unavailable');
+    await expect(dialog(page).locator('.fingering-status')).toContainText('access changed');
+    await expect(dialog(page).getByRole('button',{name:'Remove number',exact:true})).toBeDisabled();
+    await expect(dialog(page).getByRole('button',{name:'Reload fingerings',exact:true})).toBeDisabled();
+    await expect(page.locator('#teacher-score-entry')).toBeEmpty();
+  }finally{const response=page.waitForResponse(response=>response.request()===heldRequest);release();await (await response).finished();}
+  await expect(dialog(page).locator('svg')).toHaveCount(0);
+  await expect(dialog(page).locator('h2')).toHaveText('Score unavailable');
+});
+
+test('an older held refresh cannot clear a newly reopened Teacher editor',async({page})=>{
+  await open(page);await lastPage(page);
+  let release,started,heldRequest,held=false;const waiting=new Promise(resolve=>{started=resolve;});
+  await page.route('**/fingering-rpc/teacher_student_piece_fingerings_v1',async route=>{
+    if(!held){held=true;heldRequest=route.request();started();await new Promise(resolve=>{release=resolve;});}await route.fallback();
+  });
+  await dialog(page).getByLabel('Notation size').selectOption('60');await waiting;
+  await dialog(page).getByRole('button',{name:'Close score',exact:true}).click();await open(page);
+  const response=page.waitForResponse(response=>response.request()===heldRequest);release();await (await response).finished();
+  await saved(page);await expect(dialog(page).locator('h2')).toHaveText('Student B — Bach Inv. No. 8');
+  await expect(dialog(page).locator('.score-pages-viewport > svg')).toBeVisible();
+  await dialog(page).locator('[data-note-id]').first().click();await dialog(page).getByRole('button',{name:'3',exact:true}).click();await saved(page);
+});
+
 test('phone reflow retains the selected chord member with named context and reachable controls',async({page})=>{
   await open(page);await lastPage(page);await hit(page,6).click();
   await page.setViewportSize({width:844,height:390});await expect(hit(page,6)).toHaveAttribute('aria-pressed','true');await expect(hit(page,6)).toBeVisible();

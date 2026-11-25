@@ -17,7 +17,8 @@ export function createTeacherScore({data,studentId}) {
   reload.addEventListener('click',()=>{if(context)void open(context);});
   function selected(){const state=pages?.snapshot();return state?.notePages?.[state.selectedNoteId]===state.page?state.selectedNoteId:null;}
   function key(state){return `${state.page}|${state.size}|${Object.entries(state.measurePages??{}).filter(([,page])=>page===state.page).map(([id])=>id).join(',')}`;}
-  function deny(message){epoch++;ready=false;latest=null;painting=0;view?.destroy();view=null;pages?.destroy();pages=null;area.replaceChildren();area.inert=false;heading.textContent='Score unavailable';editor.unavailable(message);}
+  function deny(message){epoch++;ready=false;reading=false;latest=context=null;painting=0;view?.destroy();view=null;pages?.destroy();pages=null;
+    entry.replaceChildren();entry.hidden=true;reload.disabled=true;area.replaceChildren();area.inert=false;heading.textContent='Score unavailable';editor.unavailable(message);}
   async function paint(snapshot,expected){
     if(expected!==epoch)return;
     if(snapshot.outcome!=='fingerings'){deny('Fingering access changed. Reopen this Student after signing in.');return;}
@@ -43,7 +44,7 @@ export function createTeacherScore({data,studentId}) {
   async function open(input){
     reset();const expected=epoch;controller=new AbortController();context=input;
     heading.textContent=`${input.student.name?.trim()||'Student'} — ${input.piece.label}`;
-    editor.unavailable('Loading latest fingerings…');area.style.visibility='hidden';dialog.showModal();
+    editor.unavailable('Loading latest fingerings…');reload.disabled=false;area.style.visibility='hidden';dialog.showModal();
     try{
       if(edition?.version!==input.piece.notation?.version){edition?.release();edition=null;
         const loaded=await loadNotationEdition(input.piece,{signal:controller.signal});if(expected!==epoch){loaded.release();return;}edition=loaded;}
@@ -58,7 +59,10 @@ export function createTeacherScore({data,studentId}) {
       }});
       const layout=await pages.render({score:edition.score});if(expected!==epoch)return;
       if(layout.outcome!=='pages')throw Error('Layout unavailable');pageKey=key(layout);
-      view=data.createFingerings({onChange:snapshot=>{if(ready&&!reading)void paint(snapshot,expected);}});
+      view=data.createFingerings({onChange:snapshot=>{
+        // Only coalesce successful snapshots: invalidation must clear immediately.
+        if(ready&&(!reading||snapshot.outcome!=='fingerings'))void paint(snapshot,expected);
+      }});
       // The fixed complete edition is one bounded scope: 34 measures/598 notes.
       // Refresh it on every page open/reflow, retaining all per-note pending keys.
       const result=await view.open({role:'teacher',studentId,assignmentId:input.assignment.assignmentId,index:edition.score.index,
