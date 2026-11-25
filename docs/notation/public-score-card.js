@@ -9,7 +9,11 @@ export function createPublicScoreCard() {
   function ensureStyle() {
     if (stylePromise) return stylePromise;
     const href = new URL('./public-score-card.css', import.meta.url).href;
-    if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(link => link.href === href && link.sheet)) return Promise.resolve();
+    if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(link => {
+      if (link.href !== href) return false;
+      // Failed parser links can expose a sheet whose rules remain inaccessible.
+      try { return Boolean(link.sheet?.cssRules.length); } catch { return false; }
+    })) return Promise.resolve();
     // A supported cached index.html may predate the new stylesheet link.
     const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = href;
     stylePromise = new Promise((resolve, reject) => {
@@ -22,6 +26,11 @@ export function createPublicScoreCard() {
   const status = document.createElement('p'), notice = document.createElement('p'), actions = document.createElement('div');
   const retry = document.createElement('button'), useLegacy = document.createElement('button');
   panel.className = 'public-score-card'; status.className = 'public-score-status';
+  // Recovery layout must work even when the optional score stylesheet is unavailable.
+  Object.assign(panel.style, { display:'grid', gridTemplateRows:'minmax(0,1fr) auto auto auto',
+    height:'100%', minHeight:'0', overflow:'auto', color:'#171411' });
+  scoreArea.style.minHeight = '0'; status.style.margin = notice.style.margin = '0';
+  retry.style.minHeight = useLegacy.style.minHeight = '36px';
   status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
   notice.textContent = 'Original fingerings only. Timing is not saved.';
   retry.type = useLegacy.type = 'button'; retry.textContent = 'Retry score';
@@ -49,16 +58,17 @@ export function createPublicScoreCard() {
     input.container.append(panel); actions.hidden = true;
     status.setAttribute('role', 'status'); status.textContent = 'Loading public score…';
     try {
-      await ensureStyle();
-      if (stale()) return;
       if (legacy) {
         const image = document.createElement('img');
+        image.style.cssText = 'position:static;display:block;width:100%;height:100%;object-fit:contain';
         image.src = new URL(`../cards/${input.piece.id}/${input.piece.cards[input.cardIndex]}`, import.meta.url).href;
         image.alt = `${input.piece.label} legacy card ${input.cardIndex + 1}`;
         scoreArea.append(image); status.textContent = 'Legacy PNG cards — original fingerings only.';
         actions.hidden = false; useLegacy.hidden = true; return;
       }
       useLegacy.hidden = false;
+      await ensureStyle();
+      if (stale()) return;
       if (input.piece.notation?.version !== publicScorePilot.version) throw Error('Public pilot descriptor version changed.');
       if (!edition) {
         const loaded = await loadNotationEdition(input.piece, { signal });

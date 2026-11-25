@@ -18,7 +18,7 @@ canonical reverse measure list and downbeat-only preview. A visit retains the
 verified edition in memory, reuses it across cards and releases it on Home or
 completion. Abort/generation guards discard old loads, renders and errors after
 navigation. New visits start from the current verified public declaration.
-The collaborator also ensures its stylesheet is loaded before presentation,
+The collaborator ensures its stylesheet is loaded before notation presentation,
 including when an older cached root document lacks the new stylesheet link.
 
 Rendering always supplies an empty override map. Only the immutable source's
@@ -36,6 +36,10 @@ notation request silently becomes an image. Choosing legacy cards deliberately
 uses the same Piece, current card and shared progression; the panel labels this
 presentation as original fingerings only. **Retry score** returns the current
 card to notation. The choice lasts only for this visit and resets on Home.
+Recovery controls and PNG layout work without the score stylesheet, so its own
+failure cannot block that deliberate choice. The shared host hides its unused
+image directly, including when cached base CSS overrides the native `hidden`
+attribute; choosing an ordinary PNG Piece restores its normal display.
 
 ## Reversible public pilot
 

@@ -9,6 +9,7 @@ test("shared Practice controls keep General Practice separate from recorded Stud
       this.listeners = new Map();
       this.children = [];
       this.attributes = new Map();
+      this.style = {};
       this.classList = { add() {}, remove() {} };
     }
 

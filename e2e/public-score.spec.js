@@ -127,6 +127,38 @@ test('an older cached root document still loads the public host stylesheet and d
   await expect(page.locator('.public-score-card')).toHaveCSS('display','grid');
 });
 
+for(const cachedRoot of [true,false]){
+  test(`unavailable score CSS keeps touch legacy recovery and retry usable with ${cachedRoot?'cached':'current'} root markup`,async({page})=>{
+    if(cachedRoot)await page.route(root,async route=>{
+      const response=await route.fetch();
+      await route.fulfill({response,body:(await response.text()).replace(/\s*<link rel="stylesheet" href="\.\/notation\/public-score-card\.css" \/>/,'')});
+    });
+    let fail=true;
+    await page.route('**/notation/public-score-card.css',route=>fail?route.abort():route.continue());
+    await open(page);
+    await expect(page.getByRole('alert')).toContainText('stylesheet unavailable');
+    await expect(page.locator('#card-image')).toBeHidden();
+    const cssAttempts=()=>requests.filter(url=>url.endsWith('/notation/public-score-card.css')).length;
+    const before=cssAttempts();
+    // Real touch activation must work; forced clicks would miss the host-image obstruction.
+    await page.getByRole('button',{name:'Use legacy PNG cards',exact:true}).tap({timeout:4000});
+    const image=page.locator('.public-score-card img');
+    await expect(image).toHaveAttribute('src',/01-m34.png$/);
+    await expect.poll(()=>image.evaluate(node=>node.complete&&node.naturalWidth>0)).toBe(true);
+    await expect(image).toBeVisible();
+    await expect(page.locator('.public-score-status')).toContainText('Legacy PNG');
+    expect(cssAttempts()).toBe(before);
+    await advance(page);await expect(image).toHaveAttribute('src',/02-m33/);
+    await page.getByRole('button',{name:'Retry score',exact:true}).tap();
+    await expect(page.getByRole('alert')).toContainText('stylesheet unavailable');
+    fail=false;await page.getByRole('button',{name:'Retry score',exact:true}).tap();await measure(page,33);
+    await page.getByRole('button',{name:'Back home'}).click();
+    await page.getByRole('button',{name:'Czerny Op. 821, 2',exact:true}).click();
+    await expect(page.locator('#card-image')).toBeVisible();
+    await expect(page.locator('#card-image')).toHaveAttribute('src',/czerny-op-821-no-2\/01-m8.png$/);
+  });
+}
+
 test('public Bach traverses all 34 real cards with original fingerings, final chord identities and no private access',async({page})=>{
   test.setTimeout(90000);await open(page);
   await measure(page,34);
