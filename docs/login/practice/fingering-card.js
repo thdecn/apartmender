@@ -1,5 +1,6 @@
 import { loadNotationEdition } from '../../notation/load-edition.js';
 import { createFingeringControls } from '../fingering-controls.js';
+import { notationPilot } from '../notation-pilot.js';
 
 // Private presentation injected into the existing host; it owns no Practice state.
 export function createFingeringCard({ browserData, loadEdition = loadNotationEdition }) {
@@ -71,5 +72,5 @@ export function createFingeringCard({ browserData, loadEdition = loadNotationEdi
     }
     if (!stale()) reload.disabled = false;
   }
-  return { supports: piece => piece.id === 'bach-bwv-779-invention-no-8', show, clear:() => reset(true) };
+  return { supports: piece => notationPilot.student && piece.id === 'bach-bwv-779-invention-no-8', show, clear:() => reset(true) };
 }

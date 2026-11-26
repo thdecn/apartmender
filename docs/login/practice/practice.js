@@ -7,6 +7,7 @@ import { createSessionOwnership } from "./session-ownership.js";
 import { createPracticeStart } from "./practice-start.js";
 import { safeLocalStorage, summarySnapshot } from "./weekly-summary-cache.js";
 import { createFingeringCard } from './fingering-card.js';
+import { notationPilot, legacyFingeringNotice } from '../notation-pilot.js';
 
 // A 401 is this tab's session state; it must not stop another tab with valid Auth.
 const SHARED_ACCESS_BLOCKS = new Set([
@@ -35,6 +36,12 @@ async function initialize() {
   let practiceHost;
   let currentUserId = null;
   const fingeringCard = createFingeringCard({ browserData });
+  if (!notationPilot.student) {
+    const notice = document.createElement('p');
+    notice.className = 'notation-pilot-notice'; notice.setAttribute('role', 'status');
+    notice.textContent = legacyFingeringNotice;
+    document.querySelector('#practice .practice-top').append(notice);
+  }
   function blockPracticeAccess() {
     accessBlocked = true;
     fingeringCard.clear();

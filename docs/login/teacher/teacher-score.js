@@ -1,5 +1,6 @@
 import {loadNotationEdition} from '../../notation/load-edition.js';
 import {createFingeringControls} from '../fingering-controls.js';
+import {notationPilot,legacyFingeringNotice} from '../notation-pilot.js';
 
 export function createTeacherScore({data,studentId}) {
   const entry=document.querySelector('#teacher-score-entry'),dialog=document.createElement('dialog');
@@ -86,6 +87,10 @@ export function createTeacherScore({data,studentId}) {
       const assignment=student.studentId===studentId&&student.pieces.find(piece=>piece.slug==='bach-bwv-779-invention-no-8');
       const piece=assignment&&catalog.find(piece=>piece.id===assignment.slug&&piece.assetsAvailable!==false);
       if(!piece){this.clear();return;}
+      if(!notationPilot.teacher){
+        this.clear();const notice=document.createElement('p');notice.textContent=legacyFingeringNotice;
+        entry.append(notice);entry.hidden=false;return;
+      }
       context={student,piece,assignment,actorId};const button=document.createElement('button');button.type='button';button.textContent=`Open ${piece.label} score`;
       button.addEventListener('click',()=>{void open({student,piece,assignment,actorId});});entry.replaceChildren(button);entry.hidden=false;
     },

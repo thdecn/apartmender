@@ -66,6 +66,20 @@ checks private-state isolation, explicit failure/retry/legacy choices and the
 public pilot switch. See [public notation](docs/notation/public-practice.md)
 for the presentation boundary and rollback instructions.
 
+The final Bach pilot gate is [#66](https://github.com/thdecn/apartmender/issues/66)
+/ `sludge-s16.19`. Run `npm run test:notation -- --browser=chromium` and the
+equivalent WebKit command for the combined public/Student/Teacher acceptance
+suite. [Release and manual-evidence instructions](docs/notation/pilot-release.md)
+describe the retained public root, host-specific rollback flags and preserved
+saved fingerings/queued Practice. Fresh physical macOS Safari, iPhone Safari,
+iPad Firefox, owner usability observations and release approval remain required;
+passing automated tests does not close the final gate.
+
+The post-MVP roadmap remains live updates, offline fingering edit/sync,
+score-edition migration tooling and the remaining catalogue. The diagnostic
+follow-up `sludge-lgi` remains open; the historical failed iPad sample's cause
+has not been established. Audio remains outside this migration.
+
 The opt-in Practice integration test uses a disposable, freshly reset local
 Sludge Supabase database with the `student_practice_generation_v1` migration.
 It creates a local Student, verifies Assignment and generation reads, uploads

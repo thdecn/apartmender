@@ -1,4 +1,5 @@
 .card-frame > img[hidden] { display: none; }
+.notation-pilot-notice { grid-column: 1 / -1; margin: 0; font-size: 12px; text-align: left; }
 .fingering-card { height: 100%; display: grid; grid-template-rows: minmax(0,1fr) auto auto; gap: 3px; color: #171411; overflow: auto; }
 .fingering-card > div:first-child { min-height: 0; overflow: auto; }
 .fingering-card .score-renderer, .fingering-card .score-viewport { height: 100%; }
