@@ -28,14 +28,13 @@ From a clean task checkout with dependencies installed:
 npm ci
 npx playwright install chromium webkit
 npm run validate:catalog -- --baseline origin/main
-node --test --test-reporter=tap > /private/tmp/notation-node.tap
+npm run test:notation:evidence
 npm run test:notation -- --browser=chromium --reporter=json \
   --output=/private/tmp/notation-chromium-results > /private/tmp/notation-chromium.json
 npm run test:notation -- --browser=webkit --reporter=json \
   --output=/private/tmp/notation-webkit-results > /private/tmp/notation-webkit.json
 node tools/record-notation-evidence.mjs /private/tmp/notation-chromium.json \
-  /private/tmp/notation-webkit.json /private/tmp/notation-node.tap \
-  /private/tmp/notation-evidence.json
+  /private/tmp/notation-webkit.json /private/tmp/notation-evidence.json
 ```
 
 The dedicated config covers public/catalogue/descriptor isolation, all backward
@@ -55,7 +54,13 @@ The accepted source has no explicit fingering annotations: public Bach displays
 no numbers; private edits must never appear publicly.
 
 The evidence recorder rejects failing, skipped, flaky or incomplete browser
-reports, wrong engines and failing Node results. Its runtime fingerprint hashes
+reports and wrong engines. It executes the full unfiltered Node gate itself:
+caller-supplied Node reports are not accepted, inherited Node test options are
+cleared, and the local-Supabase opt-in is disabled. Only that one documented
+local integration skip is allowed; failures, TODOs or other skips block evidence.
+The separate isolated regression command proves that a passing subset cannot
+hide a failing omitted suite. It runs outside the Node-discovered test tree to
+avoid recursively invoking the full gate. Its runtime fingerprint hashes
 the working-tree application code and relevant catalogue/descriptor bindings;
 this identifies tested changes before a commit can refer to its own evidence.
 Record the eventual accepted PR/merge SHA as well for manual checks. The
@@ -156,6 +161,15 @@ Fresh physical-device observations, usability acceptance and release approval
 are still missing. #66 / `.19`, Sludge `.8` and the epic remain open. Deferred
 #24 is not revived by this handoff; its separate routing scope needs its own
 future decision before eventual planning cleanup.
+
+The independent PR87 review also encountered intermittent initial Teacher-load
+failures in Chromium before the tested editing action. The same failure was
+reproduced with production files restored to base `dfe6ba8`, so it was not
+attributed to this PR; its cause is still undetermined. That review passed all
+59 WebKit checks and both new journeys in each engine, but did not independently
+confirm a fully green Chromium gate. Keep this limitation and the retained
+review traces with the final acceptance evidence rather than treating it as
+resolved or substituting it for the remaining manual pass.
 
 `sludge-lgi` remains an honest diagnostic follow-up: a historical iPad Firefox
 experiment contains one failed edit-to-display sample at 1068 ms without an

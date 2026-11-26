@@ -2,8 +2,8 @@
   "contractVersion": 1,
   "issue": "https://github.com/thdecn/apartmender/issues/66",
   "bead": "sludge-s16.19",
-  "generatedAt": "2026-11-26T08:10:26.340Z",
-  "sourceBaseCommit": "dfe6ba84215badd3f478eaa18a7018b133b6f0d2",
+  "generatedAt": "2026-11-26T11:00:49.354Z",
+  "sourceBaseCommit": "6e2d0c129dfa701dbad76710c55d6054551668c2",
   "sourceNote": "Runtime fingerprint includes working-tree code under test; PR merge SHA must also be recorded for manual evidence.",
   "runtimeFingerprint": "5093879a69f2817a06f23362bc93f111e45a556ac3fcf64161b7cb95fe7ff557",
   "runtimeInputs": [
@@ -229,9 +229,16 @@
     }
   ],
   "node": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap"
+    ],
+    "version": "v26.7.0",
     "passed": 193,
     "failed": 0,
-    "skipped": 1
+    "skipped": 1,
+    "allowedSkip": "authenticated Student records one assigned Session through local Sludge RPCs"
   },
   "browserChecks": [
     {
