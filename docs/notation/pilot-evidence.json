@@ -1,0 +1,312 @@
+{
+  "contractVersion": 1,
+  "issue": "https://github.com/thdecn/apartmender/issues/66",
+  "bead": "sludge-s16.19",
+  "generatedAt": "2026-11-26T11:00:49.354Z",
+  "sourceBaseCommit": "6e2d0c129dfa701dbad76710c55d6054551668c2",
+  "sourceNote": "Runtime fingerprint includes working-tree code under test; PR merge SHA must also be recorded for manual evidence.",
+  "runtimeFingerprint": "5093879a69f2817a06f23362bc93f111e45a556ac3fcf64161b7cb95fe7ff557",
+  "runtimeInputs": [
+    {
+      "path": "docs/app.js",
+      "sha256": "0154ae422c9f20a530ec23339a34e81a37dd53a47813f01fb20ef6352b9214f4"
+    },
+    {
+      "path": "docs/general-practice-collection.json",
+      "sha256": "f4e9e64d172ae985ae0669c9b17250ecad1c691d1eb4e80a370eb98dc3c55224"
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "d25dfeb21f17acb5ed24502d9ecff96a723cb12b55829a9b0577fd529f7f3483"
+    },
+    {
+      "path": "docs/login/browser-data.js",
+      "sha256": "d1ef7c7381387b08e475dc7bcc72bfb8a727ce66a43d65a3626b53ecec5b1ed8"
+    },
+    {
+      "path": "docs/login/config.js",
+      "sha256": "1772ccb1bd2bc2410ec7e4a87e21a34d7e057fcb1fb9f85121267afe48fd3af0"
+    },
+    {
+      "path": "docs/login/fingering-controls.js",
+      "sha256": "58869e6aa6a7383574af7cb4898e7fa00a0783aca6b65aacb6accc7bd0935c4d"
+    },
+    {
+      "path": "docs/login/fingerings.js",
+      "sha256": "00438e2cd1d919b4b4ab3d43974ceaf55ffeb5cc5f655a87e49a62afbd99521c"
+    },
+    {
+      "path": "docs/login/index.html",
+      "sha256": "87f1b25576a8bf4522b1d78435006d5f2e5a89d4e1f5e5e57d72a094c5d7f81c"
+    },
+    {
+      "path": "docs/login/login.js",
+      "sha256": "0a5893fa10bf6ae780741db2d94ad41e503d01a57f12d4e425bd303a6ee0a03c"
+    },
+    {
+      "path": "docs/login/notation-pilot.js",
+      "sha256": "3d11acd0c73562298328707f100a7c1f401ce4aa719986be9a8db9e2e1341f61"
+    },
+    {
+      "path": "docs/login/password-visibility.js",
+      "sha256": "b200326c0a60d4d5f2da3bb486e946208cfc8da7699f08f1b3ab65d464af973b"
+    },
+    {
+      "path": "docs/login/practice/fingering-card.js",
+      "sha256": "af3bf7f659476b353b666c30a5647fbf5e559758405c06e5f74ba16d54c5c90e"
+    },
+    {
+      "path": "docs/login/practice/fingerings.css",
+      "sha256": "8837b047381ff8d9b204d4c3bf982dc3b8a27095cd33480fb1309b2068150292"
+    },
+    {
+      "path": "docs/login/practice/index.html",
+      "sha256": "d354d800a968fc73d3385f03651cd546aea45c127e029701a676ccccdaf9c811"
+    },
+    {
+      "path": "docs/login/practice/practice-start.js",
+      "sha256": "74058af090b8a8ca5903f24a36bf7911fe56a6cc86c69de54c75ef726f523d47"
+    },
+    {
+      "path": "docs/login/practice/practice.js",
+      "sha256": "0767f3b512c0a427eca8e9177d4b32369839fd7a74740dba77f69c898d31f007"
+    },
+    {
+      "path": "docs/login/practice/session-journal.js",
+      "sha256": "6b2ba12d271b4eb9872efdd70468450f7c51b3db7885e2b22fa599335447b942"
+    },
+    {
+      "path": "docs/login/practice/session-ownership.js",
+      "sha256": "f5a377792b33a28aeb69d0607ea092e56b3be910998eb96e7edc5696e2ac2455"
+    },
+    {
+      "path": "docs/login/practice/session-recorder.js",
+      "sha256": "1bb1e76efbe6db166eb1da7fa0f85e557c60ded2af4417a4fc6e3192fb1d0311"
+    },
+    {
+      "path": "docs/login/practice/student-home.js",
+      "sha256": "3be641167d405ce20fa39e67c1980c06b9e9dde68fa50b3b2a60e40854f38012"
+    },
+    {
+      "path": "docs/login/practice/weekly-summary-cache.js",
+      "sha256": "09c4dae46114c4ce2e801f821f6068ce8b38711d8b2d7a329605bd7a4f6c2e6e"
+    },
+    {
+      "path": "docs/login/practice/weekly-summary-model.js",
+      "sha256": "60dd1ccc5767c1b3c34573ac20505d128edf3a957288eaf2bf95f11c4fc5c600"
+    },
+    {
+      "path": "docs/login/practice/weekly-summary/index.html",
+      "sha256": "667c447a7cd3316239378deccede2ce31aff0684d18751db0db47f23df15e2aa"
+    },
+    {
+      "path": "docs/login/practice/weekly-summary/weekly-summary.js",
+      "sha256": "0d1486754f7471b50570fca3d2c6291b82c27f8b8992243b1990cbc001bc85fb"
+    },
+    {
+      "path": "docs/login/recovery-progress.js",
+      "sha256": "52e76774caa6f8509dba67fac976fc9b99df3b902ad8b54537cd1eb6a56f95a0"
+    },
+    {
+      "path": "docs/login/supabase.js",
+      "sha256": "abc51a944ca5d0351d72543c096dae2f90197ec01c275a85e14971e907b61c10"
+    },
+    {
+      "path": "docs/login/teacher/index.html",
+      "sha256": "731b967cfedc4b83e551830699f62bf9b5dccd19f7bc2a21b50534a8dd515137"
+    },
+    {
+      "path": "docs/login/teacher/student/index.html",
+      "sha256": "0890184d797deedb4be92669757472c73defe2e057572794d47a22f66cd4f47b"
+    },
+    {
+      "path": "docs/login/teacher/teacher-config.js",
+      "sha256": "fb49e0a2caf12a681ca181c899ac012e046d6a1aae3c48109586f40375823cb2"
+    },
+    {
+      "path": "docs/login/teacher/teacher-detail.js",
+      "sha256": "f28ba966ccb7f073c21375f4c7a792443ee0db9164aa83fee23bc777a0a67c98"
+    },
+    {
+      "path": "docs/login/teacher/teacher-model.js",
+      "sha256": "49861daa4edc7018a9c990a69324553f8d559f1524d9870da5a43ac41ea8d055"
+    },
+    {
+      "path": "docs/login/teacher/teacher-notes.js",
+      "sha256": "9d36c6270ca02287161b51d0ac6b434d2da2aa02ae72329effe2e66d824e1407"
+    },
+    {
+      "path": "docs/login/teacher/teacher-practice.js",
+      "sha256": "ed92f0d4277da5c1298a0ae5afcc6d022cbf038247a369d76a740bf1e210d779"
+    },
+    {
+      "path": "docs/login/teacher/teacher-score.css",
+      "sha256": "73fafb05229294f582f35e4ef8f98a2f3ab2f5d3dbf469cb9ecf8c37b0570835"
+    },
+    {
+      "path": "docs/login/teacher/teacher-score.js",
+      "sha256": "be731041623881350b7b46634158b144430c5b909ce568fe54b7da1f83e3779a"
+    },
+    {
+      "path": "docs/login/teacher/teacher.css",
+      "sha256": "c5ed86a5237e357b6a729e054bc8246239374aa03ded281e99f7305ca37edc6a"
+    },
+    {
+      "path": "docs/login/teacher/teacher.js",
+      "sha256": "86ebabceb44b3184652ca19faa1221e2a9c429ff03126f7a47a68d97fa8faf68"
+    },
+    {
+      "path": "docs/notation/edition-descriptor.js",
+      "sha256": "7cf16a4c8f7682df295c32dc4fb829e1610f5330f706a0f6728782792b032789"
+    },
+    {
+      "path": "docs/notation/editions/bach-bwv-779-invention-no-8.v1.json",
+      "sha256": "e4ddca7dc9f53806e46fc16f6c9327e3e37434229869c1a10985b22bd1edf92a"
+    },
+    {
+      "path": "docs/notation/load-edition.js",
+      "sha256": "0435df9646c26148dd8e96f5ccf2d2cd892c386ec66eccfe976eb9d6068f4693"
+    },
+    {
+      "path": "docs/notation/measure-card.js",
+      "sha256": "349dce07022a53b8075047349934d9692788c046f3eaff32cb7c2068e257e585"
+    },
+    {
+      "path": "docs/notation/public-score-card.css",
+      "sha256": "1013250c76b99116087c27df521b3e19d155b1165b07afbdb953baeffaf8401e"
+    },
+    {
+      "path": "docs/notation/public-score-card.js",
+      "sha256": "4530c87482c70e8551cc64ba457b81d8a6cd349f5ed374705b2ada2021ee2b19"
+    },
+    {
+      "path": "docs/notation/public-score-pilot.js",
+      "sha256": "b37c8030e4a039f59fc8279b38aaa36aed3ff28b04fa92fad664736c32b51032"
+    },
+    {
+      "path": "docs/notation/score-index.js",
+      "sha256": "251783e3a296288ddb5df78b53201f87a351e49e3c75aa77eadfa0e7c87b9ba6"
+    },
+    {
+      "path": "docs/notation/score-preview.js",
+      "sha256": "c24e491bfa33ee0c9bfd4d0194ed6abed8a55685918d624669be33d0a8fcfbd7"
+    },
+    {
+      "path": "docs/notation/score-renderer.css",
+      "sha256": "d06842ea1af894f6e45c832118444e445f2c7f672a64b0e4502794f7348f702a"
+    },
+    {
+      "path": "docs/notation/score-renderer.js",
+      "sha256": "ecb5493e88903e247a826e53503f1139114de1f3e7c7608596d86dca6a18d9a6"
+    },
+    {
+      "path": "docs/piece-catalog.js",
+      "sha256": "82186a2da7ab856e1fa5c77f49a9296c10366a9de446877776a6a285477fdda9"
+    },
+    {
+      "path": "docs/pieces.json",
+      "sha256": "09dc15fcbc1c635432789cda050327a2a7296e02a0cd3d188a24109cee530c9f"
+    },
+    {
+      "path": "docs/practice-flow.js",
+      "sha256": "e60673ca37ae24ff946919fa8e14615e8217f0487e9bdf600d7d6af6284ba89d"
+    },
+    {
+      "path": "docs/practice-host.js",
+      "sha256": "60caacd21ad9d4902d52ca3b6a994a6d24fcdf169e9c7ff7877b1cafbf5e4326"
+    },
+    {
+      "path": "docs/practice-screen.js",
+      "sha256": "632ad1f670af3878a2000832d65a07f926d63f375cba897194437881181e3b51"
+    },
+    {
+      "path": "docs/styles.css",
+      "sha256": "d6a1af96cce4833b89430f8c8b0071696c57558d2f8c2dd16d225393e4693696"
+    },
+    {
+      "path": "docs/vendor/verovio/manifest.json",
+      "sha256": "4dee62d52fcefe3132feb919a299d0c4f9ab734b5179fef98bb19c56347bf1b3"
+    }
+  ],
+  "node": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap"
+    ],
+    "version": "v26.7.0",
+    "passed": 193,
+    "failed": 0,
+    "skipped": 1,
+    "allowedSkip": "authenticated Student records one assigned Session through local Sludge RPCs"
+  },
+  "browserChecks": [
+    {
+      "browser": "chromium",
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0,
+      "startedAt": "2026-11-26T08:06:36.348Z",
+      "durationMs": 95462.572,
+      "files": [
+        "e2e/catalog.spec.js",
+        "e2e/notation-descriptor.spec.js",
+        "e2e/public-practice.spec.js",
+        "e2e/public-score.spec.js",
+        "e2e/fingerings.spec.js",
+        "e2e/student-fingerings.spec.js",
+        "e2e/teacher-fingerings.spec.js",
+        "e2e/score-pages.spec.js",
+        "e2e/notation-pilot.spec.js"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0,
+      "startedAt": "2026-11-26T08:06:35.893Z",
+      "durationMs": 108175.06000000001,
+      "files": [
+        "e2e/catalog.spec.js",
+        "e2e/notation-descriptor.spec.js",
+        "e2e/public-practice.spec.js",
+        "e2e/public-score.spec.js",
+        "e2e/fingerings.spec.js",
+        "e2e/student-fingerings.spec.js",
+        "e2e/teacher-fingerings.spec.js",
+        "e2e/score-pages.spec.js",
+        "e2e/notation-pilot.spec.js"
+      ]
+    }
+  ],
+  "manualPlatforms": [
+    {
+      "platform": "macOS Safari",
+      "status": "pending",
+      "device": null,
+      "browserVersion": null,
+      "buildCommit": null,
+      "observations": null
+    },
+    {
+      "platform": "iPhone Safari",
+      "status": "pending",
+      "device": null,
+      "browserVersion": null,
+      "buildCommit": null,
+      "observations": null
+    },
+    {
+      "platform": "iPad Firefox",
+      "status": "pending",
+      "device": null,
+      "browserVersion": null,
+      "buildCommit": null,
+      "observations": null
+    }
+  ],
+  "ownerUsabilityAccepted": false,
+  "releaseAuthorized": false,
+  "knownDiagnosticFollowup": "sludge-lgi remains open; the historical iPad failed sample has no established cause."
+}

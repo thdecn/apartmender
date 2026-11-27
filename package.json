@@ -9,6 +9,8 @@
     "rec-demo:test:browser": "npm --prefix experiments/rec-demo run test:browser",
     "test": "node --test",
     "test:public": "playwright test e2e/catalog.spec.js e2e/public-practice.spec.js e2e/public-score.spec.js e2e/notation-descriptor.spec.js --workers=1",
+    "test:notation": "playwright test --config=playwright.notation.config.mjs",
+    "test:notation:evidence": "node tools/check-notation-evidence.mjs",
     "test:browser": "playwright test e2e/practice-local.spec.js --workers=1",
     "test:teacher": "playwright test e2e/teacher.spec.js e2e/teacher-notes.spec.js --workers=1",
     "test:teacher:local": "playwright test e2e/teacher-local.spec.js --workers=1",
