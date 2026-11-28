@@ -42,6 +42,11 @@ other checkout arrangements. Existing original source bytes are never
 silently replaced after upstream changes. Generation rebuilds only the
 known generated files in that piece's output directory.
 
+Use `generate.py mozart --infer-only` or `generate.py chopin --infer-only`
+to check whole-piece fingering without replacing retained output. This mode
+copies preparation inputs, normalizes notation and writes inference/audit
+results only under `--work-root`; it bypasses the CLI's forced output cleanup.
+
 ## Native source handling
 
 The Mozart preparation resolves its native LilyPond structure into 73 written
@@ -93,3 +98,14 @@ without rewriting the approved Mozart bundle, use `package.py mozart
 Mozart's encoding and adaptations carry CC BY-SA 3.0. The Prelude encoding
 and adaptations are public domain. Each bundle carries its own attribution,
 primary source license page and license record. Keep these with the assets.
+
+Run the regression checks with the Artmender environment:
+
+```sh
+../artmender/.venv/bin/python -B scripts/artmender_cards/test_workflows.py
+```
+
+They run inference and packaging against disposable copies of both bundles,
+verify that inference preserves every retained file, and check that published
+native-anchor evidence resolves in the folder and ZIP. The offline integrity
+gate also rejects a missing native-anchor evidence file.

@@ -58,8 +58,12 @@ def main():
         versions.update({"python": platform.python_version(), "lilypond": subprocess.run(
             ["lilypond", "--version"], check=True, capture_output=True, text=True).stdout.splitlines()[0]})
         validation = manifest["validation"]
+        anchor_report = ("preparation/native-anchor-validation.json" if args.piece == "chopin"
+                         else "preparation/native-anchor-review.json")
+        if not (root / anchor_report).is_file():
+            raise ValueError(f"Missing native anchor evidence: {anchor_report}")
         validation.update({"visual_review": "spot-checks passed", "visually_reviewed_measures": sorted(args.reviewed),
-                           "native_source_anchors": "preparation/native-anchor-review.json",
+                           "native_source_anchors": anchor_report,
                            "single_system_card_sources": True, "environment": versions})
         if args.piece == "chopin":
             audit = json.loads((root / "preparation/source-note-preservation.json").read_text())

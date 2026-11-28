@@ -536,7 +536,7 @@
       24,
       25
     ],
-    "native_source_anchors": "preparation/native-anchor-review.json",
+    "native_source_anchors": "preparation/native-anchor-validation.json",
     "single_system_card_sources": true,
     "environment": {
       "pianoplayer": "3.0.2",

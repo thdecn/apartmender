@@ -75,6 +75,15 @@ def main():
     piece = PIECES[args.piece]
     output = workspace / "artmended" / piece["slug"]
     preparation = output / "preparation"
+    work = args.work_root.resolve() / piece["slug"]
+    if args.infer_only and work.is_relative_to(output):
+        parser.error("Inference scratch output must be outside the retained bundle")
+    work.mkdir(parents=True, exist_ok=True)
+    if args.infer_only:
+        # Native anchor installation/inference writes audit files as well as
+        # the inference cache. Keep all of those writes away from retained data.
+        preparation = work / "inference-preparation"
+        shutil.copytree(output / "preparation", preparation, dirs_exist_ok=True)
     profile_data = json.loads((preparation / "profile.json").read_text())
     profile_fields = profile_data.get("profile", profile_data.get("lilypond_profile", profile_data))
     profile_names = set(LilyPondProfile.__dataclass_fields__)
@@ -104,8 +113,6 @@ def main():
     if args.piece == "chopin":
         install_rhythmic_timing(adapter_helpers["events"])
     install_native_anchors(preparation)
-    work = args.work_root.resolve() / piece["slug"]
-    work.mkdir(parents=True, exist_ok=True)
     original_infer = cli.suggest_first_onset_fingerings
     fingerprint_paths = [prepared, preparation / "profile.json", Path(__file__),
                          Path(__file__).with_name("compat.py"), Path(adapter.__file__),
@@ -126,6 +133,13 @@ def main():
         print("Whole-movement fingering inference passed", flush=True)
         return result
 
+    if args.infer_only:
+        normalized = work / "inference-score.normalized.ly"
+        cli.normalize_lilypond(prepared, normalized)
+        score = cli.parse_lilypond_score(normalized, profile, expected_measures=spec.expected_measures)
+        cached_infer(score, hand_size="M", profile=spec.fingering_profile)
+        return
+
     def render_pages(source, prefix):
         prefix.parent.mkdir(parents=True, exist_ok=True)
         for stale in prefix.parent.glob(prefix.name + "*.png"):
@@ -143,8 +157,6 @@ def main():
         return pages
 
     def render_set(score, cards_dir, raw_dir, output_dir):
-        if args.infer_only:
-            raise SystemExit(0)
         artifacts = list(write_lilypond_cards(score, cards_dir))
 
         def one(artifact):

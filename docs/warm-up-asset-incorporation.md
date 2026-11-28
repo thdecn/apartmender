@@ -16,8 +16,8 @@ backend read, timer or hosted operation is enabled.
 
 | Bundle | Complete cards | Retained checksums | Archive entries |
 | --- | --- | --- | --- |
-| [Mozart K.545 I](../artmended/mozart-k545-1-allegro/README.md) | 73, written 1–73 | 283 | 314 |
-| [Chopin Prelude Op.28 No.4](../artmended/chopin-op28-no4-prelude/README.md) | 26, pickup 0 and 1–25 | 114 | 145 |
+| [Mozart K.545 I](../artmended/mozart-k545-1-allegro/README.md) | 73, written 1–73 | 283 | 315 |
+| [Chopin Prelude Op.28 No.4](../artmended/chopin-op28-no4-prelude/README.md) | 26, pickup 0 and 1–25 | 114 | 146 |
 
 Each bundle retains original notation, reference PDF, editable cards, PNGs,
 source anchors, complete-piece fingering results, provenance/licenses,
@@ -74,7 +74,10 @@ are not an exhaustive editorial review or fingering certification.
 
 Fresh checks: bundle/archive/runtime/map integrity, original/prepared Prelude
 note preservation, aligned written-measure timing and generation reproducibility
-pass. All 193 Node tests pass with one existing opt-in local-Supabase skip;
+pass. Regression tests exercise inference-only and packaging on disposable
+copies of both bundles, proving retained bytes survive inference and native
+anchor evidence resolves in each folder/archive. The offline gate rejects
+missing anchor evidence. All 193 Node tests pass with one existing opt-in local-Supabase skip;
 the catalogue remains 6 Pieces/157 assets. No fresh physical-device or
 hosted observations are claimed.
 

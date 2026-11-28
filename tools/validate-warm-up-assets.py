@@ -38,6 +38,8 @@ def validate():
         require([int(c["measure"]) for c in cards] == labels[::-1], f"Card order: {slug}")
         require(manifest["validation"]["native_engraving_fatal_errors"] == 0, slug)
         require(manifest["validation"]["source_onset_anchors_preserved"], slug)
+        anchor_report = manifest["validation"]["native_source_anchors"]
+        require((base / anchor_report).is_file(), f"Native anchor evidence: {slug}/{anchor_report}")
         for dependency in ("pianoplayer", "pillow", "python-ly", "music21"):
             require(versions[dependency] == manifest["validation"]["environment"][dependency],
                     f"Generator lock mismatch: {dependency}")
