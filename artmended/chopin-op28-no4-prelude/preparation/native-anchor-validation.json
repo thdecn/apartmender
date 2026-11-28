@@ -1,0 +1,3278 @@
+{
+  "format": "artmender-native-anchor-validation-v1",
+  "staves": {
+    "upper": {
+      "matched_events": 84,
+      "matched_notes": 90,
+      "events": [
+        {
+          "measure": 0,
+          "ordinal": 0,
+          "pitches": [
+            59
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 0,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 1,
+          "pitches": [
+            70
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 0,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 0,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 0,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 2,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 0,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 1,
+          "pitches": [
+            68
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 0,
+          "pitches": [
+            68
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 1,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 2,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 3,
+          "pitches": [
+            74
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 4,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 5,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 6,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 0,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 1,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 0,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 2,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 0,
+          "pitches": [
+            67
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 1,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 2,
+          "pitches": [
+            60
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 3,
+          "pitches": [
+            59
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 4,
+          "pitches": [
+            63
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 5,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 6,
+          "pitches": [
+            74
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 7,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 8,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 0,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 1,
+          "pitches": [
+            70
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 2,
+          "pitches": [
+            70
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 3,
+          "pitches": [
+            81
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 4,
+          "pitches": [
+            78
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 5,
+          "pitches": [
+            76
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 0,
+          "pitches": [
+            76
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 1,
+          "pitches": [
+            75
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 2,
+          "pitches": [
+            84
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 3,
+          "pitches": [
+            75
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 4,
+          "pitches": [
+            75
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 5,
+          "pitches": [
+            76
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 6,
+          "pitches": [
+            79
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 7,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 0,
+          "pitches": [
+            74
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 1,
+          "pitches": [
+            72
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 2,
+          "pitches": [
+            76
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 3,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 4,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 5,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 6,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 0,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 1,
+          "pitches": [
+            71
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 2,
+          "pitches": [
+            69
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 0,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 1,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 2,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 0,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 1,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 0,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 1,
+          "pitches": [
+            66
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 23,
+          "ordinal": 0,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 0,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 1,
+          "pitches": [
+            63
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 2,
+          "pitches": [
+            52,
+            54,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 3,
+          "pitches": [
+            51,
+            54,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 25,
+          "ordinal": 0,
+          "pitches": [
+            64
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 25,
+          "ordinal": 1,
+          "pitches": [
+            52,
+            55,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "lower": {
+      "matched_events": 173,
+      "matched_notes": 512,
+      "events": [
+        {
+          "measure": 1,
+          "ordinal": 0,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 1,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 2,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 3,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 4,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 5,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 6,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 1,
+          "ordinal": 7,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 0,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 1,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 2,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 3,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 4,
+          "pitches": [
+            54,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 5,
+          "pitches": [
+            54,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 6,
+          "pitches": [
+            54,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 2,
+          "ordinal": 7,
+          "pitches": [
+            54,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 0,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 1,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 2,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 3,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 4,
+          "pitches": [
+            53,
+            57,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 5,
+          "pitches": [
+            53,
+            57,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 6,
+          "pitches": [
+            53,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 3,
+          "ordinal": 7,
+          "pitches": [
+            53,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 0,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 1,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 2,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 3,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 4,
+          "pitches": [
+            52,
+            55,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 5,
+          "pitches": [
+            52,
+            55,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 6,
+          "pitches": [
+            52,
+            55,
+            61
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 4,
+          "ordinal": 7,
+          "pitches": [
+            52,
+            55,
+            61
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 0,
+          "pitches": [
+            52,
+            55,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 1,
+          "pitches": [
+            52,
+            55,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 2,
+          "pitches": [
+            52,
+            55,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 3,
+          "pitches": [
+            52,
+            55,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 4,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 5,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 6,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 5,
+          "ordinal": 7,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 0,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 1,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 2,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 3,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 4,
+          "pitches": [
+            51,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 5,
+          "pitches": [
+            51,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 6,
+          "pitches": [
+            51,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 6,
+          "ordinal": 7,
+          "pitches": [
+            51,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 0,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 1,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 2,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 3,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 4,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 5,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 6,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 7,
+          "ordinal": 7,
+          "pitches": [
+            50,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 0,
+          "pitches": [
+            50,
+            53,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 1,
+          "pitches": [
+            50,
+            53,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 2,
+          "pitches": [
+            50,
+            53,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 3,
+          "pitches": [
+            50,
+            53,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 4,
+          "pitches": [
+            50,
+            53,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 5,
+          "pitches": [
+            50,
+            53,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 6,
+          "pitches": [
+            50,
+            53,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 8,
+          "ordinal": 7,
+          "pitches": [
+            50,
+            53,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 0,
+          "pitches": [
+            48,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 1,
+          "pitches": [
+            48,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 2,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 3,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 4,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 5,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 9,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 1,
+          "pitches": [
+            47,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 2,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 3,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 4,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 5,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 10,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 1,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 2,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 3,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 4,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 5,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 11,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 12,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 0,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 1,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 2,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 3,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 4,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 5,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 6,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 13,
+          "ordinal": 7,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 0,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 1,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 2,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 3,
+          "pitches": [
+            54,
+            57,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 4,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 5,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 6,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 14,
+          "ordinal": 7,
+          "pitches": [
+            53,
+            57,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 0,
+          "pitches": [
+            53,
+            56,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 1,
+          "pitches": [
+            53,
+            56,
+            63
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 2,
+          "pitches": [
+            53,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 3,
+          "pitches": [
+            53,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 4,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 5,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 6,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 15,
+          "ordinal": 7,
+          "pitches": [
+            52,
+            56,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 0,
+          "pitches": [
+            52,
+            55,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 1,
+          "pitches": [
+            52,
+            55,
+            62
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 2,
+          "pitches": [
+            52,
+            55,
+            61
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 3,
+          "pitches": [
+            52,
+            55,
+            61
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 4,
+          "pitches": [
+            49,
+            52,
+            58
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 5,
+          "pitches": [
+            49,
+            52,
+            58
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 16,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 0,
+          "pitches": [
+            35,
+            47
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 1,
+          "pitches": [
+            57,
+            60,
+            66,
+            69
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 2,
+          "pitches": [
+            57,
+            60,
+            66,
+            69
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 3,
+          "pitches": [
+            57,
+            60,
+            66,
+            69
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 4,
+          "pitches": [
+            55,
+            59,
+            63,
+            66
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 5,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 6,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 17,
+          "ordinal": 7,
+          "pitches": [
+            55,
+            59,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 0,
+          "pitches": [
+            57,
+            60,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 1,
+          "pitches": [
+            57,
+            60,
+            64
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 2,
+          "pitches": [
+            45
+          ],
+          "source_fingers": [
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 3,
+          "pitches": [
+            52,
+            54,
+            60
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 4,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 5,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 18,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 1,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 2,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 3,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 4,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 5,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 19,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 1,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 2,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 3,
+          "pitches": [
+            47,
+            52,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 4,
+          "pitches": [
+            47,
+            51,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 5,
+          "pitches": [
+            47,
+            51,
+            59
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 6,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 20,
+          "ordinal": 7,
+          "pitches": [
+            47,
+            51,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 0,
+          "pitches": [
+            48,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 1,
+          "pitches": [
+            48,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 2,
+          "pitches": [
+            48,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 3,
+          "pitches": [
+            48,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 4,
+          "pitches": [
+            48,
+            58
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 5,
+          "pitches": [
+            48,
+            58
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 6,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 21,
+          "ordinal": 7,
+          "pitches": [
+            48,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 0,
+          "pitches": [
+            47,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 1,
+          "pitches": [
+            47,
+            52,
+            57
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 2,
+          "pitches": [
+            47,
+            52,
+            56
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 3,
+          "pitches": [
+            47,
+            52,
+            56
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 4,
+          "pitches": [
+            47,
+            52,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 5,
+          "pitches": [
+            47,
+            52,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 6,
+          "pitches": [
+            47,
+            52,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 22,
+          "ordinal": 7,
+          "pitches": [
+            47,
+            52,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 23,
+          "ordinal": 0,
+          "pitches": [
+            46,
+            48,
+            55
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 0,
+          "pitches": [
+            35,
+            47
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 24,
+          "ordinal": 1,
+          "pitches": [
+            35,
+            42,
+            47
+          ],
+          "source_fingers": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "measure": 25,
+          "ordinal": 0,
+          "pitches": [
+            28,
+            40
+          ],
+          "source_fingers": [
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  },
+  "prepared_source_sha256": "20d260bf646a567097be041b77098bb79a3c2d8ba9053bcb38c1c34aff20e0ca"
+}

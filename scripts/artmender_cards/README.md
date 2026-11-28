@@ -1,7 +1,7 @@
 # Retained Artmender card generation
 
 These scripts produce local card bundles for Mozart K.545, first movement,
-and Chopin's Nocturne in E-flat major, Op.9 No.2. They do not publish the
+and Chopin's Prelude in E minor, Op.28 No.4. They do not publish the
 assets or implement Warm Up. The Chopin bundle is a separate repertoire
 request, not an addition to the agreed Warm Up exercises.
 
@@ -32,7 +32,7 @@ Run from this repository's root:
 ```sh
 ../artmender/.venv/bin/python scripts/artmender_cards/fetch_sources.py all
 ../artmender/.venv/bin/python scripts/artmender_k545/prepare.py --artmender-root ../artmender --output-dir artmended/mozart-k545-1-allegro/preparation --source artmended/mozart-k545-1-allegro/source/K545-1.ly
-PYTHONPATH=../artmender/src ../artmender/.venv/bin/python scripts/artmender_chopin/prepare.py artmended/chopin-op9-no2-nocturne/source/chopin_nocturne_op9_n2.ly artmended/chopin-op9-no2-nocturne/preparation
+PYTHONPATH=../artmender/src ../artmender/.venv/bin/python scripts/artmender_chopin/prepare.py artmended/chopin-op28-no4-prelude/source/Chop-28-4.ly artmended/chopin-op28-no4-prelude/preparation
 ../artmender/.venv/bin/python scripts/artmender_cards/generate.py mozart
 ../artmender/.venv/bin/python scripts/artmender_cards/generate.py chopin
 ```
@@ -46,7 +46,7 @@ known generated files in that piece's output directory.
 
 The Mozart preparation resolves its native LilyPond structure into 73 written
 measures. The Chopin source has an opening pickup labelled 0 and numbered bars
-1 through 34, yielding 35 cards; its unmetered cadenza remains bar 32. Neither
+1 through 25, yielding 26 cards. Its pickup is a quarter note. Neither
 pipeline expands performance repeats or converts LilyPond to MusicXML.
 
 Adapters are scoped to the loaded generator process. They preserve source
@@ -59,10 +59,11 @@ as simultaneous chord fingers.
 
 The shared native-anchor exporter reads attached LilyPond note events rather
 than treating negative layout offsets as fingering digits. Its source-hash
-checks regenerate metadata after preparation changes. Chopin's two ambiguous
-above-chord `4` markings in bar 12 were compared with the reference PDF and
-mapped to their highest notes; that narrow interpretation is recorded in the
-native-anchor metadata. Source text is retained unchanged.
+checks regenerate metadata after preparation changes. The Prelude also has an
+independent original/prepared native note-event audit; see the
+[Prelude adapter notes](../artmender_chopin/README.md) for that command and its
+scoped octave-chord inference compatibility. Retain its source-note audit
+before packaging.
 
 ## Verification and review
 
@@ -80,16 +81,15 @@ measures have actually been checked, finalize and archive with:
 
 ```sh
 ../artmender/.venv/bin/python scripts/artmender_cards/package.py mozart --reviewed 1 15 37 40 73
-../artmender/.venv/bin/python scripts/artmender_cards/package.py chopin --reviewed 0 1 13 18 21 23 24 31 32 34
+../artmender/.venv/bin/python scripts/artmender_cards/package.py chopin --reviewed 0 1 9 11 12 13 16 18 23 24 25
 ```
 
 Archives under `artmended/archives/` include the piece bundle, shared helpers,
 both preparation adapters and the retained runtime. File hashes and ZIP CRCs
-are checked during packaging. Chopin bar 32 keeps its complete unmetered
-cadenza on one system and is very small in the phone-size PNG; packaging also
-retains a scalable PDF and high-resolution PNG under `companions/`.
+are checked during packaging. To refresh a ZIP after changing shared helpers
+without rewriting the approved Mozart bundle, use `package.py mozart
+--archive-only`; it repacks the unchanged bundle with current reproduction code.
 
-The original score encodings and their adapted notation/card images are
-licensed CC BY-SA 3.0. Each bundle carries its own attribution and primary
-source license page. Do not publish a bundle without its credit and license
-records.
+Mozart's encoding and adaptations carry CC BY-SA 3.0. The Prelude encoding
+and adaptations are public domain. Each bundle carries its own attribution,
+primary source license page and license record. Keep these with the assets.

@@ -30,19 +30,25 @@ PIECES = {
         "source_page": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=998",
         "download_base": "https://www.mutopiaproject.org/ftp/MozartWA/KV545/K545-1/",
         "attribution": "Alejandro Sierra, Mutopia-2013/09/01-998, copyright 2013",
+        "license": "Creative Commons Attribution-ShareAlike 3.0 Unported",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "license_marker": "Attribution-ShareAlike 3.0",
         "adapter": "artmender_k545.grace_landing",
         "labels": list(range(1, 74)),
     },
     "chopin": {
-        "slug": "chopin-op9-no2-nocturne",
-        "title": "Frédéric Chopin — Nocturne in E-flat major, Op.9 No.2",
-        "composer": "Frédéric Chopin", "catalog": "Op.9 No.2", "movement": None,
-        "source": "chopin_nocturne_op9_n2.ly", "pdf": "chopin_nocturne_op9_n2-a4.pdf",
-        "source_page": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590",
-        "download_base": "https://www.mutopiaproject.org/ftp/ChopinFF/O9/chopin_nocturne_op9_n2/",
-        "attribution": "Renato Biolcati Rinaldi, Mutopia-2014/12/18-1590, copyright 2014; after G. Schirmer, New York, 1881",
+        "slug": "chopin-op28-no4-prelude",
+        "title": "Frédéric Chopin — Prelude in E minor, Op.28 No.4",
+        "composer": "Frédéric Chopin", "catalog": "Op.28 No.4", "movement": None,
+        "source": "Chop-28-4.ly", "pdf": "Chop-28-4-a4.pdf",
+        "source_page": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=468",
+        "download_base": "https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-4/",
+        "attribution": "Magnus Lewis-Smith, Mutopia-2016/10/28-468; after Peters, 1879",
+        "license": "Public Domain",
+        "license_url": "https://www.mutopiaproject.org/legal.html",
+        "license_marker": "Public Domain",
         "adapter": "artmender_chopin.adapters",
-        "labels": list(range(0, 35)),
+        "labels": list(range(0, 26)),
     },
 }
 
@@ -87,7 +93,7 @@ def main():
         source=SourceRecord(
             download_url=piece["download_base"] + piece["source"],
             source_page_url=piece["source_page"], reference_pdf_url=piece["download_base"] + piece["pdf"],
-            format="lilypond", license_name="Creative Commons Attribution-ShareAlike 3.0 Unported",
+            format="lilypond", license_name=piece["license"],
             corpus="Mutopia Project",
         ), lilypond_profile=profile,
     )
@@ -174,7 +180,7 @@ def main():
     manifest["source"].update({
         "sha256": sha256_file(output / "source" / piece["source"]),
         "reference_pdf": piece["pdf"], "reference_pdf_sha256": sha256_file(output / "source" / piece["pdf"]),
-        "attribution": piece["attribution"], "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "attribution": piece["attribution"], "license_url": piece["license_url"],
     })
     manifest["preparation"] = {
         "notation": str(prepared.relative_to(output)), "sha256": sha256_file(prepared),
@@ -220,8 +226,8 @@ def main():
     (output / "LICENSE-AND-ATTRIBUTION.md").write_text(
         f"# {piece['title']}\n\nComposition by {piece['composer']}, in the public domain.\n\n"
         f"Encoding and engraving: {piece['attribution']}.\n\nSource: {piece['source_page']}\n\n"
-        "Adapted notation and card images: Creative Commons Attribution-ShareAlike 3.0 Unported.\n"
-        "https://creativecommons.org/licenses/by-sa/3.0/\n\n"
+        f"Encoding, adapted notation and card images: {piece['license']}.\n"
+        f"{piece['license_url']}\n\n"
         "Changes: native preparation with explicit written-measure boundaries; reverse-order practice cards "
         "with next-measure landing context; parenthesized first-onset fingering suggestions inferred in "
         "whole-piece context for hand size M. Source annotations remain in the editable notation.\n"

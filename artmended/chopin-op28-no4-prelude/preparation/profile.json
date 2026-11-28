@@ -1,0 +1,11 @@
+{
+  "upper_variable": "upper",
+  "lower_variable": "lower",
+  "upper_default_clef": "treble",
+  "lower_default_clef": "bass",
+  "initial_context": [
+    "\\key e \\minor",
+    "\\time 2/2"
+  ],
+  "measure_boundaries": "comments"
+}

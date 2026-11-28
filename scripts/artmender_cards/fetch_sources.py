@@ -27,9 +27,11 @@ def main():
         folder = args.workspace / "artmended" / piece["slug"] / "source"
         folder.mkdir(parents=True, exist_ok=True)
         page = urlopen(piece["source_page"], timeout=30).read()
-        if b"Attribution-ShareAlike 3.0" not in page:
+        if piece["license_marker"].encode() not in page:
             raise ValueError("Primary source page no longer confirms the expected license")
         retain(folder / "mutopia-source-page.html", page)
+        if name == "chopin":
+            retain(folder / "mutopia-license-page.html", urlopen(piece["license_url"], timeout=30).read())
         records = []
         for filename in [piece["source"], piece["pdf"]]:
             url = piece["download_base"] + filename
@@ -38,8 +40,8 @@ def main():
             records.append({"file": filename, "url": url, "sha256": hashlib.sha256(data).hexdigest()})
         report = {
             "source_page": piece["source_page"], "source_page_file": "mutopia-source-page.html",
-            "license": "Creative Commons Attribution-ShareAlike 3.0",
-            "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+            "license": piece["license"],
+            "license_url": piece["license_url"],
             "attribution": piece["attribution"],
             "retrieved_at": datetime.now(timezone.utc).isoformat(), "files": records,
         }

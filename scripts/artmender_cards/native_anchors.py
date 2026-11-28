@@ -15,7 +15,6 @@ import re
 import subprocess
 
 
-CHOPIN_REVIEWED_SOURCE_SHA256 = "f35863a752f5b2805cd50272909b06bb8b1b1a8412d2b549fd13969a4481ab65"
 
 NATIVE_EXPORT = r'''
 #(define (join-number xs) (string-join (map number->string xs) ","))
@@ -125,20 +124,7 @@ def _assign_source_fingers(record: dict) -> None:
 
     shared = record["shared_finger_strings"]
     missing = [index for index, finger in enumerate(originals) if finger is None]
-    if record.get("reviewed_top_note_finger") is not None:
-        index = max(range(count), key=lambda i: record["midi_pitches"][i])
-        finger = record["reviewed_top_note_finger"]
-        if originals[index] is not None and originals[index] != finger:
-            raise ValueError("Reviewed graphical source finger conflicts with an inline finger")
-        originals[index] = finger
-        annotations.append({
-            "kind": "reviewed_source_chord_top_note",
-            "note": index,
-            "sequence": [finger],
-            "mapping": "above-chord finger4 to highest pitch",
-            "basis": "Source PDF page1, final system, RH measure12; the two explicit qua markings are above the highest note. Graphical/conventional source interpretation, not per-note FingeringEvent attachment.",
-        })
-    elif shared and all(re.fullmatch(r"[1-5]", value) for value in shared):
+    if shared and all(re.fullmatch(r"[1-5]", value) for value in shared):
         if len(shared) == 1 and len(missing) == 1:
             originals[missing[0]] = int(shared[0])
             annotations.append({"kind": "source_chord_finger_markup", "note": missing[0], "sequence": [int(shared[0])], "mapping": "only unassigned chord member"})
@@ -167,8 +153,6 @@ def export(preparation_dir: Path, *, lilypond: str = "lilypond") -> Path:
     profile = json.loads((preparation_dir / "profile.json").read_text(encoding="utf-8"))
     source_path = _source_path(preparation_dir, profile)
     text = source_path.read_text(encoding="utf-8")
-    raw_chopin_source = preparation_dir.parent / "source" / "chopin_nocturne_op9_n2.ly"
-    reviewed_chopin = raw_chopin_source.exists() and hashlib.sha256(raw_chopin_source.read_bytes()).hexdigest() == CHOPIN_REVIEWED_SOURCE_SHA256
     native_profile = profile.get("lilypond_profile", profile)
     variables = {"upper": native_profile["upper_variable"], "lower": native_profile["lower_variable"]}
     definitions = text.split("\\score", 1)[0]
@@ -211,12 +195,6 @@ def export(preparation_dir: Path, *, lilypond: str = "lilypond") -> Path:
         }
         if len(record["inline_digits"]) != len(record["midi_pitches"]) or len(record["note_finger_strings"]) != len(record["midi_pitches"]):
             raise ValueError("Native chord anchor shape mismatch")
-        if (reviewed_chopin and staff == "upper" and measure == 12
-                and sorted(record["midi_pitches"]) in ([64, 71], [65, 69, 72])
-                and record["shared_finger_strings"] == ["4"]):
-            # These two source instructions were checked against the retained
-            # PDF, rather than generalized from arbitrary markup placement.
-            record["reviewed_top_note_finger"] = 4
         _assign_source_fingers(record)
         records.append(record)
     # LilyPond's grace-wrapper element callbacks can expose copied views of

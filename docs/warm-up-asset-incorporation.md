@@ -4,33 +4,42 @@
 planning Bead `sludge-5l8.2`. Base: accepted main
 `7f230fd3096548cc1c9b2b320ab7444d95afdbf2`.
 
-The already generated `sludge-bv7` deliverables were copied byte-for-byte from
-the owner's retained local files into this isolated worktree. Generation is
-not repeated or counted as new unfinished work. The original saved checkout
-and unrelated edits remain unchanged. This PR enables no application flow,
-catalogue entry, backend read, timer or hosted operation.
+The approved Mozart deliverables were copied byte-for-byte from the owner's
+retained files. The owner selected Chopin's Prelude in E minor, Op.28 No.4
+for the separate repertoire bundle. Its 26 cards were generated using the
+[Artmender workflow](../scripts/artmender_cards/README.md), native LilyPond
+and whole-piece fingering inference. This correction resumes the same .2
+Bead. Saved checkouts remain unchanged. No app flow, catalogue entry,
+backend read, timer or hosted operation is enabled.
 
 ## Retention and integrity
 
 | Bundle | Complete cards | Retained checksums | Archive entries |
 | --- | --- | --- | --- |
-| [Mozart K.545 I](../artmended/mozart-k545-1-allegro/README.md) | 73, written 1–73 | 283 | 313 |
-| [Chopin Op.9 No.2](../artmended/chopin-op9-no2-nocturne/README.md) | 35, pickup 0 and 1–34 | 181 | 211 |
+| [Mozart K.545 I](../artmended/mozart-k545-1-allegro/README.md) | 73, written 1–73 | 283 | 314 |
+| [Chopin Prelude Op.28 No.4](../artmended/chopin-op28-no4-prelude/README.md) | 26, pickup 0 and 1–25 | 114 | 145 |
 
-The source encodings, reference PDFs, editable card notation, PNGs, native
-source anchors, whole-piece first-onset fingering records, provenance/licenses,
-render logs and visual samples are retained. Every recorded checksum and both
-archive CRCs pass; every archived byte matches its retained workspace file.
-All 12 runtime snapshot hashes match. `uv.lock` versions match each bundle's
-recorded generator inputs: PianoPlayer 3.0.2, Pillow 12.3.0, python-ly 0.9.10,
-music21 10.5.0. Original generation used Python 3.13.13 and LilyPond 2.26.0;
-this incorporation does not claim a new engraving run.
+Each bundle retains original notation, reference PDF, editable cards, PNGs,
+source anchors, complete-piece fingering results, provenance/licenses,
+render logs and visual samples. Checksums, archive CRCs, archive contents and
+all 12 runtime hashes pass. The runtime lock matches PianoPlayer 3.0.2,
+Pillow 12.3.0, python-ly 0.9.10 and music21 10.5.0. Both generations used
+Python 3.13.13 and LilyPond 2.26.0. Mozart was not re-engraved; only its ZIP
+was repacked with the updated shared reproduction helpers.
 
-Sources/adaptations carry CC BY-SA 3.0 and original attribution. No source
-edition or retained output was silently replaced. Follow the retained
-[reproduction instructions](../scripts/artmender_cards/README.md); prefer the
-saved runtime/lock over an arbitrary sibling checkout. The offline integrity
-command uses Python 3.11+:
+Mozart's encoding and adaptations carry CC BY-SA 3.0. The
+[Prelude source](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=468)
+is a public-domain encoding by Magnus Lewis-Smith, after Peters 1879.
+Its original LilyPond/PDF hashes and primary source/license pages are retained.
+Its native original/prepared audit matches 257 pitched events, containing
+602 notes, by staff, pitches and durations. Native source-anchor matching
+also checks every parsed event. The audit's multiset comparison alone does
+not establish event order; aligned measure/timing checks and reference
+spot checks supplement it. The Prelude adapter documents the scoped
+PianoPlayer octave-chord compatibility; hand size and motion geometry remain M.
+
+Follow the retained [reproduction instructions](../scripts/artmender_cards/README.md)
+and runtime/lock. The offline integrity command uses Python 3.11+:
 
 ```sh
 python3 -B tools/validate-warm-up-assets.py
@@ -41,41 +50,40 @@ python3 -B tools/validate-warm-up-assets.py
 [measure-map.json](warm-up/mozart-k545-1-allegro/measure-map.json) selects exactly
 the 23 Mozart complete measures 1–11, 13–17, 18–20 and 22–25. It binds written
 measure labels, existing next-measure landing, source card path and PNG SHA256.
-Copied public PNGs match the retained bytes. The existing first sounding onset
-per staff, with preceding rests, remains intact; the landing is not another
-complete card. Original attribution is also adjacent to the public images.
+Public PNGs and adjacent attribution remain byte-identical to the approved
+retained bundle. Both staff landings retain their first sounding onset and
+preceding rests. A landing is not another complete card.
 
-The later `.4` passage model owns chooser data and chronological browsing.
+The later .4 passage model owns chooser data and chronological browsing.
 Chopin remains separate repertoire and never enters the Warm Up library.
 
 ## Visual spot checks and limits
 
-Fresh inspection compared retained card previews with retained reference-score
-pages: Mozart measures 1, 37 and 73 against reference pages 1, 3 and 5; Chopin
-pickup 0, measures 18 and 34 against reference pages 1, 2 and 3. Both staves,
-the sampled note/rest patterns and terminal/landing behavior match. Original
-source slurs can cross excerpt boundaries; this does not establish a new
-note-by-note editorial review or certification of every fingering suggestion.
-The earlier broader sampled visual-review records remain in each manifest.
+Mozart measures 1, 37 and 73 were compared with retained reference pages
+1, 3 and 5. The new Prelude comparisons cover pickup 0 and measures 1, 9,
+11, 12, 13, 16, 18, 23, 24 and 25 against its one-page reference: both staves,
+ornaments/tuplets, Largo/stretto, pedal brackets and final cross-staff voicing.
+Every Prelude card engraves on one system at 1170 × 2532 pixels, with
+parenthesized native fingering suggestions and consistent next-onset landings.
+Its final measure stands alone. The pickup's lower staff is correctly a rest.
 
-Chopin 32 was also inspected against reference page 3: the full unmetered
-cadenza remains one system. Its standard phone-size PNG is too small for
-comfortable reading; the scalable PDF and high-resolution PNG companions are
-retained. No new subdivisions, omitted cadenza notes or app zoom are introduced.
-Existing nonfatal excerpt-spanner/spacing warnings remain in the manifests
-and render logs, not relabeled as fatal errors or silently discarded.
+Source slurs and other spanners can cross excerpt boundaries; nonfatal
+warnings remain in manifests/render logs. The card-16 stretto spanner is
+closed at the excerpt boundary so its label remains visible. Spot checks
+are not an exhaustive editorial review or fingering certification.
 
-Fresh checks: bundle/archive/runtime/map integrity passes; 193 Node tests pass
-with one existing opt-in local-Supabase skip; existing catalogue baseline
-passes for 6 Pieces/157 assets. No physical-device, hosted or complete musical
-review is claimed by these incorporation checks.
+Fresh checks: bundle/archive/runtime/map integrity, original/prepared Prelude
+note preservation, aligned written-measure timing and generation reproducibility
+pass. All 193 Node tests pass with one existing opt-in local-Supabase skip;
+the catalogue remains 6 Pieces/157 assets. No fresh physical-device or
+hosted observations are claimed.
 
 ## Remaining delivery
 
 The [MVP](focused-practice-mvp.md), [audit](focused-practice-review.md) and
-[roadmap](focused-practice-roadmap.md) retain owner decisions, both closed gates,
-the setup exception, one shared two-Bead daily cap and manual review/merge/
-deployment boundaries. Current accepted Student Home already has `piece-list`
-from #44; later `.9` reuses it and preserves comments/assignment order/count.
-Keep `.2` / #88 open until this focused PR is reviewed and incorporated. Other
-application, operator and fresh device acceptance remain their own children.
+[roadmap](focused-practice-roadmap.md) retain owner decisions, both gates,
+the setup exception, shared two-Bead daily cap and manual review/merge/
+deployment boundaries. Accepted Student Home already has `piece-list`
+from #44; later .9 reuses it and preserves comments/assignment order/count.
+Keep .2 / #88 open until this PR is reviewed and incorporated. Application,
+operator and fresh device acceptance remain their own children.

@@ -19,8 +19,8 @@ def main():
     root = args.workspace / "artmended" / piece["slug"]
     qa = root / "validation"
     qa.mkdir(exist_ok=True)
-    pages = [1, 3, 5] if args.piece == "mozart" else [1, 2, 3]
-    measures = [1, 5, 15, 25, 37, 40, 70, 73] if args.piece == "mozart" else [0, 1, 5, 13, 18, 21, 23, 24, 31, 32, 34]
+    pages = [1, 3, 5] if args.piece == "mozart" else [1]
+    measures = [1, 5, 15, 25, 37, 40, 70, 73] if args.piece == "mozart" else [0, 1, 9, 11, 12, 13, 16, 18, 23, 24, 25]
     manifest = json.loads((root / "manifest.json").read_text())
     records = {int(record["measure"]): record for record in manifest["cards"]}
     for page in pages:

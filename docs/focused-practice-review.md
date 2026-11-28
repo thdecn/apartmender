@@ -18,7 +18,7 @@ Evidence: `docs/app.js` (`updateRotateHint`, visibility and orientation handlers
 
 The 73-card K.545 Allegro set is now retained under [`artmended/mozart-k545-1-allegro/`](../artmended/mozart-k545-1-allegro/), including original source and reference PDF, editable notation, first-onset fingering records, provenance and validation evidence. Native preparation, complete-chord look-ahead, ornament landings, initial grace-note staff context and semantic source-anchor preservation are covered by retained adapters. Automated checks and visual reference spot-checks passed. The [reproduction helpers](../scripts/artmender_cards/README.md) and exact Artmender runtime are saved in the repository.
 
-The six technical passages use 23 complete-measure cards plus their existing landing context. Selecting those cards and integrating them into the app remain delivery work. A separately requested Chopin Op.9 No.2 bundle does not add exercises to the Warm Up library.
+The six technical passages use 23 complete-measure cards plus their existing landing context. Selecting those cards and integrating them into the app remain delivery work. A separately requested Chopin Prelude in E minor, Op.28 No.4 bundle does not add exercises to the Warm Up library.
 
 ## Implementation readiness gaps
 

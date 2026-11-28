@@ -7,63 +7,34 @@ from pathlib import Path
 import re
 
 
-def fix_measure24_slur(source: str) -> str:
-    """Keep source inside-slur fingerings without LilyPond's callback cycle.
-
-    LilyPond 2.26 recursively calculates the second m24 Slur.control-points
-    through Fingering positioning when the source's `did` macro selects
-    avoid-slur=inside. Native positions/direction overrides do not break it.
-    These are the native solver's curve points, captured for this exact
-    150mm card with that span temporarily using outside avoidance. Freezing
-    only the curve keeps the source `did` and every fingering/slur unchanged.
-    """
-    target = r"\did a'-1 ("
-    if source.count(target) != 1:
-        raise ValueError("The reviewed m24 slur source changed; re-check its curve")
-    control_points = "'((0.5780665769885971 . 1.538888888888889) (2.599080601478846 . 3.554836415017885) (15.171548463022596 . 5.750497018210478) (17.75622404348792 . 4.538888888888889))"
-    return source.replace(target, r"\did \once \override Slur.control-points = #" + control_points + " a'-1 (", 1)
-
-
-def fix_card_layout(source: str, measure_label: int) -> str:
-    """Card-only corrections for offsets and continuations from the full page."""
-    if measure_label in {0, 1}:
-        source = source.replace("TextScript.extra-offset = #'( 0.0 . -4.8 )",
-                                "TextScript.extra-offset = #'( 0.0 . 0.0 )")
-    if measure_label == 34:
-        source = source.replace("TextScript.extra-offset = #'( 0.0 . -2.0 )",
-                                "TextScript.extra-offset = #'( 0.0 . 0.0 )")
-    if measure_label == 23:
-        # The one-note m24 landing has no second note for these continuations.
-        # Retain its onset, finger, articulation, dynamic and hairpin.
-        orphan = r" ([ \dif]"
-        if source.count(orphan) != 1:
-            raise ValueError("Reviewed m24 singleton landing syntax changed")
-        source = source.replace(orphan, "", 1)
-    if measure_label == 31:
-        # The next bar is an unmetered cadenza. Its first LH note alone has
-        # no second beam/slur endpoint; retain the pitch, pedal and fingering,
-        # and remove only these continuation graphics and the next-note offset.
-        source, count = re.subn(
-            r"(\\ped)\s*\[\s*\\\(\\once \\override TextScript.extra-offset = #'\( -0.4 . -5.5 \)\]",
-            r"\1", source)
-        if count != 1:
-            raise ValueError("Reviewed m32 singleton landing syntax changed")
-        # Close unmetered time only after BOTH staff landing fragments and
-        # their silent alignment padding, so their final barlines coincide.
-        source = source.replace(r"\cadenzaOff", "")
-        source = source.replace('\n  \\bar "|."', '\n  \\cadenzaOff \\bar "|."')
-        # Full-page dash spacing spans the whole cadenza, absent on this
-        # one-onset landing. Keep the complete words in a compact reminder.
-        source = source.replace("senza        –          –        tempo", "senza tempo")
-        source = source.replace("paper-width = 150\\mm", "paper-width = 160\\mm")
-    return source
-
-
 def install(preparation_dir: Path, *, artmender_root=None):
     import artmender.lilypond as lily
     import artmender.cli as cli
     import artmender.fingering as fingering
 
+    from pianoplayer.hand import Hand
+
+    base_skip = Hand.skip
+
+    def skip(self, fa, fb, na, nb, hf, lr, level):
+        rejected = base_skip(self, fa, fb, na, nb, hf, lr, level)
+        # PianoPlayer's pairwise stretch heuristics reject the source's four-
+        # note octaves at LH17 and RH24–25 even for size M. For those native
+        # voicings use its full-hand span bound instead. Keep unique ordered
+        # fingers and M geometry/motion cost; infer every digit in full context.
+        reviewed = ((lr == "left" and na.measure == 17)
+                    or (lr == "right" and na.measure in (24, 25)))
+        if (rejected and reviewed and na.isChord and nb.isChord
+                and na.chordID == nb.chordID and na.NinChord == nb.NinChord == 4):
+            members = [n for n in self.noteseq if n.isChord and n.chordID == na.chordID]
+            ordered = fa > fb if lr == "left" else fa < fb
+            if (len(members) == 4 and ordered
+                    and max(n.pitch for n in members) - min(n.pitch for n in members) == 12
+                    and max(n.x for n in members) - min(n.x for n in members) <= self.max_span_cm):
+                return False
+        return rejected
+
+    Hand.skip = skip
     base_parse = lily.parse_lilypond_score
     base_card = lily._card_source
     base_matches = lily._rhythmic_matches
@@ -134,7 +105,7 @@ def install(preparation_dir: Path, *, artmender_root=None):
                                              render_prefix=lane.render_prefix, render_suffix=lane.render_suffix,
                                              transpose_semitones=lane.transpose_semitones) for lane in lanes)
                 if matches(leading):
-                    # m31 has sequential music before its final two-voice beat.
+                    # Include any sequential prefix in full-piece inference.
                     # Put it in lane 1; lane 2 waits with exact eighth skips.
                     # Keeping it merely as `leading_source` would hide its
                     # first onset from full-piece fingering inference.
@@ -145,7 +116,7 @@ def install(preparation_dir: Path, *, artmender_root=None):
                     voices = tuple(replace(v, source=((leading if i == 0 else wait) + "\n" + v.source))
                                    for i, v in enumerate(voices))
                     leading = ""
-                # Both final lower-staff voices begin with explicit durations.
+                # Prepared parallel lanes retain their explicit native durations.
                 # A short voice ends naturally; add no musical notes to fill it.
                 prepared.append(replace(measure, voices=voices, leading_source=leading))
             staves.append(replace(staff, measures=tuple(prepared)))
@@ -180,12 +151,11 @@ def install(preparation_dir: Path, *, artmender_root=None):
             prefix = source[:end]
             prefix = re.sub(r'\\bar\s+"[^"]*"', '', prefix)
             prefix = lily._balance_brackets(prefix)
+            prefix = re.sub(r"[-_^]\s*$", "", prefix)
             # Retain leading grace/tuplet constructs as complete native syntax.
             # Braces inside markup and Scheme are already balanced source text.
             missing = prefix.count("{") - prefix.count("}")
             prefix += " }" * max(0, missing)
-            if r"\cadenzaOn" in prefix and r"\cadenzaOff" not in prefix:
-                prefix += r" \cadenzaOff"
             fragments.append(prefix)
             lengths.append(max((offset + duration for _, offset, duration, grace in selected), default=Fraction(0)))
         target = max(lengths, default=Fraction(0))
@@ -195,60 +165,12 @@ def install(preparation_dir: Path, *, artmender_root=None):
     def card(upper, lower, upper_landing, lower_landing):
         text = base_card(upper, lower, upper_landing, lower_landing)
         text = text.replace('#(set-global-staff-size 25)', '#(set-global-staff-size 25)\n\\language "nederlands"\n' + macros, 1)
-        def leading_grace(measure):
-            for voice in lily._measure_voices(measure):
-                timeline = events(voice.source, voice.start_duration)
-                first = next((entry for entry in timeline if lily._is_pitched(entry[0])), None)
-                if first is not None and first[3] and first[1] == 0:
-                    return True
-            return False
-        if leading_grace(upper) or leading_grace(lower):
-            # Grace events precede main-time-zero context commands. Initialize
-            # both staves at construction, so the lower grace-time context is
-            # already bass-clef/E-flat/12/8 rather than the implicit defaults.
-            grace_lengths = []
-            for measure in (upper, lower):
-                if leading_grace(measure):
-                    source = lily._measure_voices(measure)[0].source
-                    start, end = grace_spans(source)[0]
-                    grace_lengths.append(lily._fragment_duration(source[start:end]))
-            grace_length = max(grace_lengths)
-            for name, measure in (("upper", upper), ("lower", lower)):
-                clef = next(c for c in measure.context if c.startswith("\\clef ")).split(maxsplit=1)[1].strip('"')
-                glyph, position, middle = (("clefs.G", -2, -6) if clef == "treble" else ("clefs.F", 2, 6))
-                properties = f'''\\with {{ clefGlyph = "{glyph}" clefPosition = #{position} middleCClefPosition = #{middle} middleCPosition = #{middle} timeSignature = #'(12 . 8) keyAlterations = #'((2 . -1/2) (3 . 0) (4 . 0) (5 . -1/2) (6 . -1/2) (0 . 0) (1 . 0)) }}'''
-                opening = f"{name}Card = {{\n  {lily._context_block(measure)}\n"
-                if opening not in text:
-                    raise ValueError("Unexpected Artmender context header")
-                text = text.replace(opening, f"{name}Card = {{\n", 1)
-                # A KeyChangeEvent is required to engrave the initial flats;
-                # a property-only keyAlterations initializer is insufficient.
-                # Put it at the existing grace onset. The other staff receives
-                # only an invisible, same-duration grace skip (no added notes).
-                body_start = text.index(f"{name}Card = {{")
-                body_end = text.index("\n  \\bar", body_start)
-                body = text[body_start:body_end]
-                if leading_grace(measure):
-                    body, count = re.subn(r"(\\(?:grace|acciaccatura|appoggiatura)\s*\{)",
-                                          r"\1 \\key es \\major ", body, count=1)
-                    if count != 1:
-                        raise ValueError("Expected a braced leading grace unit")
-                else:
-                    skip = f"s1*{grace_length.numerator}/{grace_length.denominator}"
-                    body = body.replace(f"{name}Card = {{\n", f"{name}Card = {{\n  \\grace {{ \\key es \\major {skip} }}\n", 1)
-                text = text[:body_start] + body + text[body_end:]
-                text = text.replace(f'\\new Staff = "{name}" \\{name}Card',
-                                    f'\\new Staff = "{name}" {properties} \\{name}Card', 1)
-            text = text.replace("\\layout {\n    ragged-right", "\\layout {\n    \\context { \\Score measureLength = #3/2 timeSignature = #'(12 . 8) }\n    ragged-right", 1)
-        # Source octave display starts within m30 and continues through m31 and
-        # part of m32. Artmender context tracking supplies it from native ottava.
-        # Keep the very long written cadenza intact on its one system: expand
-        # engraving width rather than dropping notes or inventing subdivisions.
-        if upper.label == 32:
-            text = text.replace("paper-width = 150\\mm", "paper-width = 520\\mm")
-        if upper.label == 24:
-            text = fix_measure24_slur(text)
-        text = fix_card_layout(text, upper.label)
+        text = text.replace("\\layout {", "\\layout {\n    \\context { \\PianoStaff \\consists #Span_stem_engraver }", 1)
+        text = text.replace("lowerCard = {", "lowerCard = {\n  \\set Staff.pedalSustainStyle = #'bracket", 1)
+        if upper.label == 16:
+            # Close the source text spanner at this excerpt's boundary so
+            # LilyPond renders its stretto label instead of discarding it.
+            text = text.replace(r"s4 s8^\> s8 s2 }", r"s4 s8^\> s8 s2\! }", 1)
         return text
 
     lily._rhythmic_matches = matches

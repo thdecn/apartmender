@@ -16,9 +16,8 @@ The score adaptations are CC BY-SA 3.0. Keep the adjacent
 [license and attribution](mozart-k545-1-allegro/LICENSE-AND-ATTRIBUTION.md) with
 the images. Full source, editable notation, reference PDFs, source-anchor and
 fingering evidence, warnings, archives and reproduction runtime remain under
-[`artmended/`](../../artmended/README.md). Chopin's complete cadenza 32 retains
-its scalable/high-resolution companions and documented phone-readability limit;
-Chopin is separate repertoire, never an additional Warm Up choice.
+[`artmended/`](../../artmended/README.md). Chopin’s Prelude in E minor, Op.28 No.4
+is separate repertoire, never an additional Warm Up choice.
 
 Run `python3 -B tools/validate-warm-up-assets.py` from the repository root for
 the offline checksum/archive/runtime/map gate. The

@@ -66,7 +66,7 @@ Use Artmender for the score-to-cards workflow. Henle is not required. The agreed
 
 The lost temporary base set has been regenerated as 73 Allegro measure cards under [`artmended/mozart-k545-1-allegro/`](../artmended/mozart-k545-1-allegro/). It retains original notation, the reference PDF, editable card files, provenance, source-anchor audits and validation records. Count, reverse order, landing labels, dimensions, source fingering preservation, native engraving and visual spot-checks passed. Excerpt-boundary slur/hairpin warnings and normalized card barlines are documented in the bundle.
 
-Generation helpers and the exact Artmender runtime are retained in this repository; see the [reproduction instructions](../scripts/artmender_cards/README.md). Selecting the agreed 23 complete-measure cards for the six technical passages and wiring them into Apartmender remain implementation work. Generating the assets does not itself make them available in the application. Chopin Op.9 No.2 is a separate requested card bundle and does not change this Warm Up library.
+Generation helpers and the exact Artmender runtime are retained in this repository; see the [reproduction instructions](../scripts/artmender_cards/README.md). Selecting the agreed 23 complete-measure cards for the six technical passages and wiring them into Apartmender remain implementation work. Generating the assets does not itself make them available in the application. Chopin Prelude in E minor, Op.28 No.4 is a separate requested card bundle and does not change this Warm Up library.
 
 ## Activity presentation
 

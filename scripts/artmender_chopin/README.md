@@ -1,27 +1,50 @@
-# Chopin native preparation
+# Chopin Prelude native preparation
 
-Run using Artmender's Python environment with its source on `PYTHONPATH`:
+The selected work is Prelude in E minor, Op.28 No.4. Its Mutopia encoding
+(ID 468, Magnus Lewis-Smith, after Peters 1879) is public domain. Original
+LilyPond/PDF bytes and primary license pages are retained in the bundle.
+
+Run with Artmender's environment and the retained runtime:
 
 ```sh
-PYTHONPATH=../artmender/src:scripts \
-  ../artmender/.venv/bin/python -m artmender_chopin.prepare \
-  artmended/chopin-op9-no2-nocturne/source/chopin_nocturne_op9_n2.ly \
-  artmended/chopin-op9-no2-nocturne/preparation
+PYTHONPATH=artmended/runtime/artmender/src:scripts \
+  ../artmender/.venv/bin/python scripts/artmender_chopin/prepare.py \
+  artmended/chopin-op28-no4-prelude/source/Chop-28-4.ly \
+  artmended/chopin-op28-no4-prelude/preparation
 ```
 
-The source is kept immutable. Preparation modernizes LilyPond syntax and pitch spelling, normalizes relative pitches, labels the 1/8 pickup as measure 0, and splits the source's combined final lower-staff block at its existing bar boundary. There are 35 cards: pickup 0 and written measures 1–34, with unmetered cadenza 32 retained intact.
+Preparation modernizes syntax, translates pitch spelling and normalizes
+relative pitches. It labels the quarter-note pickup 0 and full measures 1–25,
+for 26 cards. The two final parallel voices are split at their existing bar
+checks; cross-staff chords, ornaments, native macros, Largo and the separate
+stretto spanner remain. An explicit inherited eighth in bar 18 prevents the
+new whole-bar parallel wrappers from changing its rhythm.
 
-Before running Artmender, call `artmender_chopin.adapters.install(preparation_dir)` in the same Python process. The adapter retains native source macros, excludes markup from rhythmic matching, preserves grace groups and tuplet wrappers in landings, exposes simultaneous voices to the engine, and retains octave context. Source substitution fingerings are documented in `preparation.json`; a sequence such as `54` belongs to one pitch and must not be interpreted as a chord fingering.
+The scoped adapter preserves native markup and grace/tuplet timing, exposes
+parallel voices to whole-piece inference, and retains ornaments in landing
+fragments. It uses PianoPlayer 3 at hand size M. PianoPlayer's pairwise stretch
+heuristics reject the encoded four-note octaves at LH17 and RH24–25; those
+voicings instead use its full-hand span bound with unique, ordered fingers.
+M geometry and motion cost remain in use. No editorial fingering is invented.
+The source has no original finger digits. Generated suggestions remain
+parenthesized native fingering objects, inferred before card extraction.
 
-For cards beginning with grace notes, the adapter initializes both Staff clef-position properties and the 12/8 timing context. It emits the actual E-flat-major key event inside the existing leading grace group and a matching invisible grace skip in the other staff. This avoids incorrect bass pitch positions and duplicate signatures before the main beat; the skip adds no sounding note and is used only in the card engraving.
+After generation, independently compare original and prepared native notes:
 
-Measure 32 uses a wider native engraving page to retain its complete cadenza on a single system. Its rendered readability needs explicit review; the notes must never be silently omitted or presented as invented written measures.
+```sh
+PYTHONPATH=artmended/runtime/artmender/src:scripts \
+  ../artmender/.venv/bin/python scripts/artmender_chopin/verify_source.py \
+  artmended/chopin-op28-no4-prelude
+```
 
-Specific card-only layout repairs retain the authoritative prepared score unchanged:
+The audit compares native event multisets by staff, MIDI pitches and duration,
+with source-origin callback views deduplicated (relative grace callbacks can
+expose an unresolved view before the resolved view). It supplements aligned
+measure/timing checks and visual comparisons; it does not prove musical event
+order by itself. Native anchor matching also requires every parsed note event
+to match its prepared native source event. Keep excerpt-spanner warnings and
+compare the final cross-staff chords with the retained one-page reference.
 
-- Cards 0/1 remove the full-page negative offset that placed substitution `54` inside the staff. Other substitution marks were visually checked and retain their source placement.
-- Cards beginning with grace notes initialize LilyPond 2.26's rational `measureLength` and `timeSignature` properties, avoiding an ignored legacy moment value.
-- Card 23 removes the singleton beam/slur continuation from its one-note bar-24 landing; its pitch, source fingering, articulation and dynamics remain.
-- Card 24 keeps the source's native inside-slur fingering policy and freezes only the second slur's Bézier curve, using control points extracted from LilyPond's native solver, to avoid a LilyPond 2.26 circular positioning callback.
-- Card 31 closes the cadenza after both landing fragments and their alignment skips, removes a singleton beam/phrasing-slur continuation without removing its note or annotations, and compacts the full-page dash-spaced `senza tempo` words for the one-onset reminder.
-- Card 34 removes a stale negative offset from the `ppp` markup so it clears the lower-staff chord.
+Cards retain the source’s pedal-bracket style. Card 16 closes its stretto
+text spanner at the excerpt boundary so the text engraves instead of being
+discarded as an unterminated spanner; original notation remains retained.
