@@ -1,0 +1,21 @@
+{
+  "format": "artmender-native-anchor-review-v1",
+  "prepared_source_sha256": "ecbf721d7caa151b807b0f5f9492e84d007e27ad2c148dceab1794b7f533610c",
+  "native_pitch_and_event_alignment": {
+    "upperMusic": {
+      "events": 595,
+      "notes": 610,
+      "source_anchors": 195
+    },
+    "lowerMusic": {
+      "events": 593,
+      "notes": 678,
+      "source_anchors": 177
+    }
+  },
+  "legacy_regex_differences": [],
+  "legacy_difference_count": 0,
+  "unmapped_source_finger_markup": 0,
+  "notation_unchanged": true,
+  "result": "Every native source anchor matches the anchors used for the existing generated Mozart cards; no anchor-driven rerender is required."
+}

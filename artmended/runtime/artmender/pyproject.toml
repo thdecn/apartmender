@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "artmender"
+version = "0.1.0"
+description = "Create reverse-order piano practice cards from public-domain scores."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "music21>=10.0,<11",
+  "pianoplayer>=3.0.2,<4",
+  "pillow>=11.0,<13",
+  "python-ly>=0.9.9,<1",
+]
+
+[project.scripts]
+artmender = "artmender.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/artmender"]

@@ -1,0 +1,83 @@
+Changing working directory to: `/tmp'
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Processing `/tmp/chopin-cardcheck/11-m24-plus-m25-onsets.ly'
+Parsing...
+Interpreting music...
+Preprocessing graphical objects...
+Calculating line breaks...
+warning: cannot find line breaking that satisfies constraints
+Fitting music on 1 page...
+/tmp/chopin-cardcheck/11-m24-plus-m25-onsets.ly:75:110: programming error: cyclic dependency: calculation-in-progress encountered for Slur.control-points
+ cis'''16-.-4  \set stemLeftBeamCount = #2 c'''16-.-5 b''32-.-4] bes''16-.-3 [a''-.-5]) as''32-!-4 \did a'-1 
+                                                                                                             ( bes'-2 b'-1 c'' cis'' d''-1  \tuplet 3/2  {\tupletUp \once \override TupletNumber.extra-offset = #'( 0.0 . 1.5 ) \once \override TupletBracket.extra-offset = #'( 0.0 . 1.5 ) g''-4  f''-3 es''-2\!} es''2.->-1)
+/tmp/chopin-cardcheck/11-m24-plus-m25-onsets.ly:75:110: continuing, cross fingers
+Success: compilation successfully completed

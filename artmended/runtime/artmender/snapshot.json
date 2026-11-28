@@ -1,0 +1,17 @@
+{
+  "purpose": "Exact local Artmender runtime used for these retained card bundles; dependencies are pinned in uv.lock. No third-party dependencies are vendored.",
+  "sha256": {
+    "pyproject.toml": "3a2841c81dd34357341ebe2dd74ff7e06f5aa6ab42015b7d4e366f28e438a60f",
+    "uv.lock": "9cb99cb133000994da2e0d644f5c8d065d3694cb517e17bfe4789ced116002d9",
+    "README.md": "1d2d9849dba670262f23826c251f8f6c8d73f3e1b5913518cf98aa0d0f1d9c14",
+    "src/artmender/__init__.py": "c054bc96a0fcdfdb8fc2a4d1338f1504877e491b82ca16057f576ea9513f03c5",
+    "src/artmender/acquire.py": "259d18f30ee888d46bc41de6b0a634ba398e41208877e7e4b0a5e8c2f708a162",
+    "src/artmender/cards.py": "942d9298a66a52a08187cbec769f84ca566d433e866f550e56a79de829c7c12d",
+    "src/artmender/catalog.py": "36ee5490bbcb32fe27f32a3f82337da9103bbb77f48b3c5995767f543d8bcced",
+    "src/artmender/cli.py": "65abc732b534cf73996ec2bbcc75fd22e27cb4bff13dfadbc4367d4dfd0f01eb",
+    "src/artmender/fingering.py": "b998760b608d3b667758889ad5723b8de17205848f8bd91a8596f458bcade7ea",
+    "src/artmender/lilypond.py": "486c26a2dca70e38f8fe98690dd935ee93b006704e70806aac4323390ac91756",
+    "src/artmender/models.py": "7dead3c14059a0b939f1438de7578292d17f035531729500812bba32d565fb73",
+    "src/artmender/render.py": "4a70ec15a12144075a69348eb04b5444867bbbd45a6cc4d57ff434a003ed3477"
+  }
+}

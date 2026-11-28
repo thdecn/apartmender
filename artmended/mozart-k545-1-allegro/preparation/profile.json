@@ -1,0 +1,22 @@
+{
+  "prepared_source": "K545-1-prepared.ly",
+  "slug": "mozart-k545-1-allegro",
+  "canonical_title": "W. A. Mozart — Sonata in C major K.545, I. Allegro",
+  "composer": "Wolfgang Amadeus Mozart",
+  "catalog": "K.545",
+  "movement": "I. Allegro",
+  "expected_measures": 73,
+  "source_url": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=998",
+  "license": "Creative Commons Attribution-ShareAlike 3.0",
+  "lilypond_profile": {
+    "upper_variable": "upperMusic",
+    "lower_variable": "lowerMusic",
+    "upper_default_clef": "treble",
+    "lower_default_clef": "treble",
+    "initial_context": [
+      "\\key c \\major",
+      "\\time 4/4"
+    ],
+    "measure_boundaries": "comments"
+  }
+}

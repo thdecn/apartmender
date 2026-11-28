@@ -1,5 +1,12 @@
 # Apartmender
 
+The [Warm Up MVP specification](docs/focused-practice-mvp.md) and
+[asset incorporation report](docs/warm-up-asset-incorporation.md) describe the
+dependency-gated feature in epic `sludge-5l8`. Retained Mozart/Chopin source
+bundles and reproduction material live under [artmended/](artmended/README.md).
+The selected public Mozart map is inactive; this asset/spec incorporation
+does not enable a Warm Up entry or change current Practice behavior.
+
 Apartmender is a frontend to Artmender, which turns a legally reusable two-staff keyboard score into reverse-order practice cards sized for an iPhone screen.
 
 Each written measure becomes one card. The last measure appears alone; every earlier card contains its full measure plus the first sounding onset on each staff in the next measure, retaining any rests before those onsets. Cards preserve score annotations where the source format supports them, repeat notation context, and show the original measure number.

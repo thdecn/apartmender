@@ -1,0 +1,20 @@
+{
+  "source_page": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=998",
+  "source_page_file": "mutopia-source-page.html",
+  "license": "Creative Commons Attribution-ShareAlike 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "attribution": "Alejandro Sierra, Mutopia-2013/09/01-998, copyright 2013",
+  "retrieved_at": "2026-11-26T11:35:44.598712+00:00",
+  "files": [
+    {
+      "file": "K545-1.ly",
+      "url": "https://www.mutopiaproject.org/ftp/MozartWA/KV545/K545-1/K545-1.ly",
+      "sha256": "84d0e951e6d8807d3286f31ed7878a35dfddb9850bbae9156be0f5ac0a3e2e10"
+    },
+    {
+      "file": "K545-1-a4.pdf",
+      "url": "https://www.mutopiaproject.org/ftp/MozartWA/KV545/K545-1/K545-1-a4.pdf",
+      "sha256": "97a3a59fe632fe1ee8f603d0fdca8dedfa78fa636d308cf4e0969eb74ed29151"
+    }
+  ]
+}

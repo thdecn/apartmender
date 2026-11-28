@@ -1,0 +1,1139 @@
+{
+  "format": "artmender-first-onset-fingerings-v1",
+  "engine": "PianoPlayer 3",
+  "scope": "whole piece, independently optimized upper and lower staves",
+  "hand_size": "M",
+  "generated_notation": "parenthesized; chord digits grouped",
+  "engraving_style": "native fingering object and font; upper staff above, lower staff below",
+  "editorial_profile": null,
+  "records": [
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 0,
+      "midi_pitches": [
+        70
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 1,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 2,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 3,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 4,
+      "midi_pitches": [
+        70
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 5,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 6,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        4
+      ],
+      "inferred_fingers": [
+        4
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 7,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        2
+      ],
+      "inferred_fingers": [
+        2
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 8,
+      "midi_pitches": [
+        70
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 9,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        4
+      ],
+      "inferred_fingers": [
+        4
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 10,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        4
+      ],
+      "inferred_fingers": [
+        4
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 11,
+      "midi_pitches": [
+        82
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 12,
+      "midi_pitches": [
+        67,
+        75
+      ],
+      "original_fingers": [
+        1,
+        5
+      ],
+      "inferred_fingers": [
+        1,
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 13,
+      "midi_pitches": [
+        67
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": "(1)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 14,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 15,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        2
+      ],
+      "inferred_fingers": [
+        2
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 16,
+      "midi_pitches": [
+        70
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 17,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        3
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 18,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        3
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 19,
+      "midi_pitches": [
+        82
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 20,
+      "midi_pitches": [
+        67,
+        75
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "inferred_fingers": [
+        1,
+        5
+      ],
+      "printed_suggestion": "(15)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 21,
+      "midi_pitches": [
+        67
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": "(1)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 22,
+      "midi_pitches": [
+        79
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 23,
+      "midi_pitches": [
+        77
+      ],
+      "original_fingers": [
+        2
+      ],
+      "inferred_fingers": [
+        2
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 24,
+      "midi_pitches": [
+        70
+      ],
+      "original_fingers": [
+        1
+      ],
+      "inferred_fingers": [
+        1
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 25,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        3
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 26,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        2
+      ],
+      "printed_suggestion": "(2)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 27,
+      "midi_pitches": [
+        82
+      ],
+      "original_fingers": [
+        4
+      ],
+      "inferred_fingers": [
+        4
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 28,
+      "midi_pitches": [
+        83
+      ],
+      "original_fingers": [
+        5
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": null,
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 29,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 30,
+      "midi_pitches": [
+        75
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 31,
+      "midi_pitches": [
+        83,
+        95
+      ],
+      "original_fingers": [
+        null,
+        5
+      ],
+      "inferred_fingers": [
+        1,
+        5
+      ],
+      "printed_suggestion": "(1)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 32,
+      "midi_pitches": [
+        83,
+        95
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "inferred_fingers": [
+        1,
+        5
+      ],
+      "printed_suggestion": "(15)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 33,
+      "midi_pitches": [
+        67,
+        75
+      ],
+      "original_fingers": [
+        null,
+        4
+      ],
+      "inferred_fingers": [
+        1,
+        4
+      ],
+      "printed_suggestion": "(1)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "upper",
+      "hand": "right",
+      "measure": 34,
+      "midi_pitches": [
+        67,
+        75
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "inferred_fingers": [
+        1,
+        5
+      ],
+      "printed_suggestion": "(15)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 1,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 2,
+      "midi_pitches": [
+        36
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 3,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 4,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 5,
+      "midi_pitches": [
+        51
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 6,
+      "midi_pitches": [
+        48
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 7,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 8,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 9,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 10,
+      "midi_pitches": [
+        44
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 11,
+      "midi_pitches": [
+        40
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 12,
+      "midi_pitches": [
+        36
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 13,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 14,
+      "midi_pitches": [
+        48
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 15,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 16,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 17,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 18,
+      "midi_pitches": [
+        44
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 19,
+      "midi_pitches": [
+        40
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 20,
+      "midi_pitches": [
+        36
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 21,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 22,
+      "midi_pitches": [
+        48
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 23,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 24,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 25,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 26,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 27,
+      "midi_pitches": [
+        51
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 28,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 29,
+      "midi_pitches": [
+        32
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 30,
+      "midi_pitches": [
+        32
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 31,
+      "midi_pitches": [
+        46
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 32,
+      "midi_pitches": [
+        34
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        3
+      ],
+      "printed_suggestion": "(3)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 33,
+      "midi_pitches": [
+        39
+      ],
+      "original_fingers": [
+        null
+      ],
+      "inferred_fingers": [
+        5
+      ],
+      "printed_suggestion": "(5)",
+      "engine": "PianoPlayer 3"
+    },
+    {
+      "staff": "lower",
+      "hand": "left",
+      "measure": 34,
+      "midi_pitches": [
+        51,
+        58,
+        58
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "inferred_fingers": [
+        5,
+        2,
+        1
+      ],
+      "printed_suggestion": "(521)",
+      "engine": "PianoPlayer 3"
+    }
+  ]
+}

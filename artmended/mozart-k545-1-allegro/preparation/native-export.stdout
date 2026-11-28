@@ -1,0 +1,5530 @@
+BEGIN_UPPER
+c''2-1(\mp
+e''4-3
+g''4-5
+% bar 1
+b'4.-1_>
+c''16
+d''16
+c''4)
+r4
+% bar 2
+a''2-3(_>
+g''4\<
+c'''4\!
+% bar 3
+g''4-3_>
+f''8\trill\>
+e''16
+f''16
+e''4)\!
+r4
+% bar 4
+a'8\p\<\(
+b'16
+c''16
+d''16-1
+e''16
+f''16
+g''16\!
+a''16\>
+g''16
+f''16
+e''16
+d''16
+c''16-4
+b'16
+a'16\!
+% bar 5
+g'8\<
+a'16
+b'16
+c''16-1
+d''16
+e''16
+f''16\!
+g''16\>
+f''16
+e''16
+d''16
+c''16
+\tag #'first b'16-4
+a'16
+g'16\!
+% bar 6
+f'8\<
+g'16
+a'16
+b'16-1
+c''16
+d''16
+e''16\!
+f''16\>
+e''16
+d''16
+c''16
+b'16
+a'16-4
+g'16
+f'16\!
+% bar 7
+e'8\<
+f'16
+g'16
+a'16-1
+b'16
+c''16
+d''16\!
+e''16\>
+d''16
+c''16
+b'16
+a'16
+\tag #'first g'16-4
+f'16
+e'16\!\)
+% bar 8
+d'8\p\(
+e'16
+f'16
+g'16-1
+a'16
+b'16
+cis''16
+d''16
+a'16\<
+b'16
+cis''16
+d''16-1
+e''16
+f''16
+g''16\!
+% bar 9
+a''16
+b''16
+c'''!16
+b''16
+a''16
+g''16
+f''16-3
+e''16
+f''16
+g''16
+a''16
+g''16
+f''16
+e''16
+d''16
+c''!16-2\)
+% bar 10
+b'8->\f(
+g''8)
+e''8-.-3
+c''8-.-1
+d''8-2(
+g''8)
+e''8-.
+c''8-.
+% bar 11
+d''4-.
+< b' d'' g'' >4-.
+g'4-.-2
+r4
+% bar 12
+r1
+% bar 13
+d'''8\mp(
+b''8)
+g''4.(
+a''16
+b''16
+a''8
+g''8)
+% bar 14
+\acciaccatura a''8
+g''8.\trill-3(
+fis''16-.-2)
+fis''4-3
+r2
+% bar 15
+d'''8\mp(
+b''8)
+g''4.(
+a''16
+b''16
+a''8
+g''8)
+% bar 16
+\acciaccatura a''8
+g''8.\trill-3(
+fis''16)
+fis''4
+r2
+% bar 17
+d'''4->-5
+r16
+d'''16-5
+b''16-4
+g''16-2
+e''4-1
+r16
+e''16(-1
+g''16-2
+e''16)
+% bar 18
+c'''4->
+r16
+c'''16(
+a''16
+fis''16
+d''4)
+r16
+d''16(
+fis''16
+d''16)
+% bar 19
+b''4->-5
+r16
+b''16(
+g''16
+e''16
+c''4)
+r16
+c''16(
+e''16
+c''16
+% bar 20
+a''4->-5)
+r16
+a''16-5(
+fis''16-4
+d''16-2
+b'4)
+r16
+g''16-5(
+d''16-3
+b'16-2
+% bar 21
+a'2\p)
+\acciaccatura b'8-2
+c''4-.-3\<
+\acciaccatura dis''8-2
+e''4-.-3\!
+% bar 22
+\acciaccatura { gis''8-2 }
+a''4.->
+b''32(
+a''32
+gis''32
+a''32
+c'''8-5
+a''8-3)
+c'''8(
+a''8)
+% bar 23
+b''8-3(\f
+g''8-1)
+d'''2-5(\sf
+c'''16
+b''16
+a''16
+g''16)
+% bar 24
+\override PhrasingSlur.direction = #-1
+
+\acciaccatura b''8-3
+\afterGrace 15/16 a''1\startTrillSpan\(( { g''16[ a''16])\stopTrillSpan }
+% bar 25
+g''4\)
+g''16-2(
+d''16
+g''16
+b''16-4
+d'''16-5
+b''16-4
+g''16
+b''16-4
+c'''16-5
+a''16-3
+fis''16-2
+a''16-4
+% bar 26
+g''4-.)
+g'16-2(
+d'16
+g'16
+b'16-4
+d''16_>
+b'16-4
+g'16
+b'16-4
+c''16->
+a'16-3
+fis'16-2
+a'16-4
+% bar 27
+g'4-.)
+< d'' b'' >4-.
+< b' g''-4 >4-.
+r4
+\bar ":|."
+% bar 28
+\bar ".|:"
+g'4-.
+g''16-2(
+d''16
+g''16
+bes''16-3
+d'''16-5
+bes''16-3
+g''16
+bes''16
+c'''16-5
+a''16-3
+fis''16-2
+a''16-4
+% bar 29
+g''4-.)
+g'16-2_(
+d'16
+g'16
+bes'16-3
+d''16
+bes'16-3
+g'16
+bes'16
+c''16-5
+a'16-3
+fis'16-2
+a'16-4
+% bar 30
+g'4-.)
+r4
+r16
+g''16-2
+bes''16-4
+a''16
+g''16
+f''16
+e''16-4
+d''16
+% bar 31
+cis''4-.\sf
+r4
+r16
+cis'''16-3(
+e'''16
+d'''16
+cis'''16
+bes''16
+a''16
+g''16-3
+% bar 32
+f''4\sf)
+d''16-2(
+a'16-1
+d''16
+f''16-4
+a''16
+f''16-4
+d''16-2
+f''16
+g''16-5
+e''16-3
+cis''16-2
+e''16-4
+% bar 33
+d''4-.)
+d'16-2
+a16
+d'16
+f'16-4
+a'16
+f'16
+d'16-2
+f'16
+g'16-5
+e'16-3
+cis'16
+e'16
+% bar 34
+r16
+d'16-1(
+e'16
+f'16
+g'16-1
+a'16
+b'16
+cis''16
+d''4-.\sf)
+r4
+% bar 35
+r16
+b'16-1(
+c''16
+d''16
+e''16-1
+fis''16
+gis''16
+a''16
+b''4-.\sf)
+r4
+% bar 36
+r16
+a''16-1(
+e'''16-5
+d'''16
+c'''16
+b''16
+a''16
+g''16
+f''4-.\sf)
+r4
+% bar 37
+r16
+g''16-1(
+d'''16-5
+c'''16
+b''16
+a''16
+g''16
+f''16-3
+e''4-.\sf)
+r4
+% bar 38
+r16
+f''16-1(
+c'''16-5
+b''16
+a''16
+g''16
+f''16
+e''16-3
+d''4-.\sf)
+r4
+% bar 39
+r16
+e''16-1(
+b''16-5
+a''16
+gis''16
+f''16
+e''16
+d''16-3
+c''4-.\sf)
+r4
+% bar 40
+\break
+r16
+bes'16-3
+d''16
+c''16
+bes'16
+a'16
+g'16
+f'16-3
+e'16\>
+f'16-1
+g'16
+a'16
+bes'16
+c''16-1
+d''16
+e''16\!
+% bar 41
+\override PhrasingSlur.direction = #1
+
+f''2-1(\mp
+a''4-3
+c'''4-5
+% bar 42
+e''4.-1_>
+f''16
+g''16
+f''4)
+r4
+% bar 43
+d'''2-3(_>
+c'''4\<
+f'''4\!
+% bar 44
+c'''4-3_>
+bes''8\trill\>
+a''16
+bes''16
+a''4)\!
+r4
+% bar 45
+d''8\p\<\(
+e''16
+f''16
+g''16-1
+a''16
+bes''16
+c'''16\!
+d'''16\>
+c'''16
+bes''16
+a''16
+g''16
+f''16-4
+e''16
+d''16\!
+% bar 46
+c''8\<
+d''16
+e''16
+f''16-1
+g''16
+a''16
+bes''16\!
+c'''16\>
+bes''16
+a''16
+g''16
+f''16
+\tag #'second e''16-3
+d''16
+c''16\!
+% bar 47
+bes'8\<
+c''16
+d''16
+e''16-1
+f''16
+g''16
+a''16\!
+bes''16\>
+a''16
+g''16
+f''16
+e''16-3
+d''16
+c''16
+bes'16-2\!
+% bar 48
+a'8\<
+bes'16
+c''16
+d''16-1
+e''16
+f''16
+g''16\!
+a''16\>
+g''16
+f''16
+e''16
+d''16
+\tag #'second c''16-3
+bes'16
+a'16\!\)
+% bar 49
+a''4-.
+r4
+r4
+< c'' a''-5 >4-.
+% bar 50
+< c'' g''-4 >4-.
+r4
+r4
+< c'' g''-5 >4-.
+% bar 51
+< c'' f''-4 >4-.
+r4
+r4
+< b' f''-5 >4-.
+% bar 52
+< c''-2 e''-4 >4-.
+r4
+r4
+< c'' e'' >4-.
+% bar 53
+d''16-5\(
+d'16
+e'16
+f'16
+g'16
+a'16
+b'16
+cis''16
+d''16
+a'16-1
+b'16
+cis''16
+d''16-1
+e''16
+f''16
+g''16-1
+% bar 54
+a''16
+b''16
+c'''16
+b''16
+a''16
+g''16
+f''16
+e''16
+f''16
+g''16
+a''16
+g''16
+f''16
+e''16
+d''16
+c''16-2\)
+% bar 55
+b'8->\f(
+g''8)
+e''8-.-3
+c''8-.-1
+d''8-2(
+g''8)
+e''8-.
+c''8-.
+% bar 56
+d''4-.
+< b' d'' g'' >4-.
+g'4-.-2
+r4
+% bar 57
+r1
+% bar 58
+g''8\mp(
+e''8)
+c''4.(
+d''16
+e''16
+d''8
+c''8)
+% bar 59
+\acciaccatura d''8
+c''8.\trill-3(
+b'16-.-2)
+b'4-3
+r2
+% bar 60
+g''8\mp(
+e''8)
+c''4.(
+d''16
+e''16
+d''8
+c''8)
+% bar 61
+\acciaccatura d''8
+c''8.\trill-3(
+b'16)
+b'4
+r2
+% bar 62
+g''4->-5
+r16
+g''16-5
+e''16-4
+c''16-2
+a'4-1
+r16
+a'16(-1
+c''16-2
+a'16)
+% bar 63
+f''4->
+r16
+f''16(
+d''16
+b'16
+g'4)
+r16
+g''16(
+b''16
+g''16)
+% bar 64
+e'''4->-5
+r16
+e'''16(
+c'''16
+a''16
+f''4)
+r16
+f''16(
+a''16
+f''16
+% bar 65
+d'''4->-5)
+r16
+d'''16-5(
+b''16-4
+g''16-2
+e''4)
+r16
+c'''16-5(
+g''16-3
+e''16-2
+% bar 66
+d''2\p)
+\acciaccatura cis''8-2
+d''4-.
+\acciaccatura cis''8
+d''4-.
+% bar 67
+a''2\p
+\acciaccatura gis''8-2
+a''4-.
+\acciaccatura gis''8
+a''4-.
+% bar 68
+g''8-1\f(
+a''16
+b''16
+c'''16-1
+d'''16
+e'''16
+d'''16
+c'''16
+b''16-4
+a''16
+g''16
+f''16
+e''16-3
+d''16
+c''16)
+% bar 69
+\override PhrasingSlur.direction = #-1
+
+\acciaccatura e''8-3
+\afterGrace 15/16 d''1\startTrillSpan\(( { c''16[ d''16])\stopTrillSpan }
+% bar 70
+\override PhrasingSlur.direction = #1
+
+c''4-.\)
+c''16-2\(
+g'16_>
+c''16
+e''16-4
+g''16
+e''16-4
+c''16
+e''16-4
+f''16_>
+d''16-3
+b'16
+d''16-3
+% bar 71
+c''4-.
+c'16-2
+g16->
+c'16
+e'16-4
+g'16
+e'16-4
+c'16
+e'16-4
+f'16->
+d'16-3
+b16
+d'16-3\)
+% bar 72
+c'4-.
+< e''-1 g''-2 c'''-5 >4-.
+c''4-2
+r4
+\bar ":|."
+% bar 73
+END_UPPER
+BEGIN_LOWER
+c'8-5(\p
+g'8-1
+e'8-3
+g'8
+c'8
+g'8
+e'8
+g'8)
+% bar 1
+d'8-4
+g'8-1
+f'8-2
+g'8
+c'8-5
+g'8-1
+e'8-3
+g'8
+% bar 2
+c'8
+a'8-1
+f'8-2
+a'8
+c'8
+g'8-1
+e'8-3
+g'8
+% bar 3
+b8-5
+g'8-1
+d'8-3
+g'8
+c'8-4
+g'8-1
+e'8-2
+g'8
+% bar 4
+f'4
+r4
+r4
+\clef "bass"
+
+< f c' >4_4-.
+% bar 5
+< e c' >4-.
+r4
+r4
+< e c' >4_4-.
+% bar 6
+< d c' >4-.
+r4
+r4
+< d b >4_4-.
+% bar 7
+< c c' >4-.
+r4
+r4
+< c-5 e-3 >4-.
+% bar 8
+< f-2 a-1 >1
+% bar 9
+f4._3(
+g8
+a4.
+fis8_2)
+% bar 10
+g,16-5\(
+b,16-4
+d16-2
+g16
+g,16-5
+c16-3
+e16-2
+g16
+g,16
+b,16
+d16
+g16
+g,16
+c16
+e16
+g16
+% bar 11
+g,4-.\)
+g4-.
+g,4-.
+r4
+% bar 12
+cis'16->\p-2(
+d'16
+cis'16
+d'16
+cis'16
+d'16
+cis'16
+d'16
+c'16_2->
+d'16
+c'16
+d'16
+c'16
+d'16
+c'16
+d'16)
+% bar 13
+b16->_3
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+% bar 14
+c'16-2\mp
+d'16
+b16-3
+d'16
+a16-4
+d'16
+b16-3
+d'16
+c'16
+d'16
+b16
+d'16
+c'16
+d'16
+a16
+d'16
+% bar 15
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+b16
+d'16
+% bar 16
+c'16
+d'16
+b16
+d'16
+a16
+d'16
+b16
+d'16
+c'16
+d'16
+b16
+d'16
+c'16
+d'16
+a16
+d'16
+% bar 17
+\clef "treble"
+
+r16
+b16-5(
+d'16-4
+g'16-2
+b'4)
+r16
+c'16-5(
+e'16-4
+g'16-2
+c''4)
+% bar 18
+r16
+a16-5(
+c'16-4
+fis'16-2
+a'4)
+r16
+b16-5(
+d'16-4
+fis'16-2
+b'4)
+% bar 19
+r16
+g16-5(
+b16-4
+e'16-2
+g'4)
+r16
+a16-5(
+c'16-4
+e'16-2
+a'4)
+% bar 20
+r16
+fis16-5(
+a16-4
+d'16-2
+fis'4)
+r16
+g16-5(
+b16-4
+d'16-2
+g'4)
+% bar 21
+\clef "treble"
+
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+% bar 22
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+< c' e' >8-.
+% bar 23
+d'16_5
+b'16_1
+g'16_2
+b'16
+d'16
+b'16
+g'16
+b'16
+d'16
+b'16
+g'16
+b'16
+d'16
+b'16
+g'16
+b'16
+% bar 24
+d'16
+c''16
+fis'16
+c''16
+d'16
+c''16
+fis'16
+c''16
+d'16
+c''16
+fis'16
+c''16
+d'16
+c''16
+fis'16
+c''16
+% bar 25
+< g'-2 b'-1 >4
+r4
+r4
+< a' c'' d' >4
+% bar 26
+< g'-2 b'-1 >4
+r4
+r4
+\clef "bass"
+
+< d a c' >4
+% bar 27
+< g b >4
+< g g, >4
+< g g, >4
+r4
+\bar ":|."
+% bar 28
+\bar ".|:"
+< g, g >4
+r4
+r4
+\clef "treble"
+
+< d' a' c'' >4(
+% bar 29
+< g'-3 bes'-1 >4)
+r4
+r4
+\clef "bass"
+
+< d a c' >4
+% bar 30
+r16
+g16_5(
+a16
+bes16
+c'16
+d'16
+e'16-3
+fis'16
+g'4-.\sf)
+r4
+% bar 31
+r16
+a16_5(
+b16
+c'16
+d'16
+e'16
+fis'16-3
+gis'16
+a'4-.\sf)
+r4
+% bar 32
+< d, d >4
+r4
+r4
+\clef "treble"
+
+< a e' g' >4(
+% bar 33
+< d'-3 f'-1 >4-.)
+r4
+r4
+\clef "bass"
+
+< a, e g >4(
+% bar 34
+< d_5 f_4 >4-.)
+r4
+r16
+d'16-3(
+f'16
+e'16
+d'16
+c'16-1
+b16
+a16
+% bar 35
+gis4-.)\sf
+r4
+r16
+gis16-3(
+b16
+a16
+gis16
+f!16-1
+e16
+d16
+% bar 36
+c4-.)\sf
+r4
+\clef "treble"
+
+r16
+d'16-5(
+a'16-1
+g'16
+f'16
+e'16-1
+d'16
+c'16
+% bar 37
+\break
+b4-.\sf)
+r4
+r16
+c'16-5(
+g'16
+f'16
+e'16
+d'16-1
+c'16
+b16
+% bar 38
+a4-.\sf)
+r4
+r16
+b16-5(
+f'16
+e'16
+d'16
+c'16-1
+b16
+a16
+% bar 39
+\clef "bass"
+
+gis4-.\sf)
+r4
+r16
+a16-3(
+c'16-1
+b16
+a16
+g16-1
+f16
+e16
+% bar 40
+d2\sf)
+< c g bes >2\sf
+% bar 41
+\clef "treble"
+
+f'8-5(\p
+c''8-1
+a'8-3
+c''8
+f'8
+c''8
+a'8
+c''8)
+% bar 42
+g'8-4
+c''8-1
+bes'8-2
+c''8
+f'8-5
+c''8-1
+a'8-3
+c''8
+% bar 43
+f'8
+d''8-1
+bes'8-2
+d''8
+f'8
+c''8-1
+a'8-3
+c''8
+% bar 44
+e'8-5
+c''8-1
+g'8-3
+c''8
+f'8-4
+c''8-1
+a'8-2
+c''8
+% bar 45
+bes'4
+r4
+r4
+\clef "bass"
+
+< bes f' >4_4-.
+% bar 46
+< a f' >4-.
+r4
+r4
+< a f' >4_4-.
+% bar 47
+< g f' >4-.
+r4
+r4
+< g e' >4_4-.
+% bar 48
+< f f' >4-.
+r4
+r2
+% bar 49
+f8-5\(
+g16
+a16
+bes16
+c'16
+d'16-3
+e'16
+f'16
+e'16
+d'16-1
+c'16
+bes16
+a16-1
+g16
+f16
+% bar 50
+e8
+f16
+g16
+a16
+b16-4
+c'16
+d'16
+e'16
+d'16
+c'16
+b16
+a16-1
+g16
+f16
+e16
+% bar 51
+d8
+e16
+f16
+g16
+a16
+b16-3
+c'16
+d'16
+c'16
+b16
+a16
+g16-1
+f16
+e16
+d16
+% bar 52
+c8-5
+d16
+e16
+f16
+g16
+a16-3
+b16
+c'16
+b16
+a16-1
+g16
+f16
+e16-1
+d16
+c16
+% bar 53
+\once \set fingeringOrientations = #'(right)
+
+< f-2 a-1 >1\p\)
+% bar 54
+f4.-3
+g8
+a4.
+fis8-2
+% bar 55
+g,16-5\(
+b,16-4
+d16-2
+g16
+g,16-5
+c16-3
+e16-2
+g16
+g,16
+b,16
+d16
+g16
+g,16
+c16
+e16
+g16
+% bar 56
+g,4-.\)
+g4-.
+g,4-.
+r4
+% bar 57
+\clef "treble"
+
+fis'16->\p-2(
+g'16
+fis'16
+g'16
+fis'16
+g'16
+fis'16
+g'16
+f'16_2->
+g'16
+f'16
+g'16
+f'16
+g'16
+f'16
+g'16)
+% bar 58
+e'16->_3
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+% bar 59
+f'16-2\mp
+g'16
+e'16-3
+g'16
+d'16-4
+g'16
+e'16-3
+g'16
+f'16
+g'16
+e'16
+g'16
+f'16
+g'16
+d'16
+g'16
+% bar 60
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+e'16
+g'16
+% bar 61
+f'16
+g'16
+e'16
+g'16
+d'16
+g'16
+e'16
+g'16
+f'16
+g'16
+e'16
+g'16
+f'16
+g'16
+d'16
+g'16
+% bar 62
+\clef "treble"
+
+r16
+e16-5(
+g16-4
+c'16-2
+e'4)
+r16
+f16-5(
+a16-4
+c'16-2
+f'4)
+% bar 63
+r16
+d16-5(
+f16-4
+b16-2
+d'4)
+r16
+e16-5(
+g16-4
+b16-2
+e'4)
+% bar 64
+r16
+c'16-5(
+e'16-4
+a'16-2
+c''4)
+r16
+d'16-5(
+f'16-4
+a'16-2
+d''4)
+% bar 65
+r16
+b16-5(
+d'16-4
+g'16-2
+b'4)
+r16
+c'16-5(
+e'16-4
+g'16-2
+c''4)
+% bar 66
+r8
+< f' a' >8-.
+< f' a' >8-.
+< f' a' >8-.
+< f' a' >8-.
+< f' a' >8-.
+< f' a' >8-.
+< f' a' >8-.
+% bar 67
+\clef "bass"
+
+r8
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+< fis c' ees' >8-.
+% bar 68
+g16-5
+e'16
+c'16-2
+e'16
+g16-5
+e'16
+c'16-2
+e'16
+g16-5
+e'16
+c'16-2
+e'16
+g16-5
+e'16
+c'16-2
+e'16
+% bar 69
+g16
+f'16
+b16
+f'16
+g16
+f'16
+b16
+f'16
+g16
+f'16
+b16
+f'16
+g16
+f'16
+b16
+f'16
+% bar 70
+< c'-2 e'-1 >4-.
+r4
+r4
+< g d' f' >4(
+% bar 71
+\override Slur.direction = #-1
+
+< c'_3 e'_1 >4-.)
+r4
+r4
+< g, d f >4(
+% bar 72
+< c e >4)
+< c c' >4-.
+< c c, >4
+r4
+\bar ":|."
+% bar 73
+END_LOWER
+BEGIN_UNITS_UPPER
+UNIT	NoteEvent	1/2	1
+c''2-1(\mp
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4-5
+END_UNIT
+UNIT	NoteEvent	3/8	1
+b'4.-1_>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/2	1
+a''2-3(_>
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4\<
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'''4\!
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4-3_>
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f''8\trill\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4)\!
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8\p\<\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+\tag #'first b'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+\tag #'first g'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16\!\)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d'8\p\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''!16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''!16-2\)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b'8->\f(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8-.-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-.-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8-2(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8-.
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< b' d'' g'' >4-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.-2
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1	0
+r1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d'''8\mp(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b''8)
+END_UNIT
+UNIT	NoteEvent	3/8	1
+g''4.(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura a''8
+END_UNIT
+UNIT	NoteEvent	3/16	1
+g''8.\trill-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16-.-2)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+fis''4-3
+END_UNIT
+UNIT	RestEvent	1/2	0
+r2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d'''8\mp(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b''8)
+END_UNIT
+UNIT	NoteEvent	3/8	1
+g''4.(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura a''8
+END_UNIT
+UNIT	NoteEvent	3/16	1
+g''8.\trill-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+fis''4
+END_UNIT
+UNIT	RestEvent	1/2	0
+r2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d'''4->-5
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4-1
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16(-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'''4->
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b''4->-5
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4->-5)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-2
+END_UNIT
+UNIT	NoteEvent	1/2	1
+a'2\p)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura b'8-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4-.-3\<
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura dis''8-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4-.-3\!
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura { gis''8-2 }
+END_UNIT
+UNIT	NoteEvent	3/8	1
+a''4.->
+END_UNIT
+UNIT	NoteEvent	1/32	1
+b''32(
+END_UNIT
+UNIT	NoteEvent	1/32	1
+a''32
+END_UNIT
+UNIT	NoteEvent	1/32	1
+gis''32
+END_UNIT
+UNIT	NoteEvent	1/32	1
+a''32
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'''8-5
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a''8-3)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'''8(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b''8-3(\f
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8-1)
+END_UNIT
+UNIT	NoteEvent	1/2	1
+d'''2-5(\sf
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16)
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\override PhrasingSlur.direction = #-1
+
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura b''8-3
+END_UNIT
+UNIT	ContextSpeccedMusic	1	1
+\afterGrace 15/16 a''1\startTrillSpan\(( { g''16[ a''16])\stopTrillSpan }
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4\)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4-.)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16_>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16->
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.)
+END_UNIT
+UNIT	EventChord	1/4	1
+< d'' b'' >4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< b' g''-4 >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4-.)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2_(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+cis''4-.\sf
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'''16-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f''4\sf)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+gis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-1(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+gis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	LineBreakEvent	0	0
+\break
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16\!
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\override PhrasingSlur.direction = #1
+
+END_UNIT
+UNIT	NoteEvent	1/2	1
+f''2-1(\mp
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'''4-5
+END_UNIT
+UNIT	NoteEvent	3/8	1
+e''4.-1_>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f''4)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/2	1
+d'''2-3(_>
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'''4\<
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f'''4\!
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'''4-3_>
+END_UNIT
+UNIT	NoteEvent	1/8	1
+bes''8\trill\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4)\!
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8\p\<\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+\tag #'second e''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+bes'8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16-2\!
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8\<
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16\!
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16\>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+\tag #'second c''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16\!\)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'' a''-5 >4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'' g''-4 >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'' g''-5 >4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'' f''-4 >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< b' f''-5 >4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< c''-2 e''-4 >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'' e'' >4-.
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-5\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-2\)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b'8->\f(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8-.-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-.-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8-2(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8-.
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< b' d'' g'' >4-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.-2
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1	0
+r1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8\mp(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8)
+END_UNIT
+UNIT	NoteEvent	3/8	1
+c''4.(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura d''8
+END_UNIT
+UNIT	NoteEvent	3/16	1
+c''8.\trill-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16-.-2)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4-3
+END_UNIT
+UNIT	RestEvent	1/2	0
+r2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8\mp(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e''8)
+END_UNIT
+UNIT	NoteEvent	3/8	1
+c''4.(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura d''8
+END_UNIT
+UNIT	NoteEvent	3/16	1
+c''8.\trill-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4
+END_UNIT
+UNIT	RestEvent	1/2	0
+r2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g''4->-5
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a'4-1
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16(-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f''4->
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e'''4->-5
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d'''4->-5)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-2
+END_UNIT
+UNIT	NoteEvent	1/2	1
+d''2\p)
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura cis''8-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura cis''8
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4-.
+END_UNIT
+UNIT	NoteEvent	1/2	1
+a''2\p
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura gis''8-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4-.
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura gis''8
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a''4-.
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g''8-1\f(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16)
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\override PhrasingSlur.direction = #-1
+
+END_UNIT
+UNIT	GraceMusic	0	1
+\acciaccatura e''8-3
+END_UNIT
+UNIT	ContextSpeccedMusic	1	1
+\afterGrace 15/16 d''1\startTrillSpan\(( { c''16[ d''16])\stopTrillSpan }
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\override PhrasingSlur.direction = #1
+
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4-.\)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16-2\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16_>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e''16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f''16_>
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d''16-3
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4-.
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16->
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16->
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-3\)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c'4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< e''-1 g''-2 c'''-5 >4-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4-2
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+END_UNITS_UPPER
+BEGIN_UNITS_LOWER
+UNIT	NoteEvent	1/8	1
+c'8-5(\p
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d'8-4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'8-5
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+b8-5
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c'8-4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f'4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< f c' >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< e c' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< e c' >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< d c' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< d b >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< c c' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< c-5 e-3 >4-.
+END_UNIT
+UNIT	EventChord	1	1
+< f-2 a-1 >1
+END_UNIT
+UNIT	NoteEvent	3/8	1
+f4._3(
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g8
+END_UNIT
+UNIT	NoteEvent	3/8	1
+a4.
+END_UNIT
+UNIT	NoteEvent	1/8	1
+fis8_2)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16-5\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b,16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g,4-.\)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g4-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g,4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'16->\p-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+cis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16_2->
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16->_3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2\mp
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+fis'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4)
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< c' e' >8-.
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16_5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16_1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16_2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c''16
+END_UNIT
+UNIT	EventChord	1/4	1
+< g'-2 b'-1 >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< a' c'' d' >4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g'-2 b'-1 >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< d a c' >4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g b >4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g g, >4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g g, >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g, g >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< d' a' c'' >4(
+END_UNIT
+UNIT	EventChord	1/4	1
+< g'-3 bes'-1 >4)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< d a c' >4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16_5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g'4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16_5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+gis'16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a'4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< d, d >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< a e' g' >4(
+END_UNIT
+UNIT	EventChord	1/4	1
+< d'-3 f'-1 >4-.)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< a, e g >4(
+END_UNIT
+UNIT	EventChord	1/4	1
+< d_5 f_4 >4-.)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+gis4-.)\sf
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+gis16-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+gis16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f!16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c4-.)\sf
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	LineBreakEvent	0	0
+\break
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+a4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	NoteEvent	1/4	1
+gis4-.\sf)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-3(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/2	1
+d2\sf)
+END_UNIT
+UNIT	EventChord	1/2	1
+< c g bes >2\sf
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8-5(\p
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8)
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+bes'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8-5
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+bes'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e'8-5
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g'8-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f'8-4
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8-1
+END_UNIT
+UNIT	NoteEvent	1/8	1
+a'8-2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c''8
+END_UNIT
+UNIT	NoteEvent	1/4	1
+bes'4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< bes f' >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< a f' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< a f' >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< g f' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g e' >4_4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< f f' >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/2	0
+r2
+END_UNIT
+UNIT	NoteEvent	1/8	1
+f8-5\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+bes16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+e8
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+d8
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/8	1
+c8-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16-1
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c16
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\once \set fingeringOrientations = #'(right)
+
+END_UNIT
+UNIT	EventChord	1	1
+< f-2 a-1 >1\p\)
+END_UNIT
+UNIT	NoteEvent	3/8	1
+f4.-3
+END_UNIT
+UNIT	NoteEvent	1/8	1
+g8
+END_UNIT
+UNIT	NoteEvent	3/8	1
+a4.
+END_UNIT
+UNIT	NoteEvent	1/8	1
+fis8-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16-5\(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b,16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g,16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g,4-.\)
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g4-.
+END_UNIT
+UNIT	NoteEvent	1/4	1
+g,4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16->\p-2(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+fis'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16_2->
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16)
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16->_3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16-2\mp
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-3
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "treble"
+
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+f'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+e'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+a'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+d''4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+d'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+b'4)
+END_UNIT
+UNIT	RestEvent	1/16	0
+r16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-5(
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16-4
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g'16-2
+END_UNIT
+UNIT	NoteEvent	1/4	1
+c''4)
+END_UNIT
+UNIT	RestEvent	1/8	0
+r8
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< f' a' >8-.
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\clef "bass"
+
+END_UNIT
+UNIT	RestEvent	1/8	0
+r8
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	EventChord	1/8	1
+< fis c' ees' >8-.
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16-5
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+c'16-2
+END_UNIT
+UNIT	NoteEvent	1/16	1
+e'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+g16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+b16
+END_UNIT
+UNIT	NoteEvent	1/16	1
+f'16
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'-2 e'-1 >4-.
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g d' f' >4(
+END_UNIT
+UNIT	ContextSpeccedMusic	0	0
+\override Slur.direction = #-1
+
+END_UNIT
+UNIT	EventChord	1/4	1
+< c'_3 e'_1 >4-.)
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+UNIT	EventChord	1/4	1
+< g, d f >4(
+END_UNIT
+UNIT	EventChord	1/4	1
+< c e >4)
+END_UNIT
+UNIT	EventChord	1/4	1
+< c c' >4-.
+END_UNIT
+UNIT	EventChord	1/4	1
+< c c, >4
+END_UNIT
+UNIT	RestEvent	1/4	0
+r4
+END_UNIT
+END_UNITS_LOWER
