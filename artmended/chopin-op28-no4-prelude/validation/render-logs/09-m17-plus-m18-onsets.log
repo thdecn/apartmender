@@ -1,0 +1,88 @@
+Changing working directory to: `/private/tmp/pr96-prelude-render/chopin-op28-no4-prelude/raw-render'
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Processing `/private/tmp/apartmender-warm-up-worktrees/apartmender/sludge-5l8.2/artmended/chopin-op28-no4-prelude/cards/09-m17-plus-m18-onsets.ly'
+Parsing...
+Interpreting music...
+/private/tmp/apartmender-warm-up-worktrees/apartmender/sludge-5l8.2/artmended/chopin-op28-no4-prelude/cards/09-m17-plus-m18-onsets.ly:59:27: warning: cannot end phrasing slur
+  <b,, b,>8_\finger "(51)"
+                          \)\sustainOn <a c' fis' a'>\( <a c' fis' a'> <a c' fis' a'>\sustainOff <g b dis' fis'> <g b e'> <g b e'> <g b e'> |
+/private/tmp/apartmender-warm-up-worktrees/apartmender/sludge-5l8.2/artmended/chopin-op28-no4-prelude/cards/09-m17-plus-m18-onsets.ly:48:55: warning: unterminated decrescendo
+  << { e''8^\finger "(3)"\f\< dis'' c''' dis''\! dis''
+                                                      \> e'' g'' b' } \\ { s1 } \\ { s4 s4 s4 s4 } >>
+/private/tmp/apartmender-warm-up-worktrees/apartmender/sludge-5l8.2/artmended/chopin-op28-no4-prelude/cards/09-m17-plus-m18-onsets.ly:59:54: warning: unterminated phrasing slur
+  <b,, b,>8_\finger "(51)"\)\sustainOn <a c' fis' a'>
+                                                     \( <a c' fis' a'> <a c' fis' a'>\sustainOff <g b dis' fis'> <g b e'> <g b e'> <g b e'> |
+Preprocessing graphical objects...
+Calculating line breaks...
+Fitting music on 1 page...
+Converting to PNG...
+Success: compilation successfully completed

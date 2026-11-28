@@ -1,0 +1,172 @@
+{
+  "formatVersion": 1,
+  "piece": "mozart-k545-1-allegro",
+  "sourceSha256": "84d0e951e6d8807d3286f31ed7878a35dfddb9850bbae9156be0f5ac0a3e2e10",
+  "license": "CC-BY-SA-3.0",
+  "attribution": "Alejandro Sierra, Mutopia-2013/09/01-998, copyright 2013",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "landingPolicy": "First sounding onset per staff, retaining preceding rests; not an additional complete measure.",
+  "cards": [
+    {
+      "measure": 1,
+      "landingMeasure": 2,
+      "image": "m01.png",
+      "sha256": "061d6c6bc91e949c47878ee3c1811e136cf9e754b202500cb331ba3d4bfc0a96",
+      "retainedCard": "cards/73-m1-plus-m2-onsets.png"
+    },
+    {
+      "measure": 2,
+      "landingMeasure": 3,
+      "image": "m02.png",
+      "sha256": "649b67ea1da89ad3d50926c34c007f417c9c1b67146fda2af26f09391c946fe1",
+      "retainedCard": "cards/72-m2-plus-m3-onsets.png"
+    },
+    {
+      "measure": 3,
+      "landingMeasure": 4,
+      "image": "m03.png",
+      "sha256": "f682726cfd255a0856569b87a7c22e86c183f018eb627579a178e91be17208c7",
+      "retainedCard": "cards/71-m3-plus-m4-onsets.png"
+    },
+    {
+      "measure": 4,
+      "landingMeasure": 5,
+      "image": "m04.png",
+      "sha256": "daab09c2e41f067e45d21c1d4b96585e361603de90fefe090fe66d1b2fabe0c4",
+      "retainedCard": "cards/70-m4-plus-m5-onsets.png"
+    },
+    {
+      "measure": 5,
+      "landingMeasure": 6,
+      "image": "m05.png",
+      "sha256": "36594a24d74ceedc1671a590fabab754bcb51dcda9b4a05694ce504db427f416",
+      "retainedCard": "cards/69-m5-plus-m6-onsets.png"
+    },
+    {
+      "measure": 6,
+      "landingMeasure": 7,
+      "image": "m06.png",
+      "sha256": "9607f87f686a6afdb0f1ae1b92594ea66a5f5f94f153c97bdcddf442bdcbd4dd",
+      "retainedCard": "cards/68-m6-plus-m7-onsets.png"
+    },
+    {
+      "measure": 7,
+      "landingMeasure": 8,
+      "image": "m07.png",
+      "sha256": "e86480fc4d223f202cee2af3b044fe5b068f781de25eb10932a53300368abe9e",
+      "retainedCard": "cards/67-m7-plus-m8-onsets.png"
+    },
+    {
+      "measure": 8,
+      "landingMeasure": 9,
+      "image": "m08.png",
+      "sha256": "dbd4fa3bf44b60e51b2b6233665f1d90aa6fdec6344074fe4e55dea2d3604d7b",
+      "retainedCard": "cards/66-m8-plus-m9-onsets.png"
+    },
+    {
+      "measure": 9,
+      "landingMeasure": 10,
+      "image": "m09.png",
+      "sha256": "7489574bbd4a1499c13fdca46b53253d51f6fa18b61cdfd1f4eb1df03547ba0c",
+      "retainedCard": "cards/65-m9-plus-m10-onsets.png"
+    },
+    {
+      "measure": 10,
+      "landingMeasure": 11,
+      "image": "m10.png",
+      "sha256": "17070ffafa3cce527965ed05c19ec3c428c0ad0631b93028cd7741dbc17f27c7",
+      "retainedCard": "cards/64-m10-plus-m11-onsets.png"
+    },
+    {
+      "measure": 11,
+      "landingMeasure": 12,
+      "image": "m11.png",
+      "sha256": "5f82683a270baa71bd3d9d0be7fac53d9eb0b17693083ed38b8c4ce9276f571f",
+      "retainedCard": "cards/63-m11-plus-m12-onsets.png"
+    },
+    {
+      "measure": 13,
+      "landingMeasure": 14,
+      "image": "m13.png",
+      "sha256": "de2a3dffe05250a544c6858981fdfacb00db157826bd090204f7e5a72ecf31a3",
+      "retainedCard": "cards/61-m13-plus-m14-onsets.png"
+    },
+    {
+      "measure": 14,
+      "landingMeasure": 15,
+      "image": "m14.png",
+      "sha256": "93294ec08f0d09161e50e361e34cf6c64a448ed5b424bb0dccb3e909218a15fa",
+      "retainedCard": "cards/60-m14-plus-m15-onsets.png"
+    },
+    {
+      "measure": 15,
+      "landingMeasure": 16,
+      "image": "m15.png",
+      "sha256": "d8dfc8d396680364dbac52e370061addb87e3262b9078cb502dd6271faada7ac",
+      "retainedCard": "cards/59-m15-plus-m16-onsets.png"
+    },
+    {
+      "measure": 16,
+      "landingMeasure": 17,
+      "image": "m16.png",
+      "sha256": "0db4b570347d7ee4e1ae25c65688c3da813b214608a23b022764d68a24775df1",
+      "retainedCard": "cards/58-m16-plus-m17-onsets.png"
+    },
+    {
+      "measure": 17,
+      "landingMeasure": 18,
+      "image": "m17.png",
+      "sha256": "5752d628c340a73d6d30e4191d519c01ac57b35a0f641e01e78343ba562469ae",
+      "retainedCard": "cards/57-m17-plus-m18-onsets.png"
+    },
+    {
+      "measure": 18,
+      "landingMeasure": 19,
+      "image": "m18.png",
+      "sha256": "5cb1e6accb4bad44e0854dfcbd754cc3369631eaeed5bb9e285875bfa1e152b0",
+      "retainedCard": "cards/56-m18-plus-m19-onsets.png"
+    },
+    {
+      "measure": 19,
+      "landingMeasure": 20,
+      "image": "m19.png",
+      "sha256": "3f649c6da7aa3f257129233e806be68c18e7bd8b83aabce9e104eaec4d60e838",
+      "retainedCard": "cards/55-m19-plus-m20-onsets.png"
+    },
+    {
+      "measure": 20,
+      "landingMeasure": 21,
+      "image": "m20.png",
+      "sha256": "be453f9ba2af8bd53825af6e330d74151f0a4d5f1db69a91486abdb8d07fac28",
+      "retainedCard": "cards/54-m20-plus-m21-onsets.png"
+    },
+    {
+      "measure": 22,
+      "landingMeasure": 23,
+      "image": "m22.png",
+      "sha256": "81fe2735faeff2bf5fe4d3a2c067759bfae02423760aa4cd88009d16a36152e7",
+      "retainedCard": "cards/52-m22-plus-m23-onsets.png"
+    },
+    {
+      "measure": 23,
+      "landingMeasure": 24,
+      "image": "m23.png",
+      "sha256": "99208c62c3ee1cc2a67f810379d678d38d89c00a6f0cf9157b79f8cd8ca41b5c",
+      "retainedCard": "cards/51-m23-plus-m24-onsets.png"
+    },
+    {
+      "measure": 24,
+      "landingMeasure": 25,
+      "image": "m24.png",
+      "sha256": "fc5e6b701a9a1cc7a677b76927290867b4ba39764af95c3acfe98d629d098340",
+      "retainedCard": "cards/50-m24-plus-m25-onsets.png"
+    },
+    {
+      "measure": 25,
+      "landingMeasure": 26,
+      "image": "m25.png",
+      "sha256": "534c7e70105a7c29f43ca2659bfda6b3de319e7ca5083e39cbfd97756156b16e",
+      "retainedCard": "cards/49-m25-plus-m26-onsets.png"
+    }
+  ]
+}

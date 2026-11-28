@@ -1,0 +1,31 @@
+{
+  "source": "../source/K545-1.ly",
+  "source_sha256": "84d0e951e6d8807d3286f31ed7878a35dfddb9850bbae9156be0f5ac0a3e2e10",
+  "source_url": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=998",
+  "license": "CC BY-SA 3.0",
+  "attribution": "Alejandro Sierra / Mutopia Project",
+  "measure_count": 73,
+  "preparation": "Native LilyPond music-tree serialization; repeat-unfold patterns expanded; written volta bodies traversed once; native grace objects preserved.",
+  "validation": {
+    "native_written_lengths": {
+      "upper": 73,
+      "lower": 73
+    },
+    "native_round_trip_match": {
+      "upper": 646,
+      "lower": 663
+    },
+    "artmender_parse": "73 aligned numbered measures",
+    "engraving": "Prepared full score interpreted and laid out successfully by native LilyPond",
+    "repeat_markers": {
+      "end_measures": [
+        28,
+        73
+      ],
+      "start_measure": 29
+    },
+    "limits": [
+      "Final card and fingering validation is separate; use the grace landing adapter for this preparation."
+    ]
+  }
+}

@@ -1,0 +1,2269 @@
+{
+  "format": "artmender-k545-native-landings-v1",
+  "exception": "A leading grace group and its principal note form one syntactic landing unit. An afterGrace expression retains its entire principal event and trailing grace group. Grace notes contribute zero main time.",
+  "initial_grace_context": "For cards starting with grace notes, initialize clef, middle-C positioning, C-major key and 4/4 time as Staff context properties before negative grace time; remove only redundant opening music commands. Notes and fingerings stay unchanged.",
+  "initial_grace_context_measures": [
+    15,
+    17,
+    23,
+    25,
+    60,
+    62,
+    70
+  ],
+  "staves": {
+    "upper": [
+      {
+        "measure": 1,
+        "source": "\\clef treble \\key c \\major \\time 4/4\nc''2-1(\\mp\ne''4-3\ng''4-5",
+        "source_lines": 4,
+        "prefix_lines": 2,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 2,
+        "source": "b'4.-1_>\nc''16\nd''16\nc''4)\nr4",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "3/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "3/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 3,
+        "source": "a''2-3(_>\ng''4\\<\nc'''4\\!",
+        "source_lines": 3,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 4,
+        "source": "g''4-3_>\nf''8\\trill\\>\ne''16\nf''16\ne''4)\\!\nr4",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 5,
+        "source": "a'8\\p\\<\\(\nb'16\nc''16\nd''16-1\ne''16\nf''16\ng''16\\!\na''16\\>\ng''16\nf''16\ne''16\nd''16\nc''16-4\nb'16\na'16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 6,
+        "source": "g'8\\<\na'16\nb'16\nc''16-1\nd''16\ne''16\nf''16\\!\ng''16\\>\nf''16\ne''16\nd''16\nc''16\n\\tag #'first b'16-4\na'16\ng'16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 7,
+        "source": "f'8\\<\ng'16\na'16\nb'16-1\nc''16\nd''16\ne''16\\!\nf''16\\>\ne''16\nd''16\nc''16\nb'16\na'16-4\ng'16\nf'16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 8,
+        "source": "e'8\\<\nf'16\ng'16\na'16-1\nb'16\nc''16\nd''16\\!\ne''16\\>\nd''16\nc''16\nb'16\na'16\n\\tag #'first g'16-4\nf'16\ne'16\\!\\)",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 9,
+        "source": "d'8\\p\\(\ne'16\nf'16\ng'16-1\na'16\nb'16\ncis''16\nd''16\na'16\\<\nb'16\ncis''16\nd''16-1\ne''16\nf''16\ng''16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 10,
+        "source": "a''16\nb''16\nc'''!16\nb''16\na''16\ng''16\nf''16-3\ne''16\nf''16\ng''16\na''16\ng''16\nf''16\ne''16\nd''16\nc''!16-2\\)",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 11,
+        "source": "b'8->\\f(\ng''8)\ne''8-.-3\nc''8-.-1\nd''8-2(\ng''8)\ne''8-.\nc''8-.",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 12,
+        "source": "d''4-.\n< b' d'' g'' >4-.\ng'4-.-2\nr4",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 13,
+        "source": "r1",
+        "source_lines": 1,
+        "prefix_lines": 1,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1",
+            "pitched": false
+          }
+        ]
+      },
+      {
+        "measure": 14,
+        "source": "d'''8\\mp(\nb''8)\ng''4.(\na''16\nb''16\na''8\ng''8)",
+        "source_lines": 7,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 15,
+        "source": "\\acciaccatura a''8\ng''8.\\trill-3(\nfis''16-.-2)\nfis''4-3\nr2",
+        "source_lines": 5,
+        "prefix_lines": 2,
+        "duration": "3/16",
+        "native_units": [
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "3/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 16,
+        "source": "d'''8\\mp(\nb''8)\ng''4.(\na''16\nb''16\na''8\ng''8)",
+        "source_lines": 7,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 17,
+        "source": "\\acciaccatura a''8\ng''8.\\trill-3(\nfis''16)\nfis''4\nr2",
+        "source_lines": 5,
+        "prefix_lines": 2,
+        "duration": "3/16",
+        "native_units": [
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "3/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 18,
+        "source": "d'''4->-5\nr16\nd'''16-5\nb''16-4\ng''16-2\ne''4-1\nr16\ne''16(-1\ng''16-2\ne''16)",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 19,
+        "source": "c'''4->\nr16\nc'''16(\na''16\nfis''16\nd''4)\nr16\nd''16(\nfis''16\nd''16)",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 20,
+        "source": "b''4->-5\nr16\nb''16(\ng''16\ne''16\nc''4)\nr16\nc''16(\ne''16\nc''16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 21,
+        "source": "a''4->-5)\nr16\na''16-5(\nfis''16-4\nd''16-2\nb'4)\nr16\ng''16-5(\nd''16-3\nb'16-2",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 22,
+        "source": "a'2\\p)\n\\acciaccatura b'8-2\nc''4-.-3\\<\n\\acciaccatura dis''8-2\ne''4-.-3\\!",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 23,
+        "source": "\\acciaccatura { gis''8-2 }\na''4.->\nb''32(\na''32\ngis''32\na''32\nc'''8-5\na''8-3)\nc'''8(\na''8)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "3/8",
+        "native_units": [
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "3/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 24,
+        "source": "b''8-3(\\f\ng''8-1)\nd'''2-5(\\sf\nc'''16\nb''16\na''16\ng''16)",
+        "source_lines": 7,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 25,
+        "source": "\\override PhrasingSlur.direction = #-1\n\n\\acciaccatura b''8-3\n\\afterGrace 15/16 a''1\\startTrillSpan\\(( { g''16[ a''16])\\stopTrillSpan }",
+        "source_lines": 4,
+        "prefix_lines": 4,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "1",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 26,
+        "source": "g''4\\)\ng''16-2(\nd''16\ng''16\nb''16-4\nd'''16-5\nb''16-4\ng''16\nb''16-4\nc'''16-5\na''16-3\nfis''16-2\na''16-4",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 27,
+        "source": "g''4-.)\ng'16-2(\nd'16\ng'16\nb'16-4\nd''16_>\nb'16-4\ng'16\nb'16-4\nc''16->\na'16-3\nfis'16-2\na'16-4",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 28,
+        "source": "g'4-.)\n< d'' b'' >4-.\n< b' g''-4 >4-.\nr4\n\\bar \":|.\"",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 29,
+        "source": "\\bar \".|:\"\ng'4-.\ng''16-2(\nd''16\ng''16\nbes''16-3\nd'''16-5\nbes''16-3\ng''16\nbes''16\nc'''16-5\na''16-3\nfis''16-2\na''16-4",
+        "source_lines": 14,
+        "prefix_lines": 2,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 30,
+        "source": "g''4-.)\ng'16-2_(\nd'16\ng'16\nbes'16-3\nd''16\nbes'16-3\ng'16\nbes'16\nc''16-5\na'16-3\nfis'16-2\na'16-4",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 31,
+        "source": "g'4-.)\nr4\nr16\ng''16-2\nbes''16-4\na''16\ng''16\nf''16\ne''16-4\nd''16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 32,
+        "source": "cis''4-.\\sf\nr4\nr16\ncis'''16-3(\ne'''16\nd'''16\ncis'''16\nbes''16\na''16\ng''16-3",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 33,
+        "source": "f''4\\sf)\nd''16-2(\na'16-1\nd''16\nf''16-4\na''16\nf''16-4\nd''16-2\nf''16\ng''16-5\ne''16-3\ncis''16-2\ne''16-4",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 34,
+        "source": "d''4-.)\nd'16-2\na16\nd'16\nf'16-4\na'16\nf'16\nd'16-2\nf'16\ng'16-5\ne'16-3\ncis'16\ne'16",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 35,
+        "source": "r16\nd'16-1(\ne'16\nf'16\ng'16-1\na'16\nb'16\ncis''16\nd''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 36,
+        "source": "r16\nb'16-1(\nc''16\nd''16\ne''16-1\nfis''16\ngis''16\na''16\nb''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 37,
+        "source": "r16\na''16-1(\ne'''16-5\nd'''16\nc'''16\nb''16\na''16\ng''16\nf''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 38,
+        "source": "r16\ng''16-1(\nd'''16-5\nc'''16\nb''16\na''16\ng''16\nf''16-3\ne''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 39,
+        "source": "r16\nf''16-1(\nc'''16-5\nb''16\na''16\ng''16\nf''16\ne''16-3\nd''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 40,
+        "source": "r16\ne''16-1(\nb''16-5\na''16\ngis''16\nf''16\ne''16\nd''16-3\nc''4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 41,
+        "source": "\\break\nr16\nbes'16-3\nd''16\nc''16\nbes'16\na'16\ng'16\nf'16-3\ne'16\\>\nf'16-1\ng'16\na'16\nbes'16\nc''16-1\nd''16\ne''16\\!",
+        "source_lines": 17,
+        "prefix_lines": 3,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "LineBreakEvent",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 42,
+        "source": "\\override PhrasingSlur.direction = #1\n\nf''2-1(\\mp\na''4-3\nc'''4-5",
+        "source_lines": 5,
+        "prefix_lines": 3,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 43,
+        "source": "e''4.-1_>\nf''16\ng''16\nf''4)\nr4",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "3/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "3/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 44,
+        "source": "d'''2-3(_>\nc'''4\\<\nf'''4\\!",
+        "source_lines": 3,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 45,
+        "source": "c'''4-3_>\nbes''8\\trill\\>\na''16\nbes''16\na''4)\\!\nr4",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 46,
+        "source": "d''8\\p\\<\\(\ne''16\nf''16\ng''16-1\na''16\nbes''16\nc'''16\\!\nd'''16\\>\nc'''16\nbes''16\na''16\ng''16\nf''16-4\ne''16\nd''16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 47,
+        "source": "c''8\\<\nd''16\ne''16\nf''16-1\ng''16\na''16\nbes''16\\!\nc'''16\\>\nbes''16\na''16\ng''16\nf''16\n\\tag #'second e''16-3\nd''16\nc''16\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 48,
+        "source": "bes'8\\<\nc''16\nd''16\ne''16-1\nf''16\ng''16\na''16\\!\nbes''16\\>\na''16\ng''16\nf''16\ne''16-3\nd''16\nc''16\nbes'16-2\\!",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 49,
+        "source": "a'8\\<\nbes'16\nc''16\nd''16-1\ne''16\nf''16\ng''16\\!\na''16\\>\ng''16\nf''16\ne''16\nd''16\n\\tag #'second c''16-3\nbes'16\na'16\\!\\)",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 50,
+        "source": "a''4-.\nr4\nr4\n< c'' a''-5 >4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 51,
+        "source": "< c'' g''-4 >4-.\nr4\nr4\n< c'' g''-5 >4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 52,
+        "source": "< c'' f''-4 >4-.\nr4\nr4\n< b' f''-5 >4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 53,
+        "source": "< c''-2 e''-4 >4-.\nr4\nr4\n< c'' e'' >4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 54,
+        "source": "d''16-5\\(\nd'16\ne'16\nf'16\ng'16\na'16\nb'16\ncis''16\nd''16\na'16-1\nb'16\ncis''16\nd''16-1\ne''16\nf''16\ng''16-1",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 55,
+        "source": "a''16\nb''16\nc'''16\nb''16\na''16\ng''16\nf''16\ne''16\nf''16\ng''16\na''16\ng''16\nf''16\ne''16\nd''16\nc''16-2\\)",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 56,
+        "source": "b'8->\\f(\ng''8)\ne''8-.-3\nc''8-.-1\nd''8-2(\ng''8)\ne''8-.\nc''8-.",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 57,
+        "source": "d''4-.\n< b' d'' g'' >4-.\ng'4-.-2\nr4",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 58,
+        "source": "r1",
+        "source_lines": 1,
+        "prefix_lines": 1,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1",
+            "pitched": false
+          }
+        ]
+      },
+      {
+        "measure": 59,
+        "source": "g''8\\mp(\ne''8)\nc''4.(\nd''16\ne''16\nd''8\nc''8)",
+        "source_lines": 7,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 60,
+        "source": "\\acciaccatura d''8\nc''8.\\trill-3(\nb'16-.-2)\nb'4-3\nr2",
+        "source_lines": 5,
+        "prefix_lines": 2,
+        "duration": "3/16",
+        "native_units": [
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "3/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 61,
+        "source": "g''8\\mp(\ne''8)\nc''4.(\nd''16\ne''16\nd''8\nc''8)",
+        "source_lines": 7,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 62,
+        "source": "\\acciaccatura d''8\nc''8.\\trill-3(\nb'16)\nb'4\nr2",
+        "source_lines": 5,
+        "prefix_lines": 2,
+        "duration": "3/16",
+        "native_units": [
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "3/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 63,
+        "source": "g''4->-5\nr16\ng''16-5\ne''16-4\nc''16-2\na'4-1\nr16\na'16(-1\nc''16-2\na'16)",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 64,
+        "source": "f''4->\nr16\nf''16(\nd''16\nb'16\ng'4)\nr16\ng''16(\nb''16\ng''16)",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 65,
+        "source": "e'''4->-5\nr16\ne'''16(\nc'''16\na''16\nf''4)\nr16\nf''16(\na''16\nf''16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 66,
+        "source": "d'''4->-5)\nr16\nd'''16-5(\nb''16-4\ng''16-2\ne''4)\nr16\nc'''16-5(\ng''16-3\ne''16-2",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 67,
+        "source": "d''2\\p)\n\\acciaccatura cis''8-2\nd''4-.\n\\acciaccatura cis''8\nd''4-.",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 68,
+        "source": "a''2\\p\n\\acciaccatura gis''8-2\na''4-.\n\\acciaccatura gis''8\na''4-.",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 69,
+        "source": "g''8-1\\f(\na''16\nb''16\nc'''16-1\nd'''16\ne'''16\nd'''16\nc'''16\nb''16-4\na''16\ng''16\nf''16\ne''16-3\nd''16\nc''16)",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 70,
+        "source": "\\override PhrasingSlur.direction = #-1\n\n\\acciaccatura e''8-3\n\\afterGrace 15/16 d''1\\startTrillSpan\\(( { c''16[ d''16])\\stopTrillSpan }",
+        "source_lines": 4,
+        "prefix_lines": 4,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "GraceMusic",
+            "duration": "0",
+            "pitched": true
+          },
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "1",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 71,
+        "source": "\\override PhrasingSlur.direction = #1\n\nc''4-.\\)\nc''16-2\\(\ng'16_>\nc''16\ne''16-4\ng''16\ne''16-4\nc''16\ne''16-4\nf''16_>\nd''16-3\nb'16\nd''16-3",
+        "source_lines": 15,
+        "prefix_lines": 3,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 72,
+        "source": "c''4-.\nc'16-2\ng16->\nc'16\ne'16-4\ng'16\ne'16-4\nc'16\ne'16-4\nf'16->\nd'16-3\nb16\nd'16-3\\)",
+        "source_lines": 13,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 73,
+        "source": "c'4-.\n< e''-1 g''-2 c'''-5 >4-.\nc''4-2\nr4\n\\bar \":|.\"",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      }
+    ],
+    "lower": [
+      {
+        "measure": 1,
+        "source": "\\clef treble \\key c \\major \\time 4/4\nc'8-5(\\p\ng'8-1\ne'8-3\ng'8\nc'8\ng'8\ne'8\ng'8)",
+        "source_lines": 9,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 2,
+        "source": "d'8-4\ng'8-1\nf'8-2\ng'8\nc'8-5\ng'8-1\ne'8-3\ng'8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 3,
+        "source": "c'8\na'8-1\nf'8-2\na'8\nc'8\ng'8-1\ne'8-3\ng'8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 4,
+        "source": "b8-5\ng'8-1\nd'8-3\ng'8\nc'8-4\ng'8-1\ne'8-2\ng'8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 5,
+        "source": "f'4\nr4\nr4\n\\clef \"bass\"\n\n< f c' >4_4-.",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 6,
+        "source": "< e c' >4-.\nr4\nr4\n< e c' >4_4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 7,
+        "source": "< d c' >4-.\nr4\nr4\n< d b >4_4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 8,
+        "source": "< c c' >4-.\nr4\nr4\n< c-5 e-3 >4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 9,
+        "source": "< f-2 a-1 >1",
+        "source_lines": 1,
+        "prefix_lines": 1,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 10,
+        "source": "f4._3(\ng8\na4.\nfis8_2)",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "3/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "3/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 11,
+        "source": "g,16-5\\(\nb,16-4\nd16-2\ng16\ng,16-5\nc16-3\ne16-2\ng16\ng,16\nb,16\nd16\ng16\ng,16\nc16\ne16\ng16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 12,
+        "source": "g,4-.\\)\ng4-.\ng,4-.\nr4",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 13,
+        "source": "cis'16->\\p-2(\nd'16\ncis'16\nd'16\ncis'16\nd'16\ncis'16\nd'16\nc'16_2->\nd'16\nc'16\nd'16\nc'16\nd'16\nc'16\nd'16)",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 14,
+        "source": "b16->_3\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 15,
+        "source": "c'16-2\\mp\nd'16\nb16-3\nd'16\na16-4\nd'16\nb16-3\nd'16\nc'16\nd'16\nb16\nd'16\nc'16\nd'16\na16\nd'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 16,
+        "source": "b16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16\nb16\nd'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 17,
+        "source": "c'16\nd'16\nb16\nd'16\na16\nd'16\nb16\nd'16\nc'16\nd'16\nb16\nd'16\nc'16\nd'16\na16\nd'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 18,
+        "source": "\\clef \"treble\"\n\nr16\nb16-5(\nd'16-4\ng'16-2\nb'4)\nr16\nc'16-5(\ne'16-4\ng'16-2\nc''4)",
+        "source_lines": 12,
+        "prefix_lines": 4,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 19,
+        "source": "r16\na16-5(\nc'16-4\nfis'16-2\na'4)\nr16\nb16-5(\nd'16-4\nfis'16-2\nb'4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 20,
+        "source": "r16\ng16-5(\nb16-4\ne'16-2\ng'4)\nr16\na16-5(\nc'16-4\ne'16-2\na'4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 21,
+        "source": "r16\nfis16-5(\na16-4\nd'16-2\nfis'4)\nr16\ng16-5(\nb16-4\nd'16-2\ng'4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 22,
+        "source": "\\clef \"treble\"\n\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.",
+        "source_lines": 10,
+        "prefix_lines": 3,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "EventChord",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 23,
+        "source": "< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.\n< c' e' >8-.",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 24,
+        "source": "d'16_5\nb'16_1\ng'16_2\nb'16\nd'16\nb'16\ng'16\nb'16\nd'16\nb'16\ng'16\nb'16\nd'16\nb'16\ng'16\nb'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 25,
+        "source": "d'16\nc''16\nfis'16\nc''16\nd'16\nc''16\nfis'16\nc''16\nd'16\nc''16\nfis'16\nc''16\nd'16\nc''16\nfis'16\nc''16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 26,
+        "source": "< g'-2 b'-1 >4\nr4\nr4\n< a' c'' d' >4",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 27,
+        "source": "< g'-2 b'-1 >4\nr4\nr4\n\\clef \"bass\"\n\n< d a c' >4",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 28,
+        "source": "< g b >4\n< g g, >4\n< g g, >4\nr4\n\\bar \":|.\"",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 29,
+        "source": "\\bar \".|:\"\n< g, g >4\nr4\nr4\n\\clef \"treble\"\n\n< d' a' c'' >4(",
+        "source_lines": 7,
+        "prefix_lines": 2,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 30,
+        "source": "< g'-3 bes'-1 >4)\nr4\nr4\n\\clef \"bass\"\n\n< d a c' >4",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 31,
+        "source": "r16\ng16_5(\na16\nbes16\nc'16\nd'16\ne'16-3\nfis'16\ng'4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 32,
+        "source": "r16\na16_5(\nb16\nc'16\nd'16\ne'16\nfis'16-3\ngis'16\na'4-.\\sf)\nr4",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 33,
+        "source": "< d, d >4\nr4\nr4\n\\clef \"treble\"\n\n< a e' g' >4(",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 34,
+        "source": "< d'-3 f'-1 >4-.)\nr4\nr4\n\\clef \"bass\"\n\n< a, e g >4(",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 35,
+        "source": "< d_5 f_4 >4-.)\nr4\nr16\nd'16-3(\nf'16\ne'16\nd'16\nc'16-1\nb16\na16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 36,
+        "source": "gis4-.)\\sf\nr4\nr16\ngis16-3(\nb16\na16\ngis16\nf!16-1\ne16\nd16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 37,
+        "source": "c4-.)\\sf\nr4\n\\clef \"treble\"\n\nr16\nd'16-5(\na'16-1\ng'16\nf'16\ne'16-1\nd'16\nc'16",
+        "source_lines": 12,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 38,
+        "source": "\\break\nb4-.\\sf)\nr4\nr16\nc'16-5(\ng'16\nf'16\ne'16\nd'16-1\nc'16\nb16",
+        "source_lines": 11,
+        "prefix_lines": 2,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "LineBreakEvent",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 39,
+        "source": "a4-.\\sf)\nr4\nr16\nb16-5(\nf'16\ne'16\nd'16\nc'16-1\nb16\na16",
+        "source_lines": 10,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 40,
+        "source": "\\clef \"bass\"\n\ngis4-.\\sf)\nr4\nr16\na16-3(\nc'16-1\nb16\na16\ng16-1\nf16\ne16",
+        "source_lines": 12,
+        "prefix_lines": 3,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 41,
+        "source": "d2\\sf)\n< c g bes >2\\sf",
+        "source_lines": 2,
+        "prefix_lines": 1,
+        "duration": "1/2",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/2",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 42,
+        "source": "\\clef \"treble\"\n\nf'8-5(\\p\nc''8-1\na'8-3\nc''8\nf'8\nc''8\na'8\nc''8)",
+        "source_lines": 10,
+        "prefix_lines": 3,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 43,
+        "source": "g'8-4\nc''8-1\nbes'8-2\nc''8\nf'8-5\nc''8-1\na'8-3\nc''8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 44,
+        "source": "f'8\nd''8-1\nbes'8-2\nd''8\nf'8\nc''8-1\na'8-3\nc''8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 45,
+        "source": "e'8-5\nc''8-1\ng'8-3\nc''8\nf'8-4\nc''8-1\na'8-2\nc''8",
+        "source_lines": 8,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 46,
+        "source": "bes'4\nr4\nr4\n\\clef \"bass\"\n\n< bes f' >4_4-.",
+        "source_lines": 6,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 47,
+        "source": "< a f' >4-.\nr4\nr4\n< a f' >4_4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 48,
+        "source": "< g f' >4-.\nr4\nr4\n< g e' >4_4-.",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 49,
+        "source": "< f f' >4-.\nr4\nr2",
+        "source_lines": 3,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 50,
+        "source": "f8-5\\(\ng16\na16\nbes16\nc'16\nd'16-3\ne'16\nf'16\ne'16\nd'16-1\nc'16\nbes16\na16-1\ng16\nf16",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 51,
+        "source": "e8\nf16\ng16\na16\nb16-4\nc'16\nd'16\ne'16\nd'16\nc'16\nb16\na16-1\ng16\nf16\ne16",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 52,
+        "source": "d8\ne16\nf16\ng16\na16\nb16-3\nc'16\nd'16\nc'16\nb16\na16\ng16-1\nf16\ne16\nd16",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 53,
+        "source": "c8-5\nd16\ne16\nf16\ng16\na16-3\nb16\nc'16\nb16\na16-1\ng16\nf16\ne16-1\nd16\nc16",
+        "source_lines": 15,
+        "prefix_lines": 1,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 54,
+        "source": "\\once \\set fingeringOrientations = #'(right)\n\n< f-2 a-1 >1\\p\\)",
+        "source_lines": 3,
+        "prefix_lines": 3,
+        "duration": "1",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "EventChord",
+            "duration": "1",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 55,
+        "source": "f4.-3\ng8\na4.\nfis8-2",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "3/8",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "3/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 56,
+        "source": "g,16-5\\(\nb,16-4\nd16-2\ng16\ng,16-5\nc16-3\ne16-2\ng16\ng,16\nb,16\nd16\ng16\ng,16\nc16\ne16\ng16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 57,
+        "source": "g,4-.\\)\ng4-.\ng,4-.\nr4",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 58,
+        "source": "\\clef \"treble\"\n\nfis'16->\\p-2(\ng'16\nfis'16\ng'16\nfis'16\ng'16\nfis'16\ng'16\nf'16_2->\ng'16\nf'16\ng'16\nf'16\ng'16\nf'16\ng'16)",
+        "source_lines": 18,
+        "prefix_lines": 3,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 59,
+        "source": "e'16->_3\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 60,
+        "source": "f'16-2\\mp\ng'16\ne'16-3\ng'16\nd'16-4\ng'16\ne'16-3\ng'16\nf'16\ng'16\ne'16\ng'16\nf'16\ng'16\nd'16\ng'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 61,
+        "source": "e'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16\ne'16\ng'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 62,
+        "source": "f'16\ng'16\ne'16\ng'16\nd'16\ng'16\ne'16\ng'16\nf'16\ng'16\ne'16\ng'16\nf'16\ng'16\nd'16\ng'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 63,
+        "source": "\\clef \"treble\"\n\nr16\ne16-5(\ng16-4\nc'16-2\ne'4)\nr16\nf16-5(\na16-4\nc'16-2\nf'4)",
+        "source_lines": 12,
+        "prefix_lines": 4,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 64,
+        "source": "r16\nd16-5(\nf16-4\nb16-2\nd'4)\nr16\ne16-5(\ng16-4\nb16-2\ne'4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 65,
+        "source": "r16\nc'16-5(\ne'16-4\na'16-2\nc''4)\nr16\nd'16-5(\nf'16-4\na'16-2\nd''4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 66,
+        "source": "r16\nb16-5(\nd'16-4\ng'16-2\nb'4)\nr16\nc'16-5(\ne'16-4\ng'16-2\nc''4)",
+        "source_lines": 10,
+        "prefix_lines": 2,
+        "duration": "1/8",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/16",
+            "pitched": false
+          },
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 67,
+        "source": "r8\n< f' a' >8-.\n< f' a' >8-.\n< f' a' >8-.\n< f' a' >8-.\n< f' a' >8-.\n< f' a' >8-.\n< f' a' >8-.",
+        "source_lines": 8,
+        "prefix_lines": 2,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "RestEvent",
+            "duration": "1/8",
+            "pitched": false
+          },
+          {
+            "type": "EventChord",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 68,
+        "source": "\\clef \"bass\"\n\nr8\n< fis c' ees' >8-.\n< fis c' ees' >8-.\n< fis c' ees' >8-.\n< fis c' ees' >8-.\n< fis c' ees' >8-.\n< fis c' ees' >8-.\n< fis c' ees' >8-.",
+        "source_lines": 10,
+        "prefix_lines": 4,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "RestEvent",
+            "duration": "1/8",
+            "pitched": false
+          },
+          {
+            "type": "EventChord",
+            "duration": "1/8",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 69,
+        "source": "g16-5\ne'16\nc'16-2\ne'16\ng16-5\ne'16\nc'16-2\ne'16\ng16-5\ne'16\nc'16-2\ne'16\ng16-5\ne'16\nc'16-2\ne'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 70,
+        "source": "g16\nf'16\nb16\nf'16\ng16\nf'16\nb16\nf'16\ng16\nf'16\nb16\nf'16\ng16\nf'16\nb16\nf'16",
+        "source_lines": 16,
+        "prefix_lines": 1,
+        "duration": "1/16",
+        "native_units": [
+          {
+            "type": "NoteEvent",
+            "duration": "1/16",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 71,
+        "source": "< c'-2 e'-1 >4-.\nr4\nr4\n< g d' f' >4(",
+        "source_lines": 4,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 72,
+        "source": "\\override Slur.direction = #-1\n\n< c'_3 e'_1 >4-.)\nr4\nr4\n< g, d f >4(",
+        "source_lines": 6,
+        "prefix_lines": 3,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "ContextSpeccedMusic",
+            "duration": "0",
+            "pitched": false
+          },
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      },
+      {
+        "measure": 73,
+        "source": "< c e >4)\n< c c' >4-.\n< c c, >4\nr4\n\\bar \":|.\"",
+        "source_lines": 5,
+        "prefix_lines": 1,
+        "duration": "1/4",
+        "native_units": [
+          {
+            "type": "EventChord",
+            "duration": "1/4",
+            "pitched": true
+          }
+        ]
+      }
+    ]
+  }
+}

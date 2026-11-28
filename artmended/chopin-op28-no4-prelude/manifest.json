@@ -1,0 +1,555 @@
+{
+  "piece": {
+    "title": "Frédéric Chopin — Prelude in E minor, Op.28 No.4",
+    "composer": "Frédéric Chopin",
+    "catalog": "Op.28 No.4",
+    "movement": null,
+    "measure_count": 26
+  },
+  "source": {
+    "corpus": "Mutopia Project",
+    "source_page_url": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=468",
+    "download_url": "https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-4/Chop-28-4.ly",
+    "format": "lilypond",
+    "license": "Public Domain",
+    "retrieved_at": "2026-11-28T09:42:24.579399+00:00",
+    "sha256": "d4fca574bc3c3ad810ee643d42b7299e1c97b3b8b3fa379c3d7f77edb02f6192",
+    "reference_pdf": "Chop-28-4-a4.pdf",
+    "reference_pdf_sha256": "54014f0c8e86d4196728dbdfdbdaed9a0e23c5868525c39590ac673f8c82f7f7",
+    "attribution": "Magnus Lewis-Smith, Mutopia-2016/10/28-468; after Peters, 1879",
+    "license_url": "https://www.mutopiaproject.org/legal.html"
+  },
+  "card_policy": {
+    "order": "last measure to first measure",
+    "landing": "first sounding onset on each staff, with preceding rests",
+    "staff_semantics": "upper and lower staff",
+    "repeated_context": [
+      "clef",
+      "key signature",
+      "time signature"
+    ],
+    "original_measure_number": true,
+    "image_size_px": [
+      1170,
+      2532
+    ],
+    "first_onset_fingering": {
+      "mode": "suggest",
+      "engine": "PianoPlayer 3",
+      "hand_size": "M",
+      "generated_style": "native fingering style; upper above and lower below; parenthesized and grouped by chord",
+      "existing_fingerings": "preserved as optimizer anchors",
+      "inference_context": "whole piece, one staff per hand",
+      "editorial_profile": null
+    }
+  },
+  "cards": [
+    {
+      "sequence": 1,
+      "measure": "25",
+      "landing_measure": null,
+      "notation": "cards/01-m25.ly",
+      "format": "lilypond",
+      "png": "cards/01-m25.png"
+    },
+    {
+      "sequence": 2,
+      "measure": "24",
+      "landing_measure": "25",
+      "notation": "cards/02-m24-plus-m25-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/02-m24-plus-m25-onsets.png"
+    },
+    {
+      "sequence": 3,
+      "measure": "23",
+      "landing_measure": "24",
+      "notation": "cards/03-m23-plus-m24-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/03-m23-plus-m24-onsets.png"
+    },
+    {
+      "sequence": 4,
+      "measure": "22",
+      "landing_measure": "23",
+      "notation": "cards/04-m22-plus-m23-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/04-m22-plus-m23-onsets.png"
+    },
+    {
+      "sequence": 5,
+      "measure": "21",
+      "landing_measure": "22",
+      "notation": "cards/05-m21-plus-m22-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/05-m21-plus-m22-onsets.png"
+    },
+    {
+      "sequence": 6,
+      "measure": "20",
+      "landing_measure": "21",
+      "notation": "cards/06-m20-plus-m21-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/06-m20-plus-m21-onsets.png"
+    },
+    {
+      "sequence": 7,
+      "measure": "19",
+      "landing_measure": "20",
+      "notation": "cards/07-m19-plus-m20-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/07-m19-plus-m20-onsets.png"
+    },
+    {
+      "sequence": 8,
+      "measure": "18",
+      "landing_measure": "19",
+      "notation": "cards/08-m18-plus-m19-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/08-m18-plus-m19-onsets.png"
+    },
+    {
+      "sequence": 9,
+      "measure": "17",
+      "landing_measure": "18",
+      "notation": "cards/09-m17-plus-m18-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/09-m17-plus-m18-onsets.png"
+    },
+    {
+      "sequence": 10,
+      "measure": "16",
+      "landing_measure": "17",
+      "notation": "cards/10-m16-plus-m17-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/10-m16-plus-m17-onsets.png"
+    },
+    {
+      "sequence": 11,
+      "measure": "15",
+      "landing_measure": "16",
+      "notation": "cards/11-m15-plus-m16-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/11-m15-plus-m16-onsets.png"
+    },
+    {
+      "sequence": 12,
+      "measure": "14",
+      "landing_measure": "15",
+      "notation": "cards/12-m14-plus-m15-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/12-m14-plus-m15-onsets.png"
+    },
+    {
+      "sequence": 13,
+      "measure": "13",
+      "landing_measure": "14",
+      "notation": "cards/13-m13-plus-m14-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/13-m13-plus-m14-onsets.png"
+    },
+    {
+      "sequence": 14,
+      "measure": "12",
+      "landing_measure": "13",
+      "notation": "cards/14-m12-plus-m13-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/14-m12-plus-m13-onsets.png"
+    },
+    {
+      "sequence": 15,
+      "measure": "11",
+      "landing_measure": "12",
+      "notation": "cards/15-m11-plus-m12-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/15-m11-plus-m12-onsets.png"
+    },
+    {
+      "sequence": 16,
+      "measure": "10",
+      "landing_measure": "11",
+      "notation": "cards/16-m10-plus-m11-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/16-m10-plus-m11-onsets.png"
+    },
+    {
+      "sequence": 17,
+      "measure": "9",
+      "landing_measure": "10",
+      "notation": "cards/17-m9-plus-m10-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/17-m9-plus-m10-onsets.png"
+    },
+    {
+      "sequence": 18,
+      "measure": "8",
+      "landing_measure": "9",
+      "notation": "cards/18-m8-plus-m9-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/18-m8-plus-m9-onsets.png"
+    },
+    {
+      "sequence": 19,
+      "measure": "7",
+      "landing_measure": "8",
+      "notation": "cards/19-m7-plus-m8-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/19-m7-plus-m8-onsets.png"
+    },
+    {
+      "sequence": 20,
+      "measure": "6",
+      "landing_measure": "7",
+      "notation": "cards/20-m6-plus-m7-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/20-m6-plus-m7-onsets.png"
+    },
+    {
+      "sequence": 21,
+      "measure": "5",
+      "landing_measure": "6",
+      "notation": "cards/21-m5-plus-m6-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/21-m5-plus-m6-onsets.png"
+    },
+    {
+      "sequence": 22,
+      "measure": "4",
+      "landing_measure": "5",
+      "notation": "cards/22-m4-plus-m5-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/22-m4-plus-m5-onsets.png"
+    },
+    {
+      "sequence": 23,
+      "measure": "3",
+      "landing_measure": "4",
+      "notation": "cards/23-m3-plus-m4-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/23-m3-plus-m4-onsets.png"
+    },
+    {
+      "sequence": 24,
+      "measure": "2",
+      "landing_measure": "3",
+      "notation": "cards/24-m2-plus-m3-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/24-m2-plus-m3-onsets.png"
+    },
+    {
+      "sequence": 25,
+      "measure": "1",
+      "landing_measure": "2",
+      "notation": "cards/25-m1-plus-m2-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/25-m1-plus-m2-onsets.png"
+    },
+    {
+      "sequence": 26,
+      "measure": "0",
+      "landing_measure": "1",
+      "notation": "cards/26-m0-plus-m1-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/26-m0-plus-m1-onsets.png"
+    }
+  ],
+  "card_sets": {
+    "fingered": [
+      {
+        "sequence": 1,
+        "measure": "25",
+        "landing_measure": null,
+        "notation": "cards/01-m25.ly",
+        "format": "lilypond",
+        "png": "cards/01-m25.png"
+      },
+      {
+        "sequence": 2,
+        "measure": "24",
+        "landing_measure": "25",
+        "notation": "cards/02-m24-plus-m25-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/02-m24-plus-m25-onsets.png"
+      },
+      {
+        "sequence": 3,
+        "measure": "23",
+        "landing_measure": "24",
+        "notation": "cards/03-m23-plus-m24-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/03-m23-plus-m24-onsets.png"
+      },
+      {
+        "sequence": 4,
+        "measure": "22",
+        "landing_measure": "23",
+        "notation": "cards/04-m22-plus-m23-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/04-m22-plus-m23-onsets.png"
+      },
+      {
+        "sequence": 5,
+        "measure": "21",
+        "landing_measure": "22",
+        "notation": "cards/05-m21-plus-m22-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/05-m21-plus-m22-onsets.png"
+      },
+      {
+        "sequence": 6,
+        "measure": "20",
+        "landing_measure": "21",
+        "notation": "cards/06-m20-plus-m21-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/06-m20-plus-m21-onsets.png"
+      },
+      {
+        "sequence": 7,
+        "measure": "19",
+        "landing_measure": "20",
+        "notation": "cards/07-m19-plus-m20-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/07-m19-plus-m20-onsets.png"
+      },
+      {
+        "sequence": 8,
+        "measure": "18",
+        "landing_measure": "19",
+        "notation": "cards/08-m18-plus-m19-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/08-m18-plus-m19-onsets.png"
+      },
+      {
+        "sequence": 9,
+        "measure": "17",
+        "landing_measure": "18",
+        "notation": "cards/09-m17-plus-m18-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/09-m17-plus-m18-onsets.png"
+      },
+      {
+        "sequence": 10,
+        "measure": "16",
+        "landing_measure": "17",
+        "notation": "cards/10-m16-plus-m17-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/10-m16-plus-m17-onsets.png"
+      },
+      {
+        "sequence": 11,
+        "measure": "15",
+        "landing_measure": "16",
+        "notation": "cards/11-m15-plus-m16-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/11-m15-plus-m16-onsets.png"
+      },
+      {
+        "sequence": 12,
+        "measure": "14",
+        "landing_measure": "15",
+        "notation": "cards/12-m14-plus-m15-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/12-m14-plus-m15-onsets.png"
+      },
+      {
+        "sequence": 13,
+        "measure": "13",
+        "landing_measure": "14",
+        "notation": "cards/13-m13-plus-m14-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/13-m13-plus-m14-onsets.png"
+      },
+      {
+        "sequence": 14,
+        "measure": "12",
+        "landing_measure": "13",
+        "notation": "cards/14-m12-plus-m13-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/14-m12-plus-m13-onsets.png"
+      },
+      {
+        "sequence": 15,
+        "measure": "11",
+        "landing_measure": "12",
+        "notation": "cards/15-m11-plus-m12-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/15-m11-plus-m12-onsets.png"
+      },
+      {
+        "sequence": 16,
+        "measure": "10",
+        "landing_measure": "11",
+        "notation": "cards/16-m10-plus-m11-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/16-m10-plus-m11-onsets.png"
+      },
+      {
+        "sequence": 17,
+        "measure": "9",
+        "landing_measure": "10",
+        "notation": "cards/17-m9-plus-m10-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/17-m9-plus-m10-onsets.png"
+      },
+      {
+        "sequence": 18,
+        "measure": "8",
+        "landing_measure": "9",
+        "notation": "cards/18-m8-plus-m9-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/18-m8-plus-m9-onsets.png"
+      },
+      {
+        "sequence": 19,
+        "measure": "7",
+        "landing_measure": "8",
+        "notation": "cards/19-m7-plus-m8-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/19-m7-plus-m8-onsets.png"
+      },
+      {
+        "sequence": 20,
+        "measure": "6",
+        "landing_measure": "7",
+        "notation": "cards/20-m6-plus-m7-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/20-m6-plus-m7-onsets.png"
+      },
+      {
+        "sequence": 21,
+        "measure": "5",
+        "landing_measure": "6",
+        "notation": "cards/21-m5-plus-m6-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/21-m5-plus-m6-onsets.png"
+      },
+      {
+        "sequence": 22,
+        "measure": "4",
+        "landing_measure": "5",
+        "notation": "cards/22-m4-plus-m5-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/22-m4-plus-m5-onsets.png"
+      },
+      {
+        "sequence": 23,
+        "measure": "3",
+        "landing_measure": "4",
+        "notation": "cards/23-m3-plus-m4-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/23-m3-plus-m4-onsets.png"
+      },
+      {
+        "sequence": 24,
+        "measure": "2",
+        "landing_measure": "3",
+        "notation": "cards/24-m2-plus-m3-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/24-m2-plus-m3-onsets.png"
+      },
+      {
+        "sequence": 25,
+        "measure": "1",
+        "landing_measure": "2",
+        "notation": "cards/25-m1-plus-m2-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/25-m1-plus-m2-onsets.png"
+      },
+      {
+        "sequence": 26,
+        "measure": "0",
+        "landing_measure": "1",
+        "notation": "cards/26-m0-plus-m1-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/26-m0-plus-m1-onsets.png"
+      }
+    ]
+  },
+  "preparation": {
+    "notation": "preparation/score.prepared.ly",
+    "sha256": "20d260bf646a567097be041b77098bb79a3c2d8ba9053bcb38c1c34aff20e0ca",
+    "adapter": "scripts/artmender_chopin/adapters.py",
+    "runner": "scripts/artmender_cards/generate.py",
+    "compatibility": "Complete-chord look-ahead windows; native score preparation and ornament-aware card handling.",
+    "reference_pdf": "source/Chop-28-4-a4.pdf",
+    "inference_compatibility": "PianoPlayer 3, hand M; complete-chord windows, native grace/tuplet timing; native four-note octave voicings LH17/RH24–25 use the engine's full-hand span bound with unique ordered digits instead of pairwise stretch pruning. Geometry and motion cost remain M; no editorial fingering profile."
+  },
+  "validation": {
+    "card_count": 26,
+    "dimensions": [
+      1170,
+      2532
+    ],
+    "nonempty_images": true,
+    "ordered_measure_labels": [
+      25,
+      24,
+      23,
+      22,
+      21,
+      20,
+      19,
+      18,
+      17,
+      16,
+      15,
+      14,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    "sounding_staff_onsets": 51,
+    "valid_finger_digits": true,
+    "source_onset_anchors_preserved": true,
+    "native_engraving_fatal_errors": 0,
+    "warnings": {
+      "cannot end phrasing slur": 11,
+      "cannot end slur": 2,
+      "this Voice needs a \\voiceXx or \\shiftXx setting": 1,
+      "unterminated phrasing slur": 10,
+      "unterminated decrescendo": 2,
+      "unterminated tie": 1,
+      "unterminated crescendo": 2
+    },
+    "visual_review": "spot-checks passed",
+    "visually_reviewed_measures": [
+      0,
+      1,
+      9,
+      11,
+      12,
+      13,
+      16,
+      18,
+      23,
+      24,
+      25
+    ],
+    "native_source_anchors": "preparation/native-anchor-validation.json",
+    "single_system_card_sources": true,
+    "environment": {
+      "pianoplayer": "3.0.2",
+      "pillow": "12.3.0",
+      "python-ly": "0.9.10",
+      "music21": "10.5.0",
+      "python": "3.13.13",
+      "lilypond": "GNU LilyPond 2.26.0 (running Guile 3.0)"
+    },
+    "source_note_preservation": "preparation/source-note-preservation.json"
+  },
+  "reproduction": {
+    "instructions": "../../scripts/artmender_cards/README.md",
+    "retained_runtime": "../runtime/artmender"
+  }
+}

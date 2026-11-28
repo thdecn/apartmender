@@ -1,0 +1,85 @@
+Changing working directory to: `/private/var/folders/7b/dvpk46fx3h9cgy9410527frm0000gn/T/apartmender-card-render/mozart-k545-1-allegro/raw-render'
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Fontconfig error: No writable cache directories
+	/opt/homebrew/var/cache/fontconfig
+	/Users/thdecn/.cache/fontconfig
+	/Users/thdecn/.fontconfig
+
+Processing `/Users/thdecn/GitHub/apartmender/artmended/mozart-k545-1-allegro/cards/29-m45-plus-m46-onsets.ly'
+Parsing...
+Interpreting music...
+/Users/thdecn/GitHub/apartmender/artmended/mozart-k545-1-allegro/cards/29-m45-plus-m46-onsets.ly:26:5: warning: cannot end slur
+a''4
+    )\!
+/Users/thdecn/GitHub/apartmender/artmended/mozart-k545-1-allegro/cards/29-m45-plus-m46-onsets.ly:28:23: warning: unterminated crescendo
+  d''8^\finger "(1)"\p
+                      \< s1*1/8
+Preprocessing graphical objects...
+Calculating line breaks...
+Fitting music on 1 page...
+Converting to PNG...
+Success: compilation successfully completed

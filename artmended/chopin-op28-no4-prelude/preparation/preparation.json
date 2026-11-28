@@ -1,0 +1,50 @@
+{
+  "source_sha256": "d4fca574bc3c3ad810ee643d42b7299e1c97b3b8b3fa379c3d7f77edb02f6192",
+  "expected_card_count": 26,
+  "measure_labels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "pickup": {
+    "measure": 0,
+    "duration": "1/4"
+  },
+  "meter": "2/2",
+  "native_changes": [
+    "convert-ly syntax modernization",
+    "English to Dutch pitch spelling",
+    "relative to absolute pitches",
+    "explicit written-measure comments including pickup 0",
+    "whole-bar parallel dynamics lanes for bars 9 and 16",
+    "retain Largo and separate stretto text-spanner lane",
+    "split final two-bar voices at existing bar checks, retaining cross-staff chords"
+  ],
+  "caveats": [
+    "Excerpt boundaries can leave open source spanners; native render logs retained",
+    "Final cross-staff voicing requires visual comparison with source PDF"
+  ]
+}

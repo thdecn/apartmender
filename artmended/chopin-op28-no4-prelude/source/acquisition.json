@@ -1,0 +1,20 @@
+{
+  "source_page": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=468",
+  "source_page_file": "mutopia-source-page.html",
+  "license": "Public Domain",
+  "license_url": "https://www.mutopiaproject.org/legal.html",
+  "attribution": "Magnus Lewis-Smith, Mutopia-2016/10/28-468; after Peters, 1879",
+  "retrieved_at": "2026-11-28T09:36:14.456048+00:00",
+  "files": [
+    {
+      "file": "Chop-28-4.ly",
+      "url": "https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-4/Chop-28-4.ly",
+      "sha256": "d4fca574bc3c3ad810ee643d42b7299e1c97b3b8b3fa379c3d7f77edb02f6192"
+    },
+    {
+      "file": "Chop-28-4-a4.pdf",
+      "url": "https://www.mutopiaproject.org/ftp/ChopinFF/O28/Chop-28-4/Chop-28-4-a4.pdf",
+      "sha256": "54014f0c8e86d4196728dbdfdbdaed9a0e23c5868525c39590ac673f8c82f7f7"
+    }
+  ]
+}

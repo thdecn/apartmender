@@ -1,0 +1,1345 @@
+{
+  "piece": {
+    "title": "Wolfgang Amadeus Mozart — Piano Sonata in C major, K.545 — I. Allegro",
+    "composer": "Wolfgang Amadeus Mozart",
+    "catalog": "K.545",
+    "movement": "I. Allegro",
+    "measure_count": 73
+  },
+  "source": {
+    "corpus": "Mutopia Project",
+    "source_page_url": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=998",
+    "download_url": "https://www.mutopiaproject.org/ftp/MozartWA/KV545/K545-1/K545-1.ly",
+    "format": "lilypond",
+    "license": "Creative Commons Attribution-ShareAlike 3.0 Unported",
+    "retrieved_at": "2026-11-26T11:52:17.888010+00:00",
+    "sha256": "84d0e951e6d8807d3286f31ed7878a35dfddb9850bbae9156be0f5ac0a3e2e10",
+    "reference_pdf": "K545-1-a4.pdf",
+    "reference_pdf_sha256": "97a3a59fe632fe1ee8f603d0fdca8dedfa78fa636d308cf4e0969eb74ed29151",
+    "attribution": "Alejandro Sierra, Mutopia-2013/09/01-998, copyright 2013",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "card_policy": {
+    "order": "last measure to first measure",
+    "landing": "first sounding onset on each staff, with preceding rests",
+    "staff_semantics": "upper and lower staff",
+    "repeated_context": [
+      "clef",
+      "key signature",
+      "time signature"
+    ],
+    "original_measure_number": true,
+    "image_size_px": [
+      1170,
+      2532
+    ],
+    "first_onset_fingering": {
+      "mode": "suggest",
+      "engine": "PianoPlayer 3",
+      "hand_size": "M",
+      "generated_style": "native fingering style; upper above and lower below; parenthesized and grouped by chord",
+      "existing_fingerings": "preserved as optimizer anchors",
+      "inference_context": "whole piece, one staff per hand",
+      "editorial_profile": null
+    }
+  },
+  "cards": [
+    {
+      "sequence": 1,
+      "measure": "73",
+      "landing_measure": null,
+      "notation": "cards/01-m73.ly",
+      "format": "lilypond",
+      "png": "cards/01-m73.png"
+    },
+    {
+      "sequence": 2,
+      "measure": "72",
+      "landing_measure": "73",
+      "notation": "cards/02-m72-plus-m73-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/02-m72-plus-m73-onsets.png"
+    },
+    {
+      "sequence": 3,
+      "measure": "71",
+      "landing_measure": "72",
+      "notation": "cards/03-m71-plus-m72-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/03-m71-plus-m72-onsets.png"
+    },
+    {
+      "sequence": 4,
+      "measure": "70",
+      "landing_measure": "71",
+      "notation": "cards/04-m70-plus-m71-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/04-m70-plus-m71-onsets.png"
+    },
+    {
+      "sequence": 5,
+      "measure": "69",
+      "landing_measure": "70",
+      "notation": "cards/05-m69-plus-m70-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/05-m69-plus-m70-onsets.png"
+    },
+    {
+      "sequence": 6,
+      "measure": "68",
+      "landing_measure": "69",
+      "notation": "cards/06-m68-plus-m69-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/06-m68-plus-m69-onsets.png"
+    },
+    {
+      "sequence": 7,
+      "measure": "67",
+      "landing_measure": "68",
+      "notation": "cards/07-m67-plus-m68-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/07-m67-plus-m68-onsets.png"
+    },
+    {
+      "sequence": 8,
+      "measure": "66",
+      "landing_measure": "67",
+      "notation": "cards/08-m66-plus-m67-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/08-m66-plus-m67-onsets.png"
+    },
+    {
+      "sequence": 9,
+      "measure": "65",
+      "landing_measure": "66",
+      "notation": "cards/09-m65-plus-m66-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/09-m65-plus-m66-onsets.png"
+    },
+    {
+      "sequence": 10,
+      "measure": "64",
+      "landing_measure": "65",
+      "notation": "cards/10-m64-plus-m65-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/10-m64-plus-m65-onsets.png"
+    },
+    {
+      "sequence": 11,
+      "measure": "63",
+      "landing_measure": "64",
+      "notation": "cards/11-m63-plus-m64-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/11-m63-plus-m64-onsets.png"
+    },
+    {
+      "sequence": 12,
+      "measure": "62",
+      "landing_measure": "63",
+      "notation": "cards/12-m62-plus-m63-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/12-m62-plus-m63-onsets.png"
+    },
+    {
+      "sequence": 13,
+      "measure": "61",
+      "landing_measure": "62",
+      "notation": "cards/13-m61-plus-m62-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/13-m61-plus-m62-onsets.png"
+    },
+    {
+      "sequence": 14,
+      "measure": "60",
+      "landing_measure": "61",
+      "notation": "cards/14-m60-plus-m61-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/14-m60-plus-m61-onsets.png"
+    },
+    {
+      "sequence": 15,
+      "measure": "59",
+      "landing_measure": "60",
+      "notation": "cards/15-m59-plus-m60-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/15-m59-plus-m60-onsets.png"
+    },
+    {
+      "sequence": 16,
+      "measure": "58",
+      "landing_measure": "59",
+      "notation": "cards/16-m58-plus-m59-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/16-m58-plus-m59-onsets.png"
+    },
+    {
+      "sequence": 17,
+      "measure": "57",
+      "landing_measure": "58",
+      "notation": "cards/17-m57-plus-m58-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/17-m57-plus-m58-onsets.png"
+    },
+    {
+      "sequence": 18,
+      "measure": "56",
+      "landing_measure": "57",
+      "notation": "cards/18-m56-plus-m57-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/18-m56-plus-m57-onsets.png"
+    },
+    {
+      "sequence": 19,
+      "measure": "55",
+      "landing_measure": "56",
+      "notation": "cards/19-m55-plus-m56-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/19-m55-plus-m56-onsets.png"
+    },
+    {
+      "sequence": 20,
+      "measure": "54",
+      "landing_measure": "55",
+      "notation": "cards/20-m54-plus-m55-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/20-m54-plus-m55-onsets.png"
+    },
+    {
+      "sequence": 21,
+      "measure": "53",
+      "landing_measure": "54",
+      "notation": "cards/21-m53-plus-m54-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/21-m53-plus-m54-onsets.png"
+    },
+    {
+      "sequence": 22,
+      "measure": "52",
+      "landing_measure": "53",
+      "notation": "cards/22-m52-plus-m53-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/22-m52-plus-m53-onsets.png"
+    },
+    {
+      "sequence": 23,
+      "measure": "51",
+      "landing_measure": "52",
+      "notation": "cards/23-m51-plus-m52-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/23-m51-plus-m52-onsets.png"
+    },
+    {
+      "sequence": 24,
+      "measure": "50",
+      "landing_measure": "51",
+      "notation": "cards/24-m50-plus-m51-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/24-m50-plus-m51-onsets.png"
+    },
+    {
+      "sequence": 25,
+      "measure": "49",
+      "landing_measure": "50",
+      "notation": "cards/25-m49-plus-m50-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/25-m49-plus-m50-onsets.png"
+    },
+    {
+      "sequence": 26,
+      "measure": "48",
+      "landing_measure": "49",
+      "notation": "cards/26-m48-plus-m49-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/26-m48-plus-m49-onsets.png"
+    },
+    {
+      "sequence": 27,
+      "measure": "47",
+      "landing_measure": "48",
+      "notation": "cards/27-m47-plus-m48-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/27-m47-plus-m48-onsets.png"
+    },
+    {
+      "sequence": 28,
+      "measure": "46",
+      "landing_measure": "47",
+      "notation": "cards/28-m46-plus-m47-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/28-m46-plus-m47-onsets.png"
+    },
+    {
+      "sequence": 29,
+      "measure": "45",
+      "landing_measure": "46",
+      "notation": "cards/29-m45-plus-m46-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/29-m45-plus-m46-onsets.png"
+    },
+    {
+      "sequence": 30,
+      "measure": "44",
+      "landing_measure": "45",
+      "notation": "cards/30-m44-plus-m45-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/30-m44-plus-m45-onsets.png"
+    },
+    {
+      "sequence": 31,
+      "measure": "43",
+      "landing_measure": "44",
+      "notation": "cards/31-m43-plus-m44-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/31-m43-plus-m44-onsets.png"
+    },
+    {
+      "sequence": 32,
+      "measure": "42",
+      "landing_measure": "43",
+      "notation": "cards/32-m42-plus-m43-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/32-m42-plus-m43-onsets.png"
+    },
+    {
+      "sequence": 33,
+      "measure": "41",
+      "landing_measure": "42",
+      "notation": "cards/33-m41-plus-m42-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/33-m41-plus-m42-onsets.png"
+    },
+    {
+      "sequence": 34,
+      "measure": "40",
+      "landing_measure": "41",
+      "notation": "cards/34-m40-plus-m41-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/34-m40-plus-m41-onsets.png"
+    },
+    {
+      "sequence": 35,
+      "measure": "39",
+      "landing_measure": "40",
+      "notation": "cards/35-m39-plus-m40-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/35-m39-plus-m40-onsets.png"
+    },
+    {
+      "sequence": 36,
+      "measure": "38",
+      "landing_measure": "39",
+      "notation": "cards/36-m38-plus-m39-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/36-m38-plus-m39-onsets.png"
+    },
+    {
+      "sequence": 37,
+      "measure": "37",
+      "landing_measure": "38",
+      "notation": "cards/37-m37-plus-m38-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/37-m37-plus-m38-onsets.png"
+    },
+    {
+      "sequence": 38,
+      "measure": "36",
+      "landing_measure": "37",
+      "notation": "cards/38-m36-plus-m37-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/38-m36-plus-m37-onsets.png"
+    },
+    {
+      "sequence": 39,
+      "measure": "35",
+      "landing_measure": "36",
+      "notation": "cards/39-m35-plus-m36-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/39-m35-plus-m36-onsets.png"
+    },
+    {
+      "sequence": 40,
+      "measure": "34",
+      "landing_measure": "35",
+      "notation": "cards/40-m34-plus-m35-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/40-m34-plus-m35-onsets.png"
+    },
+    {
+      "sequence": 41,
+      "measure": "33",
+      "landing_measure": "34",
+      "notation": "cards/41-m33-plus-m34-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/41-m33-plus-m34-onsets.png"
+    },
+    {
+      "sequence": 42,
+      "measure": "32",
+      "landing_measure": "33",
+      "notation": "cards/42-m32-plus-m33-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/42-m32-plus-m33-onsets.png"
+    },
+    {
+      "sequence": 43,
+      "measure": "31",
+      "landing_measure": "32",
+      "notation": "cards/43-m31-plus-m32-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/43-m31-plus-m32-onsets.png"
+    },
+    {
+      "sequence": 44,
+      "measure": "30",
+      "landing_measure": "31",
+      "notation": "cards/44-m30-plus-m31-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/44-m30-plus-m31-onsets.png"
+    },
+    {
+      "sequence": 45,
+      "measure": "29",
+      "landing_measure": "30",
+      "notation": "cards/45-m29-plus-m30-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/45-m29-plus-m30-onsets.png"
+    },
+    {
+      "sequence": 46,
+      "measure": "28",
+      "landing_measure": "29",
+      "notation": "cards/46-m28-plus-m29-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/46-m28-plus-m29-onsets.png"
+    },
+    {
+      "sequence": 47,
+      "measure": "27",
+      "landing_measure": "28",
+      "notation": "cards/47-m27-plus-m28-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/47-m27-plus-m28-onsets.png"
+    },
+    {
+      "sequence": 48,
+      "measure": "26",
+      "landing_measure": "27",
+      "notation": "cards/48-m26-plus-m27-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/48-m26-plus-m27-onsets.png"
+    },
+    {
+      "sequence": 49,
+      "measure": "25",
+      "landing_measure": "26",
+      "notation": "cards/49-m25-plus-m26-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/49-m25-plus-m26-onsets.png"
+    },
+    {
+      "sequence": 50,
+      "measure": "24",
+      "landing_measure": "25",
+      "notation": "cards/50-m24-plus-m25-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/50-m24-plus-m25-onsets.png"
+    },
+    {
+      "sequence": 51,
+      "measure": "23",
+      "landing_measure": "24",
+      "notation": "cards/51-m23-plus-m24-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/51-m23-plus-m24-onsets.png"
+    },
+    {
+      "sequence": 52,
+      "measure": "22",
+      "landing_measure": "23",
+      "notation": "cards/52-m22-plus-m23-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/52-m22-plus-m23-onsets.png"
+    },
+    {
+      "sequence": 53,
+      "measure": "21",
+      "landing_measure": "22",
+      "notation": "cards/53-m21-plus-m22-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/53-m21-plus-m22-onsets.png"
+    },
+    {
+      "sequence": 54,
+      "measure": "20",
+      "landing_measure": "21",
+      "notation": "cards/54-m20-plus-m21-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/54-m20-plus-m21-onsets.png"
+    },
+    {
+      "sequence": 55,
+      "measure": "19",
+      "landing_measure": "20",
+      "notation": "cards/55-m19-plus-m20-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/55-m19-plus-m20-onsets.png"
+    },
+    {
+      "sequence": 56,
+      "measure": "18",
+      "landing_measure": "19",
+      "notation": "cards/56-m18-plus-m19-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/56-m18-plus-m19-onsets.png"
+    },
+    {
+      "sequence": 57,
+      "measure": "17",
+      "landing_measure": "18",
+      "notation": "cards/57-m17-plus-m18-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/57-m17-plus-m18-onsets.png"
+    },
+    {
+      "sequence": 58,
+      "measure": "16",
+      "landing_measure": "17",
+      "notation": "cards/58-m16-plus-m17-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/58-m16-plus-m17-onsets.png"
+    },
+    {
+      "sequence": 59,
+      "measure": "15",
+      "landing_measure": "16",
+      "notation": "cards/59-m15-plus-m16-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/59-m15-plus-m16-onsets.png"
+    },
+    {
+      "sequence": 60,
+      "measure": "14",
+      "landing_measure": "15",
+      "notation": "cards/60-m14-plus-m15-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/60-m14-plus-m15-onsets.png"
+    },
+    {
+      "sequence": 61,
+      "measure": "13",
+      "landing_measure": "14",
+      "notation": "cards/61-m13-plus-m14-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/61-m13-plus-m14-onsets.png"
+    },
+    {
+      "sequence": 62,
+      "measure": "12",
+      "landing_measure": "13",
+      "notation": "cards/62-m12-plus-m13-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/62-m12-plus-m13-onsets.png"
+    },
+    {
+      "sequence": 63,
+      "measure": "11",
+      "landing_measure": "12",
+      "notation": "cards/63-m11-plus-m12-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/63-m11-plus-m12-onsets.png"
+    },
+    {
+      "sequence": 64,
+      "measure": "10",
+      "landing_measure": "11",
+      "notation": "cards/64-m10-plus-m11-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/64-m10-plus-m11-onsets.png"
+    },
+    {
+      "sequence": 65,
+      "measure": "9",
+      "landing_measure": "10",
+      "notation": "cards/65-m9-plus-m10-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/65-m9-plus-m10-onsets.png"
+    },
+    {
+      "sequence": 66,
+      "measure": "8",
+      "landing_measure": "9",
+      "notation": "cards/66-m8-plus-m9-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/66-m8-plus-m9-onsets.png"
+    },
+    {
+      "sequence": 67,
+      "measure": "7",
+      "landing_measure": "8",
+      "notation": "cards/67-m7-plus-m8-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/67-m7-plus-m8-onsets.png"
+    },
+    {
+      "sequence": 68,
+      "measure": "6",
+      "landing_measure": "7",
+      "notation": "cards/68-m6-plus-m7-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/68-m6-plus-m7-onsets.png"
+    },
+    {
+      "sequence": 69,
+      "measure": "5",
+      "landing_measure": "6",
+      "notation": "cards/69-m5-plus-m6-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/69-m5-plus-m6-onsets.png"
+    },
+    {
+      "sequence": 70,
+      "measure": "4",
+      "landing_measure": "5",
+      "notation": "cards/70-m4-plus-m5-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/70-m4-plus-m5-onsets.png"
+    },
+    {
+      "sequence": 71,
+      "measure": "3",
+      "landing_measure": "4",
+      "notation": "cards/71-m3-plus-m4-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/71-m3-plus-m4-onsets.png"
+    },
+    {
+      "sequence": 72,
+      "measure": "2",
+      "landing_measure": "3",
+      "notation": "cards/72-m2-plus-m3-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/72-m2-plus-m3-onsets.png"
+    },
+    {
+      "sequence": 73,
+      "measure": "1",
+      "landing_measure": "2",
+      "notation": "cards/73-m1-plus-m2-onsets.ly",
+      "format": "lilypond",
+      "png": "cards/73-m1-plus-m2-onsets.png"
+    }
+  ],
+  "card_sets": {
+    "fingered": [
+      {
+        "sequence": 1,
+        "measure": "73",
+        "landing_measure": null,
+        "notation": "cards/01-m73.ly",
+        "format": "lilypond",
+        "png": "cards/01-m73.png"
+      },
+      {
+        "sequence": 2,
+        "measure": "72",
+        "landing_measure": "73",
+        "notation": "cards/02-m72-plus-m73-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/02-m72-plus-m73-onsets.png"
+      },
+      {
+        "sequence": 3,
+        "measure": "71",
+        "landing_measure": "72",
+        "notation": "cards/03-m71-plus-m72-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/03-m71-plus-m72-onsets.png"
+      },
+      {
+        "sequence": 4,
+        "measure": "70",
+        "landing_measure": "71",
+        "notation": "cards/04-m70-plus-m71-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/04-m70-plus-m71-onsets.png"
+      },
+      {
+        "sequence": 5,
+        "measure": "69",
+        "landing_measure": "70",
+        "notation": "cards/05-m69-plus-m70-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/05-m69-plus-m70-onsets.png"
+      },
+      {
+        "sequence": 6,
+        "measure": "68",
+        "landing_measure": "69",
+        "notation": "cards/06-m68-plus-m69-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/06-m68-plus-m69-onsets.png"
+      },
+      {
+        "sequence": 7,
+        "measure": "67",
+        "landing_measure": "68",
+        "notation": "cards/07-m67-plus-m68-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/07-m67-plus-m68-onsets.png"
+      },
+      {
+        "sequence": 8,
+        "measure": "66",
+        "landing_measure": "67",
+        "notation": "cards/08-m66-plus-m67-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/08-m66-plus-m67-onsets.png"
+      },
+      {
+        "sequence": 9,
+        "measure": "65",
+        "landing_measure": "66",
+        "notation": "cards/09-m65-plus-m66-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/09-m65-plus-m66-onsets.png"
+      },
+      {
+        "sequence": 10,
+        "measure": "64",
+        "landing_measure": "65",
+        "notation": "cards/10-m64-plus-m65-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/10-m64-plus-m65-onsets.png"
+      },
+      {
+        "sequence": 11,
+        "measure": "63",
+        "landing_measure": "64",
+        "notation": "cards/11-m63-plus-m64-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/11-m63-plus-m64-onsets.png"
+      },
+      {
+        "sequence": 12,
+        "measure": "62",
+        "landing_measure": "63",
+        "notation": "cards/12-m62-plus-m63-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/12-m62-plus-m63-onsets.png"
+      },
+      {
+        "sequence": 13,
+        "measure": "61",
+        "landing_measure": "62",
+        "notation": "cards/13-m61-plus-m62-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/13-m61-plus-m62-onsets.png"
+      },
+      {
+        "sequence": 14,
+        "measure": "60",
+        "landing_measure": "61",
+        "notation": "cards/14-m60-plus-m61-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/14-m60-plus-m61-onsets.png"
+      },
+      {
+        "sequence": 15,
+        "measure": "59",
+        "landing_measure": "60",
+        "notation": "cards/15-m59-plus-m60-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/15-m59-plus-m60-onsets.png"
+      },
+      {
+        "sequence": 16,
+        "measure": "58",
+        "landing_measure": "59",
+        "notation": "cards/16-m58-plus-m59-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/16-m58-plus-m59-onsets.png"
+      },
+      {
+        "sequence": 17,
+        "measure": "57",
+        "landing_measure": "58",
+        "notation": "cards/17-m57-plus-m58-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/17-m57-plus-m58-onsets.png"
+      },
+      {
+        "sequence": 18,
+        "measure": "56",
+        "landing_measure": "57",
+        "notation": "cards/18-m56-plus-m57-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/18-m56-plus-m57-onsets.png"
+      },
+      {
+        "sequence": 19,
+        "measure": "55",
+        "landing_measure": "56",
+        "notation": "cards/19-m55-plus-m56-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/19-m55-plus-m56-onsets.png"
+      },
+      {
+        "sequence": 20,
+        "measure": "54",
+        "landing_measure": "55",
+        "notation": "cards/20-m54-plus-m55-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/20-m54-plus-m55-onsets.png"
+      },
+      {
+        "sequence": 21,
+        "measure": "53",
+        "landing_measure": "54",
+        "notation": "cards/21-m53-plus-m54-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/21-m53-plus-m54-onsets.png"
+      },
+      {
+        "sequence": 22,
+        "measure": "52",
+        "landing_measure": "53",
+        "notation": "cards/22-m52-plus-m53-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/22-m52-plus-m53-onsets.png"
+      },
+      {
+        "sequence": 23,
+        "measure": "51",
+        "landing_measure": "52",
+        "notation": "cards/23-m51-plus-m52-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/23-m51-plus-m52-onsets.png"
+      },
+      {
+        "sequence": 24,
+        "measure": "50",
+        "landing_measure": "51",
+        "notation": "cards/24-m50-plus-m51-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/24-m50-plus-m51-onsets.png"
+      },
+      {
+        "sequence": 25,
+        "measure": "49",
+        "landing_measure": "50",
+        "notation": "cards/25-m49-plus-m50-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/25-m49-plus-m50-onsets.png"
+      },
+      {
+        "sequence": 26,
+        "measure": "48",
+        "landing_measure": "49",
+        "notation": "cards/26-m48-plus-m49-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/26-m48-plus-m49-onsets.png"
+      },
+      {
+        "sequence": 27,
+        "measure": "47",
+        "landing_measure": "48",
+        "notation": "cards/27-m47-plus-m48-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/27-m47-plus-m48-onsets.png"
+      },
+      {
+        "sequence": 28,
+        "measure": "46",
+        "landing_measure": "47",
+        "notation": "cards/28-m46-plus-m47-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/28-m46-plus-m47-onsets.png"
+      },
+      {
+        "sequence": 29,
+        "measure": "45",
+        "landing_measure": "46",
+        "notation": "cards/29-m45-plus-m46-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/29-m45-plus-m46-onsets.png"
+      },
+      {
+        "sequence": 30,
+        "measure": "44",
+        "landing_measure": "45",
+        "notation": "cards/30-m44-plus-m45-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/30-m44-plus-m45-onsets.png"
+      },
+      {
+        "sequence": 31,
+        "measure": "43",
+        "landing_measure": "44",
+        "notation": "cards/31-m43-plus-m44-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/31-m43-plus-m44-onsets.png"
+      },
+      {
+        "sequence": 32,
+        "measure": "42",
+        "landing_measure": "43",
+        "notation": "cards/32-m42-plus-m43-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/32-m42-plus-m43-onsets.png"
+      },
+      {
+        "sequence": 33,
+        "measure": "41",
+        "landing_measure": "42",
+        "notation": "cards/33-m41-plus-m42-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/33-m41-plus-m42-onsets.png"
+      },
+      {
+        "sequence": 34,
+        "measure": "40",
+        "landing_measure": "41",
+        "notation": "cards/34-m40-plus-m41-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/34-m40-plus-m41-onsets.png"
+      },
+      {
+        "sequence": 35,
+        "measure": "39",
+        "landing_measure": "40",
+        "notation": "cards/35-m39-plus-m40-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/35-m39-plus-m40-onsets.png"
+      },
+      {
+        "sequence": 36,
+        "measure": "38",
+        "landing_measure": "39",
+        "notation": "cards/36-m38-plus-m39-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/36-m38-plus-m39-onsets.png"
+      },
+      {
+        "sequence": 37,
+        "measure": "37",
+        "landing_measure": "38",
+        "notation": "cards/37-m37-plus-m38-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/37-m37-plus-m38-onsets.png"
+      },
+      {
+        "sequence": 38,
+        "measure": "36",
+        "landing_measure": "37",
+        "notation": "cards/38-m36-plus-m37-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/38-m36-plus-m37-onsets.png"
+      },
+      {
+        "sequence": 39,
+        "measure": "35",
+        "landing_measure": "36",
+        "notation": "cards/39-m35-plus-m36-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/39-m35-plus-m36-onsets.png"
+      },
+      {
+        "sequence": 40,
+        "measure": "34",
+        "landing_measure": "35",
+        "notation": "cards/40-m34-plus-m35-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/40-m34-plus-m35-onsets.png"
+      },
+      {
+        "sequence": 41,
+        "measure": "33",
+        "landing_measure": "34",
+        "notation": "cards/41-m33-plus-m34-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/41-m33-plus-m34-onsets.png"
+      },
+      {
+        "sequence": 42,
+        "measure": "32",
+        "landing_measure": "33",
+        "notation": "cards/42-m32-plus-m33-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/42-m32-plus-m33-onsets.png"
+      },
+      {
+        "sequence": 43,
+        "measure": "31",
+        "landing_measure": "32",
+        "notation": "cards/43-m31-plus-m32-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/43-m31-plus-m32-onsets.png"
+      },
+      {
+        "sequence": 44,
+        "measure": "30",
+        "landing_measure": "31",
+        "notation": "cards/44-m30-plus-m31-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/44-m30-plus-m31-onsets.png"
+      },
+      {
+        "sequence": 45,
+        "measure": "29",
+        "landing_measure": "30",
+        "notation": "cards/45-m29-plus-m30-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/45-m29-plus-m30-onsets.png"
+      },
+      {
+        "sequence": 46,
+        "measure": "28",
+        "landing_measure": "29",
+        "notation": "cards/46-m28-plus-m29-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/46-m28-plus-m29-onsets.png"
+      },
+      {
+        "sequence": 47,
+        "measure": "27",
+        "landing_measure": "28",
+        "notation": "cards/47-m27-plus-m28-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/47-m27-plus-m28-onsets.png"
+      },
+      {
+        "sequence": 48,
+        "measure": "26",
+        "landing_measure": "27",
+        "notation": "cards/48-m26-plus-m27-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/48-m26-plus-m27-onsets.png"
+      },
+      {
+        "sequence": 49,
+        "measure": "25",
+        "landing_measure": "26",
+        "notation": "cards/49-m25-plus-m26-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/49-m25-plus-m26-onsets.png"
+      },
+      {
+        "sequence": 50,
+        "measure": "24",
+        "landing_measure": "25",
+        "notation": "cards/50-m24-plus-m25-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/50-m24-plus-m25-onsets.png"
+      },
+      {
+        "sequence": 51,
+        "measure": "23",
+        "landing_measure": "24",
+        "notation": "cards/51-m23-plus-m24-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/51-m23-plus-m24-onsets.png"
+      },
+      {
+        "sequence": 52,
+        "measure": "22",
+        "landing_measure": "23",
+        "notation": "cards/52-m22-plus-m23-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/52-m22-plus-m23-onsets.png"
+      },
+      {
+        "sequence": 53,
+        "measure": "21",
+        "landing_measure": "22",
+        "notation": "cards/53-m21-plus-m22-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/53-m21-plus-m22-onsets.png"
+      },
+      {
+        "sequence": 54,
+        "measure": "20",
+        "landing_measure": "21",
+        "notation": "cards/54-m20-plus-m21-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/54-m20-plus-m21-onsets.png"
+      },
+      {
+        "sequence": 55,
+        "measure": "19",
+        "landing_measure": "20",
+        "notation": "cards/55-m19-plus-m20-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/55-m19-plus-m20-onsets.png"
+      },
+      {
+        "sequence": 56,
+        "measure": "18",
+        "landing_measure": "19",
+        "notation": "cards/56-m18-plus-m19-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/56-m18-plus-m19-onsets.png"
+      },
+      {
+        "sequence": 57,
+        "measure": "17",
+        "landing_measure": "18",
+        "notation": "cards/57-m17-plus-m18-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/57-m17-plus-m18-onsets.png"
+      },
+      {
+        "sequence": 58,
+        "measure": "16",
+        "landing_measure": "17",
+        "notation": "cards/58-m16-plus-m17-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/58-m16-plus-m17-onsets.png"
+      },
+      {
+        "sequence": 59,
+        "measure": "15",
+        "landing_measure": "16",
+        "notation": "cards/59-m15-plus-m16-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/59-m15-plus-m16-onsets.png"
+      },
+      {
+        "sequence": 60,
+        "measure": "14",
+        "landing_measure": "15",
+        "notation": "cards/60-m14-plus-m15-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/60-m14-plus-m15-onsets.png"
+      },
+      {
+        "sequence": 61,
+        "measure": "13",
+        "landing_measure": "14",
+        "notation": "cards/61-m13-plus-m14-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/61-m13-plus-m14-onsets.png"
+      },
+      {
+        "sequence": 62,
+        "measure": "12",
+        "landing_measure": "13",
+        "notation": "cards/62-m12-plus-m13-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/62-m12-plus-m13-onsets.png"
+      },
+      {
+        "sequence": 63,
+        "measure": "11",
+        "landing_measure": "12",
+        "notation": "cards/63-m11-plus-m12-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/63-m11-plus-m12-onsets.png"
+      },
+      {
+        "sequence": 64,
+        "measure": "10",
+        "landing_measure": "11",
+        "notation": "cards/64-m10-plus-m11-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/64-m10-plus-m11-onsets.png"
+      },
+      {
+        "sequence": 65,
+        "measure": "9",
+        "landing_measure": "10",
+        "notation": "cards/65-m9-plus-m10-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/65-m9-plus-m10-onsets.png"
+      },
+      {
+        "sequence": 66,
+        "measure": "8",
+        "landing_measure": "9",
+        "notation": "cards/66-m8-plus-m9-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/66-m8-plus-m9-onsets.png"
+      },
+      {
+        "sequence": 67,
+        "measure": "7",
+        "landing_measure": "8",
+        "notation": "cards/67-m7-plus-m8-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/67-m7-plus-m8-onsets.png"
+      },
+      {
+        "sequence": 68,
+        "measure": "6",
+        "landing_measure": "7",
+        "notation": "cards/68-m6-plus-m7-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/68-m6-plus-m7-onsets.png"
+      },
+      {
+        "sequence": 69,
+        "measure": "5",
+        "landing_measure": "6",
+        "notation": "cards/69-m5-plus-m6-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/69-m5-plus-m6-onsets.png"
+      },
+      {
+        "sequence": 70,
+        "measure": "4",
+        "landing_measure": "5",
+        "notation": "cards/70-m4-plus-m5-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/70-m4-plus-m5-onsets.png"
+      },
+      {
+        "sequence": 71,
+        "measure": "3",
+        "landing_measure": "4",
+        "notation": "cards/71-m3-plus-m4-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/71-m3-plus-m4-onsets.png"
+      },
+      {
+        "sequence": 72,
+        "measure": "2",
+        "landing_measure": "3",
+        "notation": "cards/72-m2-plus-m3-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/72-m2-plus-m3-onsets.png"
+      },
+      {
+        "sequence": 73,
+        "measure": "1",
+        "landing_measure": "2",
+        "notation": "cards/73-m1-plus-m2-onsets.ly",
+        "format": "lilypond",
+        "png": "cards/73-m1-plus-m2-onsets.png"
+      }
+    ]
+  },
+  "preparation": {
+    "notation": "preparation/K545-1-prepared.ly",
+    "sha256": "ecbf721d7caa151b807b0f5f9492e84d007e27ad2c148dceab1794b7f533610c",
+    "adapter": "scripts/artmender_k545/grace_landing.py",
+    "runner": "scripts/artmender_cards/generate.py",
+    "compatibility": "Complete-chord look-ahead windows; native score preparation and ornament-aware card handling.",
+    "reference_pdf": "source/K545-1-a4.pdf"
+  },
+  "validation": {
+    "card_count": 73,
+    "dimensions": [
+      1170,
+      2532
+    ],
+    "nonempty_images": true,
+    "ordered_measure_labels": [
+      73,
+      72,
+      71,
+      70,
+      69,
+      68,
+      67,
+      66,
+      65,
+      64,
+      63,
+      62,
+      61,
+      60,
+      59,
+      58,
+      57,
+      56,
+      55,
+      54,
+      53,
+      52,
+      51,
+      50,
+      49,
+      48,
+      47,
+      46,
+      45,
+      44,
+      43,
+      42,
+      41,
+      40,
+      39,
+      38,
+      37,
+      36,
+      35,
+      34,
+      33,
+      32,
+      31,
+      30,
+      29,
+      28,
+      27,
+      26,
+      25,
+      24,
+      23,
+      22,
+      21,
+      20,
+      19,
+      18,
+      17,
+      16,
+      15,
+      14,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "sounding_staff_onsets": 144,
+    "valid_finger_digits": true,
+    "source_onset_anchors_preserved": true,
+    "native_engraving_fatal_errors": 0,
+    "warnings": {
+      "unterminated phrasing slur": 12,
+      "cannot end phrasing slur": 10,
+      "cannot end slur": 25,
+      "cannot find line breaking that satisfies constraints": 2,
+      "unterminated crescendo": 8,
+      "unterminated slur": 9
+    },
+    "visual_review": "spot-checks passed",
+    "visually_reviewed_measures": [
+      1,
+      15,
+      37,
+      40,
+      73
+    ],
+    "native_source_anchors": "preparation/native-anchor-review.json",
+    "single_system_card_sources": true,
+    "environment": {
+      "pianoplayer": "3.0.2",
+      "pillow": "12.3.0",
+      "python-ly": "0.9.10",
+      "music21": "10.5.0",
+      "python": "3.13.13",
+      "lilypond": "GNU LilyPond 2.26.0 (running Guile 3.0)"
+    }
+  },
+  "reproduction": {
+    "instructions": "../../scripts/artmender_cards/README.md",
+    "retained_runtime": "../runtime/artmender"
+  }
+}

@@ -1,0 +1,10052 @@
+{
+  "format": "artmender-native-source-anchors-v1",
+  "prepared_source": "score.prepared.ly",
+  "prepared_source_sha256": "20d260bf646a567097be041b77098bb79a3c2d8ba9053bcb38c1c34aff20e0ca",
+  "duplicate_callback_views_removed": 2,
+  "policy": {
+    "inline": "Only attached native FingeringEvent.digit values are inline anchors; layout numbers are excluded.",
+    "markup": "Single digits and two-digit substitutions on one note constrain the initial finger; full sequences and source markup remain unchanged.",
+    "ornaments": "Longer finger runs are retained as ornament metadata rather than relabeled as held-note anchors.",
+    "chords": "Single supplementary digits map only to one unassigned member; explicit vertical columns map top-to-bottom to descending pitches; unresolved markup remains explicit metadata.",
+    "indexing": "Inline/markup details and source_annotations.note refer to source chord order; midi_pitches/original_fingers are sorted together for engine comparison. Source-order arrays are retained explicitly."
+  },
+  "events": [
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 1,
+        "offset": 2883
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 31,
+        "offset": 2913
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 41,
+        "offset": 2923
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 51,
+        "offset": 2933
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 61,
+        "offset": 2943
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 71,
+        "offset": 2953
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 81,
+        "offset": 2963
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 1,
+      "source_origin": {
+        "line": 78,
+        "character": 102,
+        "offset": 2984
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 1,
+        "offset": 3004
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 22,
+        "offset": 3025
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 33,
+        "offset": 3036
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 44,
+        "offset": 3047
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 66,
+        "offset": 3069
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 89,
+        "offset": 3092
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 102,
+        "offset": 3105
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 2,
+      "source_origin": {
+        "line": 79,
+        "character": 115,
+        "offset": 3118
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 1,
+        "offset": 3152
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 22,
+        "offset": 3173
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 33,
+        "offset": 3184
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 44,
+        "offset": 3195
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 66,
+        "offset": 3217
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 75,
+        "offset": 3226
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 84,
+        "offset": 3235
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 3,
+      "source_origin": {
+        "line": 80,
+        "character": 95,
+        "offset": 3246
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 1,
+        "offset": 3267
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 22,
+        "offset": 3288
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 33,
+        "offset": 3299
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 44,
+        "offset": 3310
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 66,
+        "offset": 3332
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 75,
+        "offset": 3341
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 84,
+        "offset": 3350
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 4,
+      "source_origin": {
+        "line": 81,
+        "character": 95,
+        "offset": 3361
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 1,
+        "offset": 3382
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 20,
+        "offset": 3401
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 29,
+        "offset": 3410
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 38,
+        "offset": 3419
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 58,
+        "offset": 3439
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 69,
+        "offset": 3450
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 80,
+        "offset": 3461
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 5,
+      "source_origin": {
+        "line": 82,
+        "character": 91,
+        "offset": 3472
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 1,
+        "offset": 3493
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 22,
+        "offset": 3514
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 33,
+        "offset": 3525
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 44,
+        "offset": 3536
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 66,
+        "offset": 3558
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 89,
+        "offset": 3581
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 102,
+        "offset": 3594
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 6,
+      "source_origin": {
+        "line": 83,
+        "character": 115,
+        "offset": 3607
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        51,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 1,
+        "offset": 3641
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 22,
+        "offset": 3662
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 33,
+        "offset": 3673
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 44,
+        "offset": 3684
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 55,
+        "offset": 3695
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 66,
+        "offset": 3706
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 77,
+        "offset": 3717
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 7,
+      "source_origin": {
+        "line": 84,
+        "character": 99,
+        "offset": 3739
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 1,
+        "offset": 3760
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 20,
+        "offset": 3779
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 29,
+        "offset": 3788
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 38,
+        "offset": 3797
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 58,
+        "offset": 3817
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 66,
+        "offset": 3825
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 74,
+        "offset": 3833
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 8,
+      "source_origin": {
+        "line": 85,
+        "character": 82,
+        "offset": 3841
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        50,
+        53,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 1,
+        "offset": 3859
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 9,
+        "offset": 3867
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 17,
+        "offset": 3875
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 25,
+        "offset": 3883
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 33,
+        "offset": 3891
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 41,
+        "offset": 3899
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 49,
+        "offset": 3907
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 9,
+      "source_origin": {
+        "line": 86,
+        "character": 57,
+        "offset": 3915
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 1,
+        "offset": 3933
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 10,
+        "offset": 3942
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 19,
+        "offset": 3951
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 30,
+        "offset": 3962
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 41,
+        "offset": 3973
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 59,
+        "offset": 3991
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 67,
+        "offset": 3999
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 10,
+      "source_origin": {
+        "line": 87,
+        "character": 75,
+        "offset": 4007
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 1,
+        "offset": 4037
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 22,
+        "offset": 4058
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 33,
+        "offset": 4069
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 44,
+        "offset": 4080
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 66,
+        "offset": 4102
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 84,
+        "offset": 4120
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 92,
+        "offset": 4128
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 11,
+      "source_origin": {
+        "line": 88,
+        "character": 100,
+        "offset": 4136
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 12,
+      "source_origin": {
+        "line": 89,
+        "character": 1,
+        "offset": 4166
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 1,
+        "offset": 4196
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 23,
+        "offset": 4218
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 33,
+        "offset": 4228
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 43,
+        "offset": 4238
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 53,
+        "offset": 4248
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 63,
+        "offset": 4258
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 73,
+        "offset": 4268
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 13,
+      "source_origin": {
+        "line": 90,
+        "character": 94,
+        "offset": 4289
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 1,
+        "offset": 4310
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 22,
+        "offset": 4331
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 33,
+        "offset": 4342
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 44,
+        "offset": 4353
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        57,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 66,
+        "offset": 4375
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 87,
+        "offset": 4396
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 98,
+        "offset": 4407
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 14,
+      "source_origin": {
+        "line": 91,
+        "character": 109,
+        "offset": 4418
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        57,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 1,
+        "offset": 4451
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 14,
+        "offset": 4464
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        63
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        63
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 27,
+        "offset": 4477
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 38,
+        "offset": 4488
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        53,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 49,
+        "offset": 4499
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 70,
+        "offset": 4520
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 81,
+        "offset": 4531
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 15,
+      "source_origin": {
+        "line": 92,
+        "character": 92,
+        "offset": 4542
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        56,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 1,
+        "offset": 4575
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 10,
+        "offset": 4584
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        62
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 19,
+        "offset": 4593
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 30,
+        "offset": 4604
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        55,
+        61
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 41,
+        "offset": 4615
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        49,
+        52,
+        58
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        49,
+        52,
+        58
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 53,
+        "offset": 4627
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        49,
+        52,
+        58
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        49,
+        52,
+        58
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 65,
+        "offset": 4639
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 16,
+      "source_origin": {
+        "line": 93,
+        "character": 73,
+        "offset": 4647
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 1,
+        "offset": 4666
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        35,
+        47
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        35,
+        47
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 22,
+        "offset": 4687
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "inline_digits": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 39,
+        "offset": 4704
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "inline_digits": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 54,
+        "offset": 4719
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "inline_digits": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        57,
+        60,
+        66,
+        69
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 80,
+        "offset": 4745
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        63,
+        66
+      ],
+      "inline_digits": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        63,
+        66
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 96,
+        "offset": 4761
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 105,
+        "offset": 4770
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 17,
+      "source_origin": {
+        "line": 94,
+        "character": 114,
+        "offset": 4779
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 5,
+        "offset": 4865
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        57,
+        60,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        57,
+        60,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 16,
+        "offset": 4876
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        57,
+        60,
+        64
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        57,
+        60,
+        64
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 26,
+        "offset": 4886
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        45
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        45
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 40,
+        "offset": 4900
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        52,
+        54,
+        60
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 62,
+        "offset": 4922
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 71,
+        "offset": 4931
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 80,
+        "offset": 4940
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 18,
+      "source_origin": {
+        "line": 96,
+        "character": 88,
+        "offset": 4948
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 5,
+        "offset": 5016
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 24,
+        "offset": 5035
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 33,
+        "offset": 5044
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 42,
+        "offset": 5053
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 62,
+        "offset": 5073
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 70,
+        "offset": 5081
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 78,
+        "offset": 5089
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 19,
+      "source_origin": {
+        "line": 98,
+        "character": 86,
+        "offset": 5097
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 1,
+        "offset": 5116
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 20,
+        "offset": 5135
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 29,
+        "offset": 5144
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 38,
+        "offset": 5153
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 58,
+        "offset": 5173
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 79,
+        "offset": 5194
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        59
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 90,
+        "offset": 5205
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 20,
+      "source_origin": {
+        "line": 99,
+        "character": 101,
+        "offset": 5216
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        51,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 1,
+        "offset": 5249
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        55
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 17,
+        "offset": 5265
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        55
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 23,
+        "offset": 5271
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        55
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 29,
+        "offset": 5277
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        55
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 35,
+        "offset": 5283
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        58
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        58
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 43,
+        "offset": 5291
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        58
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        58
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 51,
+        "offset": 5299
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 21,
+      "source_origin": {
+        "line": 100,
+        "character": 70,
+        "offset": 5318
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        48,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 1,
+        "offset": 5337
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 10,
+        "offset": 5346
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        57
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 19,
+        "offset": 5355
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        56
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        56
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 30,
+        "offset": 5366
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        56
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        56
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 41,
+        "offset": 5377
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 60,
+        "offset": 5396
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 69,
+        "offset": 5405
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 22,
+      "source_origin": {
+        "line": 101,
+        "character": 78,
+        "offset": 5414
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        47,
+        52,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 23,
+      "source_origin": {
+        "line": 102,
+        "character": 1,
+        "offset": 5445
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        46,
+        48,
+        55
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        46,
+        48,
+        55
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 24,
+      "source_origin": {
+        "line": 103,
+        "character": 11,
+        "offset": 5490
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        35,
+        47
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        35,
+        47
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 24,
+      "source_origin": {
+        "line": 103,
+        "character": 25,
+        "offset": 5504
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        35,
+        42,
+        47
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        35,
+        47,
+        42
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "lower",
+      "measure": 25,
+      "source_origin": {
+        "line": 104,
+        "character": 1,
+        "offset": 5528
+      },
+      "native_main_duration": "1",
+      "midi_pitches": [
+        28,
+        40
+      ],
+      "inline_digits": [
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        28,
+        40
+      ],
+      "source_order_original_fingers": [
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 0,
+      "source_origin": {
+        "line": 35,
+        "character": 50,
+        "offset": 1230
+      },
+      "native_main_duration": "3/16",
+      "midi_pitches": [
+        59
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        59
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 0,
+      "source_origin": {
+        "line": 35,
+        "character": 58,
+        "offset": 1238
+      },
+      "native_main_duration": "1/16",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 1,
+      "source_origin": {
+        "line": 36,
+        "character": 0,
+        "offset": 1294
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 1,
+      "source_origin": {
+        "line": 36,
+        "character": 5,
+        "offset": 1299
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 2,
+      "source_origin": {
+        "line": 37,
+        "character": 0,
+        "offset": 1314
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 2,
+      "source_origin": {
+        "line": 37,
+        "character": 5,
+        "offset": 1319
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 3,
+      "source_origin": {
+        "line": 38,
+        "character": 0,
+        "offset": 1334
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 3,
+      "source_origin": {
+        "line": 38,
+        "character": 5,
+        "offset": 1339
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 4,
+      "source_origin": {
+        "line": 39,
+        "character": 0,
+        "offset": 1354
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 4,
+      "source_origin": {
+        "line": 39,
+        "character": 5,
+        "offset": 1359
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        70
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        70
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 5,
+      "source_origin": {
+        "line": 40,
+        "character": 0,
+        "offset": 1375
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 5,
+      "source_origin": {
+        "line": 40,
+        "character": 5,
+        "offset": 1380
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 6,
+      "source_origin": {
+        "line": 41,
+        "character": 0,
+        "offset": 1395
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 6,
+      "source_origin": {
+        "line": 41,
+        "character": 5,
+        "offset": 1400
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 7,
+      "source_origin": {
+        "line": 42,
+        "character": 0,
+        "offset": 1414
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 7,
+      "source_origin": {
+        "line": 42,
+        "character": 5,
+        "offset": 1419
+      },
+      "native_main_duration": "3/16",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 7,
+      "source_origin": {
+        "line": 42,
+        "character": 10,
+        "offset": 1424
+      },
+      "native_main_duration": "1/16",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 8,
+      "source_origin": {
+        "line": 43,
+        "character": 0,
+        "offset": 1439
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 8,
+      "source_origin": {
+        "line": 45,
+        "character": 4,
+        "offset": 1464
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        68
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        68
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 5,
+        "offset": 1490
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        68
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        68
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 11,
+        "offset": 1496
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 15,
+        "offset": 1500
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 18,
+        "offset": 1503
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        74
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        74
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 25,
+        "offset": 1510
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 29,
+        "offset": 1514
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 9,
+      "source_origin": {
+        "line": 46,
+        "character": 32,
+        "offset": 1517
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 10,
+      "source_origin": {
+        "line": 47,
+        "character": 0,
+        "offset": 1569
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 10,
+      "source_origin": {
+        "line": 47,
+        "character": 9,
+        "offset": 1578
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 11,
+      "source_origin": {
+        "line": 48,
+        "character": 0,
+        "offset": 1594
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 11,
+      "source_origin": {
+        "line": 48,
+        "character": 22,
+        "offset": 1616
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 11,
+      "source_origin": {
+        "line": 48,
+        "character": 36,
+        "offset": 1630
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 0,
+        "offset": 1648
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        67
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        67
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 5,
+        "offset": 1653
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 10,
+        "offset": 1658
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        60
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        60
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 17,
+        "offset": 1665
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        59
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        59
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 19,
+        "offset": 1667
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        63
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        63
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 24,
+        "offset": 1672
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 44,
+        "offset": 1692
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        74
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        74
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 50,
+        "offset": 1698
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 12,
+      "source_origin": {
+        "line": 49,
+        "character": 54,
+        "offset": 1702
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 13,
+      "source_origin": {
+        "line": 50,
+        "character": 10,
+        "offset": 1729
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 13,
+      "source_origin": {
+        "line": 50,
+        "character": 21,
+        "offset": 1740
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 14,
+      "source_origin": {
+        "line": 51,
+        "character": 0,
+        "offset": 1756
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 14,
+      "source_origin": {
+        "line": 51,
+        "character": 5,
+        "offset": 1761
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 15,
+      "source_origin": {
+        "line": 52,
+        "character": 0,
+        "offset": 1777
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 15,
+      "source_origin": {
+        "line": 52,
+        "character": 5,
+        "offset": 1782
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 7,
+        "offset": 1805
+      },
+      "native_main_duration": "3/16",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 12,
+        "offset": 1810
+      },
+      "native_main_duration": "1/16",
+      "midi_pitches": [
+        70
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        70
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 19,
+        "offset": 1817
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        70
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        70
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 53,
+        "offset": 1851
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        81
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        81
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 69,
+        "offset": 1867
+      },
+      "native_main_duration": "3/16",
+      "midi_pitches": [
+        78
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        78
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 16,
+      "source_origin": {
+        "line": 53,
+        "character": 77,
+        "offset": 1875
+      },
+      "native_main_duration": "1/16",
+      "midi_pitches": [
+        76
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        76
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 5,
+        "offset": 2042
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        76
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        76
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 14,
+        "offset": 2051
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        75
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        75
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 20,
+        "offset": 2057
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        84
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        84
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 25,
+        "offset": 2062
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        75
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        75
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 33,
+        "offset": 2070
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        75
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        75
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 41,
+        "offset": 2078
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        76
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        76
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 45,
+        "offset": 2082
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        79
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        79
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 17,
+      "source_origin": {
+        "line": 54,
+        "character": 49,
+        "offset": 2086
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 4,
+        "offset": 2151
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        74
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        74
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 10,
+        "offset": 2157
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        72
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        72
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 40,
+        "offset": 2187
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        76
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        76
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 44,
+        "offset": 2191
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 47,
+        "offset": 2194
+      },
+      "native_main_duration": "1/12",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 54,
+        "offset": 2201
+      },
+      "native_main_duration": "3/8",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 18,
+      "source_origin": {
+        "line": 56,
+        "character": 87,
+        "offset": 2234
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 19,
+      "source_origin": {
+        "line": 58,
+        "character": 4,
+        "offset": 2302
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 19,
+      "source_origin": {
+        "line": 58,
+        "character": 29,
+        "offset": 2327
+      },
+      "native_main_duration": "1/8",
+      "midi_pitches": [
+        71
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        71
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 19,
+      "source_origin": {
+        "line": 58,
+        "character": 33,
+        "offset": 2331
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        69
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        69
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 20,
+      "source_origin": {
+        "line": 59,
+        "character": 0,
+        "offset": 2348
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 20,
+      "source_origin": {
+        "line": 59,
+        "character": 8,
+        "offset": 2356
+      },
+      "native_main_duration": "3/16",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 20,
+      "source_origin": {
+        "line": 59,
+        "character": 17,
+        "offset": 2365
+      },
+      "native_main_duration": "1/16",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 21,
+      "source_origin": {
+        "line": 60,
+        "character": 0,
+        "offset": 2383
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 21,
+      "source_origin": {
+        "line": 60,
+        "character": 31,
+        "offset": 2414
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 22,
+      "source_origin": {
+        "line": 61,
+        "character": 0,
+        "offset": 2431
+      },
+      "native_main_duration": "3/4",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 22,
+      "source_origin": {
+        "line": 61,
+        "character": 7,
+        "offset": 2438
+      },
+      "native_main_duration": "1/4",
+      "midi_pitches": [
+        66
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        66
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 23,
+      "source_origin": {
+        "line": 62,
+        "character": 0,
+        "offset": 2455
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 24,
+      "source_origin": {
+        "line": 64,
+        "character": 31,
+        "offset": 2520
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 24,
+      "source_origin": {
+        "line": 64,
+        "character": 58,
+        "offset": 2547
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        63
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        63
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 24,
+      "source_origin": {
+        "line": 66,
+        "character": 24,
+        "offset": 2626
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        52,
+        54,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        54,
+        59,
+        52
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 24,
+      "source_origin": {
+        "line": 66,
+        "character": 35,
+        "offset": 2637
+      },
+      "native_main_duration": "1/2",
+      "midi_pitches": [
+        51,
+        54,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        59,
+        51,
+        54
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 25,
+      "source_origin": {
+        "line": 67,
+        "character": 6,
+        "offset": 2673
+      },
+      "native_main_duration": "1",
+      "midi_pitches": [
+        64
+      ],
+      "inline_digits": [
+        []
+      ],
+      "note_finger_strings": [
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        64
+      ],
+      "source_order_original_fingers": [
+        null
+      ],
+      "original_fingers": [
+        null
+      ],
+      "source_annotations": []
+    },
+    {
+      "staff": "upper",
+      "measure": 25,
+      "source_origin": {
+        "line": 68,
+        "character": 49,
+        "offset": 2736
+      },
+      "native_main_duration": "1",
+      "midi_pitches": [
+        52,
+        55,
+        59
+      ],
+      "inline_digits": [
+        [],
+        [],
+        []
+      ],
+      "note_finger_strings": [
+        [],
+        [],
+        []
+      ],
+      "shared_finger_strings": [],
+      "shared_column": false,
+      "source_order_midi_pitches": [
+        55,
+        59,
+        52
+      ],
+      "source_order_original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "original_fingers": [
+        null,
+        null,
+        null
+      ],
+      "source_annotations": []
+    }
+  ]
+}

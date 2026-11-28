@@ -1,0 +1,3568 @@
+{
+  "format": "artmender-lilypond-measures-v1",
+  "measure_count": 26,
+  "upper_staff": {
+    "variable": "upper",
+    "measures": [
+      {
+        "number": 0,
+        "lilypond": "\\clef treble\n    \\time 2/2\n    \\key e \\minor\n\n                                \n    \\phrasingSlurUp\n    \\tempo \"Largo\" \\partial 4 \\posBeamA \\shpSlurA b8.\\(\\p b'16_\\markup{ \\italic \\whiteout \"espressivo\"} |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef \"treble\"",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b8.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8.",
+            "source_start": 149,
+            "source_end": 152,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 157,
+            "source_end": 161,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "lilypond": "b'2. c''4 |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "lilypond": "b'2. c''4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "lilypond": "b'2. c''4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "lilypond": "b'2. bes'4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "bes'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 10,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "lilypond": "a'2. b'!4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "a'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'!4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "lilypond": "a'2. b'4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "a'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 8,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "lilypond": "a'2. b'8. a'16 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "a'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'8.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8.",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 10,
+            "source_end": 14,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "lilypond": "a'2.\\)\n    \\shpSlurB\n    gis'4->\\(~ |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "a'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "gis'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 25,
+            "source_end": 30,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "lilypond": "<< { gis'4 a'8 b' d''8\\> c'' e' a'\\! } \\\\ { s4 s32\\< s s s s s s s\\! } >> |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "gis'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 1,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 7,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 11,
+            "source_end": 13,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "d''8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 14,
+            "source_end": 18,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 24,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 25,
+            "source_end": 27,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 30,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 1,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s32",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "32",
+            "source_start": 4,
+            "source_end": 7,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 17,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 19,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 21,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 23,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "lilypond": "fis'2.\\) a'4( |",
+        "inherited_duration": "32",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "fis'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 9,
+            "source_end": 12,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "lilypond": "fis'2.) \\acciaccatura b'8 \\shpSlurC a'4_\\( |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "fis'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 22,
+            "source_end": 25,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 36,
+            "source_end": 39,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 12,
+        "lilypond": "g'!8 fis' c'\\<^> b dis' fis'\\! \\tuplet 3/2 {d''\\> c'' b'\\!} |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "g'!8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 12,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 17,
+            "source_end": 18,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "dis'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 23,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 28,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "d''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 44,
+            "source_end": 47,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 54,
+            "source_end": 56,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "lilypond": "\\shpSlurD b'2.\\p\\)\\( c''4 |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 10,
+            "source_end": 14,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 21,
+            "source_end": 25,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 14,
+        "lilypond": "b'2. c''4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 15,
+        "lilypond": "b'2. c''4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 5,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 16,
+        "lilypond": "<< {   b'8. ais'16 ais'4  \\posScriptA \\posAccidental gisis''4\\turn\\> fis''8. e''16\\! } \\\\ {  s16\\< s s s s s\\! s s  }  \\\\ { \\set decrescendoText = \\markup { \\italic stretto } \\set decrescendoSpanner = #'text s4 s8^\\> s8 s2 } >> |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "b'8.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8.",
+            "source_start": 3,
+            "source_end": 7,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "ais'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 8,
+            "source_end": 14,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "ais'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 15,
+            "source_end": 20,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "gisis''4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 49,
+            "source_end": 57,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis''8.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8.",
+            "source_start": 65,
+            "source_end": 72,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e''16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 73,
+            "source_end": 78,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s16",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "16",
+            "source_start": 2,
+            "source_end": 5,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 11,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 12,
+            "source_end": 13,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 17,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 20,
+            "source_end": 21,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 23,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 85,
+            "source_end": 87,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s8",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "8",
+            "source_start": 88,
+            "source_end": 90,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s8",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "8",
+            "source_start": 94,
+            "source_end": 96,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s2",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "2",
+            "source_start": 97,
+            "source_end": 99,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 17,
+        "lilypond": "<< { e''8\\f\\< dis'' c''' dis''\\! dis''\\> e'' g'' b' } \\\\ { s1 } \\\\ { s4 s4 s4 s4 } >> |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e''8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 1,
+            "source_end": 5,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "dis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 10,
+            "source_end": 15,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c'''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 20,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "dis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 26,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "dis''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 34,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 40,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "g''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 41,
+            "source_end": 44,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 45,
+            "source_end": 47,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s1",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "1",
+            "source_start": 1,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 1,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 4,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 7,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 10,
+            "source_end": 12,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "lilypond": "<< { \\stemUp\n    d''!8 c''8 \\tupletDown \\tuplet 3/2 {e'' e' a'\\! } fis'4._\\markup{ \\italic \"dim.\" } a'8 } \\\\ { s1 } \\\\ { s4 s4 s4\\! s4 } >> |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "d''!8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 13,
+            "source_end": 18,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "c''8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 19,
+            "source_end": 23,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e''",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 49,
+            "source_end": 52,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 53,
+            "source_end": 55,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 56,
+            "source_end": 58,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'4.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4.",
+            "source_start": 63,
+            "source_end": 69,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 96,
+            "source_end": 99,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "s1",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "1",
+            "source_start": 1,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 1,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 4,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 7,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 3,
+            "token": "s4",
+            "kind": "skip",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 12,
+            "source_end": 14,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 19,
+        "lilypond": "\\stemNeutral\n    fis'2.\\p\\) \\acciaccatura b'8 a'4\\( |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "fis'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 17,
+            "source_end": 23,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "b'8",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 42,
+            "source_end": 45,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 46,
+            "source_end": 49,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 20,
+        "lilypond": "fis'2.~ fis'8.\\< e'16\\! |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "fis'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 6,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'8.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "8.",
+            "source_start": 8,
+            "source_end": 14,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "e'16",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "16",
+            "source_start": 17,
+            "source_end": 21,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 21,
+        "lilypond": "e'2._\\markup{\\italic smorz.}\\> fis'4 |",
+        "inherited_duration": "16",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 31,
+            "source_end": 36,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "lilypond": "e'2.\\! fis'4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e'2.",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2.",
+            "source_start": 0,
+            "source_end": 4,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "fis'4",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 7,
+            "source_end": 12,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 23,
+        "lilypond": "e'2\\) r\\fermata |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e'2",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2",
+            "source_start": 0,
+            "source_end": 3,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 6,
+            "source_end": 7,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 24,
+        "lilypond": "<< {  \n         \\posScriptB \\shpSlurE e'2^\\(-\\hidePP_\\ppWhiteOut dis'  } \\\\ { \n         \\change Staff = \"lower\" \\stemUp\n         \\crossStaff { <fis b e>2 <b dis fis> }  } >> |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e'2",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "2",
+            "source_start": 34,
+            "source_end": 37,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "dis'",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 61,
+            "source_end": 65,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "<fis b e>2",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "2",
+            "source_start": 66,
+            "source_end": 76,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "<b dis fis>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 77,
+            "source_end": 88,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 25,
+        "lilypond": "<< {  e'1\\)\\fermata\n        } \\\\ { \\change Staff = \"lower\" \\stemUp  <g b e>1\n     } >> |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef treble",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "e'1",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": "1",
+            "source_start": 2,
+            "source_end": 5,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 2,
+            "token": "<g b e>1",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "1",
+            "source_start": 34,
+            "source_end": 42,
+            "transpose_semitones": 0
+          }
+        ]
+      }
+    ]
+  },
+  "lower_staff": {
+    "variable": "lower",
+    "measures": [
+      {
+        "number": 0,
+        "lilypond": "\\clef bass\n    \\time 2/2\n    \\key e \\minor\n                                \n    \\partial 4 r4 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef \"bass\"",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "r4",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "4",
+            "source_start": 91,
+            "source_end": 93,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 1,
+        "lilypond": "<g b e'>8\\sustainOn\\(-\\hidePP <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8\\sustainOff <g b e'>8 |",
+        "inherited_duration": "4",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 30,
+            "source_end": 39,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 40,
+            "source_end": 49,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 50,
+            "source_end": 59,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 60,
+            "source_end": 69,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 70,
+            "source_end": 79,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 80,
+            "source_end": 89,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 101,
+            "source_end": 110,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "lilypond": "<fis a e'>\\sustainOn <fis a e'> <fis a e'> <fis a e'>\\sustainOff <fis a dis'>\\sustainOn <fis a dis'> <fis a dis'> <fis a dis'>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 77,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 88,
+            "source_end": 100,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 101,
+            "source_end": 113,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 114,
+            "source_end": 126,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "lilypond": "<f a dis'>\\sustainOn <f a dis'> <f a dis'> <f a dis'>\\sustainOff <f a d'> <f a d'> <f gis d'> <f gis d'> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 73,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 74,
+            "source_end": 82,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 83,
+            "source_end": 93,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 94,
+            "source_end": 104,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "lilypond": "<e gis d'>\\sustainOn <e gis d'> <e gis d'> <e gis d'>\\sustainOff <e g d'> <e g d'> <e g cis'> <e g cis'> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 73,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 74,
+            "source_end": 82,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g cis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 83,
+            "source_end": 93,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g cis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 94,
+            "source_end": 104,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "lilypond": "<e g c'>\\sustainOn <e g c'> <e g c'> <e g c'>\\sustainOff <e fis c'> <e fis c'> <e fis c'> <e fis c'> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<e g c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 27,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 36,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 45,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 57,
+            "source_end": 67,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 68,
+            "source_end": 78,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 79,
+            "source_end": 89,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 90,
+            "source_end": 100,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "lilypond": "<e fis c'>\\sustainOn <e fis c'> <e fis c'> <e fis c'>\\sustainOff <dis fis c'>\\sustainOn <dis fis c'> <dis fis c'> <dis fis c'>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<dis fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 77,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<dis fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 88,
+            "source_end": 100,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<dis fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 101,
+            "source_end": 113,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<dis fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 114,
+            "source_end": 126,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "lilypond": "<d fis c'>\\sustainOn <d fis c'> <d fis c'> <d fis c'> <d fis c'> <d fis c'> <d fis c'>\\sustainOff <d fis c'> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 54,
+            "source_end": 64,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 75,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 76,
+            "source_end": 86,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 98,
+            "source_end": 108,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "lilypond": "<d f c'>\\sustainOn <d f c'> <d f c'> <d f c'>\\sustainOff <d f b> <d f b> <d f b> <d f b> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<d f c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 27,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 36,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 45,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 57,
+            "source_end": 64,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 72,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 73,
+            "source_end": 80,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<d f b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 81,
+            "source_end": 88,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 9,
+        "lilypond": "<c e b> <c e b> <c e a> <c e a> <c e a> <c e a> <c e a> <c e a> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<c e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 7,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 8,
+            "source_end": 15,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 23,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 39,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 47,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 48,
+            "source_end": 55,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 56,
+            "source_end": 63,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 10,
+        "lilypond": "<b, e a> <b, e a> <b, dis a> <b, dis a> <c e a>\\sustainOn <c e a> <c e a> <c e a>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 17,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 28,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 39,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 47,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 58,
+            "source_end": 65,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 66,
+            "source_end": 73,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 74,
+            "source_end": 81,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "lilypond": "<b, dis a>\\sustainOn <b, dis a> <b, dis a> <b, dis a>\\sustainOff <c e a>\\sustainOn <c e a> <c e a> <c e a>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 72,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 83,
+            "source_end": 90,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 91,
+            "source_end": 98,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 99,
+            "source_end": 106,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 12,
+        "lilypond": "<b, dis a>4\\) r r2 |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, dis a>4",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "4",
+            "source_start": 0,
+            "source_end": 11,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "r2",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": "2",
+            "source_start": 16,
+            "source_end": 18,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "lilypond": "<g b e'>8\\sustainOn\\( <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8 <g b e'>8\\sustainOff <g b e'>8 |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 0,
+            "source_end": 9,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 22,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 32,
+            "source_end": 41,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 42,
+            "source_end": 51,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 52,
+            "source_end": 61,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 62,
+            "source_end": 71,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 72,
+            "source_end": 81,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>8",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "8",
+            "source_start": 93,
+            "source_end": 102,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 14,
+        "lilypond": "<fis a e'>\\sustainOn <fis a e'> <fis a e'> <fis a e'>\\sustainOff <f a dis'>\\sustainOn <f a dis'> <f a dis'> <f a dis'>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 10,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 31,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 32,
+            "source_end": 42,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<fis a e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 43,
+            "source_end": 53,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 65,
+            "source_end": 75,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 86,
+            "source_end": 96,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 97,
+            "source_end": 107,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f a dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 108,
+            "source_end": 118,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 15,
+        "lilypond": "<f gis dis'> <f gis dis'> <f gis d'> <f gis d'> <e gis d'>\\sustainOn <e gis d'> <e gis d'> <e gis d'>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<f gis dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 12,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f gis dis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 13,
+            "source_end": 25,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 26,
+            "source_end": 36,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<f gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 47,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 48,
+            "source_end": 58,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 69,
+            "source_end": 79,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 80,
+            "source_end": 90,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e gis d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 91,
+            "source_end": 101,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 16,
+        "lilypond": "<e g d'> <e g d'> <e g cis'> <e g cis'> <cis e ais> <cis e ais> <c e a> <c e a> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<e g d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g d'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 17,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g cis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 28,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e g cis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 39,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<cis e ais>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 51,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<cis e ais>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 52,
+            "source_end": 63,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 64,
+            "source_end": 71,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 72,
+            "source_end": 79,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 17,
+        "lilypond": "<b,, b,>\\)\\sustainOn <a c' fis' a'>\\( <a c' fis' a'> <a c' fis' a'>\\sustainOff <g b dis' fis'> <g b e'> <g b e'> <g b e'> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b,, b,>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<a c' fis' a'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 21,
+            "source_end": 35,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<a c' fis' a'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 38,
+            "source_end": 52,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<a c' fis' a'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 53,
+            "source_end": 67,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b dis' fis'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 79,
+            "source_end": 94,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 95,
+            "source_end": 103,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 104,
+            "source_end": 112,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<g b e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 113,
+            "source_end": 121,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 18,
+        "lilypond": "\\override Staff.PianoPedalBracket.shorten-pair = #'(0 . -2.0)\n    <a c' e'>[ <a c' e'>] a,\\sustainOn <e fis c'>\\sustainOff <b, e b> <b, e b> <c e a> <c e a> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<a c' e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 66,
+            "source_end": 75,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<a c' e'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 77,
+            "source_end": 86,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "a,",
+            "kind": "note",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 88,
+            "source_end": 90,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<e fis c'>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 101,
+            "source_end": 111,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 123,
+            "source_end": 131,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 132,
+            "source_end": 140,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 141,
+            "source_end": 148,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 149,
+            "source_end": 156,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 19,
+        "lilypond": "\\revert Staff.PianoPedalBracket.shorten-pair\n    <b, e b>\\sustainOn <b, e b> <b, e b> <b, e b>\\sustainOff <c e a> <c e a> <c e a> <c e a> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 49,
+            "source_end": 57,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 68,
+            "source_end": 76,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 77,
+            "source_end": 85,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 86,
+            "source_end": 94,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 106,
+            "source_end": 113,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 114,
+            "source_end": 121,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 122,
+            "source_end": 129,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 130,
+            "source_end": 137,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 20,
+        "lilypond": "<b, e b>\\sustainOn <b, e b> <b, e b> <b, e b>\\sustainOff <b, dis b>\\sustainOn <b, dis b> <b, dis a> <b, dis a>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 19,
+            "source_end": 27,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 36,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 37,
+            "source_end": 45,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 57,
+            "source_end": 67,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis b>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 78,
+            "source_end": 88,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 89,
+            "source_end": 99,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, dis a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 100,
+            "source_end": 110,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 21,
+        "lilypond": "<c g>\\sustainOn <c g> <c g> <c g> <c bes> <c bes> <c e a>\\sustainOff <c e a> |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<c g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 5,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 16,
+            "source_end": 21,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 22,
+            "source_end": 27,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 28,
+            "source_end": 33,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c bes>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 34,
+            "source_end": 41,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c bes>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 42,
+            "source_end": 49,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 50,
+            "source_end": 57,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<c e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 69,
+            "source_end": 76,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "lilypond": "<b, e a> <b, e a> <b, e gis> <b, e gis> <b, e g>\\sustainOn <b, e g> <b, e g> <b, e g>\\sustainOff |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b, e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 0,
+            "source_end": 8,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e a>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 9,
+            "source_end": 17,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e gis>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 18,
+            "source_end": 28,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e gis>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 29,
+            "source_end": 39,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 40,
+            "source_end": 48,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 59,
+            "source_end": 67,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 68,
+            "source_end": 76,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b, e g>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 77,
+            "source_end": 85,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 23,
+        "lilypond": "<bes, c g>2\\) r\\fermata |",
+        "inherited_duration": "8",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<bes, c g>2",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "2",
+            "source_start": 0,
+            "source_end": 11,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "r",
+            "kind": "rest",
+            "pitched": false,
+            "explicit_duration": null,
+            "source_start": 14,
+            "source_end": 15,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 24,
+        "lilypond": "\\stemDown <b,,! b,!>2_( <b,, b,fis,> |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<b,,! b,!>2",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "2",
+            "source_start": 10,
+            "source_end": 21,
+            "transpose_semitones": 0
+          },
+          {
+            "voice": 1,
+            "token": "<b,, b,fis,>",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": null,
+            "source_start": 24,
+            "source_end": 36,
+            "transpose_semitones": 0
+          }
+        ]
+      },
+      {
+        "number": 25,
+        "lilypond": "<e,, e,>1)_\\fermata |",
+        "inherited_duration": "2",
+        "context_at_start": [
+          "\\clef bass",
+          "\\key e \\minor",
+          "\\time 2/2"
+        ],
+        "events": [
+          {
+            "voice": 1,
+            "token": "<e,, e,>1",
+            "kind": "chord",
+            "pitched": true,
+            "explicit_duration": "1",
+            "source_start": 0,
+            "source_end": 9,
+            "transpose_semitones": 0
+          }
+        ]
+      }
+    ]
+  }
+}

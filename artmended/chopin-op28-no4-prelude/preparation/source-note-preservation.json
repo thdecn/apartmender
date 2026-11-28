@@ -1,0 +1,9 @@
+{
+  "result": "passed",
+  "source_sha256": "d4fca574bc3c3ad810ee643d42b7299e1c97b3b8b3fa379c3d7f77edb02f6192",
+  "prepared_source_sha256": "20d260bf646a567097be041b77098bb79a3c2d8ba9053bcb38c1c34aff20e0ca",
+  "native_event_count": 257,
+  "pitched_note_count": 602,
+  "comparison": "Original and prepared native LilyPond note-event multisets: staff, MIDI pitches and native duration; source-origin deduplicated. Measure alignment, temporal order and engraving are checked separately.",
+  "inference_compatibility": "PianoPlayer 3, hand M; complete-chord windows, native grace/tuplet timing; native four-note octave voicings LH17/RH24\u201325 use the engine's full-hand span bound with unique ordered digits instead of pairwise stretch pruning. Geometry and motion cost remain M; no editorial fingering profile."
+}
